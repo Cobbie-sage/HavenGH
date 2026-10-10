@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Edit your HavenGH stay listing.">
+
+    <title>Edit Stay | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================================
+           HAVENGH PREMIUM HOST EDIT STAY
+        ===================================================== */
+
+        :root {
+            --green: #064e3b;
+            --green-dark: #043c2e;
+            --teal: #0f766e;
+            --gold: #d4af37;
+            --gold-light: #f4e7b0;
+            --background: #f5f8f6;
+            --white: #ffffff;
+            --text: #17201d;
+            --muted: #6b7280;
+            --border: #e1e8e4;
+            --danger: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        .edit-page {
+            min-height: 100vh;
+        }
+
+        .edit-container {
+            width: min(1150px, calc(100% - 30px));
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .edit-header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .edit-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--green);
+        }
+
+        .brand img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .brand-name span {
+            color: var(--gold);
+        }
+
+        .host-badge {
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: #edf7f3;
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .edit-main {
+            padding: 45px 0 80px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: var(--green);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading small {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .page-heading h1 {
+            margin: 8px 0;
+            color: var(--green);
+            font-size: clamp(30px, 5vw, 42px);
+        }
+
+        .page-heading p {
+            max-width: 650px;
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           FORM LAYOUT
+        ===================================================== */
+
+        .edit-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(280px, .8fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(6, 78, 59, .06);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 22px 25px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-header h2 {
+            margin: 0;
+            color: var(--green);
+            font-size: 19px;
+        }
+
+        .card-header p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+
+        /* =====================================================
+           FORM FIELDS
+        ===================================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            outline: none;
+            background: #fbfcfb;
+            color: var(--text);
+            transition: .2s ease;
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--teal);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, .08);
+        }
+
+        .field-help {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           AMENITIES
+        ===================================================== */
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fafcfb;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .amenity:hover {
+            border-color: var(--teal);
+        }
+
+        .amenity input {
+            accent-color: var(--green);
+        }
+
+
+        /* =====================================================
+           IMAGE PREVIEW
+        ===================================================== */
+
+        .image-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            background: #eaf0ed;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 250px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .image-label {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: rgba(0,0,0,.65);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status-box {
+            padding: 15px;
+            border-radius: 12px;
+            background: #f0f7f4;
+            border: 1px solid #d5e9e2;
+        }
+
+        .status-box label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--green);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           ACTIONS
+        ===================================================== */
+
+        .action-card {
+            position: sticky;
+            top: 25px;
+        }
+
+        .action-buttons {
+            display: grid;
+            gap: 11px;
+        }
+
+        .btn-action {
+            width: 100%;
+            border: none;
+            border-radius: 11px;
+            padding: 14px 18px;
+            cursor: pointer;
+            font-weight: 800;
+            transition: .2s ease;
+        }
+
+        .save-button {
+            background: var(--green);
+            color: white;
+        }
+
+        .save-button:hover {
+            background: var(--teal);
+            transform: translateY(-1px);
+        }
+
+        .preview-button {
+            background: white;
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+
+        .preview-button:hover {
+            background: #eef7f4;
+        }
+
+        .cancel-button {
+            background: #f8faf9;
+            color: var(--muted);
+            border: 1px solid var(--border);
+        }
+
+        .cancel-button:hover {
+            background: #f1f5f3;
+        }
+
+        .delete-button {
+            background: white;
+            color: var(--danger);
+            border: 1px solid #fecaca;
+        }
+
+        .delete-button:hover {
+            background: #fef2f2;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .form-message {
+            display: none;
+            margin-top: 15px;
+            padding: 13px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+
+        /* =====================================================
+           SECURITY NOTE
+        ===================================================== */
+
+        .security-note {
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 13px;
+            background: #f0f7f4;
+            border: 1px solid #d5e9e2;
+            color: #365b50;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .security-icon {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .edit-footer {
+            padding: 25px 0;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .edit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-card {
+                position: static;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .edit-container {
+                width: min(100% - 22px, 1150px);
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="edit-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
+    <header class="edit-header">
+
+        <div class="edit-container edit-header-inner">
+
+            <a href="host-dashboard.html" class="brand">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <div class="brand-name">
+                    Haven<span>GH</span>
+                </div>
+
+            </a>
+
+            <div class="host-badge">
+                Stay Host Portal
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="edit-main">
+
+        <div class="edit-container">
+
+
+            <a
+                href="host-stays.html"
+                class="back-link">
+
+                ← Back to My Stays
+
+            </a>
+
+
+            <div class="page-heading">
+
+                <small>
+                    HOST MANAGEMENT
+                </small>
+
+                <h1>
+                    Edit your stay
+                </h1>
+
+                <p>
+                    Update your accommodation details, pricing,
+                    amenities and availability. Keep your listing
+                    accurate so guests know exactly what to expect.
+                </p>
+
+            </div>
+
+
+            <form id="editStayForm">
+
+                <div class="edit-grid">
+
+
+                    <!-- =================================================
+                         LEFT
+                    ================================================== -->
+
+                    <div>
+
+
+                        <!-- BASIC INFORMATION -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Stay information
+                                </h2>
+
+                                <p>
+                                    Update the basic information about your accommodation.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-grid">
+
+
+                                    <div class="form-group full">
+
+                                        <label for="stayName">
+                                            Stay name
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="stayName"
+                                            required>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="stayType">
+                                            Accommodation type
+                                        </label>
+
+                                        <select id="stayType" required>
+
+                                            <option value="hotel">
+                                                Hotel
+                                            </option>
+
+                                            <option value="serviced-apartment">
+                                                Serviced Apartment
+                                            </option>
+
+                                            <option value="short-stay">
+                                                Short-Stay Apartment
+                                            </option>
+
+                                            <option value="guest-house">
+                                                Guest House
+                                            </option>
+
+                                            <option value="villa">
+                                                Villa
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="location">
+                                            Location
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="location"
+                                            required>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="city">
+                                            City
+                                        </label>
+
+                                        <select id="city">
+
+                                            <option value="accra">
+                                                Accra
+                                            </option>
+
+                                            <option value="kumasi">
+                                                Kumasi
+                                            </option>
+
+                                            <option value="cape-coast">
+                                                Cape Coast
+                                            </option>
+
+                                            <option value="takoradi">
+                                                Takoradi
+                                            </option>
+
+                                            <option value="other">
+                                                Other
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="country">
+                                            Country
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="country"
+                                            value="Ghana"
+                                            readonly>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- PRICING -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Pricing
+                                </h2>
+
+                                <p>
+                                    Set the nightly rate guests will see.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-grid">
+
+                                    <div class="form-group">
+
+                                        <label for="price">
+                                            Price per night (GH₵)
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="price"
+                                            min="0"
+                                            step="1"
+                                            required>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="cleaningFee">
+                                            Cleaning fee (GH₵)
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="cleaningFee"
+                                            min="0"
+                                            step="1"
+                                            value="0">
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- PROPERTY DETAILS -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Accommodation details
+                                </h2>
+
+                                <p>
+                                    Help guests understand the space.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-grid">
+
+
+                                    <div class="form-group">
+
+                                        <label for="bedrooms">
+                                            Bedrooms
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="bedrooms"
+                                            min="0"
+                                            required>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="bathrooms">
+                                            Bathrooms
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="bathrooms"
+                                            min="0"
+                                            required>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="guests">
+                                            Maximum guests
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="guests"
+                                            min="1"
+                                            required>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label for="rooms">
+                                            Rooms
+                                        </label>
+
+                                        <input
+                                            type="number"
+                                            id="rooms"
+                                            min="1"
+                                            required>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Description
+                                </h2>
+
+                                <p>
+                                    Tell guests what makes your stay special.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="form-group">
+
+                                    <label for="description">
+                                        Stay description
+                                    </label>
+
+                                    <textarea
+                                        id="description"
+                                        required></textarea>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- AMENITIES -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Amenities
+                                </h2>
+
+                                <p>
+                                    Select everything available to guests.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="amenities-grid">
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="wifi">
+                                        Wi-Fi
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="air-conditioning">
+                                        Air Conditioning
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="parking">
+                                        Free Parking
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="breakfast">
+                                        Breakfast
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="pool">
+                                        Swimming Pool
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="kitchen">
+                                        Kitchen
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="security">
+                                        Security
+                                    </label>
+
+
+                                    <label class="amenity">
+                                        <input
+                                            type="checkbox"
+                                            name="amenity"
+                                            value="workspace">
+                                        Workspace
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- IMAGE -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Main photo
+                                </h2>
+
+                                <p>
+                                    Update the main image guests will see.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="image-preview">
+
+                                    <img
+                                        id="imagePreview"
+                                        src="images/stay-1.jpg"
+                                        alt="Stay preview">
+
+                                    <span class="image-label">
+                                        Current main image
+                                    </span>
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="imageUrl">
+                                        Image path
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="imageUrl"
+                                        value="images/stay-1.jpg"
+                                        placeholder="images/stay-1.jpg">
+
+                                    <span class="field-help">
+                                        Example: images/stay-1.jpg
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         RIGHT
+                    ================================================== -->
+
+                    <aside>
+
+
+                        <!-- STATUS -->
+
+                        <section class="card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Listing status
+                                </h2>
+
+                                <p>
+                                    Control whether guests can see your stay.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="status-box">
+
+                                    <label for="status">
+                                        Current status
+                                    </label>
+
+                                    <select
+                                        id="status"
+                                        style="width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;">
+
+                                        <option value="published">
+                                            Published
+                                        </option>
+
+                                        <option value="draft">
+                                            Draft
+                                        </option>
+
+                                        <option value="paused">
+                                            Paused
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- ACTIONS -->
+
+                        <section class="card action-card">
+
+                            <div class="card-header">
+
+                                <h2>
+                                    Save changes
+                                </h2>
+
+                                <p>
+                                    Review your updates before saving.
+                                </p>
+
+                            </div>
+
+
+                            <div class="card-body">
+
+                                <div class="action-buttons">
+
+
+                                    <button
+                                        type="submit"
+                                        class="btn-action save-button">
+
+                                        ✓ Save Changes
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="btn-action preview-button"
+                                        id="previewButton">
+
+                                        Preview Stay
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="btn-action cancel-button"
+                                        id="cancelButton">
+
+                                        Cancel
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="btn-action delete-button"
+                                        id="deleteButton">
+
+                                        Delete Stay
+
+                                    </button>
+
+                                </div>
+
+
+                                <div
+                                    id="formMessage"
+                                    class="form-message">
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <!-- SECURITY -->
+
+                        <div class="security-note">
+
+                            <div class="security-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Protected host listing
+                                </strong>
+
+                                <br>
+
+                                When the API is connected, HavenGH
+                                will verify that only the authenticated
+                                host who owns this stay can modify it.
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="edit-footer">
+
+        <div class="edit-container footer-inner">
+
+            <span>
+                © 2026 HavenGH. All rights reserved.
+            </span>
+
+            <span>
+                Built for Ghana 🇬🇭
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+     * =========================================================
+     * GET STAY ID
+     * =========================================================
+     */
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const stayId =
+        params.get("id") || "1";
+
+
+    /*
+     * =========================================================
+     * DEMO STAY DATA
+     * =========================================================
+     *
+     * Later this will come from:
+     *
+     * GET /api/stays/{id}
+     *
+     * =========================================================
+     */
+
+    const stays = {
+
+        "1": {
+            name: "Luxury Short-Stay Apartment",
+            type: "serviced-apartment",
+            location: "East Legon",
+            city: "accra",
+            price: 1200,
+            cleaningFee: 0,
+            bedrooms: 2,
+            bathrooms: 2,
+            guests: 4,
+            rooms: 3,
+            description:
+                "Enjoy a premium short-stay experience in East Legon, Accra. The apartment offers comfortable bedrooms, modern facilities, reliable Wi-Fi and convenient access to restaurants, shopping and business areas.",
+            image: "images/stay-1.jpg",
+            status: "published",
+            amenities: [
+                "wifi",
+                "air-conditioning",
+                "parking",
+                "security",
+                "kitchen"
+            ]
+        },
+
+        "2": {
+            name: "Modern City Hotel",
+            type: "hotel",
+            location: "Airport Residential",
+            city: "accra",
+            price: 950,
+            cleaningFee: 0,
+            bedrooms: 1,
+            bathrooms: 1,
+            guests: 2,
+            rooms: 1,
+            description:
+                "A comfortable city hotel designed for business travellers and visitors looking for convenience in Accra.",
+            image: "images/stay-2.jpg",
+            status: "published",
+            amenities: [
+                "wifi",
+                "air-conditioning",
+                "breakfast",
+                "parking",
+                "security"
+            ]
+        },
+
+        "3": {
+            name: "Cape Coast Guest House",
+            type: "guest-house",
+            location: "Cape Coast",
+            city: "cape-coast",
+            price: 650,
+            cleaningFee: 0,
+            bedrooms: 1,
+            bathrooms: 1,
+            guests: 2,
+            rooms: 1,
+            description:
+                "A peaceful guest house close to the attractions and coastline of Cape Coast.",
+            image: "images/stay-3.jpg",
+            status: "published",
+            amenities: [
+                "wifi",
+                "parking",
+                "security"
+            ]
+        },
+
+        "4": {
+            name: "Private Garden Villa",
+            type: "villa",
+            location: "Kumasi",
+            city: "kumasi",
+            price: 1500,
+            cleaningFee: 0,
+            bedrooms: 3,
+            bathrooms: 2,
+            guests: 6,
+            rooms: 4,
+            description:
+                "A spacious private villa offering comfort, privacy and a relaxing environment in Kumasi.",
+            image: "images/stay-4.jpg",
+            status: "published",
+            amenities: [
+                "wifi",
+                "air-conditioning",
+                "parking",
+                "kitchen",
+                "security"
+            ]
+        }
+
+    };
+
+
+    /*
+     * =========================================================
+     * SELECT STAY
+     * =========================================================
+     */
+
+    const stay =
+        stays[stayId] || stays["1"];
+
+
+    /*
+     * =========================================================
+     * FORM ELEMENTS
+     * =========================================================
+     */
+
+    const stayName =
+        document.getElementById("stayName");
+
+    const stayType =
+        document.getElementById("stayType");
+
+    const location =
+        document.getElementById("location");
+
+    const city =
+        document.getElementById("city");
+
+    const price =
+        document.getElementById("price");
+
+    const cleaningFee =
+        document.getElementById("cleaningFee");
+
+    const bedrooms =
+        document.getElementById("bedrooms");
+
+    const bathrooms =
+        document.getElementById("bathrooms");
+
+    const guests =
+        document.getElementById("guests");
+
+    const rooms =
+        document.getElementById("rooms");
+
+    const description =
+        document.getElementById("description");
+
+    const imageUrl =
+        document.getElementById("imageUrl");
+
+    const imagePreview =
+        document.getElementById("imagePreview");
+
+    const status =
+        document.getElementById("status");
+
+    const form =
+        document.getElementById("editStayForm");
+
+    const message =
+        document.getElementById("formMessage");
+
+
+    /*
+     * =========================================================
+     * LOAD DATA INTO FORM
+     * =========================================================
+     */
+
+    stayName.value =
+        stay.name;
+
+    stayType.value =
+        stay.type;
+
+    location.value =
+        stay.location;
+
+    city.value =
+        stay.city;
+
+    price.value =
+        stay.price;
+
+    cleaningFee.value =
+        stay.cleaningFee;
+
+    bedrooms.value =
+        stay.bedrooms;
+
+    bathrooms.value =
+        stay.bathrooms;
+
+    guests.value =
+        stay.guests;
+
+    rooms.value =
+        stay.rooms;
+
+    description.value =
+        stay.description;
+
+    imageUrl.value =
+        stay.image;
+
+    imagePreview.src =
+        stay.image;
+
+    status.value =
+        stay.status;
+
+
+    /*
+     * =========================================================
+     * LOAD AMENITIES
+     * =========================================================
+     */
+
+    document
+        .querySelectorAll('input[name="amenity"]')
+        .forEach(function (checkbox) {
+
+            checkbox.checked =
+                stay.amenities.includes(
+                    checkbox.value
+                );
+
+        });
+
+
+    /*
+     * =========================================================
+     * IMAGE PREVIEW
+     * =========================================================
+     */
+
+    imageUrl.addEventListener(
+        "input",
+        function () {
+
+            if (imageUrl.value.trim() !== "") {
+
+                imagePreview.src =
+                    imageUrl.value.trim();
+
+            }
+
+        }
+    );
+
+
+    /*
+     * =========================================================
+     * MESSAGE
+     * =========================================================
+     */
+
+    function showMessage(text, type) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "form-message " + type;
+
+    }
+
+
+    /*
+     * =========================================================
+     * SAVE CHANGES
+     * =========================================================
+     */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            if (!form.checkValidity()) {
+
+                form.reportValidity();
+
+                return;
+
+            }
+
+
+            const selectedAmenities = [];
+
+
+            document
+                .querySelectorAll(
+                    'input[name="amenity"]:checked'
+                )
+                .forEach(function (checkbox) {
+
+                    selectedAmenities.push(
+                        checkbox.value
+                    );
+
+                });
+
+
+            const updatedStay = {
+
+                id: stayId,
+
+                name:
+                    stayName.value.trim(),
+
+                type:
+                    stayType.value,
+
+                location:
+                    location.value.trim(),
+
+                city:
+                    city.value,
+
+                price:
+                    Number(price.value),
+
+                cleaningFee:
+                    Number(cleaningFee.value),
+
+                bedrooms:
+                    Number(bedrooms.value),
+
+                bathrooms:
+                    Number(bathrooms.value),
+
+                guests:
+                    Number(guests.value),
+
+                rooms:
+                    Number(rooms.value),
+
+                description:
+                    description.value.trim(),
+
+                image:
+                    imageUrl.value.trim(),
+
+                status:
+                    status.value,
+
+                amenities:
+                    selectedAmenities
+
+            };
+
+
+            /*
+             * Temporary frontend storage.
+             *
+             * This will later be replaced by:
+             *
+             * PUT /api/stays/{id}
+             *
+             */
+
+            localStorage.setItem(
+                "havenGH_stay_" + stayId,
+                JSON.stringify(updatedStay)
+            );
+
+
+            showMessage(
+                "Stay updated successfully. Your changes have been saved.",
+                "success"
+            );
+
+        }
+    );
+
+
+    /*
+     * =========================================================
+     * PREVIEW
+     * =========================================================
+     */
+
+    document
+        .getElementById("previewButton")
+        .addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "stay-details.html?id=" +
+                    encodeURIComponent(stayId);
+
+            }
+        );
+
+
+    /*
+     * =========================================================
+     * CANCEL
+     * =========================================================
+     */
+
+    document
+        .getElementById("cancelButton")
+        .addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "host-stays.html";
+
+            }
+        );
+
+
+    /*
+     * =========================================================
+     * DELETE
+     * =========================================================
+     */
+
+    document
+        .getElementById("deleteButton")
+        .addEventListener(
+            "click",
+            function () {
+
+                const confirmed =
+                    window.confirm(
+                        "Are you sure you want to delete this stay? This action cannot be undone."
+                    );
+
+
+                if (!confirmed) {
+
+                    return;
+
+                }
+
+
+                /*
+                 * Temporary frontend deletion.
+                 *
+                 * Later this becomes:
+                 *
+                 * DELETE /api/stays/{id}
+                 *
+                 */
+
+                localStorage.removeItem(
+                    "havenGH_stay_" + stayId
+                );
+
+
+                showMessage(
+                    "Stay removed from this frontend demo.",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "host-stays.html";
+
+                    },
+                    1200
+                );
+
+            }
+        );
+
+});
+
+</script>
+
+</body>
+
+</html>

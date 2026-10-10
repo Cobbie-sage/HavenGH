@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Browse rooms, apartments and houses available for rent in Ghana.">
+ <link rel="stylesheet" href="properties.css">
+
+<title>Find a Home | HavenGH</title>
+
+</head>
+
+<body>
+<!-- =========================
+     HEADER
+========================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="havengh logo.jpeg" class="logo" aria-label="HavenGH Home">
+            <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+        </a>
+
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="index.html" class="nav-link">
+                Home
+            </a>
+
+            <a href="properties.html" class="nav-link active">
+                Find a Home
+            </a>
+
+            <a href="index.html#how-it-works" class="nav-link">
+                How It Works
+            </a>
+
+            <a href="index.html#about" class="nav-link">
+                About
+            </a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="login.html" class="login-link">
+                Log in
+            </a>
+
+            <a href="register.html" class="btn btn-dark">
+                List a Property
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     PAGE INTRO
+========================== -->
+
+<main>
+
+    <section class="properties-hero">
+
+        <div class="container">
+
+            <span class="section-label">
+                FIND YOUR NEXT HOME
+            </span>
+
+            <h1>
+                Available properties
+            </h1>
+
+            <p>
+                Explore rooms, apartments and houses available
+                from landlords and agents across Ghana.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SEARCH & FILTERS
+    ========================== -->
+
+    <section class="property-search">
+
+        <div class="container">
+
+            <div class="property-search">
+
+                <!-- LOCATION -->
+
+                <div class="filter-field">
+
+                    <label for="search-location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="search-location"
+                        placeholder="Madina, Accra"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- PROPERTY TYPE -->
+
+                <div class="filter-field">
+
+                    <label for="search-type">
+                        Property Type
+                    </label>
+
+                    <select id="search-type">
+
+                        <option value="">
+                            All types
+                        </option>
+
+                        <option value="single-room">
+                            Single Room
+                        </option>
+
+                        <option value="single-room-porch">
+                            Single Room with Porch
+                        </option>
+
+                        <option value="chamber-hall">
+                            Chamber & Hall
+                        </option>
+
+                        <option value="apartment">
+                            Apartment
+                        </option>
+
+                        <option value="house">
+                            Full House
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MINIMUM PRICE -->
+
+                <div class="filter-field">
+
+                    <label for="min-price">
+                        Minimum Price
+                    </label>
+
+                    <select id="min-price">
+
+                        <option value="">
+                            No minimum
+                        </option>
+
+                        <option value="500">
+                            GH₵500
+                        </option>
+
+                        <option value="1000">
+                            GH₵1,000
+                        </option>
+
+                        <option value="1500">
+                            GH₵1,500
+                        </option>
+
+                        <option value="2000">
+                            GH₵2,000
+                        </option>
+
+                        <option value="3000">
+                            GH₵3,000
+                        </option>
+
+                        <option value="5000">
+                            GH₵5,000
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- MAXIMUM PRICE -->
+
+                <div class="filter-field">
+
+                    <label for="max-price">
+                        Maximum Price
+                    </label>
+
+                    <select id="max-price">
+
+                        <option value="">
+                            No maximum
+                        </option>
+
+                        <option value="1000">
+                            GH₵1,000
+                        </option>
+
+                        <option value="1500">
+                            GH₵1,500
+                        </option>
+
+                        <option value="2000">
+                            GH₵2,000
+                        </option>
+
+                        <option value="3000">
+                            GH₵3,000
+                        </option>
+
+                        <option value="5000">
+                            GH₵5,000
+                        </option>
+
+                        <option value="10000">
+                            GH₵10,000
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- SEARCH BUTTON -->
+
+                <button
+                    type="button"
+                    class="search-button"
+                    id="property-search-button">
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESULTS
+    ========================== -->
+
+    <section class="property-results">
+
+        <div class="container">
+
+            <div class="results-top">
+
+                <div>
+
+                    <span
+                        class="results-count"
+                        id="results-count"
+                        aria-live="polite">
+
+                        Loading properties...
+
+                    </span>
+
+                </div>
+
+
+                <!-- SORT -->
+
+                <div class="sort-container">
+
+                    <label for="sort">
+                        Sort:
+                    </label>
+
+                    <select id="sort">
+
+                        <option value="newest">
+                            Newest
+                        </option>
+
+                        <option value="low-price">
+                            Price: Low to High
+                        </option>
+
+                        <option value="high-price">
+                            Price: High to Low
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 API PROPERTY GRID
+            ========================== -->
+
+            <div
+                class="property-grid"
+                id="property-listings"
+                aria-live="polite">
+
+                <!--
+                    Properties are loaded from:
+
+                    GET /api/Properties
+
+                    No property is hard-coded here.
+                -->
+
+            </div>
+
+
+            <!-- =========================
+                 LOADING MESSAGE
+            ========================== -->
+
+            <div
+                id="properties-loading"
+                class="properties-loading"
+                role="status">
+
+                Loading available properties...
+
+            </div>
+
+
+            <!-- =========================
+                 EMPTY MESSAGE
+            ========================== -->
+
+            <div
+                id="properties-empty"
+                class="properties-empty"
+                hidden>
+
+                <h3>
+                    No properties found
+                </h3>
+
+                <p>
+                    Try changing your search or filter options.
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 ERROR MESSAGE
+            ========================== -->
+
+            <div
+                id="properties-error"
+                class="properties-error"
+                hidden
+                role="alert">
+
+                <h3>
+                    Unable to load properties
+                </h3>
+
+                <p>
+                    We could not connect to HavenGH right now.
+                    Please try again.
+                </p>
+
+                <button
+                    type="button"
+                    id="retry-properties"
+                    class="btn btn-dark">
+
+                    Try Again
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="logo footer-logo"
+                aria-label="HavenGH Home">
+
+                <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+
+            </a>
+
+            <p>
+                Find a place you'll love to call home.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Discover
+            </h4>
+
+            <a href="properties.html">
+                Find a Home
+            </a>
+
+            <a href="properties.html?type=single-room">
+                Single Rooms
+            </a>
+
+            <a href="properties.html?type=apartment">
+                Apartments
+            </a>
+
+            <a href="properties.html?type=house">
+                Houses
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                For Agents
+            </h4>
+
+            <a href="register.html">
+                List a Property
+            </a>
+
+            <a href="login.html">
+                Agent Login
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Company
+            </h4>
+
+            <a href="index.html#about">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="privacy.html">
+                Privacy Policy
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+        <p>
+            © <span class="current-year"></span> HavenGH.
+            All rights reserved.
+        </p>
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- HavenGH JavaScript -->
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

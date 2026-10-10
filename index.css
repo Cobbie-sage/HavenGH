@@ -1,0 +1,2550 @@
+
+/* ============================================================
+   HAVENGH — HOMEPAGE
+   PREMIUM GHANA REAL ESTATE DESIGN
+
+   IMPORTANT:
+   Homepage.jpg is the SINGLE BACKGROUND for the ENTIRE PAGE.
+
+   It covers:
+   HEADER
+   HERO
+   PROPERTY TYPES
+   FEATURED PROPERTIES
+   STAY IN GHANA
+   HOW IT WORKS
+   LANDLORD CTA
+   ABOUT
+   FOOTER
+
+   The image stays FIXED while the content scrolls over it.
+   ============================================================ */
+
+
+/* ============================================================
+   1. DESIGN SYSTEM
+   ============================================================ */
+
+:root {
+    --green-950: #041b14;
+    --green-900: #06251b;
+    --green-850: #082e22;
+    --green-800: #0a3829;
+    --green-700: #0d4734;
+    --green-600: #126047;
+    --green-500: #187255;
+    --green-400: #27906c;
+
+    --gold-950: #5a4308;
+    --gold-900: #73570b;
+    --gold-800: #8b690f;
+    --gold-700: #a47d18;
+    --gold-600: #bd962f;
+    --gold-500: #d0ae55;
+    --gold-400: #ddc47d;
+    --gold-300: #ead9a8;
+
+    --white: #ffffff;
+    --white-soft: #fcfcf9;
+    --cream: #f6f5ee;
+    --cream-dark: #eceadd;
+
+    --gray-100: #f2f3ef;
+    --gray-200: #e3e7e2;
+    --gray-300: #d2d9d4;
+
+    --text-dark: #102d23;
+    --text: #193a2f;
+    --text-soft: #64736c;
+    --text-muted: #89958f;
+    --text-white: #ffffff;
+
+    --border: rgba(10, 56, 41, 0.13);
+    --border-dark: rgba(255, 255, 255, 0.12);
+    --border-gold: rgba(189, 150, 47, 0.35);
+
+    --shadow-xs: 0 3px 10px rgba(4, 27, 20, 0.07);
+    --shadow-sm: 0 8px 24px rgba(4, 27, 20, 0.10);
+    --shadow-md: 0 14px 36px rgba(4, 27, 20, 0.14);
+    --shadow-lg: 0 22px 55px rgba(4, 27, 20, 0.18);
+    --shadow-xl: 0 30px 75px rgba(4, 27, 20, 0.24);
+    --shadow-hero: 0 30px 80px rgba(0, 0, 0, 0.28);
+
+    --radius-xs: 6px;
+    --radius-sm: 9px;
+    --radius-md: 13px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+
+    --fast: 0.18s ease;
+    --normal: 0.28s ease;
+    --slow: 0.45s ease;
+}
+
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    min-height: 100vh;
+
+    /*
+       THIS IS THE IMPORTANT PART.
+
+       Homepage.jpg is the background of the ENTIRE WEBSITE,
+       not just the hero.
+    */
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0.16),
+            rgba(0, 0, 0, 0.16)
+        ),
+        url("Homepage.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    background-color: #10251e;
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+
+/* ============================================================
+   3. CONTAINER
+   ============================================================ */
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   4. HEADER
+   ============================================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    /*
+       Transparent dark glass.
+       Homepage.jpg remains visible behind it.
+    */
+    background: rgba(4, 27, 20, 0.78);
+
+    border-bottom:
+        1px solid rgba(221, 196, 125, 0.14);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.12);
+}
+
+.nav-container {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* ============================================================
+   5. LOGO
+   ============================================================ */
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: var(--white);
+
+    font-size: 25px;
+    font-weight: 750;
+
+    letter-spacing: -0.8px;
+
+    transition: transform var(--normal);
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+}
+
+.logo img {
+    width: 39px;
+    height: 39px;
+
+    margin-right: 9px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(221, 196, 125, 0.70);
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.18);
+}
+
+.logo-main {
+    color: var(--white);
+}
+
+.logo-accent {
+    margin-left: 2px;
+    color: var(--gold-400);
+}
+
+
+/* ============================================================
+   6. NAVIGATION
+   ============================================================ */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-link,
+.login-link {
+    position: relative;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition:
+        color var(--normal),
+        transform var(--normal);
+}
+
+.nav-link {
+    padding: 29px 0;
+}
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 19px;
+
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: var(--gold-500);
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform var(--normal);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--white);
+}
+
+.nav-link:hover {
+    transform: translateY(-1px);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.login-link:hover {
+    color: var(--gold-400);
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   7. BUTTONS
+   ============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 45px;
+
+    padding: 0 21px;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        background var(--normal),
+        color var(--normal),
+        border-color var(--normal),
+        box-shadow var(--normal),
+        transform var(--normal);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-dark {
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-700),
+            var(--gold-600)
+        );
+
+    color: var(--white);
+
+    border-color: var(--gold-700);
+
+    box-shadow:
+        0 6px 18px rgba(139, 105, 15, 0.20);
+}
+
+.btn-dark:hover {
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-800),
+            var(--gold-700)
+        );
+
+    border-color: var(--gold-800);
+
+    box-shadow:
+        0 10px 26px rgba(139, 105, 15, 0.30);
+}
+
+.btn-light {
+    background: rgba(255, 255, 255, 0.94);
+
+    color: var(--green-900);
+
+    border-color: rgba(255, 255, 255, 0.80);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.10);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-light:hover {
+    background: var(--gold-300);
+
+    border-color: var(--gold-300);
+
+    color: var(--green-950);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ============================================================
+   8. MOBILE MENU
+   ============================================================ */
+
+.mobile-menu-button {
+    display: none;
+
+    position: absolute;
+
+    right: 20px;
+    top: 19px;
+
+    width: 40px;
+    height: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.14);
+
+    border-radius: var(--radius-sm);
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: var(--white);
+
+    font-size: 21px;
+
+    line-height: 1;
+
+    transition:
+        background var(--normal),
+        border-color var(--normal),
+        transform var(--normal);
+}
+
+.mobile-menu-button:hover {
+    background:
+        rgba(189, 150, 47, 0.18);
+
+    border-color:
+        rgba(221, 196, 125, 0.40);
+
+    transform: scale(1.04);
+}
+
+
+/* ============================================================
+   9. HERO
+
+   NO BACKGROUND IMAGE HERE.
+
+   The body already contains Homepage.jpg.
+   This keeps the same image behind the entire page.
+   ============================================================ */
+
+.hero {
+    position: relative;
+
+    min-height: 665px;
+
+    display: flex;
+    align-items: center;
+
+    /*
+       IMPORTANT:
+       Do NOT put Homepage.jpg here.
+       The body is the page-wide background.
+    */
+    background: transparent;
+
+    overflow: hidden;
+
+    isolation: isolate;
+}
+
+
+/* ============================================================
+   10. HERO LIGHT EFFECT
+   ============================================================ */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(221, 196, 125, 0.10),
+            transparent 32%
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* ============================================================
+   11. DECORATIVE CIRCLE
+   ============================================================ */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 620px;
+    height: 620px;
+
+    right: -320px;
+    top: -300px;
+
+    border:
+        1px solid rgba(221, 196, 125, 0.13);
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 0 90px rgba(221, 196, 125, 0.025);
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* ============================================================
+   12. HERO OVERLAY
+   ============================================================ */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    /*
+       Neutral black overlay.
+       No green tint.
+    */
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.52) 0%,
+            rgba(0, 0, 0, 0.34) 32%,
+            rgba(0, 0, 0, 0.16) 62%,
+            rgba(0, 0, 0, 0.05) 100%
+        );
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+/* ============================================================
+   13. HERO CONTENT
+   ============================================================ */
+
+.hero-content {
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    padding: 105px 0 110px;
+}
+
+
+/* ============================================================
+   14. HERO LABEL
+   ============================================================ */
+
+.hero-label {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    color: var(--gold-400);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.hero-label::before {
+    content: "";
+
+    width: 28px;
+    height: 1px;
+
+    background: var(--gold-500);
+}
+
+
+/* ============================================================
+   15. HERO TITLE
+   ============================================================ */
+
+.hero h1 {
+    max-width: 760px;
+
+    margin-bottom: 22px;
+
+    color: var(--white);
+
+    font-size:
+        clamp(43px, 6vw, 68px);
+
+    line-height: 1.04;
+
+    font-weight: 750;
+
+    letter-spacing: -2.6px;
+
+    text-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.48),
+        0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.hero h1 span {
+    color: var(--gold-400);
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ============================================================
+   16. HERO DESCRIPTION
+   ============================================================ */
+
+.hero-description {
+    max-width: 650px;
+
+    margin-bottom: 38px;
+
+    color:
+        rgba(255, 255, 255, 0.91);
+
+    font-size: 15px;
+
+    line-height: 1.85;
+
+    text-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ============================================================
+   17. SEARCH BOX
+   ============================================================ */
+
+.search-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 1000px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        1fr
+        1fr
+        auto;
+
+    gap: 7px;
+
+    padding: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.58);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-hero);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.search-field {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 7px 14px;
+
+    border-right:
+        1px solid rgba(10, 56, 41, 0.10);
+}
+
+.search-field label {
+    margin-bottom: 2px;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.1px;
+
+    text-transform: uppercase;
+}
+
+.search-field input,
+.search-field select {
+    width: 100%;
+
+    height: 34px;
+
+    padding: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--text-dark);
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+.search-field input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-field input:focus,
+.search-field select:focus {
+    color: var(--green-700);
+}
+
+
+/* ============================================================
+   18. SEARCH BUTTON
+   ============================================================ */
+
+.search-button {
+    min-width: 160px;
+
+    padding: 0 23px;
+
+    border:
+        1px solid var(--gold-700);
+
+    border-radius: var(--radius-sm);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-700),
+            var(--gold-600)
+        );
+
+    color: var(--white);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    transition:
+        background var(--normal),
+        border-color var(--normal),
+        box-shadow var(--normal),
+        transform var(--normal);
+}
+
+.search-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-800),
+            var(--gold-700)
+        );
+
+    border-color: var(--gold-800);
+
+    box-shadow:
+        0 10px 25px rgba(139, 105, 15, 0.30);
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   19. GENERAL SECTIONS
+
+   ALL OF THESE ARE TRANSPARENT/GLASS.
+
+   Homepage.jpg remains visible underneath.
+   ============================================================ */
+
+.property-types,
+.property-type,
+.how-it-works,
+.about-section {
+    padding: 92px 0;
+
+    background:
+        rgba(246, 245, 238, 0.67);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+
+/* ============================================================
+   20. SECTION HEADING
+   ============================================================ */
+
+.section-heading {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 38px;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 9px;
+
+    color: var(--gold-800);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.section-heading h2,
+.center-heading h2,
+.about-section h2 {
+    color: var(--text-dark);
+
+    font-size:
+        clamp(30px, 4vw, 42px);
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    letter-spacing: -1.3px;
+}
+
+.view-all {
+    display: inline-flex;
+
+    align-items: center;
+
+    color: var(--green-700);
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    white-space: nowrap;
+
+    transition:
+        color var(--normal),
+        transform var(--normal);
+}
+
+.view-all:hover {
+    color: var(--gold-800);
+
+    transform: translateX(4px);
+}
+
+
+/* ============================================================
+   21. PROPERTY TYPES
+   ============================================================ */
+
+.type-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.type-card {
+    position: relative;
+
+    min-height: 210px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    padding: 24px;
+
+    /*
+       TRANSPARENT CARD
+    */
+    background:
+        rgba(255, 255, 255, 0.74);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.48);
+
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow-xs);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    transition:
+        transform var(--normal),
+        background var(--normal),
+        box-shadow var(--normal),
+        border-color var(--normal);
+}
+
+.type-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: -70px;
+    top: -70px;
+
+    border:
+        1px solid rgba(189, 150, 47, 0.17);
+
+    border-radius: 50%;
+
+    transition: transform var(--slow);
+}
+
+.type-card::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: var(--gold-500);
+
+    transition: width var(--normal);
+}
+
+.type-card:hover {
+    transform: translateY(-6px);
+
+    background:
+        rgba(10, 56, 41, 0.91);
+
+    border-color: rgba(221, 196, 125, 0.22);
+
+    box-shadow: var(--shadow-md);
+}
+
+.type-card:hover::before {
+    transform: scale(1.25);
+}
+
+.type-card:hover::after {
+    width: 100%;
+}
+
+.type-icon {
+    position: absolute;
+
+    top: 22px;
+    left: 24px;
+
+    color: var(--gold-700);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    transition: color var(--normal);
+}
+
+.type-card h3 {
+    position: relative;
+
+    z-index: 2;
+
+    margin-bottom: 6px;
+
+    color: var(--text-dark);
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    transition: color var(--normal);
+}
+
+.type-card p {
+    position: relative;
+
+    z-index: 2;
+
+    color: var(--text-soft);
+
+    font-size: 12px;
+
+    transition: color var(--normal);
+}
+
+.type-card:hover h3 {
+    color: var(--white);
+}
+
+.type-card:hover p {
+    color: rgba(255, 255, 255, 0.67);
+}
+
+.type-card:hover .type-icon {
+    color: var(--gold-400);
+}
+
+
+/* ============================================================
+   22. FEATURED PROPERTY GRID
+   ============================================================ */
+
+.property-type .property-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* ============================================================
+   23. FEATURED LOADING
+   ============================================================ */
+
+.featured-loading {
+    grid-column: 1 / -1;
+
+    min-height: 180px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    border:
+        1px dashed rgba(10, 56, 41, 0.25);
+
+    border-radius: var(--radius-md);
+
+    /*
+       TRANSPARENT
+    */
+    background:
+        rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    color: var(--text-soft);
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   24. PROPERTY CARD
+   ============================================================ */
+
+.property-card {
+    position: relative;
+
+    min-width: 0;
+
+    /*
+       TRANSPARENT / GLASS
+    */
+    background:
+        rgba(255, 255, 255, 0.86);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow-xs);
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transition:
+        transform var(--normal),
+        box-shadow var(--normal),
+        border-color var(--normal);
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(13, 71, 52, 0.20);
+
+    box-shadow: var(--shadow-md);
+}
+
+
+/* ============================================================
+   25. PROPERTY IMAGE
+   ============================================================ */
+
+.property-image {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+
+    background: var(--green-800);
+}
+
+.property-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.55s ease,
+        filter 0.55s ease;
+}
+
+.property-card:hover
+.property-image img {
+    transform: scale(1.035);
+
+    filter: saturate(1.04);
+}
+
+
+/* ============================================================
+   26. PROPERTY BADGE
+   ============================================================ */
+
+.property-badge {
+    position: absolute;
+
+    left: 13px;
+    top: 13px;
+
+    padding: 5px 9px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 5px;
+
+    background: var(--gold-700);
+
+    color: var(--white);
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ============================================================
+   27. SAVE BUTTON
+   ============================================================ */
+
+.property-save {
+    position: absolute;
+
+    top: 13px;
+    right: 13px;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.35);
+
+    border-radius: 50%;
+
+    background:
+        rgba(4, 27, 20, 0.62);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    color: var(--white);
+
+    font-size: 18px;
+
+    transition:
+        background var(--normal),
+        color var(--normal),
+        border-color var(--normal),
+        transform var(--normal);
+}
+
+.property-save:hover {
+    background: var(--gold-700);
+
+    border-color: var(--gold-700);
+
+    color: var(--white);
+
+    transform: scale(1.08);
+}
+
+
+/* ============================================================
+   28. PROPERTY INFORMATION
+   ============================================================ */
+
+.property-info {
+    padding: 17px 18px 18px;
+}
+
+.property-price {
+    margin-bottom: 5px;
+
+    color: var(--green-700);
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+.property-price span {
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    font-weight: 500;
+}
+
+.property-info h3 {
+    margin-bottom: 5px;
+
+    color: var(--text-dark);
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    transition: color var(--normal);
+}
+
+.property-card:hover
+.property-info h3 {
+    color: var(--green-600);
+}
+
+.property-location {
+    margin-bottom: 12px;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   29. PROPERTY DETAILS
+   ============================================================ */
+
+.property-details {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    padding-bottom: 13px;
+
+    border-bottom:
+        1px solid rgba(10, 56, 41, 0.09);
+}
+
+.property-details span {
+    padding: 4px 8px;
+
+    border:
+        1px solid rgba(10, 56, 41, 0.05);
+
+    border-radius: 5px;
+
+    background:
+        rgba(246, 245, 238, 0.72);
+
+    color: var(--text-soft);
+
+    font-size: 9px;
+
+    font-weight: 650;
+
+    transition:
+        background var(--normal),
+        color var(--normal),
+        border-color var(--normal);
+}
+
+.property-card:hover
+.property-details span {
+    background:
+        rgba(13, 71, 52, 0.07);
+
+    color: var(--green-700);
+
+    border-color:
+        rgba(13, 71, 52, 0.08);
+}
+
+
+/* ============================================================
+   30. PROPERTY AGENT
+   ============================================================ */
+
+.property-agent {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 13px;
+}
+
+.property-agent img {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border:
+        2px solid var(--cream-dark);
+}
+
+.property-agent strong {
+    display: block;
+
+    color: var(--text-dark);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.property-agent small {
+    display: block;
+
+    margin-top: 1px;
+
+    color: var(--text-muted);
+
+    font-size: 8px;
+}
+
+
+/* ============================================================
+   31. STAY IN GHANA
+
+   Still uses Homepage.jpg underneath.
+   Dark translucent glass layer on top.
+   ============================================================ */
+
+.stay-ghana {
+    position: relative;
+
+    padding: 100px 0;
+
+    background:
+        linear-gradient(
+            125deg,
+            rgba(10, 56, 41, 0.88),
+            rgba(4, 27, 20, 0.91)
+        );
+
+    color: var(--white);
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.stay-ghana::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    right: -270px;
+    top: -250px;
+
+    border:
+        1px solid rgba(221, 196, 125, 0.14);
+
+    border-radius: 50%;
+}
+
+.stay-ghana::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    left: -160px;
+    bottom: -160px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 50%;
+}
+
+.stay-ghana-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 720px;
+}
+
+.stay-ghana .section-label {
+    color: var(--gold-400);
+}
+
+.stay-ghana h2 {
+    margin-bottom: 17px;
+
+    color: var(--white);
+
+    font-size:
+        clamp(32px, 4vw, 47px);
+
+    line-height: 1.12;
+
+    font-weight: 700;
+
+    letter-spacing: -1.2px;
+}
+
+.stay-ghana p {
+    max-width: 620px;
+
+    margin-bottom: 28px;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 14px;
+
+    line-height: 1.85;
+}
+
+
+/* ============================================================
+   32. HOW IT WORKS
+   ============================================================ */
+
+.center-heading {
+    max-width: 720px;
+
+    margin: 0 auto 52px;
+
+    text-align: center;
+}
+
+.center-heading .section-label {
+    margin-bottom: 10px;
+}
+
+.center-heading p {
+    max-width: 620px;
+
+    margin: 15px auto 0;
+
+    color: var(--text-soft);
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.steps {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.step {
+    position: relative;
+
+    padding: 29px;
+
+    /*
+       GLASS CARD
+    */
+    background:
+        rgba(255, 255, 255, 0.70);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.50);
+
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    transition:
+        transform var(--normal),
+        background var(--normal),
+        box-shadow var(--normal),
+        border-color var(--normal);
+}
+
+.step::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 3px;
+
+    background: var(--gold-500);
+
+    transition: width var(--normal);
+}
+
+.step:hover {
+    transform: translateY(-6px);
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    border-color: var(--border-gold);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.step:hover::after {
+    width: 100%;
+}
+
+.step-number {
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    color: var(--gold-800);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.step h3 {
+    margin-bottom: 8px;
+
+    color: var(--text-dark);
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+.step p {
+    color: var(--text-soft);
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+
+/* ============================================================
+   33. LANDLORD CTA
+
+   TRANSPARENT GOLD LAYER.
+   Homepage.jpg is still underneath.
+   ============================================================ */
+
+.landlord-cta {
+    position: relative;
+
+    padding: 70px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(164, 125, 24, 0.87),
+            rgba(189, 150, 47, 0.82)
+        );
+
+    overflow: hidden;
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.landlord-cta::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(90, 67, 8, 0.12),
+            transparent 60%
+        );
+
+    pointer-events: none;
+}
+
+.landlord-cta::after {
+    content: "";
+
+    position: absolute;
+
+    width: 360px;
+    height: 360px;
+
+    right: -180px;
+    top: -180px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 50%;
+}
+
+.cta-container {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 35px;
+}
+
+.landlord-cta .section-label {
+    color:
+        rgba(255, 255, 255, 0.74);
+}
+
+.landlord-cta h2 {
+    margin-bottom: 7px;
+
+    color: var(--white);
+
+    font-size:
+        clamp(30px, 4vw, 42px);
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.landlord-cta p {
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   34. ABOUT
+
+   THIS IS ALSO TRANSPARENT.
+
+   Homepage.jpg remains visible behind the About section.
+   ============================================================ */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns:
+        0.9fr
+        1.1fr;
+
+    gap: 100px;
+
+    align-items: start;
+}
+
+.about-section h2 {
+    max-width: 480px;
+}
+
+.about-grid > div:last-child {
+    padding-top: 9px;
+}
+
+.about-grid p {
+    margin-bottom: 19px;
+
+    color: var(--text-soft);
+
+    font-size: 15px;
+
+    line-height: 1.85;
+}
+
+.about-grid p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ============================================================
+   35. FOOTER
+
+   IMPORTANT:
+   Footer is NOT solid anymore.
+
+   Homepage.jpg is still the page background underneath.
+   ============================================================ */
+
+.footer {
+    background:
+        rgba(4, 27, 20, 0.88);
+
+    color:
+        rgba(255, 255, 255, 0.64);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.35fr
+        1fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 35px;
+
+    padding: 65px 0 55px;
+}
+
+.footer-brand {
+    max-width: 260px;
+}
+
+.footer-logo {
+    margin-bottom: 14px;
+}
+
+.footer-logo img {
+    display: none;
+}
+
+.footer-brand p {
+    color:
+        rgba(255, 255, 255, 0.50);
+
+    font-size: 12px;
+
+    line-height: 1.75;
+}
+
+.footer-column h4 {
+    margin-bottom: 17px;
+
+    color: var(--white);
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.7px;
+
+    text-transform: uppercase;
+}
+
+.footer-column a {
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 10px;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size: 12px;
+
+    transition:
+        color var(--normal),
+        transform var(--normal);
+}
+
+.footer-column a:hover {
+    color: var(--gold-400);
+
+    transform: translateX(4px);
+}
+
+
+/* ============================================================
+   36. FOOTER BOTTOM
+   ============================================================ */
+
+.footer-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 0 23px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    color:
+        rgba(255, 255, 255, 0.38);
+
+    font-size: 10px;
+}
+
+
+/* ============================================================
+   37. LARGE TABLETS
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        gap: 16px;
+    }
+
+    .nav-link,
+    .login-link {
+        font-size: 11px;
+    }
+
+    .type-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .property-type .property-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .about-grid {
+        gap: 50px;
+    }
+
+    .hero-content {
+        padding: 90px 0 95px;
+    }
+}
+
+
+/* ============================================================
+   38. TABLET / MOBILE NAVIGATION
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+    .container {
+        width: calc(100% - 30px);
+    }
+
+    .nav-container {
+        min-height: 68px;
+
+        padding-right: 55px;
+    }
+
+    .navbar {
+        position: absolute;
+
+        display: none;
+
+        left: 15px;
+        right: 15px;
+
+        top: 68px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 8px;
+
+        /*
+           Still transparent/glass.
+        */
+        background:
+            rgba(4, 27, 20, 0.88);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.10);
+
+        border-radius: var(--radius-md);
+
+        box-shadow: var(--shadow-xl);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .navbar.open {
+        display: flex;
+    }
+
+    .navbar .nav-link,
+    .navbar .login-link {
+        padding: 13px 14px;
+
+        border-radius: var(--radius-xs);
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .login-link:hover {
+        background:
+            rgba(255, 255, 255, 0.05);
+
+        transform: none;
+    }
+
+    .navbar .nav-link::after {
+        display: none;
+    }
+
+    .navbar .btn {
+        margin: 7px 5px;
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+
+    /* --------------------------------------------------------
+       HERO
+       -------------------------------------------------------- */
+
+    .hero {
+        min-height: auto;
+
+        background: transparent;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.50) 0%,
+                rgba(0, 0, 0, 0.28) 50%,
+                rgba(0, 0, 0, 0.48) 100%
+            );
+    }
+
+    .hero-content {
+        padding: 80px 0 75px;
+    }
+
+
+    /* --------------------------------------------------------
+       SEARCH
+       -------------------------------------------------------- */
+
+    .search-box {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .search-field {
+        border-right: 0;
+
+        border-bottom:
+            1px solid rgba(10, 56, 41, 0.09);
+    }
+
+    .search-button {
+        min-height: 50px;
+    }
+
+
+    /* --------------------------------------------------------
+       CTA
+       -------------------------------------------------------- */
+
+    .cta-container {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+}
+
+
+/* ============================================================
+   39. MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    .nav-container {
+        min-height: 64px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .logo img {
+        width: 34px;
+        height: 34px;
+    }
+
+    .mobile-menu-button {
+        width: 38px;
+        height: 38px;
+
+        right: 12px;
+        top: 13px;
+    }
+
+
+    /* --------------------------------------------------------
+       HERO
+       -------------------------------------------------------- */
+
+    .hero {
+        background: transparent;
+    }
+
+    .hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.48) 0%,
+                rgba(0, 0, 0, 0.28) 52%,
+                rgba(0, 0, 0, 0.50) 100%
+            );
+    }
+
+    .hero-content {
+        padding: 65px 0 62px;
+    }
+
+    .hero-label {
+        font-size: 8px;
+
+        letter-spacing: 1.6px;
+    }
+
+    .hero-label::before {
+        width: 20px;
+    }
+
+    .hero h1 {
+        max-width: 500px;
+
+        margin-bottom: 18px;
+
+        font-size: 39px;
+
+        letter-spacing: -1.6px;
+    }
+
+    .hero-description {
+        margin-bottom: 28px;
+
+        font-size: 13px;
+
+        line-height: 1.75;
+    }
+
+
+    /* --------------------------------------------------------
+       SEARCH
+       -------------------------------------------------------- */
+
+    .search-box {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+        padding: 8px;
+
+        border-radius: 11px;
+    }
+
+    .search-field {
+        min-height: 59px;
+
+        padding: 7px 10px;
+    }
+
+    .search-field:last-of-type {
+        border-bottom: 0;
+    }
+
+    .search-button {
+        width: 100%;
+
+        min-height: 49px;
+
+        margin-top: 5px;
+    }
+
+
+    /* --------------------------------------------------------
+       SECTIONS
+
+       STILL TRANSPARENT.
+       -------------------------------------------------------- */
+
+    .property-types,
+    .property-type,
+    .how-it-works,
+    .about-section {
+        padding: 68px 0;
+
+        background:
+            rgba(246, 245, 238, 0.67);
+
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 11px;
+
+        margin-bottom: 27px;
+    }
+
+    .section-heading h2,
+    .center-heading h2,
+    .about-section h2 {
+        font-size: 30px;
+
+        letter-spacing: -0.8px;
+    }
+
+
+    /* --------------------------------------------------------
+       PROPERTY TYPES
+       -------------------------------------------------------- */
+
+    .type-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .type-card {
+        min-height: 175px;
+
+        padding: 22px;
+    }
+
+
+    /* --------------------------------------------------------
+       FEATURED
+       -------------------------------------------------------- */
+
+    .property-type .property-grid {
+        grid-template-columns: 1fr;
+
+        gap: 17px;
+    }
+
+    .property-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .property-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .property-card:hover
+    .property-image img {
+        transform: scale(1.015);
+    }
+
+    .property-info {
+        padding: 16px 17px 17px;
+    }
+
+
+    /* --------------------------------------------------------
+       STAY IN GHANA
+       -------------------------------------------------------- */
+
+    .stay-ghana {
+        padding: 72px 0;
+
+        background:
+            linear-gradient(
+                125deg,
+                rgba(10, 56, 41, 0.89),
+                rgba(4, 27, 20, 0.93)
+            );
+    }
+
+    .stay-ghana h2 {
+        font-size: 32px;
+    }
+
+    .stay-ghana p {
+        font-size: 13px;
+    }
+
+
+    /* --------------------------------------------------------
+       STEPS
+       -------------------------------------------------------- */
+
+    .steps {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .step {
+        padding: 23px;
+
+        background:
+            rgba(255, 255, 255, 0.70);
+    }
+
+
+    /* --------------------------------------------------------
+       CTA
+       -------------------------------------------------------- */
+
+    .landlord-cta {
+        padding: 58px 0;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(164, 125, 24, 0.87),
+                rgba(189, 150, 47, 0.82)
+            );
+    }
+
+    .landlord-cta h2 {
+        font-size: 31px;
+    }
+
+
+    /* --------------------------------------------------------
+       ABOUT
+       -------------------------------------------------------- */
+
+    .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 28px;
+    }
+
+    .about-grid > div:last-child {
+        padding-top: 0;
+    }
+
+
+    /* --------------------------------------------------------
+       FOOTER
+
+       STILL TRANSPARENT.
+       -------------------------------------------------------- */
+
+    .footer {
+        background:
+            rgba(4, 27, 20, 0.88);
+
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 32px 22px;
+
+        padding: 50px 0 40px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+
+        max-width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 6px;
+    }
+}
+
+
+/* ============================================================
+   40. SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: calc(100% - 20px);
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo img {
+        width: 31px;
+        height: 31px;
+
+        margin-right: 7px;
+    }
+
+    .mobile-menu-button {
+        width: 36px;
+        height: 36px;
+
+        right: 10px;
+        top: 12px;
+    }
+
+    .hero {
+        background: transparent;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+
+        letter-spacing: -1.3px;
+    }
+
+    .hero-description {
+        font-size: 12.5px;
+    }
+
+    .section-heading h2,
+    .center-heading h2,
+    .about-section h2 {
+        font-size: 28px;
+    }
+
+    .property-image {
+        aspect-ratio: 4 / 3;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================================
+   41. ACCESSIBILITY
+   ============================================================ */
+
+:focus-visible {
+    outline:
+        2px solid var(--gold-400);
+
+    outline-offset: 3px;
+}
+
+
+/* ============================================================
+   42. DISABLED ELEMENTS
+   ============================================================ */
+
+button:disabled,
+input:disabled,
+select:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.6;
+}
+
+
+/* ============================================================
+   43. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+    }
+}
+

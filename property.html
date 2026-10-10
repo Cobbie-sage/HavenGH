@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="View property details, photos, location and contact information on HavenGH.">
+
+<title>Property Details | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+    /* ============================================================
+   HAVENGH — PREMIUM PROPERTY DETAILS
+   ============================================================ */
+
+.property-page {
+    padding: 38px 0 70px;
+    background:
+        radial-gradient(
+            circle at 90% 5%,
+            rgba(202, 166, 76, 0.08),
+            transparent 25%
+        ),
+        #f5f8f6;
+}
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+
+.property-page .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 22px;
+    color: #77847e;
+    font-size: 13px;
+}
+
+.property-page .breadcrumb a {
+    color: #0a5a3e;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.property-page .breadcrumb a:hover {
+    color: #b18e3e;
+}
+
+.property-page .breadcrumb span:nth-child(2) {
+    color: #c0a052;
+}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+
+.property-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(190px, 0.8fr);
+    gap: 12px;
+    height: 500px;
+    margin-bottom: 30px;
+}
+
+.gallery-main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #dfe8e2;
+    box-shadow: 0 18px 45px rgba(10, 55, 40, 0.13);
+}
+
+.property-main-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-main:hover .property-main-image {
+    transform: scale(1.015);
+}
+
+.property-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 30px;
+    color: #718078;
+    text-align: center;
+    background:
+        linear-gradient(
+            135deg,
+            #e7eee9,
+            #d9e4dc
+        );
+}
+
+.gallery-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    background: rgba(6, 57, 40, 0.9);
+    color: #e2c66d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+}
+
+.gallery-side {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px;
+    min-width: 0;
+}
+
+.gallery-side img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    display: block;
+    object-fit: cover;
+    border-radius: 17px;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.gallery-side img:hover {
+    transform: scale(1.015);
+    filter: brightness(0.92);
+}
+
+/* ============================================================
+   MAIN PROPERTY AREA
+   ============================================================ */
+
+.property-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 32px;
+    align-items: start;
+}
+
+.property-main-content {
+    min-width: 0;
+}
+
+.property-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 30px;
+    border: 1px solid #e2e9e4;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(10, 55, 40, 0.06);
+}
+
+.property-type-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #b08f42;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.property-heading h1 {
+    margin: 0;
+    color: #103c2d;
+    font-size: clamp(28px, 4vw, 43px);
+    line-height: 1.08;
+    letter-spacing: -1px;
+}
+
+.large-location {
+    margin: 10px 0 0;
+    color: #6f7e76;
+    font-size: 14px;
+}
+
+.large-location::before {
+    content: "⌖ ";
+    color: #b18f43;
+}
+
+.property-main-price {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.property-main-price strong {
+    display: block;
+    color: #07583c;
+    font-size: 25px;
+    font-weight: 850;
+    white-space: nowrap;
+}
+
+.property-main-price span {
+    display: block;
+    margin-top: 3px;
+    color: #78857e;
+    font-size: 12px;
+}
+
+/* ============================================================
+   FEATURES
+   ============================================================ */
+
+.property-feature-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 18px 0;
+}
+
+.property-feature-row > div {
+    padding: 20px 15px;
+    border: 1px solid #e0e9e3;
+    border-radius: 16px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(10, 55, 40, 0.045);
+}
+
+.property-feature-row strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #0a5138;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.property-feature-row span {
+    color: #78857f;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.property-section {
+    margin-top: 18px;
+    padding: 29px 30px;
+    border: 1px solid #e1e9e4;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 8px 27px rgba(10, 55, 40, 0.045);
+}
+
+.property-section h2 {
+    margin: 0 0 14px;
+    color: #153f30;
+    font-size: 21px;
+}
+
+.property-section p {
+    margin: 0;
+    color: #64736b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ============================================================
+   AMENITIES
+   ============================================================ */
+
+.amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.property-amenity {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 13px;
+    border: 1px solid #dce8e0;
+    border-radius: 999px;
+    background: #f4f8f5;
+    color: #22513f;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ============================================================
+   LOCATION
+   ============================================================ */
+
+.location-description {
+    margin-bottom: 18px !important;
+}
+
+.map-placeholder {
+    min-height: 210px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #dce6df;
+    border-radius: 16px;
+    background:
+        linear-gradient(
+            135deg,
+            #edf4ef,
+            #e4ede7
+        );
+    text-align: center;
+}
+
+.map-placeholder strong {
+    font-size: 32px;
+}
+
+.map-placeholder p {
+    margin: 8px 0 5px;
+    color: #194635;
+    font-weight: 800;
+}
+
+.map-placeholder small {
+    display: block;
+    max-width: 420px;
+    padding: 0 20px;
+    color: #78857e;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   CONTACT CARD
+   ============================================================ */
+
+.property-contact-card {
+    position: sticky;
+    top: 25px;
+    padding: 26px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(215, 177, 72, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            150deg,
+            #063a29,
+            #084a35 60%,
+            #073a2b
+        );
+    color: #ffffff;
+    box-shadow: 0 20px 45px rgba(4, 45, 32, 0.2);
+}
+
+.agent-profile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.agent-profile img,
+.agent-image-placeholder {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.agent-profile img {
+    object-fit: cover;
+    border: 2px solid rgba(222, 190, 99, 0.55);
+}
+
+.agent-image-placeholder {
+    display: grid;
+    place-items: center;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 25px;
+}
+
+.agent-profile h3 {
+    margin: 0 0 5px;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+.agent-profile span {
+    color: rgba(255,255,255,0.65);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* ============================================================
+   AGENT STATS
+   ============================================================ */
+
+.agent-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 24px 0;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.agent-stats > div {
+    text-align: center;
+}
+
+.agent-stats > div + div {
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.agent-stats strong {
+    display: block;
+    color: #e0bd63;
+    font-size: 21px;
+}
+
+.agent-stats span {
+    color: rgba(255,255,255,0.55);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   CONTACT BUTTONS
+   ============================================================ */
+
+.contact-buttons {
+    display: grid;
+    gap: 10px;
+}
+
+.contact-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    border-radius: 11px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    transition: all 0.2s ease;
+}
+
+.contact-whatsapp {
+    background: #d9bd62;
+    color: #153a2b;
+}
+
+.contact-whatsapp:hover {
+    background: #e7cd7c;
+    transform: translateY(-2px);
+}
+
+.contact-call {
+    border: 1px solid rgba(255,255,255,0.17);
+    background: rgba(255,255,255,0.07);
+    color: #ffffff;
+}
+
+.contact-call:hover {
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(224,189,99,0.45);
+}
+
+/* ============================================================
+   RENTAL REQUEST BUTTON
+   ============================================================ */
+
+.request-button {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 13px;
+    border: 1px solid #d7b65d;
+    border-radius: 12px;
+    background: transparent;
+    color: #e5c66f;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.request-button:hover {
+    background: #d7b65d;
+    color: #143a2b;
+    transform: translateY(-2px);
+}
+
+.contact-note {
+    margin: 13px 0 0;
+    color: rgba(255,255,255,0.52);
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ============================================================
+   SIMILAR PROPERTIES
+   ============================================================ */
+
+.similar-properties {
+    padding: 70px 0;
+    background: #eef4f0;
+}
+
+.similar-property-card {
+    overflow: hidden;
+    border: 1px solid #dfe8e2;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(10,55,40,0.06);
+    transition: all 0.25s ease;
+}
+
+.similar-property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 17px 38px rgba(10,55,40,0.11);
+}
+
+.similar-property-image-link {
+    display: block;
+    height: 205px;
+    overflow: hidden;
+    background: #dce6df;
+}
+
+.similar-property-image-link img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.similar-property-card:hover img {
+    transform: scale(1.05);
+}
+
+.similar-property-content {
+    padding: 19px;
+}
+
+.similar-property-type {
+    color: #b18f43;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.similar-property-content h3 {
+    margin: 7px 0;
+    font-size: 17px;
+    line-height: 1.3;
+}
+
+.similar-property-content h3 a {
+    color: #153f30;
+    text-decoration: none;
+}
+
+.similar-property-content h3 a:hover {
+    color: #a78438;
+}
+
+.similar-property-location {
+    margin: 0 0 12px;
+    color: #77847e;
+    font-size: 12px;
+}
+
+.similar-property-price {
+    color: #07583c;
+    font-size: 16px;
+}
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.properties-error {
+    max-width: 650px;
+    margin: 80px auto;
+    padding: 45px 30px;
+    border: 1px solid #e0e8e3;
+    border-radius: 22px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(10,55,40,0.08);
+}
+
+.properties-error h2 {
+    margin: 0 0 10px;
+    color: #143f30;
+}
+
+.properties-error p {
+    margin: 0 0 25px;
+    color: #74817b;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+    .property-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .property-contact-card {
+        position: relative;
+        top: auto;
+    }
+
+    .property-gallery {
+        height: 430px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .property-page {
+        padding: 20px 0 45px;
+    }
+
+    .property-gallery {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .gallery-main {
+        height: 330px;
+    }
+
+    .gallery-side {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 120px;
+    }
+
+    .property-heading {
+        flex-direction: column;
+        padding: 23px;
+        gap: 15px;
+    }
+
+    .property-main-price {
+        text-align: left;
+    }
+
+    .property-main-price strong {
+        font-size: 23px;
+    }
+
+    .property-feature-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .property-section {
+        padding: 23px;
+    }
+
+    .property-contact-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .gallery-main {
+        height: 260px;
+        border-radius: 17px;
+    }
+
+    .gallery-side {
+        gap: 8px;
+    }
+
+    .gallery-side img {
+        border-radius: 12px;
+    }
+
+    .property-heading h1 {
+        font-size: 28px;
+    }
+
+    .property-feature-row {
+        gap: 8px;
+    }
+
+    .property-feature-row > div {
+        padding: 16px 8px;
+    }
+
+    .property-section {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header class="header">
+
+
+<div class="container nav-container">
+
+    <a
+        href="index.html"
+        class="logo"
+        aria-label="HavenGH Home">
+
+        <span class="logo-main">
+            Haven
+        </span><span class="logo-accent">
+            GH
+        </span>
+
+    </a>
+
+
+    <nav
+        class="navbar"
+        aria-label="Main navigation">
+
+        <a
+            href="index.html"
+            class="nav-link">
+
+            Home
+
+        </a>
+
+
+        <a
+            href="properties.html"
+            class="nav-link active">
+
+            Find a Home
+
+        </a>
+
+
+        <a
+            href="index.html#how-it-works"
+            class="nav-link">
+
+            How It Works
+
+        </a>
+
+
+        <a
+            href="index.html#about"
+            class="nav-link">
+
+            About
+
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+        <a
+            href="login.html"
+            class="login-link">
+
+            Log in
+
+        </a>
+
+
+        <a
+            href="register.html"
+            class="btn btn-dark">
+
+            List a Property
+
+        </a>
+
+    </div>
+
+</div>
+
+</header>
+
+<!-- =========================
+     PROPERTY PAGE
+========================== -->
+
+<main>
+
+
+<section class="property-page">
+
+    <div class="container">
+
+
+        <!-- =========================
+             PAGE ERROR
+        ========================== -->
+
+        <div
+            id="property-error"
+            class="properties-error"
+            hidden
+            role="alert">
+
+            <h2>
+                Unable to load property
+            </h2>
+
+            <p id="property-error-message">
+                Property information could not be loaded.
+            </p>
+
+            <a
+                href="properties.html"
+                class="btn btn-dark">
+
+                Back to Properties
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             PROPERTY CONTENT
+        ========================== -->
+
+        <div id="property-content">
+
+
+            <!-- =========================
+                 BREADCRUMB
+            ========================== -->
+
+            <div class="breadcrumb">
+
+                <a href="properties.html">
+                    Properties
+                </a>
+
+                <span>
+                    ›
+                </span>
+
+                <span id="breadcrumb-location">
+                    Loading...
+                </span>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PHOTO GALLERY
+            ========================== -->
+
+            <div class="property-gallery">
+
+
+                <div class="gallery-main">
+
+                    <img
+                        src=""
+                        class="property-main-image"
+                        id="property-main-image"
+                        alt="Property image"
+                        hidden>
+
+                    <div
+                        id="property-main-image-placeholder"
+                        class="property-image-placeholder">
+
+                        Loading property image...
+
+                    </div>
+
+
+                    <span
+                        class="gallery-badge"
+                        id="property-badge"
+                        hidden>
+
+                        Featured
+
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="gallery-side"
+                    id="property-gallery-side">
+
+                    <!-- Additional property images
+                         are inserted by JavaScript. -->
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PROPERTY HEADER
+            ========================== -->
+
+            <div class="property-main-grid">
+
+
+                <div class="property-main-content">
+
+
+                    <div class="property-heading">
+
+
+                        <div>
+
+                            <span
+                                class="property-type-label"
+                                id="property-type">
+
+                                Property
+
+                            </span>
+
+
+                            <h1 id="property-title">
+
+                                Loading property...
+
+                            </h1>
+
+
+                            <p
+                                class="large-location"
+                                id="property-location">
+
+                                Loading location...
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="property-main-price">
+
+                            <strong id="property-price">
+
+                                Loading...
+
+                            </strong>
+
+
+                            <span
+                                id="property-price-period">
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PROPERTY FEATURES
+                    ========================== -->
+
+                    <div
+                        class="property-feature-row"
+                        id="property-feature-row">
+
+
+                        <div>
+
+                            <strong id="property-bedrooms">
+                                -
+                            </strong>
+
+                            <span>
+                                Bedrooms
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong id="property-bathrooms">
+                                -
+                            </strong>
+
+                            <span>
+                                Bathrooms
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            id="property-kitchen-feature">
+
+                            <strong id="property-kitchens">
+                                -
+                            </strong>
+
+                            <span>
+                                Kitchen
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            id="property-parking-feature">
+
+                            <strong id="property-parkings">
+                                -
+                            </strong>
+
+                            <span>
+                                Parking
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         DESCRIPTION
+                    ========================== -->
+
+                    <div class="property-section">
+
+                        <h2>
+                            About this property
+                        </h2>
+
+
+                        <p id="property-description">
+
+                            Loading property description...
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         PROPERTY FEATURES / AMENITIES
+                    ========================== -->
+
+                    <div
+                        class="property-section"
+                        id="property-features-section"
+                        hidden>
+
+                        <h2>
+                            Property features
+                        </h2>
+
+
+                        <div
+                            class="amenities"
+                            id="property-amenities">
+
+                            <!--
+                                Features supplied by the API
+                                will be inserted here.
+                            -->
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         LOCATION
+                    ========================== -->
+
+                    <div class="property-section">
+
+                        <h2>
+                            Location
+                        </h2>
+
+
+                        <p
+                            class="location-description"
+                            id="location-description">
+
+                            Loading location...
+
+                        </p>
+
+
+                        <div class="map-placeholder">
+
+                            <div>
+
+                                <strong>
+                                    📍
+                                </strong>
+
+
+                                <p>
+                                    Property location
+                                </p>
+
+
+                                <small id="location-note">
+
+                                    Location information will be
+                                    displayed when provided by HavenGH.
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================
+                     OWNER / AGENT CONTACT CARD
+                ========================== -->
+
+                <aside
+                    class="property-contact-card"
+                    id="property-contact-card">
+
+
+                    <div class="agent-profile">
+
+
+                        <img
+                            src=""
+                            id="agent-image"
+                            alt="Property owner or agent"
+                            hidden>
+
+
+                        <div
+                            id="agent-image-placeholder"
+                            class="agent-image-placeholder">
+
+                            👤
+
+                        </div>
+
+
+                        <div>
+
+                            <h3 id="agent-name">
+
+                                Loading...
+
+                            </h3>
+
+
+                            <span id="agent-verification">
+
+                                Loading account information...
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         OWNER STATISTICS
+                    ========================== -->
+
+                    <div class="agent-stats">
+
+
+                        <div>
+
+                            <strong id="owner-property-count">
+                                -
+                            </strong>
+
+                            <span>
+                                Properties
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong id="agent-rating">
+                                -
+                            </strong>
+
+                            <span>
+                                Rating
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         CONTACT BUTTONS
+                    ========================== -->
+
+                    <div
+                        class="contact-buttons"
+                        id="contact-buttons">
+
+
+                        <a
+                            href="#"
+                            class="contact-whatsapp"
+                            id="whatsapp-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            hidden>
+
+                            💬 WhatsApp
+
+                        </a>
+
+
+                        <a
+                            href="request.html"
+                            class="contact-call"
+                            id="call-button"
+                            hidden>
+
+                            🏠 Request
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- =========================
+                         RENTAL REQUEST
+                    ========================== -->
+
+                    <button
+                        type="button"
+                        class="request-button"
+                        id="request-property-button"
+                        data-property-id="">
+
+                        Request This Property
+
+                    </button>
+
+
+                    <p class="contact-note">
+
+                        Send a rental request through HavenGH
+                        to ask about availability and arrange
+                        a viewing.
+
+                    </p>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     SIMILAR PROPERTIES
+========================== -->
+
+<section
+    class="featured-properties similar-properties"
+    id="similar-properties-section"
+    hidden>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    YOU MAY ALSO LIKE
+                </span>
+
+                <h2>
+                    Similar properties
+                </h2>
+
+            </div>
+
+
+            <a
+                href="properties.html"
+                class="view-all">
+
+                View all →
+
+            </a>
+
+        </div>
+
+
+        <div
+            class="property-grid"
+            id="similar-properties-grid">
+
+            <!-- Similar properties are loaded by JavaScript. -->
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer class="footer">
+
+```
+<div class="container footer-grid">
+
+
+    <div class="footer-brand">
+
+        <a
+            href="index.html"
+            class="logo footer-logo">
+
+            <span class="logo-main">
+                Haven
+            </span><span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+
+        <p>
+            Find a place you'll love to call home.
+        </p>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h4>
+            Discover
+        </h4>
+
+
+        <a href="properties.html">
+            Find a Home
+        </a>
+
+
+        <a href="properties.html?type=single-room">
+            Single Rooms
+        </a>
+
+
+        <a href="properties.html?type=apartment">
+            Apartments
+        </a>
+
+
+        <a href="properties.html?type=house">
+            Houses
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h4>
+            For Agents
+        </h4>
+
+
+        <a href="register.html">
+            List a Property
+        </a>
+
+
+        <a href="login.html">
+            Agent Login
+        </a>
+
+
+        <a href="index.html#how-it-works">
+            How It Works
+        </a>
+
+    </div>
+
+
+
+    <div class="footer-column">
+
+        <h4>
+            Company
+        </h4>
+
+
+        <a href="index.html#about">
+            About Us
+        </a>
+
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+
+        <a href="privacy-policy.html">
+            Privacy Policy
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<div class="container footer-bottom">
+
+    <p>
+
+        © <span class="current-year"></span>
+        HavenGH. All rights reserved.
+
+    </p>
+
+
+    <p>
+        Built for Ghana 🇬🇭
+    </p>
+
+</div>
+
+
+</footer>
+
+<!-- =========================
+     HAVENGH JAVASCRIPT
+========================== -->
+
+<script src="property.js"></script>
+
+</body>
+</html>

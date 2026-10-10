@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rental Requests | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- =========================
+         ADMIN SIDEBAR
+    ========================== -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-logo">
+
+            <a href="index.html" class="logo">
+                <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+            </a>
+
+        </div>
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="dashboard-user">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="Administrator profile picture"
+            >
+
+            <div>
+
+                <strong>HavenGH Admin</strong>
+
+                <span>Administrator</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+            <a href="admin-dashboard.html" class="dashboard-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="admin-users.html" class="dashboard-link">
+                <span>♙</span>
+                Users
+            </a>
+
+            <a href="admin-properties.html" class="dashboard-link">
+                <span>▣</span>
+                Properties
+            </a>
+
+            <a href="admin-stays.html" class="dashboard-link">
+                <span>🏠</span>
+                Stay in Ghana
+            </a>
+
+            <a href="admin-rental-requests.html"
+               class="dashboard-link active">
+                <span>◉</span>
+                Rental Requests
+            </a>
+
+            <a href="admin-messages.html" class="dashboard-link">
+                <span>✉</span>
+                Messages
+            </a>
+
+            <a href="admin-payments.html" class="dashboard-link">
+                <span>GH₵</span>
+                Payments
+            </a>
+
+            <a href="admin-subscriptions.html" class="dashboard-link">
+                <span>◆</span>
+                Subscriptions
+            </a>
+
+            <a href="admin-audit-logs.html" class="dashboard-link">
+                <span>▤</span>
+                Audit Logs
+            </a>
+
+            <a href="admin-settings.html" class="dashboard-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+            <a href="index.html" class="dashboard-link">
+                <span>←</span>
+                Back to Website
+            </a>
+
+            <a href="login.html" class="dashboard-link logout">
+                <span>↪</span>
+                Log Out
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-topbar">
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open dashboard menu">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+                    Wednesday, August 26, 2026
+                </p>
+
+                <h1>
+                    Rental Requests
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-expanded="false"
+                    aria-label="Notifications">
+
+                    ♧
+
+                    <span id="adminNotificationCount">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             CONTENT
+        ========================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="dashboard-welcome">
+
+                <div>
+
+                    <span class="section-label">
+                        RENTAL MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Rental Requests
+                    </h2>
+
+                    <p>
+                        Review and manage rental requests
+                        submitted by HavenGH tenants.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 REQUEST SUMMARY
+            ========================== -->
+
+            <section class="dashboard-stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            New Requests
+                        </span>
+
+                        <strong id="new-request-count">
+                            0
+                        </strong>
+
+                        <small>
+                            Awaiting review
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◌
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Reviewing
+                        </span>
+
+                        <strong id="reviewing-request-count">
+                            0
+                        </strong>
+
+                        <small>
+                            Currently reviewing
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Approved
+                        </span>
+
+                        <strong id="approved-request-count">
+                            0
+                        </strong>
+
+                        <small>
+                            Approved requests
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        #
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Requests
+                        </span>
+
+                        <strong id="total-request-count">
+                            0
+                        </strong>
+
+                        <small>
+                            All requests
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 SEARCH & FILTER
+            ========================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            REQUEST MANAGEMENT
+                        </span>
+
+                        <h2>
+                            Search & Filter
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-form-grid">
+
+                    <div class="form-group">
+
+                        <label for="request-search">
+                            Search requests
+                        </label>
+
+                        <input
+                            type="search"
+                            id="request-search"
+                            placeholder="Search tenant, property or request..."
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="request-status">
+                            Status
+                        </label>
+
+                        <select id="request-status">
+
+                            <option value="all">
+                                All Requests
+                            </option>
+
+                            <option value="new">
+                                New
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="reviewing">
+                                Reviewing
+                            </option>
+
+                            <option value="approved">
+                                Approved
+                            </option>
+
+                            <option value="declined">
+                                Declined
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 REQUEST LIST
+            ========================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            RENTAL ACTIVITY
+                        </span>
+
+                        <h2>
+                            Submitted Requests
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div id="real-rental-requests">
+
+                    <!-- Requests are loaded by script.js -->
+
+                    <div class="request-item">
+
+                        <div>
+
+                            <h3>
+                                No rental requests loaded yet
+                            </h3>
+
+                            <p>
+                                Rental requests submitted by
+                                tenants will appear here.
+                            </p>
+
+                            <small>
+                                Connected to HavenGH rental request storage.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     MAIN HAVENGH SCRIPT
+========================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
+```

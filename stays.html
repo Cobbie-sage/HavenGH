@@ -1,0 +1,3255 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+    content="Discover hotels, serviced apartments and short-stay homes across Ghana with HavenGH. Find your stay before you arrive.">
+
+<title>Stay in Ghana | HavenGH</title>
+
+<style>
+  /* =========================================================
+   HAVENGH — STAY IN GHANA
+   GLASS / PREMIUM GLOBAL DESIGN
+   CLEAR IMAGE VERSION
+   Background: stay.jpg
+========================================================= */
+
+:root {
+    --green-950: #071f18;
+    --green-900: #0b2d22;
+    --green-850: #103a2c;
+    --green-800: #124735;
+    --green-700: #176044;
+
+    --gold: #d7ad52;
+    --gold-light: #e8c875;
+    --gold-soft: rgba(215, 173, 82, 0.18);
+
+    --cream: #f7f4ec;
+    --white: #ffffff;
+
+    --text: #17251f;
+    --muted: #66736d;
+
+    --glass-white: rgba(255, 255, 255, 0.13);
+    --glass-white-strong: rgba(255, 255, 255, 0.19);
+
+    /* Reduced green darkness */
+    --glass-dark: rgba(4, 28, 21, 0.32);
+    --glass-dark-strong: rgba(4, 27, 20, 0.58);
+
+    --glass-border: rgba(255, 255, 255, 0.20);
+    --glass-border-soft: rgba(255, 255, 255, 0.12);
+
+    --shadow-sm:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+
+    --shadow-md:
+        0 18px 50px rgba(0, 0, 0, 0.18);
+
+    --shadow-lg:
+        0 30px 80px rgba(0, 0, 0, 0.25);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --max-width: 1220px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--white);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
+    /*
+       IMPORTANT:
+       The image is now the main page background.
+       Very light neutral overlay instead of heavy green.
+    */
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.14),
+            rgba(0, 0, 0, 0.18)
+        ),
+        url("stay.jpg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+
+    background-color: #18241f;
+}
+
+
+/* =========================================================
+   LIGHT IMAGE ENHANCEMENT
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    /*
+       Neutral light instead of green.
+       Keeps the photograph visible.
+    */
+    background:
+        radial-gradient(
+            circle at 18% 18%,
+            rgba(255, 255, 255, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 82% 70%,
+            rgba(215, 173, 82, 0.06),
+            transparent 32%
+        );
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    /*
+       Very subtle neutral darkening.
+    */
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.16)
+        );
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: min(
+        calc(100% - 40px),
+        var(--max-width)
+    );
+
+    margin-inline: auto;
+}
+
+
+/* =========================================================
+   HEADER / GLASS NAVBAR
+========================================================= */
+
+.header {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 100;
+
+    /*
+       Neutral transparent header.
+    */
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.52),
+            rgba(0, 0, 0, 0.12)
+        );
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-container {
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    color: var(--white);
+
+    font-size: 1.65rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.04em;
+}
+
+.logo img {
+    width: 42px;
+    height: 42px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-right: 7px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.20);
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.18);
+}
+
+.logo-accent {
+    color: var(--gold-light);
+}
+
+.navbar {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+.nav-link {
+    position: relative;
+
+    color:
+        rgba(255, 255, 255, 0.90);
+
+    font-size: 0.92rem;
+
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--gold-light);
+
+    transition:
+        width 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--white);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.mobile-menu-button {
+    display: none;
+
+    position: absolute;
+    right: 20px;
+    top: 22px;
+
+    width: 46px;
+    height: 46px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+
+    background: rgba(0, 0, 0, 0.30);
+
+    color: var(--white);
+
+    font-size: 1.65rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 110;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+    background: rgba(215, 173, 82, 0.18);
+    border-color: rgba(215, 173, 82, 0.55);
+}
+
+.mobile-menu-button:active {
+    transform: scale(0.96);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.stay-hero {
+    position: relative;
+
+    min-height: 720px;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    /*
+       IMPORTANT:
+       No green background.
+       The actual stay.jpg behind the page remains visible.
+    */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.32),
+            rgba(0, 0, 0, 0.10),
+            rgba(0, 0, 0, 0.30)
+        );
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.10);
+}
+
+.stay-hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    /*
+       Very subtle warm highlight.
+    */
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(215, 173, 82, 0.12),
+            transparent 32%
+        );
+
+    pointer-events: none;
+}
+
+.stay-hero::after {
+    content: "";
+
+    position: absolute;
+
+    right: -180px;
+    bottom: -260px;
+
+    width: 650px;
+    height: 650px;
+
+    border:
+        1px solid
+        rgba(215, 173, 82, 0.17);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 80px
+        rgba(215, 173, 82, 0.025),
+
+        0 0 0 160px
+        rgba(215, 173, 82, 0.02);
+}
+
+.stay-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding-top: 105px;
+
+    padding-bottom: 80px;
+}
+
+.hero-label,
+.section-label {
+    display: inline-block;
+
+    color: var(--gold-light);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+.stay-hero h1 {
+    max-width: 800px;
+
+    margin-top: 18px;
+
+    color: var(--white);
+
+    font-size:
+        clamp(
+            2.7rem,
+            6vw,
+            5.3rem
+        );
+
+    line-height: 1.02;
+
+    letter-spacing: -0.055em;
+
+    font-weight: 800;
+
+    text-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.stay-hero h1 span {
+    color: var(--gold-light);
+}
+
+.hero-description {
+    max-width: 650px;
+
+    margin-top: 25px;
+
+    color:
+        rgba(255, 255, 255, 0.86);
+
+    font-size: 1.08rem;
+
+    line-height: 1.8;
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   GLASS SEARCH
+========================================================= */
+
+.stay-search-box {
+    margin-top: 42px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        1fr
+        1fr
+        0.8fr
+        auto;
+
+    gap: 0;
+
+    padding: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.17);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.32);
+
+    border-radius: 20px;
+
+    box-shadow:
+        var(--shadow-lg);
+
+    backdrop-filter: blur(22px);
+
+    -webkit-backdrop-filter: blur(22px);
+}
+
+.stay-search-field {
+    min-height: 68px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 7px 18px;
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+}
+
+.stay-search-field label {
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+.stay-search-field input,
+.stay-search-field select {
+    width: 100%;
+
+    margin-top: 3px;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--white);
+
+    font-size: 0.92rem;
+
+    font-weight: 600;
+}
+
+.stay-search-field input::placeholder {
+    color:
+        rgba(255, 255, 255, 0.70);
+}
+
+.stay-search-field select option {
+    color: var(--green-950);
+
+    background: var(--white);
+}
+
+.search-button {
+    align-self: stretch;
+
+    min-width: 150px;
+
+    padding: 0 24px;
+
+    border:
+        1px solid
+        rgba(215, 173, 82, 0.55);
+
+    border-radius: 14px;
+
+    background:
+        rgba(215, 173, 82, 0.90);
+
+    color: var(--green-950);
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-button:hover {
+    background:
+        var(--gold-light);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(215, 173, 82, 0.22);
+}
+
+
+/* =========================================================
+   DESTINATIONS
+========================================================= */
+
+.stay-destinations {
+    padding: 95px 0 85px;
+
+    /*
+       Much more transparent.
+    */
+    background:
+        rgba(0, 0, 0, 0.18);
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(5px);
+
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.section-heading {
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 38px;
+}
+
+.section-heading h2,
+.center-heading h2 {
+    margin-top: 9px;
+
+    color: var(--white);
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -0.045em;
+
+    text-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.view-all {
+    color: var(--gold-light);
+
+    font-size: 0.9rem;
+
+    font-weight: 800;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.view-all:hover {
+    color: var(--white);
+
+    transform:
+        translateX(3px);
+}
+
+.destination-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.destination-card {
+    position: relative;
+
+    min-height: 285px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        var(--shadow-sm);
+
+    isolation: isolate;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.destination-card:hover {
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(215, 173, 82, 0.42);
+
+    box-shadow:
+        var(--shadow-md);
+}
+
+.destination-image {
+    position: absolute;
+
+    inset: 0;
+}
+
+.destination-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.78),
+            rgba(0, 0, 0, 0.04) 68%
+        );
+}
+
+.destination-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0.94;
+
+    transition:
+        transform 0.45s ease;
+}
+
+.destination-card:hover
+.destination-image img {
+    transform:
+        scale(1.07);
+}
+
+.destination-info {
+    position: absolute;
+
+    left: 22px;
+    right: 22px;
+    bottom: 21px;
+
+    z-index: 2;
+}
+
+.destination-info h3 {
+    color: var(--white);
+
+    font-size: 1.45rem;
+
+    line-height: 1.2;
+}
+
+.destination-info p {
+    margin-top: 3px;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   FEATURED STAYS
+========================================================= */
+
+.featured-stays {
+    padding: 100px 0;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+}
+
+.stay-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.stay-card {
+    overflow: hidden;
+
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
+
+    border-radius:
+        var(--radius-lg);
+
+    box-shadow:
+        var(--shadow-sm);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.stay-card:hover {
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-md);
+
+    border-color:
+        rgba(215, 173, 82, 0.35);
+}
+
+.stay-image {
+    position: relative;
+
+    display: block;
+
+    height: 275px;
+
+    overflow: hidden;
+
+    background:
+        rgba(0, 0, 0, 0.20);
+}
+
+.stay-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.45s ease;
+}
+
+.stay-card:hover
+.stay-image img {
+    transform:
+        scale(1.045);
+}
+
+.stay-badge {
+    position: absolute;
+
+    top: 16px;
+    left: 16px;
+
+    padding: 7px 11px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 999px;
+
+    background:
+        rgba(0, 0, 0, 0.42);
+
+    color:
+        var(--gold-light);
+
+    font-size: 0.68rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+.stay-save {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.24);
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 0, 0, 0.25);
+
+    color: var(--white);
+
+    font-size: 1.25rem;
+
+    box-shadow:
+        0 7px 20px
+        rgba(0, 0, 0, 0.12);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+.stay-info {
+    padding:
+        23px 23px 25px;
+}
+
+.stay-price {
+    color:
+        var(--gold-light);
+
+    font-size: 1.25rem;
+
+    font-weight: 850;
+}
+
+.stay-price span {
+    color:
+        rgba(255, 255, 255, 0.64);
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+}
+
+.stay-info h3 {
+    margin-top: 8px;
+
+    color: var(--white);
+
+    font-size: 1.18rem;
+
+    line-height: 1.35;
+}
+
+.stay-location {
+    margin-top: 7px;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    font-size: 0.84rem;
+}
+
+.stay-details {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 17px;
+}
+
+.stay-details span {
+    padding: 6px 9px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 7px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    color:
+        rgba(255, 255, 255, 0.82);
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+}
+
+
+/* =========================================================
+   API STATES
+========================================================= */
+
+.stay-loading,
+.stay-empty,
+.stay-error {
+    grid-column: 1 / -1;
+
+    padding: 55px 25px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        rgba(0, 0, 0, 0.20);
+
+    color: var(--white);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+}
+
+.stay-loading {
+    color:
+        var(--gold-light);
+}
+
+.stay-empty h3,
+.stay-error h3 {
+    color: var(--white);
+
+    font-size: 1.25rem;
+}
+
+.stay-empty p,
+.stay-error p {
+    max-width: 520px;
+
+    margin: 8px auto 0;
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    font-size: 0.9rem;
+}
+
+.stay-error {
+    border-color:
+        rgba(255, 120, 100, 0.25);
+}
+
+
+/* =========================================================
+   WHY HAVENGH
+========================================================= */
+
+.why-haven {
+    padding: 105px 0;
+
+    /*
+       Reduced green dramatically.
+    */
+    background:
+        rgba(0, 0, 0, 0.25);
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    backdrop-filter:
+        blur(9px);
+
+    -webkit-backdrop-filter:
+        blur(9px);
+}
+
+.center-heading {
+    max-width: 760px;
+
+    margin:
+        0 auto 55px;
+
+    text-align: center;
+}
+
+.center-heading h2 {
+    color: var(--white);
+}
+
+.center-heading p {
+    max-width: 620px;
+
+    margin:
+        17px auto 0;
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    font-size: 0.98rem;
+}
+
+.why-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.why-card {
+    padding: 30px 25px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.17);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0, 0, 0, 0.10);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.why-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(215, 173, 82, 0.30);
+}
+
+.why-icon {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 22px;
+
+    border:
+        1px solid
+        rgba(215, 173, 82, 0.28);
+
+    border-radius: 13px;
+
+    background:
+        rgba(215, 173, 82, 0.13);
+
+    color:
+        var(--gold-light);
+
+    font-weight: 900;
+}
+
+.why-card h3 {
+    color: var(--white);
+
+    font-size: 1.05rem;
+}
+
+.why-card p {
+    margin-top: 9px;
+
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    font-size: 0.84rem;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   HOST CTA
+========================================================= */
+
+.host-cta {
+    padding: 85px 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 173, 82, 0.88),
+            rgba(232, 200, 117, 0.76)
+        );
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.22);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+.host-cta-container {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 40px;
+}
+
+.host-cta .section-label {
+    color:
+        var(--green-950);
+}
+
+.host-cta h2 {
+    margin-top: 8px;
+
+    color:
+        var(--green-950);
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3rem
+        );
+
+    line-height: 1.1;
+
+    letter-spacing: -0.04em;
+}
+
+.host-cta p {
+    max-width: 650px;
+
+    margin-top: 14px;
+
+    color:
+        rgba(7, 31, 24, 0.74);
+}
+
+.btn-light {
+    flex-shrink: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        14px 22px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
+
+    border-radius: 11px;
+
+    background:
+        rgba(7, 31, 24, 0.90);
+
+    color:
+        var(--white);
+
+    font-size: 0.88rem;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 25px
+        rgba(7, 31, 24, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.btn-light:hover {
+    background:
+        var(--green-800);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section {
+    padding: 105px 0;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+}
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns:
+        0.9fr
+        1.1fr;
+
+    gap: 90px;
+
+    align-items: start;
+}
+
+.about-grid h2 {
+    margin-top: 10px;
+
+    color: var(--white);
+
+    font-size:
+        clamp(
+            2rem,
+            4vw,
+            3.2rem
+        );
+
+    line-height: 1.08;
+
+    letter-spacing: -0.045em;
+}
+
+.about-grid p {
+    color:
+        rgba(255, 255, 255, 0.74);
+
+    font-size: 0.98rem;
+
+    line-height: 1.85;
+}
+
+.about-grid p + p {
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    padding-top: 70px;
+
+    /*
+       Still dark, but not solid green.
+    */
+    background:
+        rgba(0, 0, 0, 0.62);
+
+    color:
+        rgba(255, 255, 255, 0.70);
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        repeat(3, 1fr);
+
+    gap: 45px;
+}
+
+.footer-logo {
+    color: var(--white);
+}
+
+.footer-brand p {
+    max-width: 270px;
+
+    margin-top: 13px;
+
+    font-size: 0.85rem;
+
+    line-height: 1.7;
+}
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 11px;
+}
+
+.footer-column h4 {
+    margin-bottom: 7px;
+
+    color:
+        var(--gold-light);
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+.footer-column a {
+    width: fit-content;
+
+    font-size: 0.83rem;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+
+    transform:
+        translateX(2px);
+}
+
+.footer-bottom {
+    margin-top: 55px;
+
+    padding:
+        20px 0 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    font-size: 0.76rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .stay-search-box {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .stay-search-field {
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.14);
+    }
+
+    .search-button {
+        min-height: 58px;
+
+        grid-column:
+            1 / -1;
+    }
+
+    .destination-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 820px) {
+
+    .navbar {
+        display: none;
+
+        position: absolute;
+
+        top: 76px;
+        left: 14px;
+        right: 14px;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 10px;
+
+        background:
+            rgba(7, 31, 24, 0.94);
+
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.18);
+
+        border-radius: 16px;
+
+        box-shadow:
+            0 20px 50px
+            rgba(0, 0, 0, 0.35);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+        z-index: 105;
+    }
+
+    .navbar.mobile-open {
+        display: flex;
+    }
+
+    .navbar .nav-link {
+        display: flex;
+
+        align-items: center;
+
+        min-height: 50px;
+
+        padding: 0 15px;
+
+        border-radius: 10px;
+
+        color:
+            rgba(255, 255, 255, 0.90);
+
+        font-size: 0.95rem;
+    }
+
+    .navbar .nav-link::after {
+        display: none;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+        background:
+            rgba(215, 173, 82, 0.14);
+
+        color:
+            var(--gold-light);
+    }
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+    .stay-hero {
+        min-height: auto;
+    }
+
+    .stay-hero-content {
+        padding-top: 145px;
+        padding-bottom: 75px;
+    }
+
+    .stay-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .host-cta-container {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+
+    .container {
+        width: min(
+            calc(100% - 28px),
+            var(--max-width)
+        );
+    }
+
+    .nav-container {
+        min-height: 75px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .stay-hero-content {
+        padding-top: 125px;
+    }
+
+    .stay-hero h1 {
+        font-size: 2.65rem;
+    }
+
+    .hero-description {
+        font-size: 0.94rem;
+    }
+
+    .stay-search-box {
+        grid-template-columns: 1fr;
+
+        padding: 7px;
+    }
+
+    .stay-search-field {
+        min-height: 61px;
+
+        border-right: 0;
+    }
+
+    .search-button {
+        grid-column: auto;
+
+        min-height: 56px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .destination-grid,
+    .stay-grid,
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .destination-card {
+        min-height: 250px;
+    }
+
+    .stay-image {
+        height: 245px;
+    }
+
+    .featured-stays,
+    .stay-destinations,
+    .why-haven,
+    .about-section {
+        padding: 75px 0;
+    }
+
+    .host-cta {
+        padding: 70px 0;
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 35px 20px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+        <nav class="navbar">
+
+            <a
+                href="index.html"
+                class="nav-link">
+                Home
+            </a>
+
+            <a
+                href="stay-properties.html"
+                class="nav-link active">
+                Find a Stay
+            </a>
+
+            <a
+                href="sign-in.html"
+                class="nav-link">
+                Login
+            </a>
+
+            <a
+                href="#why-haven"
+                class="nav-link">
+                Why HavenGH
+            </a>
+
+            <a
+                href="#about"
+                class="nav-link">
+                About
+            </a>
+
+        </nav>
+
+    </div>
+
+    <button
+    class="mobile-menu-button"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false">
+    ☰
+</button>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================== -->
+
+<main>
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="stay-hero">
+
+        <div class="container stay-hero-content">
+
+            <span class="hero-label">
+                YOUR GHANA STAY STARTS HERE
+            </span>
+
+            <h1>
+                Come to Ghana.<br>
+                <span>We've got your stay covered.</span>
+            </h1>
+
+            <p class="hero-description">
+                Discover hotels, serviced apartments and
+                comfortable short-stay homes across Ghana.
+                Book your stay before you arrive.
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="stay-search-box">
+
+                <div class="stay-search-field">
+
+                    <label for="destination">
+                        Where
+                    </label>
+
+                    <input
+                        type="text"
+                        id="destination"
+                        placeholder="Accra, Kumasi, Cape Coast..."
+                        autocomplete="off">
+
+                </div>
+
+
+                <div class="stay-search-field">
+
+                    <label for="checkin">
+                        Check-in
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkin">
+
+                </div>
+
+
+                <div class="stay-search-field">
+
+                    <label for="checkout">
+                        Check-out
+                    </label>
+
+                    <input
+                        type="date"
+                        id="checkout">
+
+                </div>
+
+
+                <div class="stay-search-field">
+
+                    <label for="guests">
+                        Guests
+                    </label>
+
+                    <select id="guests">
+
+                        <option value="1">
+                            1 Guest
+                        </option>
+
+                        <option value="2" selected>
+                            2 Guests
+                        </option>
+
+                        <option value="3">
+                            3 Guests
+                        </option>
+
+                        <option value="4">
+                            4 Guests
+                        </option>
+
+                        <option value="5">
+                            5 Guests
+                        </option>
+
+                        <option value="6">
+                            6+ Guests
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="search-button"
+                    id="searchStaysBtn">
+                    Search Stays
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DESTINATIONS
+    ====================================================== -->
+
+    <section class="stay-destinations">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        EXPLORE GHANA
+                    </span>
+
+                    <h2>
+                        Popular destinations
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="destination-grid">
+
+                <a
+                    href="stay-properties.html?location=accra"
+                    class="destination-card">
+
+                    <div class="destination-image">
+
+                        <img
+                            src="Accra.jpg"
+                            alt="Accra, Ghana"
+                            loading="lazy">
+
+                    </div>
+
+                    <div class="destination-info">
+
+                        <h3>
+                            Accra
+                        </h3>
+
+                        <p>
+                            Ghana's vibrant capital
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="stay-properties.html?location=kumasi"
+                    class="destination-card">
+
+                    <div class="destination-image">
+
+                        <img
+                            src="kumasi.jpg"
+                            alt="Kumasi, Ghana"
+                            loading="lazy">
+
+                    </div>
+
+                    <div class="destination-info">
+
+                        <h3>
+                            Kumasi
+                        </h3>
+
+                        <p>
+                            Culture, history & business
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="stay-properties.html?location=cape-coast"
+                    class="destination-card">
+
+                    <div class="destination-image">
+
+                        <img
+                            src="cape1.png"
+                            alt="Cape Coast, Ghana"
+                            loading="lazy">
+
+                    </div>
+
+                    <div class="destination-info">
+
+                        <h3>
+                            Cape Coast
+                        </h3>
+
+                        <p>
+                            Beaches & heritage
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="stay-properties.html?location=takoradi"
+                    class="destination-card">
+
+                    <div class="destination-image">
+
+                        <img
+                            src="Takoradi.jpg"
+                            alt="Takoradi, Ghana"
+                            loading="lazy">
+
+                    </div>
+
+                    <div class="destination-info">
+
+                        <h3>
+                            Takoradi
+                        </h3>
+
+                        <p>
+                            Coastal living & business
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FEATURED STAYS — API
+    ====================================================== -->
+
+    <section class="featured-stays">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        HANDPICKED STAYS
+                    </span>
+
+                    <h2>
+                        Places you might love
+                    </h2>
+
+                </div>
+
+                <a
+                    href="stay-properties.html"
+                    class="view-all">
+                    View all stays →
+                </a>
+
+            </div>
+
+
+            <!--
+                JavaScript will populate this
+                from /api/Stays/featured
+            -->
+
+            <div
+                class="stay-grid"
+                id="featuredStaysGrid">
+
+                <div class="stay-loading">
+                    Loading featured stays...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         WHY HAVENGH
+    ====================================================== -->
+
+    <section
+        class="why-haven"
+        id="why-haven">
+
+        <div class="container">
+
+            <div class="center-heading">
+
+                <span class="section-label">
+                    WHY HAVENGH
+                </span>
+
+                <h2>
+                    Travel with more confidence.
+                </h2>
+
+                <p>
+                    We want finding accommodation in Ghana
+                    to be simple, transparent and convenient.
+                </p>
+
+            </div>
+
+
+            <div class="why-grid">
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        Verified stays
+                    </h3>
+
+                    <p>
+                        Discover accommodation from hosts
+                        and property managers verified through
+                        the HavenGH platform.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+                        ₵
+                    </div>
+
+                    <h3>
+                        Clear pricing
+                    </h3>
+
+                    <p>
+                        See the nightly price before making
+                        your decision.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+                        ★
+                    </div>
+
+                    <h3>
+                        Real places
+                    </h3>
+
+                    <p>
+                        Browse photos, descriptions and
+                        important details before booking.
+                    </p>
+
+                </div>
+
+
+                <div class="why-card">
+
+                    <div class="why-icon">
+                        GH
+                    </div>
+
+                    <h3>
+                        Built for Ghana
+                    </h3>
+
+                    <p>
+                        A platform designed around the needs
+                        of people visiting and staying in Ghana.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HOST CTA
+    ====================================================== -->
+
+    <section class="host-cta">
+
+        <div class="container host-cta-container">
+
+            <div>
+
+                <span class="section-label">
+                    FOR HOTELS & HOSTS
+                </span>
+
+                <h2>
+                    Have a place visitors can stay?
+                </h2>
+
+                <p>
+                    List your hotel, serviced apartment or
+                    short-stay property on HavenGH and reach
+                    people planning their trip to Ghana.
+                </p>
+
+            </div>
+
+
+            <a
+                href="stay-host-register.html"
+                class="btn-light">
+                List Your Stay →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section
+        class="about-section"
+        id="about">
+
+        <div class="container about-grid">
+
+            <div>
+
+                <span class="section-label">
+                    STAY WITH HAVENGH
+                </span>
+
+                <h2>
+                    Arrive in Ghana knowing where you'll stay.
+                </h2>
+
+            </div>
+
+
+            <div>
+
+                <p>
+                    HavenGH is expanding beyond long-term
+                    property rentals to help visitors discover
+                    comfortable places to stay in Ghana.
+                </p>
+
+                <p>
+                    Whether you're visiting family, travelling
+                    for business, exploring Ghana or staying
+                    for a few weeks, HavenGH aims to make your
+                    accommodation search easier.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="logo footer-logo">
+
+                <span class="logo-main">
+                    Haven
+                </span>
+
+                <span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+            <p>
+                Find a place you'll love to call home.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Discover
+            </h4>
+
+            <a href="stay-properties.html">
+                Find a Stay
+            </a>
+
+            <a href="stays.html">
+                Stay in Ghana
+            </a>
+
+            <a href="stay-properties.html?location=accra">
+                Accra
+            </a>
+
+            <a href="stay-properties.html?location=cape-coast">
+                Cape Coast
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Account
+            </h4>
+
+            <a href="sign-in.html">
+                Sign in
+            </a>
+
+            <a href="stay-host-register.html">
+                List a Property
+            </a>
+
+            <a href="stay-host-register.html">
+                List a Stay
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Company
+            </h4>
+
+            <a href="index.html#about">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="privacy-policy.html">
+                Privacy Policy
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 HavenGH. All rights reserved.
+        </p>
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     EXISTING SHARED SCRIPT
+========================================================== -->
+
+<script src="script.js"></script>
+
+
+<!-- =========================================================
+     STAY API + SEARCH
+========================================================== -->
+
+<script>
+
+    "use strict";
+
+    /* =========================================================
+       API
+    ========================================================== */
+
+    const STAY_API_BASE_URL =
+        "http://localhost:5073";
+
+        /* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+function initialiseMobileNavigation() {
+
+    const menuButton =
+        document.querySelector(
+            ".mobile-menu-button"
+        );
+
+    const navbar =
+        document.querySelector(
+            ".navbar"
+        );
+
+    if (!menuButton || !navbar) {
+        return;
+    }
+
+    menuButton.addEventListener(
+        "click",
+        function () {
+
+            const isOpen =
+                navbar.classList.toggle(
+                    "mobile-open"
+                );
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen
+                    ? "Close navigation menu"
+                    : "Open navigation menu"
+            );
+
+            menuButton.textContent =
+                isOpen
+                    ? "✕"
+                    : "☰";
+        }
+    );
+
+
+    /* Close menu after selecting a link */
+
+    navbar
+        .querySelectorAll(".nav-link")
+        .forEach(function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    navbar.classList.remove(
+                        "mobile-open"
+                    );
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    menuButton.setAttribute(
+                        "aria-label",
+                        "Open navigation menu"
+                    );
+
+                    menuButton.textContent = "☰";
+                }
+            );
+        });
+
+
+    /* Close if user taps outside */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                !navbar.contains(event.target) &&
+                !menuButton.contains(event.target)
+            ) {
+
+                navbar.classList.remove(
+                    "mobile-open"
+                );
+
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                menuButton.setAttribute(
+                    "aria-label",
+                    "Open navigation menu"
+                );
+
+                menuButton.textContent = "☰";
+            }
+        }
+    );
+}
+
+
+    /* =========================================================
+       HELPERS
+    ========================================================== */
+
+    function escapeHtml(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    function formatStayType(type) {
+
+        if (!type) {
+            return "Stay";
+        }
+
+        return String(type)
+            .replace(/[-_]/g, " ")
+            .replace(/\b\w/g, function (letter) {
+                return letter.toUpperCase();
+            });
+    }
+
+
+    function getPrimaryImage(stay) {
+
+        if (
+            Array.isArray(stay.images) &&
+            stay.images.length > 0
+        ) {
+
+            const primary =
+                stay.images.find(function (image) {
+                    return image.isPrimary === true;
+                });
+
+            const image =
+                primary || stay.images[0];
+
+            if (image && image.imageUrl) {
+
+                const rawUrl =
+                    String(image.imageUrl);
+
+                if (
+                    rawUrl.startsWith("http://") ||
+                    rawUrl.startsWith("https://")
+                ) {
+                    return rawUrl;
+                }
+
+                return (
+                    STAY_API_BASE_URL +
+                    (
+                        rawUrl.startsWith("/")
+                            ? rawUrl
+                            : "/" + rawUrl
+                    )
+                );
+            }
+        }
+
+        return "";
+    }
+
+
+    function getAmenityPreview(amenities) {
+
+        if (!amenities) {
+            return [];
+        }
+
+        const text =
+            String(amenities).trim();
+
+        if (!text) {
+            return [];
+        }
+
+        return text
+            .split(/[,\n|]+/)
+            .map(function (item) {
+                return item.trim();
+            })
+            .filter(Boolean)
+            .slice(0, 2);
+    }
+
+
+    /* =========================================================
+       FEATURED STAYS
+    ========================================================== */
+
+    async function loadFeaturedStays() {
+
+        const grid =
+            document.getElementById(
+                "featuredStaysGrid"
+            );
+
+        if (!grid) {
+            return;
+        }
+
+        grid.innerHTML = `
+            <div class="stay-loading">
+                Loading featured stays...
+            </div>
+        `;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    STAY_API_BASE_URL +
+                    "/api/Stays/featured",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                let message =
+                    "Unable to load featured stays.";
+
+                try {
+
+                    const errorData =
+                        await response.json();
+
+                    message =
+                        errorData?.message ||
+                        errorData?.title ||
+                        message;
+
+                } catch {
+                    // Keep default message.
+                }
+
+                throw new Error(message);
+            }
+
+
+            const stays =
+                await response.json();
+
+
+            if (
+                !Array.isArray(stays) ||
+                stays.length === 0
+            ) {
+
+                grid.innerHTML = `
+                    <div class="stay-empty">
+
+                        <h3>
+                            No featured stays yet
+                        </h3>
+
+                        <p>
+                            New featured accommodation will
+                            appear here as hosts publish their
+                            stays on HavenGH.
+                        </p>
+
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            grid.innerHTML =
+                stays
+                    .slice(0, 6)
+                    .map(renderStayCard)
+                    .join("");
+
+
+        } catch (error) {
+
+            console.error(
+                "Featured stays error:",
+                error
+            );
+
+            grid.innerHTML = `
+                <div class="stay-error">
+
+                    <h3>
+                        We couldn't load featured stays.
+                    </h3>
+
+                    <p>
+                        Please make sure the HavenGH API is
+                        running, then refresh the page.
+                    </p>
+
+                </div>
+            `;
+        }
+    }
+
+
+    /* =========================================================
+       STAY CARD
+    ========================================================== */
+
+    function renderStayCard(stay) {
+
+        const stayId =
+            Number(stay.stayId);
+
+        const title =
+            escapeHtml(
+                stay.title || "HavenGH Stay"
+            );
+
+        const city =
+            escapeHtml(
+                stay.city || "Ghana"
+            );
+
+        const area =
+            escapeHtml(
+                stay.area || ""
+            );
+
+        const stayType =
+            escapeHtml(
+                formatStayType(stay.stayType)
+            );
+
+        const price =
+            Number(stay.pricePerNight || 0)
+                .toLocaleString(
+                    "en-GH",
+                    {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2
+                    }
+                );
+
+        const maxGuests =
+            Number(stay.maxGuests || 0);
+
+        const bedrooms =
+            Number(stay.bedrooms || 0);
+
+        const rooms =
+            Number(stay.rooms || 0);
+
+        const imageUrl =
+            getPrimaryImage(stay);
+
+        const amenities =
+            getAmenityPreview(
+                stay.amenities
+            );
+
+
+        const imageHtml =
+            imageUrl
+                ? `
+                    <img
+                        src="${escapeHtml(imageUrl)}"
+                        alt="${title}"
+                        loading="lazy"
+                        onerror="this.style.display='none';">
+                `
+                : `
+                    <div
+                        style="
+                            width:100%;
+                            height:100%;
+                            display:grid;
+                            place-items:center;
+                            color:#d7ad52;
+                            font-weight:800;
+                            letter-spacing:.08em;
+                            background:#0b2d22;
+                        ">
+                        HAVENGH
+                    </div>
+                `;
+
+
+        let detailItems = [];
+
+
+        if (maxGuests > 0) {
+
+            detailItems.push(
+                `${maxGuests} Guest${maxGuests === 1 ? "" : "s"}`
+            );
+        }
+
+
+        if (bedrooms > 0) {
+
+            detailItems.push(
+                `${bedrooms} Bedroom${bedrooms === 1 ? "" : "s"}`
+            );
+
+        } else if (rooms > 0) {
+
+            detailItems.push(
+                `${rooms} Room${rooms === 1 ? "" : "s"}`
+            );
+        }
+
+
+        amenities.forEach(function (amenity) {
+
+            detailItems.push(
+                escapeHtml(amenity)
+            );
+
+        });
+
+
+        detailItems =
+            detailItems
+                .slice(0, 3)
+                .map(function (item) {
+
+                    return `
+                        <span>
+                            ${item}
+                        </span>
+                    `;
+
+                })
+                .join("");
+
+
+        return `
+            <article class="stay-card">
+
+                <a
+                    href="stay-details.html?id=${stayId}"
+                    class="stay-image">
+
+                    ${imageHtml}
+
+                    <span class="stay-badge">
+                        ${stayType}
+                    </span>
+
+                    <span
+                        class="stay-save"
+                        aria-hidden="true">
+                        ♡
+                    </span>
+
+                </a>
+
+
+                <div class="stay-info">
+
+                    <div class="stay-price">
+
+                        GH₵${price}
+
+                        <span>
+                            / night
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        ${title}
+                    </h3>
+
+
+                    <p class="stay-location">
+
+                        📍
+
+                        ${area
+                            ? `${area}, ${city}`
+                            : city}
+
+                    </p>
+
+
+                    <div class="stay-details">
+
+                        ${detailItems}
+
+                    </div>
+
+                </div>
+
+            </article>
+        `;
+    }
+
+
+    /* =========================================================
+       SEARCH
+    ========================================================== */
+
+    function initialiseStaySearch() {
+
+        const searchButton =
+            document.getElementById(
+                "searchStaysBtn"
+            );
+
+        const destination =
+            document.getElementById(
+                "destination"
+            );
+
+        const checkin =
+            document.getElementById(
+                "checkin"
+            );
+
+        const checkout =
+            document.getElementById(
+                "checkout"
+            );
+
+        const guests =
+            document.getElementById(
+                "guests"
+            );
+
+
+        if (!searchButton) {
+            return;
+        }
+
+
+        searchButton.addEventListener(
+            "click",
+            function () {
+
+                const location =
+                    destination.value.trim();
+
+                const checkInDate =
+                    checkin.value;
+
+                const checkOutDate =
+                    checkout.value;
+
+                const guestCount =
+                    guests.value;
+
+
+                if (!location) {
+
+                    alert(
+                        "Please enter where you want to stay."
+                    );
+
+                    destination.focus();
+
+                    return;
+                }
+
+
+                if (!checkInDate) {
+
+                    alert(
+                        "Please select your check-in date."
+                    );
+
+                    checkin.focus();
+
+                    return;
+                }
+
+
+                if (!checkOutDate) {
+
+                    alert(
+                        "Please select your check-out date."
+                    );
+
+                    checkout.focus();
+
+                    return;
+                }
+
+
+                if (
+                    checkOutDate <=
+                    checkInDate
+                ) {
+
+                    alert(
+                        "Check-out date must be after check-in date."
+                    );
+
+                    checkout.focus();
+
+                    return;
+                }
+
+
+                const searchURL =
+                    "stay-properties.html" +
+                    "?location=" +
+                    encodeURIComponent(
+                        location
+                    ) +
+                    "&checkin=" +
+                    encodeURIComponent(
+                        checkInDate
+                    ) +
+                    "&checkout=" +
+                    encodeURIComponent(
+                        checkOutDate
+                    ) +
+                    "&guests=" +
+                    encodeURIComponent(
+                        guestCount
+                    );
+
+
+                window.location.href =
+                    searchURL;
+
+            }
+        );
+    }
+
+
+    /* =========================================================
+       PAGE INITIALISATION
+    ========================================================== */
+
+   document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        loadFeaturedStays();
+
+        initialiseStaySearch();
+
+        initialiseMobileNavigation();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

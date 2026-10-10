@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH Stay Host subscription and grow your hotel, serviced apartment or short-stay business.">
+
+    <title>Subscription | Stay Host | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================================
+           STAY HOST SUBSCRIPTION PAGE
+        ===================================================== */
+
+        .subscription-page {
+            min-height: 100vh;
+            background: #f6f8f7;
+            padding-bottom: 70px;
+        }
+
+        /* =========================
+           DASHBOARD TOP BAR
+        ========================== */
+
+        .stay-dashboard-header {
+            background: #064e3b;
+            color: #ffffff;
+            padding: 18px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .stay-dashboard-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .stay-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .stay-brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .stay-brand span:last-child {
+            color: #d4af37;
+        }
+
+        .dashboard-back {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .dashboard-back:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* =========================
+           PAGE INTRO
+        ========================== */
+
+        .subscription-intro {
+            text-align: center;
+            max-width: 760px;
+            margin: 55px auto 40px;
+            padding: 0 20px;
+        }
+
+        .subscription-label {
+            display: inline-block;
+            color: #b28a20;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .subscription-intro h1 {
+            color: #064e3b;
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 15px;
+        }
+
+        .subscription-intro p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CURRENT PLAN
+        ========================== */
+
+        .current-plan {
+            max-width: 1050px;
+            margin: 0 auto 35px;
+            padding: 0 20px;
+        }
+
+        .current-plan-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .current-plan-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .plan-status-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #064e3b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .current-plan-card h3 {
+            color: #064e3b;
+            margin-bottom: 5px;
+        }
+
+        .current-plan-card p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .active-status {
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            padding: 8px 13px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           PLAN GRID
+        ========================== */
+
+        .plans-section {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .plan-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 32px 27px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 38px rgba(0,0,0,0.10);
+        }
+
+        .plan-card.featured {
+            border: 2px solid #d4af37;
+            transform: translateY(-8px);
+        }
+
+        .plan-card.featured:hover {
+            transform: translateY(-13px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4af37;
+            color: #ffffff;
+            padding: 7px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .plan-name {
+            color: #064e3b;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .plan-description {
+            color: #777;
+            min-height: 48px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .plan-price {
+            margin: 25px 0;
+            color: #064e3b;
+        }
+
+        .plan-price strong {
+            font-size: 38px;
+        }
+
+        .plan-price span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 28px;
+            flex: 1;
+        }
+
+        .plan-features li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 13px;
+            color: #444;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .plan-features li::before {
+            content: "✓";
+            color: #d4af37;
+            font-weight: 900;
+        }
+
+        .plan-button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 9px;
+            border: none;
+            background: #064e3b;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .plan-button:hover {
+            background: #053c2e;
+        }
+
+        .plan-button.gold {
+            background: #d4af37;
+            color: #ffffff;
+        }
+
+        .plan-button.gold:hover {
+            background: #b99627;
+        }
+
+        .plan-button.current {
+            background: #e5e7eb;
+            color: #555;
+            cursor: default;
+        }
+
+        /* =========================
+           BILLING NOTE
+        ========================== */
+
+        .billing-note {
+            max-width: 760px;
+            margin: 40px auto 0;
+            text-align: center;
+            padding: 0 20px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           MANAGEMENT SECTION
+        ========================== */
+
+        .subscription-management {
+            max-width: 1050px;
+            margin: 45px auto 0;
+            padding: 0 20px;
+        }
+
+        .management-card {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1px solid #e5e7eb;
+            padding: 28px;
+        }
+
+        .management-card h2 {
+            color: #064e3b;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .management-card p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .management-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            border: 1px solid #064e3b;
+            background: #ffffff;
+            color: #064e3b;
+            padding: 11px 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .secondary-button:hover {
+            background: #064e3b;
+            color: #ffffff;
+        }
+
+        /* =========================
+           MESSAGE
+        ========================== */
+
+        .subscription-message {
+            display: none;
+            max-width: 700px;
+            margin: 25px auto 0;
+            padding: 14px 18px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .subscription-message.success {
+            display: block;
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .subscription-message.info {
+            display: block;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+                margin: auto;
+            }
+
+            .plan-card.featured {
+                transform: none;
+            }
+
+            .plan-card.featured:hover {
+                transform: translateY(-5px);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .stay-dashboard-header-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .current-plan-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .subscription-intro {
+                margin-top: 40px;
+            }
+
+            .plan-card {
+                padding: 28px 22px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="subscription-page">
+
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <header class="stay-dashboard-header">
+
+        <div class="container stay-dashboard-header-inner">
+
+            <a href="index.html" class="stay-brand">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <span>Haven</span>
+                <span>GH</span>
+
+            </a>
+
+            <a
+                href="stay-host-dashboard.html"
+                class="dashboard-back">
+
+                ← Back to Host Dashboard
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         INTRO
+    ====================================================== -->
+
+    <section class="subscription-intro">
+
+        <span class="subscription-label">
+            HAVENGH STAY HOST
+        </span>
+
+        <h1>
+            Choose the plan that fits your business.
+        </h1>
+
+        <p>
+            Give your hotel, serviced apartment or short-stay
+            property greater visibility and reach guests planning
+            their trip to Ghana.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         CURRENT PLAN
+    ====================================================== -->
+
+    <section class="current-plan">
+
+        <div class="current-plan-card">
+
+            <div class="current-plan-left">
+
+                <div class="plan-status-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3>
+                        Current Plan: Starter
+                    </h3>
+
+                    <p>
+                        Your Stay Host account is currently on the
+                        Starter plan.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="active-status">
+                ACTIVE
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PLANS
+    ====================================================== -->
+
+    <section class="plans-section">
+
+        <div class="plans-grid">
+
+
+            <!-- =========================
+                 STARTER
+            ========================== -->
+
+            <article class="plan-card">
+
+                <h2 class="plan-name">
+                    Starter
+                </h2>
+
+                <p class="plan-description">
+                    A simple way to get started on HavenGH.
+                </p>
+
+                <div class="plan-price">
+
+                    <strong>
+                        GH₵0
+                    </strong>
+
+                    <span>
+                        / month
+                    </span>
+
+                </div>
+
+                <ul class="plan-features">
+
+                    <li>
+                        Create a Stay Host profile
+                    </li>
+
+                    <li>
+                        List your stay
+                    </li>
+
+                    <li>
+                        Upload property photos
+                    </li>
+
+                    <li>
+                        Receive guest enquiries
+                    </li>
+
+                    <li>
+                        Basic host dashboard
+                    </li>
+
+                </ul>
+
+                <button
+                    class="plan-button current"
+                    type="button">
+
+                    Current Plan
+
+                </button>
+
+            </article>
+
+
+            <!-- =========================
+                 PROFESSIONAL
+            ========================== -->
+
+            <article class="plan-card featured">
+
+                <span class="popular-badge">
+                    MOST POPULAR
+                </span>
+
+                <h2 class="plan-name">
+                    Professional
+                </h2>
+
+                <p class="plan-description">
+                    For hosts who want more visibility and more guests.
+                </p>
+
+                <div class="plan-price">
+
+                    <strong>
+                        GH₵150
+                    </strong>
+
+                    <span>
+                        / month
+                    </span>
+
+                </div>
+
+                <ul class="plan-features">
+
+                    <li>
+                        Everything in Starter
+                    </li>
+
+                    <li>
+                        Featured stay placement
+                    </li>
+
+                    <li>
+                        More property listings
+                    </li>
+
+                    <li>
+                        Enhanced host profile
+                    </li>
+
+                    <li>
+                        Guest enquiry management
+                    </li>
+
+                    <li>
+                        Performance insights
+                    </li>
+
+                </ul>
+
+                <button
+                    class="plan-button gold"
+                    type="button"
+                    data-plan="Professional">
+
+                    Upgrade to Professional
+
+                </button>
+
+            </article>
+
+
+            <!-- =========================
+                 PREMIUM
+            ========================== -->
+
+            <article class="plan-card">
+
+                <h2 class="plan-name">
+                    Premium
+                </h2>
+
+                <p class="plan-description">
+                    Designed for established hotels and professional
+                    accommodation businesses.
+                </p>
+
+                <div class="plan-price">
+
+                    <strong>
+                        GH₵300
+                    </strong>
+
+                    <span>
+                        / month
+                    </span>
+
+                </div>
+
+                <ul class="plan-features">
+
+                    <li>
+                        Everything in Professional
+                    </li>
+
+                    <li>
+                        Priority placement
+                    </li>
+
+                    <li>
+                        Multiple stay listings
+                    </li>
+
+                    <li>
+                        Premium host profile
+                    </li>
+
+                    <li>
+                        Advanced analytics
+                    </li>
+
+                    <li>
+                        Priority platform support
+                    </li>
+
+                </ul>
+
+                <button
+                    class="plan-button"
+                    type="button"
+                    data-plan="Premium">
+
+                    Choose Premium
+
+                </button>
+
+            </article>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="subscriptionMessage"
+            class="subscription-message">
+
+        </div>
+
+
+
+<p class="billing-note">
+
+    Stay Host subscriptions are securely processed through
+    Paystack. Professional and Premium plans are billed
+    monthly, while the Starter plan is free.
+
+</p>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         MANAGE SUBSCRIPTION
+    ====================================================== -->
+
+    <section class="subscription-management">
+
+        <div class="management-card">
+
+            <h2>
+                Manage your subscription
+            </h2>
+
+            <p>
+                You can review your subscription status and manage
+                your plan from your Stay Host account.
+            </p>
+
+            <div class="management-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="billingHistoryBtn">
+
+                    Billing History
+
+                </button>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelSubscriptionBtn">
+
+                    Manage / Cancel Subscription
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+<script>
+
+    "use strict";
+
+    /* ============================================================
+       HAVENGH STAY HOST SUBSCRIPTIONS
+       Direct ASP.NET Core API connection
+    ============================================================ */
+
+    const API_BASE_URL = "http://localhost:5073";
+
+    const subscriptionMessage =
+        document.getElementById("subscriptionMessage");
+
+    const billingHistoryBtn =
+        document.getElementById("billingHistoryBtn");
+
+    const cancelSubscriptionBtn =
+        document.getElementById("cancelSubscriptionBtn");
+
+    const currentPlanTitle =
+        document.querySelector(".current-plan-card h3");
+
+    const currentPlanDescription =
+        document.querySelector(".current-plan-card p");
+
+    const currentPlanStatus =
+        document.querySelector(".active-status");
+
+    const planCards =
+        document.querySelectorAll(".plan-card");
+
+
+    /* ============================================================
+       AUTHENTICATION
+    ============================================================ */
+
+    function getToken() {
+
+        return (
+            localStorage.getItem("token") ||
+            localStorage.getItem("havenGH_token") ||
+            localStorage.getItem("accessToken") ||
+            localStorage.getItem("jwtToken")
+        );
+    }
+
+
+    function requireToken() {
+
+        const token = getToken();
+
+        if (!token) {
+
+            window.location.href =
+                "login.html?returnUrl=" +
+                encodeURIComponent(
+                    window.location.pathname
+                );
+
+            return null;
+        }
+
+        return token;
+    }
+
+
+    /* ============================================================
+       API REQUEST
+    ============================================================ */
+
+    async function apiRequest(
+        endpoint,
+        options = {}
+    ) {
+
+        const token = getToken();
+
+        const headers = {
+            "Content-Type": "application/json",
+            ...(options.headers || {})
+        };
+
+        if (token) {
+
+            headers["Authorization"] =
+                `Bearer ${token}`;
+        }
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}${endpoint}`,
+                {
+                    ...options,
+                    headers
+                }
+            );
+
+        if (response.status === 401) {
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("havenGH_token");
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("jwtToken");
+
+            window.location.href =
+                "login.html?returnUrl=" +
+                encodeURIComponent(
+                    window.location.pathname
+                );
+
+            throw new Error(
+                "Your session has expired. Please log in again."
+            );
+        }
+
+        let data = null;
+
+        const contentType =
+            response.headers.get("content-type") || "";
+
+        if (contentType.includes("application/json")) {
+
+            data = await response.json();
+
+        } else {
+
+            data = await response.text();
+        }
+
+        if (!response.ok) {
+
+            throw new Error(
+                data?.message ||
+                data?.error ||
+                "The API request failed."
+            );
+        }
+
+        return data;
+    }
+
+
+    /* ============================================================
+       MESSAGE
+    ============================================================ */
+
+    function showSubscriptionMessage(
+        text,
+        type = "info"
+    ) {
+
+        subscriptionMessage.textContent =
+            text;
+
+        subscriptionMessage.className =
+            "subscription-message " + type;
+
+        subscriptionMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+
+    /* ============================================================
+       BUTTON LOADING STATE
+    ============================================================ */
+
+    function setButtonLoading(
+        button,
+        loading,
+        originalText
+    ) {
+
+        if (!button) return;
+
+        if (loading) {
+
+            button.disabled = true;
+
+            button.dataset.originalText =
+                button.textContent;
+
+            button.textContent =
+                "Processing...";
+
+        } else {
+
+            button.disabled = false;
+
+            button.textContent =
+                originalText ||
+                button.dataset.originalText ||
+                button.textContent;
+        }
+    }
+
+
+    /* ============================================================
+       LOAD PLANS
+    ============================================================ */
+
+    let stayPlans = [];
+
+    async function loadStayPlans() {
+
+        try {
+
+            stayPlans =
+                await apiRequest(
+                    "/api/StaySubscriptions/plans"
+                );
+
+            if (!Array.isArray(stayPlans)) {
+
+                throw new Error(
+                    "Invalid plan data received from the API."
+                );
+            }
+
+            console.log(
+                "Stay Host plans loaded:",
+                stayPlans
+            );
+
+            connectPlanButtons();
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load Stay Host plans:",
+                error
+            );
+
+            showSubscriptionMessage(
+                "Unable to load Stay Host subscription plans. Please try again.",
+                "info"
+            );
+        }
+    }
+
+
+    /* ============================================================
+       LOAD CURRENT SUBSCRIPTION
+    ============================================================ */
+
+    let currentSubscription = null;
+
+    async function loadCurrentSubscription() {
+
+        requireToken();
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/StaySubscriptions/current"
+                );
+
+            if (
+                result &&
+                result.hasSubscription &&
+                result.subscription
+            ) {
+
+                currentSubscription =
+                    result.subscription;
+
+                updateCurrentPlan(
+                    result.subscription
+                );
+
+            } else {
+
+                currentSubscription = null;
+
+                updateCurrentPlan(null);
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load current Stay Host subscription:",
+                error
+            );
+        }
+    }
+
+
+    /* ============================================================
+       UPDATE CURRENT PLAN UI
+    ============================================================ */
+
+    function updateCurrentPlan(
+        subscription
+    ) {
+
+        if (!subscription) {
+
+            currentPlanTitle.textContent =
+                "Current Plan: None";
+
+            currentPlanDescription.textContent =
+                "You do not currently have an active Stay Host subscription.";
+
+            currentPlanStatus.textContent =
+                "NO ACTIVE PLAN";
+
+            currentPlanStatus.style.background =
+                "#fef2f2";
+
+            currentPlanStatus.style.color =
+                "#b91c1c";
+
+            return;
+        }
+
+        const plan =
+            subscription.plan;
+
+        const planName =
+            plan?.planName || "Unknown";
+
+        currentPlanTitle.textContent =
+            `Current Plan: ${planName}`;
+
+        let description =
+            `Your Stay Host account is currently on the ${planName} plan.`;
+
+        if (subscription.endsAt) {
+
+            const endDate =
+                new Date(subscription.endsAt);
+
+            if (!isNaN(endDate.getTime())) {
+
+                description +=
+                    ` Your plan is active until ${endDate.toLocaleDateString()}.`;
+            }
+        }
+
+        currentPlanDescription.textContent =
+            description;
+
+        currentPlanStatus.textContent =
+            "ACTIVE";
+
+        currentPlanStatus.style.background =
+            "#ecfdf5";
+
+        currentPlanStatus.style.color =
+            "#047857";
+
+        updatePlanButtons(plan?.stayPlanId);
+    }
+
+
+    /* ============================================================
+       UPDATE PLAN BUTTONS
+    ============================================================ */
+
+    function updatePlanButtons(
+        currentPlanId
+    ) {
+
+        planCards.forEach(card => {
+
+            const button =
+                card.querySelector("[data-plan]");
+
+            if (!button) return;
+
+            const planName =
+                button.dataset.plan;
+
+            const plan =
+                stayPlans.find(
+                    p =>
+                        p.planName.toLowerCase() ===
+                        planName.toLowerCase()
+                );
+
+            if (!plan) return;
+
+            if (
+                currentPlanId &&
+                Number(plan.stayPlanId) ===
+                Number(currentPlanId)
+            ) {
+
+                button.textContent =
+                    "Current Plan";
+
+                button.classList.add(
+                    "current"
+                );
+
+                button.disabled = true;
+
+            } else {
+
+                button.disabled = false;
+
+                button.classList.remove(
+                    "current"
+                );
+
+                if (
+                    planName.toLowerCase() ===
+                    "professional"
+                ) {
+
+                    button.textContent =
+                        "Upgrade to Professional";
+
+                } else if (
+                    planName.toLowerCase() ===
+                    "premium"
+                ) {
+
+                    button.textContent =
+                        "Choose Premium";
+
+                } else {
+
+                    button.textContent =
+                        "Choose " + plan.planName;
+                }
+            }
+        });
+    }
+
+
+    /* ============================================================
+       CONNECT PLAN BUTTONS
+    ============================================================ */
+
+    function connectPlanButtons() {
+
+        const planButtons =
+            document.querySelectorAll(
+                "[data-plan]"
+            );
+
+        planButtons.forEach(button => {
+
+            /*
+             * Prevent duplicate event listeners
+             */
+
+            if (
+                button.dataset.connected ===
+                "true"
+            ) {
+                return;
+            }
+
+            button.dataset.connected =
+                "true";
+
+            button.addEventListener(
+                "click",
+                async function () {
+
+                    const selectedPlanName =
+                        this.dataset.plan;
+
+                    const selectedPlan =
+                        stayPlans.find(
+                            plan =>
+                                plan.planName.toLowerCase() ===
+                                selectedPlanName.toLowerCase()
+                        );
+
+                    if (!selectedPlan) {
+
+                        showSubscriptionMessage(
+                            "The selected Stay Host plan could not be found.",
+                            "info"
+                        );
+
+                        return;
+                    }
+
+                    /*
+                     * Do not allow clicking the current plan.
+                     */
+
+                    if (
+                        currentSubscription &&
+                        currentSubscription.plan &&
+                        Number(
+                            currentSubscription.plan.stayPlanId
+                        ) ===
+                        Number(
+                            selectedPlan.stayPlanId
+                        )
+                    ) {
+
+                        showSubscriptionMessage(
+                            "You are already subscribed to this plan.",
+                            "info"
+                        );
+
+                        return;
+                    }
+
+                    await selectPlan(
+                        selectedPlan,
+                        this
+                    );
+                }
+            );
+        });
+
+        updatePlanButtons(
+            currentSubscription?.plan?.stayPlanId
+        );
+    }
+
+
+    /* ============================================================
+       SELECT PLAN
+    ============================================================ */
+
+    async function selectPlan(
+        plan,
+        button
+    ) {
+
+        requireToken();
+
+        const confirmed =
+            confirm(
+                `Continue with the ${plan.planName} Stay Host plan for GH₵${Number(plan.price).toLocaleString()}/month?`
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+        const originalText =
+            button.textContent;
+
+        setButtonLoading(
+            button,
+            true
+        );
+
+        showSubscriptionMessage(
+            `Preparing your ${plan.planName} subscription...`,
+            "info"
+        );
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/StaySubscriptions/initialize",
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            stayPlanId:
+                                plan.stayPlanId
+                        })
+                    }
+                );
+
+            /*
+             * =====================================================
+             * STARTER — FREE
+             * =====================================================
+             */
+
+            if (result.free === true) {
+
+                showSubscriptionMessage(
+                    "Starter plan activated successfully.",
+                    "success"
+                );
+
+                await loadCurrentSubscription();
+
+                return;
+            }
+
+            /*
+             * =====================================================
+             * PAID PLAN
+             * =====================================================
+             */
+
+            if (
+                result.authorizationUrl
+            ) {
+
+                showSubscriptionMessage(
+                    "Redirecting you to Paystack...",
+                    "info"
+                );
+
+                /*
+                 * Give the message a moment to render
+                 * before redirecting.
+                 */
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        result.authorizationUrl;
+
+                }, 500);
+
+                return;
+            }
+
+            throw new Error(
+                "Paystack authorization URL was not returned."
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Stay Host subscription error:",
+                error
+            );
+
+            showSubscriptionMessage(
+                error.message ||
+                "Unable to start the subscription.",
+                "info"
+            );
+
+        } finally {
+
+            setButtonLoading(
+                button,
+                false,
+                originalText
+            );
+        }
+    }
+
+
+    /* ============================================================
+       BILLING HISTORY
+    ============================================================ */
+
+    billingHistoryBtn.addEventListener(
+        "click",
+        async function () {
+
+            requireToken();
+
+            setButtonLoading(
+                this,
+                true
+            );
+
+            try {
+
+                const history =
+                    await apiRequest(
+                        "/api/StaySubscriptions/history"
+                    );
+
+                if (
+                    !Array.isArray(history) ||
+                    history.length === 0
+                ) {
+
+                    showSubscriptionMessage(
+                        "You do not have any Stay Host payment history yet.",
+                        "info"
+                    );
+
+                    return;
+                }
+
+                /*
+                 * Build a readable billing summary.
+                 */
+
+                const successfulPayments =
+                    history.filter(
+                        payment =>
+                            payment.status &&
+                            payment.status.toLowerCase() ===
+                            "successful"
+                    );
+
+                if (
+                    successfulPayments.length === 0
+                ) {
+
+                    showSubscriptionMessage(
+                        "No successful Stay Host payments have been recorded yet.",
+                        "info"
+                    );
+
+                    return;
+                }
+
+                const latestPayment =
+                    successfulPayments[0];
+
+                const amount =
+                    Number(
+                        latestPayment.amount
+                    ).toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+                const paymentDate =
+                    latestPayment.paidAt ||
+                    latestPayment.createdAt;
+
+                const formattedDate =
+                    paymentDate
+                        ? new Date(
+                            paymentDate
+                          ).toLocaleDateString()
+                        : "N/A";
+
+                showSubscriptionMessage(
+                    `Latest successful payment: ${latestPayment.plan?.planName || "Stay Host plan"} — GH₵${amount} on ${formattedDate}.`,
+                    "success"
+                );
+
+                console.log(
+                    "Stay Host billing history:",
+                    history
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Billing history error:",
+                    error
+                );
+
+                showSubscriptionMessage(
+                    error.message ||
+                    "Unable to load billing history.",
+                    "info"
+                );
+
+            } finally {
+
+                setButtonLoading(
+                    this,
+                    false,
+                    "Billing History"
+                );
+            }
+        }
+    );
+
+
+    /* ============================================================
+       MANAGE / CANCEL
+    ============================================================ */
+
+    cancelSubscriptionBtn.addEventListener(
+        "click",
+        async function () {
+
+            requireToken();
+
+            if (!currentSubscription) {
+
+                showSubscriptionMessage(
+                    "You do not currently have an active Stay Host subscription.",
+                    "info"
+                );
+
+                return;
+            }
+
+            const planName =
+                currentSubscription.plan?.planName ||
+                "Stay Host plan";
+
+            /*
+             * Cancellation endpoint has not been created yet.
+             *
+             * Do NOT pretend to cancel the subscription.
+             */
+
+            showSubscriptionMessage(
+                `You are currently subscribed to the ${planName} plan. Subscription cancellation management will be connected after the payment flow is fully tested.`,
+                "info"
+            );
+        }
+    );
+
+
+    /* ============================================================
+       INITIAL PAGE LOAD
+    ============================================================ */
+
+    async function initializeSubscriptionPage() {
+
+        /*
+         * The plans endpoint is public.
+         * Current subscription requires authentication.
+         */
+
+        await loadStayPlans();
+
+        if (!getToken()) {
+
+            showSubscriptionMessage(
+                "Please log in to manage your Stay Host subscription.",
+                "info"
+            );
+
+            return;
+        }
+
+        await loadCurrentSubscription();
+
+        /*
+         * Reconnect buttons after current plan is loaded.
+         */
+
+        connectPlanButtons();
+    }
+
+
+    initializeSubscriptionPage();
+
+</script>
+
+
+</body>
+</html>

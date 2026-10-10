@@ -1,0 +1,5499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH host account, security, notifications, stays, subscription and payout settings.">
+
+    <title>Host Settings | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================================
+           HAVENGH PREMIUM HOST SETTINGS
+        ========================================================= */
+
+        :root {
+            --haven-green: #064e3b;
+            --haven-green-dark: #043c2e;
+            --haven-green-soft: #0b6b52;
+            --haven-teal: #0f766e;
+            --haven-gold: #d4af37;
+            --haven-gold-light: #f8efc8;
+
+            --haven-bg: #f4f7f5;
+            --haven-white: #ffffff;
+
+            --haven-border: #e1e9e5;
+
+            --haven-text: #17211d;
+            --haven-muted: #6b756f;
+
+            --haven-success: #047857;
+            --haven-success-bg: #ecfdf5;
+
+            --haven-danger: #b42318;
+            --haven-danger-bg: #fff5f4;
+
+            --haven-warning: #92400e;
+            --haven-warning-bg: #fffbeb;
+
+            --haven-shadow:
+                0 15px 45px rgba(6, 78, 59, .07);
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            background: var(--haven-bg);
+            color: var(--haven-text);
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        button:disabled {
+            cursor: not-allowed;
+            opacity: .6;
+        }
+
+
+        .settings-page {
+            min-height: 100vh;
+        }
+
+
+        .settings-container {
+            width: min(
+                1180px,
+                calc(100% - 40px)
+            );
+
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .settings-header {
+            background: rgba(255,255,255,.97);
+            border-bottom: 1px solid var(--haven-border);
+
+            position: sticky;
+            top: 0;
+            z-index: 50;
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        .settings-header-inner {
+            min-height: 78px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .settings-brand {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 11px;
+
+            text-decoration: none;
+        }
+
+
+        .settings-brand img {
+            width: 44px;
+            height: 44px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+        }
+
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+
+            color: var(--haven-green);
+
+            letter-spacing: -.5px;
+        }
+
+
+        .brand-name span {
+            color: var(--haven-gold);
+        }
+
+
+        .host-pill {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            background: #eff8f4;
+
+            color: var(--haven-green);
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        .host-pill::before {
+            content: "";
+
+            width: 8px;
+            height: 8px;
+
+            background: #16a34a;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 4px rgba(22,163,74,.10);
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        .settings-main {
+            padding: 45px 0 80px;
+        }
+
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 7px;
+
+            text-decoration: none;
+
+            color: var(--haven-green);
+
+            font-size: 14px;
+            font-weight: 800;
+
+            margin-bottom: 25px;
+
+            transition: .2s ease;
+        }
+
+
+        .back-link:hover {
+            color: var(--haven-gold);
+            transform: translateX(-2px);
+        }
+
+
+        .settings-heading {
+            margin-bottom: 30px;
+        }
+
+
+        .settings-heading small {
+            display: block;
+
+            color: var(--haven-gold);
+
+            font-size: 11px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .settings-heading h1 {
+            margin: 0 0 10px;
+
+            color: var(--haven-green);
+
+            font-size: clamp(
+                30px,
+                4vw,
+                42px
+            );
+
+            letter-spacing: -.8px;
+        }
+
+
+        .settings-heading p {
+            margin: 0;
+
+            max-width: 680px;
+
+            color: var(--haven-muted);
+
+            line-height: 1.7;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           MESSAGE
+        ========================================================= */
+
+        .settings-message {
+            display: none;
+
+            padding: 14px 17px;
+
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            line-height: 1.5;
+        }
+
+
+        .settings-message.success {
+            display: block;
+
+            background: var(--haven-success-bg);
+
+            border: 1px solid #a7f3d0;
+
+            color: #065f46;
+        }
+
+
+        .settings-message.error {
+            display: block;
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            color: #991b1b;
+        }
+
+
+        .settings-message.info {
+            display: block;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            color: #1e40af;
+        }
+
+
+        /* =========================================================
+           LOADING
+        ========================================================= */
+
+        .page-loading {
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 20px;
+
+            color: var(--haven-muted);
+
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+
+        .page-loading.active {
+            display: flex;
+        }
+
+
+        .loading-spinner {
+            width: 18px;
+            height: 18px;
+
+            border: 2px solid #dce7e2;
+            border-top-color: var(--haven-green);
+
+            border-radius: 50%;
+
+            animation:
+                settingsSpin .7s linear infinite;
+        }
+
+
+        @keyframes settingsSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =========================================================
+           LAYOUT
+        ========================================================= */
+
+        .settings-layout {
+            display: grid;
+
+            grid-template-columns:
+                270px
+                minmax(0, 1fr);
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+        .settings-sidebar {
+            background: var(--haven-white);
+
+            border: 1px solid var(--haven-border);
+
+            border-radius: 20px;
+
+            padding: 12px;
+
+            box-shadow: var(--haven-shadow);
+
+            position: sticky;
+            top: 98px;
+        }
+
+
+        .settings-nav-button {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px 13px;
+
+            margin-bottom: 5px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: transparent;
+
+            color: var(--haven-text);
+
+            text-align: left;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: .2s ease;
+        }
+
+
+        .settings-nav-button:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .settings-nav-button:hover {
+            background: #f0f7f4;
+            color: var(--haven-green);
+        }
+
+
+        .settings-nav-button.active {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--haven-green),
+                    var(--haven-green-dark)
+                );
+
+            color: white;
+
+            box-shadow:
+                0 7px 18px
+                rgba(6,78,59,.16);
+        }
+
+
+        .settings-icon {
+            width: 28px;
+            height: 28px;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #edf5f1;
+
+            color: var(--haven-green);
+
+            flex-shrink: 0;
+        }
+
+
+        .settings-nav-button.active
+        .settings-icon {
+            background:
+                rgba(255,255,255,.14);
+
+            color: white;
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .settings-content {
+            min-width: 0;
+        }
+
+
+        .settings-section {
+            display: none;
+        }
+
+
+        .settings-section.active {
+            display: block;
+
+            animation:
+                settingsFade .2s ease;
+        }
+
+
+        @keyframes settingsFade {
+
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================================================
+           CARD
+        ========================================================= */
+
+        .settings-card {
+            background: var(--haven-white);
+
+            border: 1px solid var(--haven-border);
+
+            border-radius: 20px;
+
+            margin-bottom: 20px;
+
+            overflow: hidden;
+
+            box-shadow: var(--haven-shadow);
+        }
+
+
+        .settings-card-header {
+            padding: 23px 25px;
+
+            border-bottom:
+                1px solid var(--haven-border);
+        }
+
+
+        .settings-card-header h2 {
+            margin: 0 0 6px;
+
+            color: var(--haven-green);
+
+            font-size: 19px;
+
+            letter-spacing: -.2px;
+        }
+
+
+        .settings-card-header p {
+            margin: 0;
+
+            color: var(--haven-muted);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .settings-card-body {
+            padding: 25px;
+        }
+
+
+        /* =========================================================
+           PROFILE PREVIEW
+        ========================================================= */
+
+        .profile-preview {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8faf9,
+                    #f1f7f4
+                );
+
+            border: 1px solid var(--haven-border);
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .profile-avatar {
+            width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--haven-green),
+                    var(--haven-teal)
+                );
+
+            color: white;
+
+            font-size: 21px;
+            font-weight: 900;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 8px 20px
+                rgba(6,78,59,.18);
+        }
+
+
+        .profile-preview h3 {
+            margin: 0 0 5px;
+
+            color: var(--haven-green);
+
+            font-size: 17px;
+        }
+
+
+        .profile-preview p {
+            margin: 0;
+
+            color: var(--haven-muted);
+
+            font-size: 13px;
+        }
+
+
+        .profile-role-badge {
+            display: inline-flex;
+
+            margin-top: 8px;
+
+            padding: 4px 9px;
+
+            border-radius: 20px;
+
+            background: var(--haven-gold-light);
+
+            color: #725b08;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: .5px;
+        }
+
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+            margin-bottom: 2px;
+        }
+
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: var(--haven-text);
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border:
+                1px solid var(--haven-border);
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: white;
+
+            color: var(--haven-text);
+
+            transition: .2s ease;
+        }
+
+
+        .form-group input:hover,
+        .form-group select:hover {
+            border-color: #c8d8d1;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--haven-teal);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(15,118,110,.08);
+        }
+
+
+        .form-group input:disabled {
+            background: #f5f7f6;
+            color: #707a75;
+            cursor: not-allowed;
+        }
+
+
+        .field-note {
+            margin-top: 6px;
+
+            color: var(--haven-muted);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================================================
+           ACTION BAR
+        ========================================================= */
+
+        .settings-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid var(--haven-border);
+        }
+
+
+        .primary-button,
+        .secondary-button,
+        .danger-button {
+            border-radius: 10px;
+
+            padding: 12px 18px;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            transition: .2s ease;
+        }
+
+
+        .primary-button {
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--haven-green),
+                    var(--haven-green-dark)
+                );
+
+            color: white;
+        }
+
+
+        .primary-button:hover {
+            background: var(--haven-teal);
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(6,78,59,.16);
+        }
+
+
+        .secondary-button {
+            border:
+                1px solid var(--haven-border);
+
+            background: white;
+
+            color: var(--haven-green);
+        }
+
+
+        .secondary-button:hover {
+            background: #f0f7f4;
+
+            border-color: #cbdad4;
+        }
+
+
+        .danger-button {
+            border:
+                1px solid #f2b8b5;
+
+            background:
+                var(--haven-danger-bg);
+
+            color: var(--haven-danger);
+        }
+
+
+        .danger-button:hover {
+            background: #ffe9e7;
+        }
+
+
+        /* =========================================================
+           TOGGLE SETTINGS
+        ========================================================= */
+
+        .setting-row {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 18px 0;
+
+            border-bottom:
+                1px solid var(--haven-border);
+        }
+
+
+        .setting-row:first-child {
+            padding-top: 0;
+        }
+
+
+        .setting-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+
+        .setting-row h3 {
+            margin: 0 0 5px;
+
+            color: var(--haven-text);
+
+            font-size: 14px;
+        }
+
+
+        .setting-row p {
+            margin: 0;
+
+            color: var(--haven-muted);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .toggle {
+            width: 48px;
+            height: 26px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background: #cbd5d0;
+
+            position: relative;
+
+            flex-shrink: 0;
+
+            transition: .2s ease;
+        }
+
+
+        .toggle::after {
+            content: "";
+
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+
+            left: 3px;
+            top: 3px;
+
+            background: white;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 2px 5px
+                rgba(0,0,0,.18);
+
+            transition: .2s ease;
+        }
+
+
+        .toggle.active {
+            background: var(--haven-green);
+        }
+
+
+        .toggle.active::after {
+            transform:
+                translateX(22px);
+        }
+
+
+        .unsupported-notice {
+            margin-top: 20px;
+
+            padding: 13px 15px;
+
+            background:
+                var(--haven-warning-bg);
+
+            border:
+                1px solid #fde68a;
+
+            border-radius: 11px;
+
+            color: var(--haven-warning);
+
+            font-size: 12px;
+
+            line-height: 1.55;
+        }
+
+
+        /* =========================================================
+           SECURITY
+        ========================================================= */
+
+        .security-item {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px;
+
+            border:
+                1px solid var(--haven-border);
+
+            border-radius: 13px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .security-item:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .security-item strong {
+            display: block;
+
+            color: var(--haven-green);
+
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .security-item span {
+            color: var(--haven-muted);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .security-status {
+            display: inline-flex;
+
+            margin-top: 8px;
+
+            padding: 4px 8px;
+
+            border-radius: 20px;
+
+            background: #ecfdf5;
+
+            color: #047857;
+
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           SUBSCRIPTION
+        ========================================================= */
+
+        .plan-card {
+            padding: 24px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--haven-green),
+                    var(--haven-green-dark)
+                );
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .plan-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border:
+                1px solid
+                rgba(212,175,55,.25);
+
+            border-radius: 50%;
+
+            right: -60px;
+            top: -60px;
+        }
+
+
+        .plan-label {
+            color:
+                var(--haven-gold-light);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        .plan-card h3 {
+            margin: 8px 0;
+
+            font-size: 25px;
+        }
+
+
+        .plan-card p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,.75);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .plan-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 16px;
+        }
+
+
+        .plan-meta-item {
+            padding: 7px 10px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.10);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,.88);
+        }
+
+
+        .plan-button {
+            margin-top: 18px;
+
+            padding: 11px 16px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.3);
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,.1);
+
+            color: white;
+
+            font-weight: 800;
+
+            transition: .2s ease;
+        }
+
+
+        .plan-button:hover {
+            background:
+                rgba(255,255,255,.18);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================================================
+           DANGER ZONE
+        ========================================================= */
+
+        .danger-card {
+            border-color: #f2c2bf;
+        }
+
+
+        .danger-card
+        .settings-card-header h2 {
+            color: var(--haven-danger);
+        }
+
+
+        .danger-box {
+            padding: 18px;
+
+            background:
+                var(--haven-danger-bg);
+
+            border:
+                1px solid #f2c2bf;
+
+            border-radius: 13px;
+        }
+
+
+        .danger-box h3 {
+            margin: 0 0 7px;
+
+            color: var(--haven-danger);
+
+            font-size: 14px;
+        }
+
+
+        .danger-box p {
+            margin: 0;
+
+            color: #7d3b36;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .modal-overlay {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 100;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(4,60,46,.62);
+
+            backdrop-filter: blur(5px);
+        }
+
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+
+        .modal {
+            width: min(
+                100%,
+                470px
+            );
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,.25);
+
+            overflow: hidden;
+
+            animation:
+                modalIn .2s ease;
+        }
+
+
+        @keyframes modalIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(10px)
+                           scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+                           scale(1);
+            }
+
+        }
+
+
+        .modal-header {
+            padding: 22px 24px;
+
+            border-bottom:
+                1px solid var(--haven-border);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .modal-header h2 {
+            margin: 0;
+
+            color: var(--haven-green);
+
+            font-size: 19px;
+        }
+
+
+        .modal-close {
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #f2f6f4;
+
+            color: var(--haven-green);
+
+            font-size: 20px;
+
+            line-height: 1;
+        }
+
+
+        .modal-close:hover {
+            background: #e7efeb;
+        }
+
+
+        .modal-body {
+            padding: 24px;
+        }
+
+
+        .modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .settings-footer {
+            background: white;
+
+            border-top:
+                1px solid var(--haven-border);
+
+            padding: 25px 0;
+        }
+
+
+        .settings-footer-inner {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            color: var(--haven-muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+
+
+            .settings-sidebar {
+                position: static;
+
+                display: flex;
+
+                overflow-x: auto;
+
+                gap: 5px;
+
+                scrollbar-width: thin;
+            }
+
+
+            .settings-nav-button {
+                min-width: max-content;
+
+                margin-bottom: 0;
+            }
+
+
+            .settings-icon {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .settings-container {
+                width:
+                    min(
+                        100% - 25px,
+                        1180px
+                    );
+            }
+
+
+            .settings-main {
+                padding-top: 30px;
+            }
+
+
+            .settings-card-header {
+                padding: 20px;
+            }
+
+
+            .settings-card-body {
+                padding: 20px;
+            }
+
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+
+            .setting-row,
+            .security-item {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .toggle {
+                align-self: flex-start;
+            }
+
+
+            .settings-actions {
+                flex-direction: column;
+            }
+
+
+            .settings-actions button {
+                width: 100%;
+            }
+
+
+            .settings-footer-inner {
+                flex-direction: column;
+            }
+
+
+            .host-pill {
+                display: none;
+            }
+
+
+            .profile-preview {
+                align-items: flex-start;
+            }
+
+
+            .profile-avatar {
+                width: 55px;
+                height: 55px;
+
+                font-size: 18px;
+            }
+
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+
+            .modal-actions button {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="settings-page">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="settings-header">
+
+        <div class="settings-container settings-header-inner">
+
+            <a href="stay-host-dashboard.html"
+               class="settings-brand">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <div class="brand-name">
+                    Haven<span>GH</span>
+                </div>
+
+            </a>
+
+
+            <div class="host-pill">
+                Host Portal
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="settings-main">
+
+        <div class="settings-container">
+
+
+            <a href="stay-host-dashboard.html"
+               class="back-link">
+
+                ← Back to Dashboard
+
+            </a>
+
+
+            <div class="settings-heading">
+
+                <small>HOST ACCOUNT</small>
+
+                <h1>
+                    Settings
+                </h1>
+
+                <p>
+                    Manage your HavenGH host account, security,
+                    notifications, stays, subscription and payout
+                    preferences from one place.
+                </p>
+
+            </div>
+
+
+            <div id="settingsMessage"
+                 class="settings-message">
+            </div>
+
+
+            <div id="pageLoading"
+                 class="page-loading">
+
+                <span class="loading-spinner"></span>
+
+                Loading your account...
+
+            </div>
+
+
+
+            <!-- =====================================================
+                 SETTINGS LAYOUT
+            ====================================================== -->
+
+            <div class="settings-layout">
+
+
+                <!-- =================================================
+                     SIDEBAR
+                ================================================== -->
+
+                <aside class="settings-sidebar">
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button active"
+                        data-section="account">
+
+                        <span class="settings-icon">
+                            👤
+                        </span>
+
+                        Account
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button"
+                        data-section="security">
+
+                        <span class="settings-icon">
+                            🔒
+                        </span>
+
+                        Security
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button"
+                        data-section="notifications">
+
+                        <span class="settings-icon">
+                            🔔
+                        </span>
+
+                        Notifications
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button"
+                        data-section="stays">
+
+                        <span class="settings-icon">
+                            🏠
+                        </span>
+
+                        Stay Settings
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button"
+                        data-section="payouts">
+
+                        <span class="settings-icon">
+                            ₵
+                        </span>
+
+                        Payouts
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button"
+                        data-section="subscription">
+
+                        <span class="settings-icon">
+                            ◆
+                        </span>
+
+                        Subscription
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="settings-nav-button"
+                        data-section="danger">
+
+                        <span class="settings-icon">
+                            !
+                        </span>
+
+                        Account Closure
+
+                    </button>
+
+                </aside>
+
+
+
+                <!-- =================================================
+                     CONTENT
+                ================================================== -->
+
+                <section class="settings-content">
+
+
+                    <!-- =================================================
+                         ACCOUNT
+                    ================================================== -->
+
+                    <div
+                        class="settings-section active"
+                        id="section-account">
+
+
+                        <div class="settings-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Account Information
+                                </h2>
+
+                                <p>
+                                    Keep your HavenGH host profile
+                                    information accurate and up to date.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="profile-preview">
+
+
+                                    <div
+                                        class="profile-avatar"
+                                        id="profileAvatar">
+
+                                        --
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <h3 id="profileName">
+                                            Loading...
+                                        </h3>
+
+                                        <p>
+                                            HavenGH Stay Host
+                                        </p>
+
+                                        <span
+                                            class="profile-role-badge"
+                                            id="profileRole">
+
+                                            HOST
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="form-grid">
+
+
+                                    <div class="form-group">
+
+                                        <label for="firstName">
+                                            First Name
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="firstName"
+                                            autocomplete="given-name"
+                                            placeholder="First name">
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="lastName">
+                                            Last Name
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="lastName"
+                                            autocomplete="family-name"
+                                            placeholder="Last name">
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="email">
+                                            Email Address
+                                        </label>
+
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            autocomplete="email"
+                                            placeholder="Email address">
+
+                                        <div
+                                            class="field-note"
+                                            id="emailNote">
+
+                                            Your email is managed securely
+                                            by HavenGH.
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="phone">
+                                            Phone Number
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="phone"
+                                            autocomplete="tel"
+                                            placeholder="+233...">
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="whatsappNumber">
+                                            WhatsApp Number
+                                        </label>
+
+                                        <input
+                                            type="tel"
+                                            id="whatsappNumber"
+                                            autocomplete="tel"
+                                            placeholder="+233...">
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="businessName">
+                                            Host / Business Name
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="businessName"
+                                            placeholder="Business name">
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="settings-actions">
+
+                                    <button
+                                        type="button"
+                                        class="secondary-button"
+                                        id="resetAccountBtn">
+
+                                        Reset
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="primary-button"
+                                        id="saveAccountBtn">
+
+                                        Save Changes
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SECURITY
+                    ================================================== -->
+
+                    <div
+                        class="settings-section"
+                        id="section-security">
+
+
+                        <div class="settings-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Security
+                                </h2>
+
+                                <p>
+                                    Protect your HavenGH host account
+                                    and manage your login security.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="security-item">
+
+                                    <div>
+
+                                        <strong>
+                                            Password
+                                        </strong>
+
+                                        <span>
+                                            Change your HavenGH account
+                                            password whenever necessary.
+                                        </span>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="secondary-button"
+                                        id="changePasswordBtn">
+
+                                        Change Password
+
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="security-item">
+
+                                    <div>
+
+                                        <strong>
+                                            Account verification
+                                        </strong>
+
+                                        <span id="verificationStatus">
+                                            Checking your verification status...
+                                        </span>
+
+                                    </div>
+
+                                    <span
+                                        class="security-status"
+                                        id="verificationBadge">
+
+                                        CHECKING
+
+                                    </span>
+
+                                </div>
+
+
+
+                                <div class="security-item">
+
+                                    <div>
+
+                                        <strong>
+                                            Two-factor authentication
+                                        </strong>
+
+                                        <span>
+                                            Add an additional layer of
+                                            protection to your account.
+                                        </span>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="secondary-button"
+                                        id="twoFactorBtn">
+
+                                        Set Up
+
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="security-item">
+
+                                    <div>
+
+                                        <strong>
+                                            Active sessions
+                                        </strong>
+
+                                        <span>
+                                            Review devices currently
+                                            signed into your account.
+                                        </span>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="secondary-button"
+                                        id="sessionsBtn">
+
+                                        Review Sessions
+
+                                    </button>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTIFICATIONS
+                    ================================================== -->
+
+                    <div
+                        class="settings-section"
+                        id="section-notifications">
+
+
+                        <div class="settings-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Notifications
+                                </h2>
+
+                                <p>
+                                    Choose which updates HavenGH
+                                    should send you.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            New booking requests
+                                        </h3>
+
+                                        <p>
+                                            Get notified when a guest
+                                            requests your stay.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle active"
+                                        data-setting="booking">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            Messages
+                                        </h3>
+
+                                        <p>
+                                            Receive alerts when guests
+                                            send you messages.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle active"
+                                        data-setting="messages">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            Payment updates
+                                        </h3>
+
+                                        <p>
+                                            Receive important payment
+                                            and payout notifications.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle active"
+                                        data-setting="payments">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            Marketing emails
+                                        </h3>
+
+                                        <p>
+                                            Receive HavenGH product news
+                                            and promotional updates.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle"
+                                        data-setting="marketing">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="unsupported-notice">
+
+                                    Notification preferences are
+                                    displayed here, but persistent
+                                    notification storage has not yet
+                                    been added to the HavenGH API.
+                                    Your changes will not be falsely
+                                    reported as saved.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         STAY SETTINGS
+                    ================================================== -->
+
+                    <div
+                        class="settings-section"
+                        id="section-stays">
+
+
+                        <div class="settings-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Stay Settings
+                                </h2>
+
+                                <p>
+                                    Control how guests interact with
+                                    your accommodation listings.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            Accept booking requests
+                                        </h3>
+
+                                        <p>
+                                            Allow guests to request
+                                            reservations for your stays.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle active"
+                                        data-setting="bookingRequests">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            Instant booking
+                                        </h3>
+
+                                        <p>
+                                            Allow eligible guests to
+                                            book without manual approval.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle"
+                                        data-setting="instantBooking">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div class="setting-row">
+
+                                    <div>
+
+                                        <h3>
+                                            Guest messages
+                                        </h3>
+
+                                        <p>
+                                            Allow guests to contact you
+                                            through HavenGH.
+                                        </p>
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="toggle active"
+                                        data-setting="guestMessages">
+                                    </button>
+
+                                </div>
+
+
+
+                                <div
+                                    class="form-grid"
+                                    style="margin-top:25px;">
+
+
+                                    <div class="form-group">
+
+                                        <label for="minimumStay">
+                                            Minimum Stay
+                                        </label>
+
+                                        <select id="minimumStay">
+
+                                            <option value="1">
+                                                1 night
+                                            </option>
+
+                                            <option value="2">
+                                                2 nights
+                                            </option>
+
+                                            <option value="3">
+                                                3 nights
+                                            </option>
+
+                                            <option value="7">
+                                                7 nights
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="maximumGuests">
+                                            Maximum Guests
+                                        </label>
+
+                                        <select id="maximumGuests">
+
+                                            <option value="2">
+                                                2 guests
+                                            </option>
+
+                                            <option value="4"
+                                                    selected>
+                                                4 guests
+                                            </option>
+
+                                            <option value="6">
+                                                6 guests
+                                            </option>
+
+                                            <option value="10">
+                                                10 guests
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="unsupported-notice">
+
+                                    Stay preferences are ready for the
+                                    interface, but they are not yet
+                                    stored by the HavenGH API. We will
+                                    connect them after the dedicated
+                                    Stay Settings data model is added.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         PAYOUTS
+                    ================================================== -->
+
+                    <div
+                        class="settings-section"
+                        id="section-payouts">
+
+
+                        <div class="settings-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Payout Settings
+                                </h2>
+
+                                <p>
+                                    Manage where your HavenGH host
+                                    earnings will be sent.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="form-grid">
+
+
+                                    <div class="form-group">
+
+                                        <label for="payoutMethod">
+                                            Payout Method
+                                        </label>
+
+                                        <select id="payoutMethod">
+
+                                            <option value="">
+                                                Select method
+                                            </option>
+
+                                            <option value="bank">
+                                                Bank Account
+                                            </option>
+
+                                            <option value="mobile-money">
+                                                Mobile Money
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="payoutCurrency">
+                                            Currency
+                                        </label>
+
+                                        <select id="payoutCurrency">
+
+                                            <option value="GHS"
+                                                    selected>
+
+                                                Ghana Cedi (GHS)
+
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+
+
+                                    <div class="form-group full">
+
+                                        <label for="payoutAccount">
+                                            Account / Mobile Money Number
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="payoutAccount"
+                                            placeholder="Enter payout account">
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="unsupported-notice">
+
+                                    Payout information is intentionally
+                                    not being sent to the API yet.
+                                    HavenGH needs a dedicated secure
+                                    payout model and verification flow
+                                    before financial account details
+                                    should be stored.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         SUBSCRIPTION
+                    ================================================== -->
+
+                    <div
+                        class="settings-section"
+                        id="section-subscription">
+
+
+                        <div class="settings-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Subscription
+                                </h2>
+
+                                <p>
+                                    Manage your HavenGH Stay Host plan.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="plan-card">
+
+
+                                    <div class="plan-label">
+                                        CURRENT PLAN
+                                    </div>
+
+
+                                    <h3 id="currentPlanName">
+                                        Loading...
+                                    </h3>
+
+
+                                    <p id="currentPlanDescription">
+                                        Loading your current Stay Host
+                                        subscription...
+                                    </p>
+
+
+                                    <div class="plan-meta">
+
+
+                                        <span
+                                            class="plan-meta-item"
+                                            id="subscriptionStatus">
+
+                                            Status: Loading
+
+                                        </span>
+
+
+                                        <span
+                                            class="plan-meta-item"
+                                            id="subscriptionExpiry">
+
+                                            Expiry: Loading
+
+                                        </span>
+
+
+                                    </div>
+
+
+                                    <button
+                                        type="button"
+                                        class="plan-button"
+                                        id="manageSubscriptionBtn">
+
+                                        Manage Subscription
+
+                                    </button>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         DANGER ZONE
+                    ================================================== -->
+
+                    <div
+                        class="settings-section"
+                        id="section-danger">
+
+
+                        <div
+                            class="settings-card danger-card">
+
+
+                            <div class="settings-card-header">
+
+                                <h2>
+                                    Account Closure
+                                </h2>
+
+                                <p>
+                                    These actions can affect your
+                                    HavenGH host account.
+                                </p>
+
+                            </div>
+
+
+                            <div class="settings-card-body">
+
+
+                                <div class="danger-box">
+
+                                    <h3>
+                                        Deactivate Host Account
+                                    </h3>
+
+                                    <p>
+                                        Your host account can be
+                                        temporarily disabled. Your
+                                        listings may no longer be
+                                        visible to guests.
+                                    </p>
+
+
+                                    <div class="settings-actions">
+
+                                        <button
+                                            type="button"
+                                            class="danger-button"
+                                            id="deactivateBtn">
+
+                                            Deactivate Account
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="unsupported-notice">
+
+                                    Account deactivation is not connected
+                                    yet. This action requires a dedicated
+                                    secure API endpoint so that active
+                                    subscriptions, stays, bookings and
+                                    financial records are handled safely.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="settings-footer">
+
+        <div class="settings-container settings-footer-inner">
+
+            <span>
+                © 2026 HavenGH. All rights reserved.
+            </span>
+
+            <span>
+                Built for Ghana 🇬🇭
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+
+<!-- =============================================================
+     CHANGE PASSWORD MODAL
+============================================================= -->
+
+<div
+    class="modal-overlay"
+    id="passwordModal">
+
+
+    <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="passwordModalTitle">
+
+
+        <div class="modal-header">
+
+            <h2 id="passwordModalTitle">
+                Change Password
+            </h2>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closePasswordModal"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+
+            <div class="form-group">
+
+                <label for="currentPassword">
+                    Current Password
+                </label>
+
+                <input
+                    type="password"
+                    id="currentPassword"
+                    autocomplete="current-password">
+
+            </div>
+
+
+            <div class="form-group"
+                 style="margin-top:18px;">
+
+                <label for="newPassword">
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    autocomplete="new-password">
+
+                <div class="field-note">
+                    Use at least 8 characters.
+                </div>
+
+            </div>
+
+
+            <div class="form-group"
+                 style="margin-top:18px;">
+
+                <label for="confirmPassword">
+                    Confirm New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    autocomplete="new-password">
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelPasswordBtn">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="savePasswordBtn">
+
+                    Change Password
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =============================================================
+     PAGE SCRIPT
+============================================================= -->
+
+<script>
+
+"use strict";
+
+
+/* ================================================================
+   HAVENGH HOST SETTINGS
+   API-CONNECTED VERSION
+================================================================ */
+
+
+/* ================================================================
+   API
+================================================================ */
+
+const API_BASE_URL = "http://localhost:5073";
+
+
+/* ================================================================
+   TOKEN MANAGEMENT
+================================================================ */
+
+function getToken() {
+
+    const possibleKeys = [
+        "havenGH_token",
+        "token",
+        "accessToken",
+        "jwtToken"
+    ];
+
+
+    for (const key of possibleKeys) {
+
+        const sessionToken =
+            sessionStorage.getItem(key);
+
+        if (sessionToken) {
+            return sessionToken;
+        }
+
+
+        const localToken =
+            localStorage.getItem(key);
+
+        if (localToken) {
+            return localToken;
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* ================================================================
+   CLEAR AUTHENTICATION
+================================================================ */
+
+function clearAuthentication() {
+
+    const keys = [
+        "havenGH_token",
+        "token",
+        "accessToken",
+        "jwtToken"
+    ];
+
+
+    keys.forEach(function (key) {
+
+        sessionStorage.removeItem(key);
+        localStorage.removeItem(key);
+
+    });
+
+}
+
+
+/* ================================================================
+   AUTHENTICATED API REQUEST
+================================================================ */
+
+async function apiRequest(
+    endpoint,
+    options = {}
+) {
+
+    const token = getToken();
+
+
+    if (!token) {
+
+        clearAuthentication();
+
+        window.location.href = "login.html";
+
+        throw new Error(
+            "Authentication required."
+        );
+
+    }
+
+
+    const headers = {
+
+        "Content-Type":
+            "application/json",
+
+        ...(options.headers || {})
+
+    };
+
+
+    headers.Authorization =
+        `Bearer ${token}`;
+
+
+    let response;
+
+
+    try {
+
+        response = await fetch(
+            `${API_BASE_URL}${endpoint}`,
+            {
+                ...options,
+                headers
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH API connection error:",
+            error
+        );
+
+        throw new Error(
+            "Unable to connect to the HavenGH API. Make sure the API is running."
+        );
+
+    }
+
+
+    if (response.status === 401) {
+
+        clearAuthentication();
+
+        window.location.href =
+            "login.html";
+
+        throw new Error(
+            "Your session has expired. Please log in again."
+        );
+
+    }
+
+
+    let data = null;
+
+
+    const contentType =
+        response.headers.get(
+            "content-type"
+        );
+
+
+    if (
+        contentType &&
+        contentType.includes(
+            "application/json"
+        )
+    ) {
+
+        data =
+            await response.json();
+
+    } else {
+
+        const text =
+            await response.text();
+
+        data =
+            text
+                ? { message: text }
+                : null;
+
+    }
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data?.message ||
+            data?.Message ||
+            data?.title ||
+            data?.Title ||
+            "The API request failed."
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+/* ================================================================
+   DOM
+================================================================ */
+
+const message =
+    document.getElementById(
+        "settingsMessage"
+    );
+
+
+const pageLoading =
+    document.getElementById(
+        "pageLoading"
+    );
+
+
+/* ================================================================
+   MESSAGE SYSTEM
+================================================================ */
+
+let messageTimer = null;
+
+
+function showMessage(
+    text,
+    type = "success",
+    duration = 4500
+) {
+
+    if (!message) {
+        return;
+    }
+
+
+    clearTimeout(messageTimer);
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        `settings-message ${type}`;
+
+
+    messageTimer =
+        window.setTimeout(
+            function () {
+
+                message.className =
+                    "settings-message";
+
+                message.textContent =
+                    "";
+
+            },
+            duration
+        );
+
+}
+
+
+/* ================================================================
+   LOADING
+================================================================ */
+
+function setPageLoading(
+    loading
+) {
+
+    if (!pageLoading) {
+        return;
+    }
+
+
+    pageLoading.classList.toggle(
+        "active",
+        loading
+    );
+
+}
+
+
+/* ================================================================
+   SECTION NAVIGATION
+================================================================ */
+
+const navButtons =
+    document.querySelectorAll(
+        ".settings-nav-button"
+    );
+
+
+const sections =
+    document.querySelectorAll(
+        ".settings-section"
+    );
+
+
+function activateSection(
+    target,
+    updateHash = true
+) {
+
+    const targetSection =
+        document.getElementById(
+            `section-${target}`
+        );
+
+
+    if (!targetSection) {
+        return;
+    }
+
+
+    navButtons.forEach(
+        function (button) {
+
+            button.classList.toggle(
+                "active",
+                button.dataset.section === target
+            );
+
+        }
+    );
+
+
+    sections.forEach(
+        function (section) {
+
+            section.classList.toggle(
+                "active",
+                section.id === `section-${target}`
+            );
+
+        }
+    );
+
+
+    if (updateHash) {
+
+        history.replaceState(
+            null,
+            "",
+            `#${target}`
+        );
+
+    }
+
+}
+
+
+navButtons.forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                activateSection(
+                    button.dataset.section
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* ================================================================
+   HASH NAVIGATION
+================================================================ */
+
+function activateHashSection() {
+
+    const hash =
+        window.location.hash
+            .replace("#", "")
+            .trim()
+            .toLowerCase();
+
+
+    if (hash) {
+
+        const exists =
+            document.getElementById(
+                `section-${hash}`
+            );
+
+        if (exists) {
+
+            activateSection(
+                hash,
+                false
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    activateSection(
+        "account",
+        false
+    );
+
+}
+
+
+window.addEventListener(
+    "hashchange",
+    activateHashSection
+);
+
+
+/* ================================================================
+   ACCOUNT STATE
+================================================================ */
+
+let originalAccount = null;
+
+
+/* ================================================================
+   NAME HELPERS
+================================================================ */
+
+function splitFullName(
+    fullName
+) {
+
+    const clean =
+        (fullName || "").trim();
+
+
+    if (!clean) {
+
+        return {
+            firstName: "",
+            lastName: ""
+        };
+
+    }
+
+
+    const parts =
+        clean.split(/\s+/);
+
+
+    if (parts.length === 1) {
+
+        return {
+            firstName: parts[0],
+            lastName: ""
+        };
+
+    }
+
+
+    return {
+        firstName: parts.shift(),
+        lastName: parts.join(" ")
+    };
+
+}
+
+
+/* ================================================================
+   INITIALS
+================================================================ */
+
+function getInitials(
+    fullName
+) {
+
+    const clean =
+        (fullName || "").trim();
+
+
+    if (!clean) {
+        return "--";
+    }
+
+
+    const parts =
+        clean.split(/\s+/);
+
+
+    if (parts.length === 1) {
+
+        return parts[0]
+            .substring(0, 2)
+            .toUpperCase();
+
+    }
+
+
+    return (
+        parts[0].charAt(0) +
+        parts[parts.length - 1].charAt(0)
+    ).toUpperCase();
+
+}
+
+
+/* ================================================================
+   DATE
+================================================================ */
+
+function formatDate(
+    value
+) {
+
+    if (!value) {
+        return "Not available";
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "Not available";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-GH",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* ================================================================
+   LOAD ACCOUNT
+================================================================ */
+
+async function loadAccount() {
+
+    setPageLoading(true);
+
+
+    try {
+
+        const account =
+            await apiRequest(
+                "/api/Account/me"
+            );
+
+
+        originalAccount =
+            account;
+
+
+        const profile =
+            account.profile ||
+            account.Profile ||
+            {};
+
+
+        const fullName =
+            profile.fullName ||
+            profile.FullName ||
+            "";
+
+
+        const nameParts =
+            splitFullName(
+                fullName
+            );
+
+
+        const email =
+            account.email ||
+            account.Email ||
+            "";
+
+
+        const phone =
+            account.phone ||
+            account.Phone ||
+            "";
+
+
+        const whatsapp =
+            profile.whatsAppNumber ||
+            profile.WhatsAppNumber ||
+            "";
+
+
+        const businessName =
+            profile.businessName ||
+            profile.BusinessName ||
+            "";
+
+
+        const roleName =
+            account.roleName ||
+            account.RoleName ||
+            "Stay Host";
+
+
+        document.getElementById(
+            "firstName"
+        ).value =
+            nameParts.firstName;
+
+
+        document.getElementById(
+            "lastName"
+        ).value =
+            nameParts.lastName;
+
+
+        document.getElementById(
+            "email"
+        ).value =
+            email;
+
+
+        document.getElementById(
+            "phone"
+        ).value =
+            phone;
+
+
+        document.getElementById(
+            "whatsappNumber"
+        ).value =
+            whatsapp;
+
+
+        document.getElementById(
+            "businessName"
+        ).value =
+            businessName;
+
+
+        updateProfilePreview(
+            fullName,
+            roleName
+        );
+
+
+        updateVerificationStatus(
+            account
+        );
+
+
+        updateEmailNote(
+            account
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH account error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to load your account.",
+            "error"
+        );
+
+    } finally {
+
+        setPageLoading(false);
+
+    }
+
+}
+
+
+/* ================================================================
+   PROFILE PREVIEW
+================================================================ */
+
+function updateProfilePreview(
+    fullName,
+    roleName
+) {
+
+    const displayName =
+        fullName ||
+        "HavenGH Host";
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        displayName;
+
+
+    document.getElementById(
+        "profileAvatar"
+    ).textContent =
+        getInitials(
+            displayName
+        );
+
+
+    document.getElementById(
+        "profileRole"
+    ).textContent =
+        (
+            roleName ||
+            "Stay Host"
+        ).toUpperCase();
+
+}
+
+
+/* ================================================================
+   EMAIL NOTE
+================================================================ */
+
+function updateEmailNote(
+    account
+) {
+
+    const note =
+        document.getElementById(
+            "emailNote"
+        );
+
+
+    if (!note) {
+        return;
+    }
+
+
+    const verified =
+        account.isEmailVerified ??
+        account.IsEmailVerified ??
+        false;
+
+
+    if (verified) {
+
+        note.textContent =
+            "Your email address is verified.";
+
+    } else {
+
+        note.textContent =
+            "Your email address is not verified.";
+
+    }
+
+}
+
+
+/* ================================================================
+   VERIFICATION STATUS
+================================================================ */
+
+function updateVerificationStatus(
+    account
+) {
+
+    const identityVerified =
+        account.isIdentityVerified ??
+        account.IsIdentityVerified ??
+        false;
+
+
+    const emailVerified =
+        account.isEmailVerified ??
+        account.IsEmailVerified ??
+        false;
+
+
+    const phoneVerified =
+        account.isPhoneVerified ??
+        account.IsPhoneVerified ??
+        false;
+
+
+    const status =
+        document.getElementById(
+            "verificationStatus"
+        );
+
+
+    const badge =
+        document.getElementById(
+            "verificationBadge"
+        );
+
+
+    if (
+        identityVerified &&
+        emailVerified &&
+        phoneVerified
+    ) {
+
+        status.textContent =
+            "Your HavenGH account and contact details are fully verified.";
+
+
+        badge.textContent =
+            "VERIFIED";
+
+
+        badge.style.background =
+            "#ecfdf5";
+
+
+        badge.style.color =
+            "#047857";
+
+
+        return;
+
+    }
+
+
+    if (identityVerified) {
+
+        status.textContent =
+            `Identity verified. Email: ${
+                emailVerified
+                    ? "Verified"
+                    : "Not verified"
+            } • Phone: ${
+                phoneVerified
+                    ? "Verified"
+                    : "Not verified"
+            }.`;
+
+        badge.textContent =
+            "IDENTITY VERIFIED";
+
+
+        badge.style.background =
+            "#ecfdf5";
+
+
+        badge.style.color =
+            "#047857";
+
+
+        return;
+
+    }
+
+
+    status.textContent =
+        `Email: ${
+            emailVerified
+                ? "Verified"
+                : "Not verified"
+        } • Phone: ${
+            phoneVerified
+                ? "Verified"
+                : "Not verified"
+        } • HavenGH identity: Not verified`;
+
+
+    badge.textContent =
+        "NOT VERIFIED";
+
+
+    badge.style.background =
+        "#fffbeb";
+
+
+    badge.style.color =
+        "#92400e";
+
+}
+
+
+/* ================================================================
+   SAVE ACCOUNT
+================================================================ */
+
+document.getElementById(
+    "saveAccountBtn"
+).addEventListener(
+    "click",
+    async function () {
+
+        const button =
+            this;
+
+
+        const firstName =
+            document.getElementById(
+                "firstName"
+            ).value.trim();
+
+
+        const lastName =
+            document.getElementById(
+                "lastName"
+            ).value.trim();
+
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+
+        const phone =
+            document.getElementById(
+                "phone"
+            ).value.trim();
+
+
+        const whatsappNumber =
+            document.getElementById(
+                "whatsappNumber"
+            ).value.trim();
+
+
+        const businessName =
+            document.getElementById(
+                "businessName"
+            ).value.trim();
+
+
+        if (!firstName) {
+
+            showMessage(
+                "Please enter your first name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!email) {
+
+            showMessage(
+                "Please enter your email address.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !email.includes("@")
+        ) {
+
+            showMessage(
+                "Please enter a valid email address.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const fullName =
+            [
+                firstName,
+                lastName
+            ]
+            .filter(Boolean)
+            .join(" ");
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Saving...";
+
+
+        try {
+
+            await apiRequest(
+                "/api/Account/me",
+                {
+                    method: "PUT",
+
+                    body:
+                        JSON.stringify({
+                            fullName,
+                            email,
+                            phone,
+                            businessName,
+                            whatsappNumber
+                        })
+                }
+            );
+
+
+            await loadAccount();
+
+
+            showMessage(
+                "Your account information has been saved successfully.",
+                "success"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Account update error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to save account changes.",
+                "error"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Save Changes";
+
+        }
+
+    }
+);
+
+
+/* ================================================================
+   RESET ACCOUNT
+================================================================ */
+
+document.getElementById(
+    "resetAccountBtn"
+).addEventListener(
+    "click",
+    function () {
+
+        if (!originalAccount) {
+
+            showMessage(
+                "Your account data has not finished loading.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const account =
+            originalAccount;
+
+
+        const profile =
+            account.profile ||
+            account.Profile ||
+            {};
+
+
+        const fullName =
+            profile.fullName ||
+            profile.FullName ||
+            "";
+
+
+        const nameParts =
+            splitFullName(
+                fullName
+            );
+
+
+        document.getElementById(
+            "firstName"
+        ).value =
+            nameParts.firstName;
+
+
+        document.getElementById(
+            "lastName"
+        ).value =
+            nameParts.lastName;
+
+
+        document.getElementById(
+            "email"
+        ).value =
+            account.email ||
+            account.Email ||
+            "";
+
+
+        document.getElementById(
+            "phone"
+        ).value =
+            account.phone ||
+            account.Phone ||
+            "";
+
+
+        document.getElementById(
+            "whatsappNumber"
+        ).value =
+            profile.whatsAppNumber ||
+            profile.WhatsAppNumber ||
+            "";
+
+
+        document.getElementById(
+            "businessName"
+        ).value =
+            profile.businessName ||
+            profile.BusinessName ||
+            "";
+
+
+        updateProfilePreview(
+            fullName,
+            account.roleName ||
+            account.RoleName
+        );
+
+
+        showMessage(
+            "Your account fields have been reset to the values stored by HavenGH.",
+            "success"
+        );
+
+    }
+);
+
+
+/* ================================================================
+   PASSWORD MODAL
+================================================================ */
+
+const passwordModal =
+    document.getElementById(
+        "passwordModal"
+    );
+
+
+function openPasswordModal() {
+
+    passwordModal.classList.add(
+        "active"
+    );
+
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+
+    document.getElementById(
+        "currentPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "newPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "confirmPassword"
+    ).value = "";
+
+
+    setTimeout(
+        function () {
+
+            document.getElementById(
+                "currentPassword"
+            ).focus();
+
+        },
+        50
+    );
+
+}
+
+
+function closePasswordModal() {
+
+    passwordModal.classList.remove(
+        "active"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+
+document.getElementById(
+    "changePasswordBtn"
+).addEventListener(
+    "click",
+    openPasswordModal
+);
+
+
+document.getElementById(
+    "closePasswordModal"
+).addEventListener(
+    "click",
+    closePasswordModal
+);
+
+
+document.getElementById(
+    "cancelPasswordBtn"
+).addEventListener(
+    "click",
+    closePasswordModal
+);
+
+
+passwordModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            passwordModal
+        ) {
+
+            closePasswordModal();
+
+        }
+
+    }
+);
+
+
+/* ================================================================
+   CHANGE PASSWORD
+================================================================ */
+
+document.getElementById(
+    "savePasswordBtn"
+).addEventListener(
+    "click",
+    async function () {
+
+        const button =
+            this;
+
+
+        const currentPassword =
+            document.getElementById(
+                "currentPassword"
+            ).value;
+
+
+        const newPassword =
+            document.getElementById(
+                "newPassword"
+            ).value;
+
+
+        const confirmPassword =
+            document.getElementById(
+                "confirmPassword"
+            ).value;
+
+
+        if (!currentPassword) {
+
+            showMessage(
+                "Enter your current password.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (!newPassword) {
+
+            showMessage(
+                "Enter a new password.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            newPassword.length < 8
+        ) {
+
+            showMessage(
+                "Your new password must be at least 8 characters.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (
+            newPassword !==
+            confirmPassword
+        ) {
+
+            showMessage(
+                "The new passwords do not match.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Changing...";
+
+
+        try {
+
+            await apiRequest(
+                "/api/Account/change-password",
+                {
+                    method: "POST",
+
+                    body:
+                        JSON.stringify({
+                            currentPassword,
+                            newPassword,
+                            confirmPassword
+                        })
+                }
+            );
+
+
+            closePasswordModal();
+
+
+            showMessage(
+                "Your password has been changed successfully.",
+                "success"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Password change error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to change your password.",
+                "error"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Change Password";
+
+        }
+
+    }
+);
+
+
+/* ================================================================
+   TWO-FACTOR AUTHENTICATION
+================================================================ */
+
+let twoFactorEnabled = false;
+
+
+async function loadTwoFactorStatus() {
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/Account/2fa/status"
+            );
+
+
+        twoFactorEnabled =
+            data?.enabled ??
+            data?.Enabled ??
+            data?.isEnabled ??
+            data?.IsEnabled ??
+            false;
+
+
+        updateTwoFactorButton();
+
+
+    } catch (error) {
+
+        console.error(
+            "2FA status error:",
+            error
+        );
+
+        twoFactorEnabled = false;
+
+        updateTwoFactorButton();
+
+    }
+
+}
+
+
+function updateTwoFactorButton() {
+
+    const button =
+        document.getElementById(
+            "twoFactorBtn"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    if (twoFactorEnabled) {
+
+        button.textContent =
+            "Manage 2FA";
+
+
+        button.title =
+            "Manage your two-factor authentication settings.";
+
+    } else {
+
+        button.textContent =
+            "Set Up";
+
+
+        button.title =
+            "Set up two-factor authentication.";
+
+    }
+
+}
+
+
+document.getElementById(
+    "twoFactorBtn"
+).addEventListener(
+    "click",
+    async function () {
+
+        await loadTwoFactorStatus();
+
+
+        /*
+         * The dedicated Security Settings page already
+         * contains the full 2FA setup/verification/disable UI.
+         *
+         * This keeps Host Settings clean while using the
+         * real HavenGH API instead of fake frontend behaviour.
+         */
+
+        window.location.href =
+            "security-settings.html#two-factor";
+
+    }
+);
+
+
+/* ================================================================
+   SESSIONS
+================================================================ */
+
+let sessionsModal = null;
+
+
+/* ------------------------------------------------
+   CREATE SESSION MODAL
+------------------------------------------------ */
+
+function createSessionsModal() {
+
+    if (sessionsModal) {
+        return sessionsModal;
+    }
+
+
+    sessionsModal =
+        document.createElement("div");
+
+
+    sessionsModal.id =
+        "sessionsModal";
+
+
+    sessionsModal.className =
+        "modal-overlay";
+
+
+    sessionsModal.innerHTML = `
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="sessionsModalTitle">
+
+            <div class="modal-header">
+
+                <h2 id="sessionsModalTitle">
+                    Active Sessions
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeSessionsModal"
+                    aria-label="Close">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div
+                    id="sessionsLoading"
+                    style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        gap:10px;
+                        padding:20px 0;
+                        color:#6b756f;
+                        font-size:13px;
+                        font-weight:700;
+                    ">
+
+                    <span class="loading-spinner"></span>
+
+                    Loading sessions...
+
+                </div>
+
+
+                <div
+                    id="sessionsList"
+                    style="display:none;">
+                </div>
+
+
+                <div
+                    id="sessionsError"
+                    style="
+                        display:none;
+                        padding:13px;
+                        border-radius:10px;
+                        background:#fef2f2;
+                        border:1px solid #fecaca;
+                        color:#991b1b;
+                        font-size:12px;
+                        line-height:1.5;
+                    ">
+                </div>
+
+
+                <div
+                    class="modal-actions"
+                    id="sessionActions"
+                    style="display:none;">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="closeSessionsBottom">
+
+                        Close
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="danger-button"
+                        id="signOutOthersBtn">
+
+                        Sign Out Others
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+
+
+    document.body.appendChild(
+        sessionsModal
+    );
+
+
+    document.getElementById(
+        "closeSessionsModal"
+    ).addEventListener(
+        "click",
+        closeSessionsModal
+    );
+
+
+    document.getElementById(
+        "closeSessionsBottom"
+    ).addEventListener(
+        "click",
+        closeSessionsModal
+    );
+
+
+    document.getElementById(
+        "signOutOthersBtn"
+    ).addEventListener(
+        "click",
+        signOutOtherSessions
+    );
+
+
+    sessionsModal.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                sessionsModal
+            ) {
+
+                closeSessionsModal();
+
+            }
+
+        }
+    );
+
+
+    return sessionsModal;
+
+}
+
+
+/* ------------------------------------------------
+   OPEN
+------------------------------------------------ */
+
+async function openSessionsModal() {
+
+    createSessionsModal();
+
+
+    sessionsModal.classList.add(
+        "active"
+    );
+
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+
+    await loadSessions();
+
+}
+
+
+/* ------------------------------------------------
+   CLOSE
+------------------------------------------------ */
+
+function closeSessionsModal() {
+
+    if (!sessionsModal) {
+        return;
+    }
+
+
+    sessionsModal.classList.remove(
+        "active"
+    );
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+
+/* ------------------------------------------------
+   RENDER SESSIONS
+------------------------------------------------ */
+
+function renderSessions(
+    sessions
+) {
+
+    const list =
+        document.getElementById(
+            "sessionsList"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "sessionsLoading"
+        );
+
+
+    const error =
+        document.getElementById(
+            "sessionsError"
+        );
+
+
+    const actions =
+        document.getElementById(
+            "sessionActions"
+        );
+
+
+    loading.style.display =
+        "none";
+
+
+    error.style.display =
+        "none";
+
+
+    list.style.display =
+        "block";
+
+
+    actions.style.display =
+        "flex";
+
+
+    if (
+        !Array.isArray(sessions) ||
+        sessions.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div style="
+                padding:18px;
+                border:1px solid #e1e9e5;
+                border-radius:12px;
+                color:#6b756f;
+                font-size:13px;
+                text-align:center;
+            ">
+
+                No active sessions found.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        sessions.map(
+            function (session) {
+
+                const device =
+                    session.deviceName ||
+                    session.DeviceName ||
+                    "Unknown device";
+
+
+                const ip =
+                    session.ipAddress ||
+                    session.IpAddress ||
+                    "Unknown";
+
+
+                const created =
+                    session.createdAt ||
+                    session.CreatedAt;
+
+
+                const lastUsed =
+                    session.lastUsedAt ||
+                    session.LastUsedAt;
+
+
+                const expires =
+                    session.expiresAt ||
+                    session.ExpiresAt;
+
+
+                const isCurrent =
+                    session.isCurrent ??
+                    session.IsCurrent ??
+                    false;
+
+
+                const deviceName =
+                    device.toLowerCase();
+
+
+                const icon =
+                    deviceName.includes("phone") ||
+                    deviceName.includes("android") ||
+                    deviceName.includes("iphone") ||
+                    deviceName.includes("ipad")
+                        ? "📱"
+                        : "💻";
+
+
+                return `
+
+                    <div style="
+                        display:flex;
+                        gap:13px;
+                        align-items:flex-start;
+                        padding:15px 0;
+                        border-bottom:1px solid #e1e9e5;
+                    ">
+
+                        <div style="
+                            width:40px;
+                            height:40px;
+                            border-radius:10px;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            background:#edf5f1;
+                            font-size:18px;
+                            flex-shrink:0;
+                        ">
+
+                            ${icon}
+
+                        </div>
+
+
+                        <div style="
+                            min-width:0;
+                            flex:1;
+                        ">
+
+                            <strong style="
+                                display:block;
+                                color:#064e3b;
+                                font-size:13px;
+                                margin-bottom:4px;
+                            ">
+
+                                ${escapeHtml(device)}
+
+                            </strong>
+
+
+                            <div style="
+                                color:#6b756f;
+                                font-size:11px;
+                                line-height:1.7;
+                            ">
+
+                                IP:
+                                ${escapeHtml(ip)}
+
+                                <br>
+
+                                Created:
+                                ${formatDate(created)}
+
+                                <br>
+
+                                Last used:
+                                ${formatDate(lastUsed)}
+
+                                <br>
+
+                                Expires:
+                                ${formatDate(expires)}
+
+                            </div>
+
+
+                            ${
+                                isCurrent
+                                    ? `
+                                        <span style="
+                                            display:inline-flex;
+                                            margin-top:7px;
+                                            padding:4px 8px;
+                                            border-radius:20px;
+                                            background:#ecfdf5;
+                                            color:#047857;
+                                            font-size:10px;
+                                            font-weight:900;
+                                        ">
+                                            CURRENT SESSION
+                                        </span>
+                                      `
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* ------------------------------------------------
+   ESCAPE HTML
+------------------------------------------------ */
+
+function escapeHtml(
+    value
+) {
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* ------------------------------------------------
+   LOAD SESSIONS
+------------------------------------------------ */
+
+async function loadSessions() {
+
+    const loading =
+        document.getElementById(
+            "sessionsLoading"
+        );
+
+
+    const list =
+        document.getElementById(
+            "sessionsList"
+        );
+
+
+    const error =
+        document.getElementById(
+            "sessionsError"
+        );
+
+
+    const actions =
+        document.getElementById(
+            "sessionActions"
+        );
+
+
+    loading.style.display =
+        "flex";
+
+
+    list.style.display =
+        "none";
+
+
+    error.style.display =
+        "none";
+
+
+    actions.style.display =
+        "none";
+
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/Account/sessions"
+            );
+
+
+        const sessions =
+            Array.isArray(data)
+                ? data
+                : data?.sessions ||
+                  data?.Sessions ||
+                  [];
+
+
+        renderSessions(
+            sessions
+        );
+
+
+    } catch (errorValue) {
+
+        console.error(
+            "Sessions error:",
+            errorValue
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        error.style.display =
+            "block";
+
+
+        error.textContent =
+            errorValue.message ||
+            "Unable to load active sessions.";
+
+    }
+
+}
+
+
+/* ------------------------------------------------
+   SIGN OUT OTHER SESSIONS
+------------------------------------------------ */
+
+async function signOutOtherSessions() {
+
+    const confirmed =
+        window.confirm(
+            "Sign out of all other HavenGH sessions?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "signOutOthersBtn"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "Signing Out...";
+
+
+    try {
+
+        await apiRequest(
+            "/api/Account/sessions/sign-out-others",
+            {
+                method: "POST"
+            }
+        );
+
+
+        showMessage(
+            "All other HavenGH sessions have been signed out.",
+            "success"
+        );
+
+
+        await loadSessions();
+
+
+    } catch (error) {
+
+        console.error(
+            "Sign out others error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to sign out other sessions.",
+            "error"
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Sign Out Others";
+
+    }
+
+}
+
+
+/* ------------------------------------------------
+   SESSION BUTTON
+------------------------------------------------ */
+
+document.getElementById(
+    "sessionsBtn"
+).addEventListener(
+    "click",
+    openSessionsModal
+);
+
+
+/* ================================================================
+   NOTIFICATION SETTINGS
+================================================================ */
+
+/*
+ * IMPORTANT:
+ *
+ * The current AccountController does NOT expose the four
+ * Host Settings notification values:
+ *
+ * booking
+ * messages
+ * payments
+ * marketing
+ *
+ * Therefore these controls are intentionally disabled rather
+ * than pretending their changes were saved.
+ *
+ * Your database does have notification-related UserSetting
+ * fields, but the current API contract does not expose these
+ * four Host Settings values through GET/PUT endpoints.
+ */
+
+document.querySelectorAll(
+    '.toggle[data-setting="booking"],' +
+    '.toggle[data-setting="messages"],' +
+    '.toggle[data-setting="payments"],' +
+    '.toggle[data-setting="marketing"]'
+).forEach(
+    function (toggle) {
+
+        toggle.disabled = true;
+
+        toggle.title =
+            "This notification preference is not yet stored by the HavenGH API.";
+
+    }
+);
+
+
+/* ================================================================
+   STAY SETTINGS
+================================================================ */
+
+/*
+ * Stay Settings do not currently have a dedicated backend
+ * endpoint/model.
+ *
+ * Disable the controls so the interface cannot imply that
+ * settings were saved when they were not.
+ */
+
+document.querySelectorAll(
+    '.toggle[data-setting="bookingRequests"],' +
+    '.toggle[data-setting="instantBooking"],' +
+    '.toggle[data-setting="guestMessages"]'
+).forEach(
+    function (toggle) {
+
+        toggle.disabled = true;
+
+        toggle.title =
+            "Stay Settings API is not available yet.";
+
+    }
+);
+
+
+[
+    "minimumStay",
+    "maximumGuests"
+].forEach(
+    function (id) {
+
+        const element =
+            document.getElementById(id);
+
+
+        if (!element) {
+            return;
+        }
+
+
+        element.disabled = true;
+
+
+        element.title =
+            "Stay Settings API is not available yet.";
+
+    }
+);
+
+
+/* ================================================================
+   PAYOUT SETTINGS
+================================================================ */
+
+/*
+ * Payout account information must NOT be sent to the current API.
+ *
+ * There is currently no secure payout model/verification flow.
+ */
+
+[
+    "payoutMethod",
+    "payoutCurrency",
+    "payoutAccount"
+].forEach(
+    function (id) {
+
+        const element =
+            document.getElementById(id);
+
+
+        if (!element) {
+            return;
+        }
+
+
+        element.disabled = true;
+
+
+        element.title =
+            "Secure payout API is not available yet.";
+
+    }
+);
+
+
+/* ================================================================
+   SUBSCRIPTION
+================================================================ */
+
+async function loadSubscription() {
+
+    try {
+
+        const subscription =
+            await apiRequest(
+                "/api/StaySubscriptions/current"
+            );
+
+
+        if (!subscription) {
+
+            renderNoSubscription();
+
+            return;
+
+        }
+
+
+        const plan =
+            subscription.plan ||
+            subscription.Plan ||
+            {};
+
+
+        const planName =
+            subscription.planName ||
+            subscription.PlanName ||
+            plan.planName ||
+            plan.PlanName ||
+            "No Active Plan";
+
+
+        const status =
+            subscription.status ||
+            subscription.Status ||
+            "Unknown";
+
+
+        const endsAt =
+            subscription.endsAt ||
+            subscription.EndsAt ||
+            subscription.expiresAt ||
+            subscription.ExpiresAt ||
+            null;
+
+
+        const price =
+            plan.price ??
+            plan.Price ??
+            subscription.price ??
+            subscription.Price;
+
+
+        const maxListings =
+            plan.maxActiveListings ??
+            plan.MaxActiveListings ??
+            subscription.maxActiveListings ??
+            subscription.MaxActiveListings ??
+            null;
+
+
+        let description;
+
+
+        if (
+            price !== undefined &&
+            price !== null
+        ) {
+
+            description =
+                `Your current Stay Host subscription is GH₵${Number(price).toFixed(2)} per month.`;
+
+        } else {
+
+            description =
+                "Your current HavenGH Stay Host subscription.";
+
+        }
+
+
+        /*
+         * Reflect the authoritative HavenGH plan limits
+         * whenever the API returns MaxActiveListings.
+         */
+
+        if (
+            maxListings !== null &&
+            maxListings !== undefined
+        ) {
+
+            description +=
+                ` Your plan allows up to ${maxListings} active property listings.`;
+
+        }
+
+
+        document.getElementById(
+            "currentPlanName"
+        ).textContent =
+            planName;
+
+
+        document.getElementById(
+            "currentPlanDescription"
+        ).textContent =
+            description;
+
+
+        document.getElementById(
+            "subscriptionStatus"
+        ).textContent =
+            `Status: ${status}`;
+
+
+        document.getElementById(
+            "subscriptionExpiry"
+        ).textContent =
+            `Expiry: ${formatDate(endsAt)}`;
+
+
+    } catch (error) {
+
+        console.error(
+            "Stay subscription error:",
+            error
+        );
+
+
+        document.getElementById(
+            "currentPlanName"
+        ).textContent =
+            "Unable to load";
+
+
+        document.getElementById(
+            "currentPlanDescription"
+        ).textContent =
+            error.message ||
+            "Unable to load your subscription.";
+
+
+        document.getElementById(
+            "subscriptionStatus"
+        ).textContent =
+            "Status: Error";
+
+
+        document.getElementById(
+            "subscriptionExpiry"
+        ).textContent =
+            "Expiry: —";
+
+    }
+
+}
+
+
+/* ================================================================
+   NO SUBSCRIPTION
+================================================================ */
+
+function renderNoSubscription() {
+
+    document.getElementById(
+        "currentPlanName"
+    ).textContent =
+        "No Active Plan";
+
+
+    document.getElementById(
+        "currentPlanDescription"
+    ).textContent =
+        "You currently do not have an active Stay Host subscription.";
+
+
+    document.getElementById(
+        "subscriptionStatus"
+    ).textContent =
+        "Status: None";
+
+
+    document.getElementById(
+        "subscriptionExpiry"
+    ).textContent =
+        "Expiry: —";
+
+}
+
+
+/* ================================================================
+   MANAGE SUBSCRIPTION
+================================================================ */
+
+document.getElementById(
+    "manageSubscriptionBtn"
+).addEventListener(
+    "click",
+    function () {
+
+        window.location.href =
+            "stay-subscription.html";
+
+    }
+);
+
+
+/* ================================================================
+   ACCOUNT DEACTIVATION
+================================================================ */
+
+/*
+ * No deactivation endpoint currently exists.
+ *
+ * Do NOT call a fake API route.
+ */
+
+const deactivateButton =
+    document.getElementById(
+        "deactivateBtn"
+    );
+
+
+if (deactivateButton) {
+
+    deactivateButton.disabled = true;
+
+
+    deactivateButton.title =
+        "Account deactivation API is not available yet.";
+
+}
+
+
+/* ================================================================
+   INITIALIZE PAGE
+================================================================ */
+
+async function initializePage() {
+
+    const token =
+        getToken();
+
+
+    if (!token) {
+
+        clearAuthentication();
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    activateHashSection();
+
+
+    await Promise.all([
+        loadAccount(),
+        loadSubscription(),
+        loadTwoFactorStatus()
+    ]);
+
+}
+
+
+/* ================================================================
+   START
+================================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePage
+);
+
+</script>
+
+
+
+</body>
+</html>

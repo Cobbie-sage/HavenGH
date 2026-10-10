@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Manage rental requests on HavenGH.">
+
+<title>Rental Requests | HavenGH</title>
+
+<link rel="stylesheet" href="request.css">
+
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+```
+<!-- SIDEBAR -->
+<aside class="dashboard-sidebar">
+
+    <div class="dashboard-logo">
+        <a href="index.html" class="logo">
+            <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+        </a>
+    </div>
+
+    <div class="dashboard-user">
+
+        <img src="images/agent-1.jpg" alt="Profile picture">
+
+        <div>
+            <strong id="dashboard-user-name">HavenGH User</strong>
+            <span id="dashboard-user-role">Property Agent</span>
+        </div>
+
+    </div>
+
+    <nav class="dashboard-nav">
+
+        <a href="dashboard.html" class="dashboard-link">
+            <span>⌂</span>
+            Dashboard
+        </a>
+
+        <a href="my-properties.html" class="dashboard-link">
+            <span>▣</span>
+            My Properties
+        </a>
+
+        <a href="add-property.html" class="dashboard-link">
+            <span>＋</span>
+            Add Property
+        </a>
+
+        <a href="request.html" class="dashboard-link active">
+            <span>◉</span>
+            Rental Requests
+            <b id="sidebar-request-count">0</b>
+        </a>
+
+        <a href="message.html" class="dashboard-link">
+            <span>✉</span>
+            Messages
+        </a>
+
+        <a href="profile.html" class="dashboard-link">
+            <span>♙</span>
+            My Profile
+        </a>
+
+        <a href="my-plan.html" class="dashboard-link">
+            <span>◆</span>
+            My Plan
+        </a>
+
+        <a href="settings.html" class="dashboard-link">
+            <span>⚙</span>
+            Settings
+        </a>
+
+    </nav>
+
+    <div class="dashboard-sidebar-bottom">
+
+        <a href="index.html" class="dashboard-link">
+            <span>←</span>
+            Back to Website
+        </a>
+
+        <a href="login.html"
+           class="dashboard-link"
+           id="logout-link">
+            <span>↪</span>
+            Log Out
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="dashboard-main">
+
+    <!-- TOPBAR -->
+    <header class="dashboard-topbar">
+
+        <button
+            class="dashboard-menu-button"
+            type="button">
+            ☰
+        </button>
+
+        <div>
+            <p class="dashboard-date">
+                Tenant enquiries
+            </p>
+
+            <h1>Rental Requests</h1>
+        </div>
+
+        <div class="dashboard-top-actions">
+
+            <button
+                type="button"
+                class="notification-button"
+                aria-label="Notifications">
+
+                ♧
+
+                <span id="notification-count">
+                    0
+                </span>
+
+            </button>
+
+            <a
+                href="add-property.html"
+                class="dashboard-add-button">
+                + Add Property
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <div class="dashboard-content">
+
+        <section class="dashboard-welcome">
+
+            <span class="section-label">
+                REQUEST CENTER
+            </span>
+
+            <h2>
+                People interested in your properties
+            </h2>
+
+            <p>
+                Review rental requests and contact potential tenants.
+            </p>
+
+        </section>
+
+
+        <!-- API MESSAGE -->
+
+        <div
+            id="request-api-message"
+            role="alert"
+            aria-live="polite"
+            style="display:none;">
+        </div>
+
+
+        <!-- REQUEST SUMMARY -->
+
+        <section class="request-summary">
+
+            <div class="request-summary-card">
+
+                <span>
+                    New Requests
+                </span>
+
+                <strong id="new-request-count">
+                    0
+                </strong>
+
+                <small>
+                    Need your attention
+                </small>
+
+            </div>
+
+
+            <div class="request-summary-card">
+
+                <span>
+                    In Progress
+                </span>
+
+                <strong id="reviewing-request-count">
+                    0
+                </strong>
+
+                <small>
+                    Currently being reviewed
+                </small>
+
+            </div>
+
+
+            <div class="request-summary-card">
+
+                <span>
+                    Approved
+                </span>
+
+                <strong id="approved-request-count">
+                    0
+                </strong>
+
+                <small>
+                    Successful requests
+                </small>
+
+            </div>
+
+
+            <div class="request-summary-card">
+
+                <span>
+                    Total Requests
+                </span>
+
+                <strong id="total-request-count">
+                    0
+                </strong>
+
+                <small>
+                    All time
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- FILTER -->
+
+        <section class="request-filter">
+
+            <div class="request-search">
+
+                <input
+                    type="search"
+                    placeholder="Search tenant or property..."
+                    id="request-search"
+                    autocomplete="off">
+
+            </div>
+
+
+            <select id="request-status">
+
+                <option value="all">
+                    All Requests
+                </option>
+
+                <option value="pending">
+                    New
+                </option>
+
+                <option value="approved">
+                    Approved
+                </option>
+
+                <option value="rejected">
+                    Rejected
+                </option>
+
+                <option value="cancelled">
+                    Cancelled
+                </option>
+
+                <option value="completed">
+                    Completed
+                </option>
+
+            </select>
+
+        </section>
+
+
+        <!-- REQUEST LIST -->
+
+        <section class="request-list">
+
+            <div id="real-rental-requests">
+
+                <div class="rental-request-card">
+
+                    <div style="padding:20px;">
+                        Loading rental requests...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER CARD -->
+
+        <section class="request-footer-card">
+
+            <div>
+
+                <h3>
+                    Looking for more tenants?
+                </h3>
+
+                <p>
+                    Keep your available properties updated so
+                    people can discover them on HavenGH.
+                </p>
+
+            </div>
+
+            <a
+                href="add-property.html"
+                class="dashboard-add-button">
+                + Add Property
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+```
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+    /*
+     * ============================================================
+     * HAVENGH API CONFIGURATION
+     * ============================================================
+     */
+
+    const API_BASE_URL = "http://localhost:5073";
+
+    const RENTAL_REQUESTS_ENDPOINT =
+        `${API_BASE_URL}/api/RentalRequests`;
+
+
+    /*
+     * ============================================================
+     * ELEMENTS
+     * ============================================================
+     */
+
+    const requestContainer =
+        document.getElementById(
+            "real-rental-requests"
+        );
+
+    const searchInput =
+        document.getElementById(
+            "request-search"
+        );
+
+    const statusFilter =
+        document.getElementById(
+            "request-status"
+        );
+
+    const apiMessage =
+        document.getElementById(
+            "request-api-message"
+        );
+
+    const newCount =
+        document.getElementById(
+            "new-request-count"
+        );
+
+    const reviewingCount =
+        document.getElementById(
+            "reviewing-request-count"
+        );
+
+    const approvedCount =
+        document.getElementById(
+            "approved-request-count"
+        );
+
+    const totalCount =
+        document.getElementById(
+            "total-request-count"
+        );
+
+    const sidebarCount =
+        document.getElementById(
+            "sidebar-request-count"
+        );
+
+    const notificationCount =
+        document.getElementById(
+            "notification-count"
+        );
+
+
+    /*
+     * All requests returned by the API.
+     */
+
+    let rentalRequests = [];
+
+
+    /*
+     * ============================================================
+     * TOKEN
+     * ============================================================
+     */
+
+    function getToken() {
+
+        return (
+            localStorage.getItem("havenGH_token") ||
+            localStorage.getItem("token") ||
+            localStorage.getItem("jwtToken") ||
+            localStorage.getItem("accessToken")
+        );
+
+    }
+
+
+    /*
+     * ============================================================
+     * AUTHENTICATION CHECK
+     * ============================================================
+     */
+
+    function requireAuthentication() {
+
+        const token = getToken();
+
+        if (!token) {
+
+            window.location.href =
+                "login.html";
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+
+    /*
+     * ============================================================
+     * API MESSAGE
+     * ============================================================
+     */
+
+    function showMessage(
+        message,
+        success = false
+    ) {
+
+        apiMessage.textContent =
+            message;
+
+        apiMessage.style.display =
+            "block";
+
+        apiMessage.style.padding =
+            "12px 16px";
+
+        apiMessage.style.marginBottom =
+            "20px";
+
+        apiMessage.style.borderRadius =
+            "8px";
+
+
+        if (success) {
+
+            apiMessage.style.backgroundColor =
+                "#e8f7ee";
+
+            apiMessage.style.color =
+                "#166534";
+
+        } else {
+
+            apiMessage.style.backgroundColor =
+                "#fdecec";
+
+            apiMessage.style.color =
+                "#991b1b";
+
+        }
+
+    }
+
+
+    function hideMessage() {
+
+        apiMessage.style.display =
+            "none";
+
+    }
+
+
+    /*
+     * ============================================================
+     * SAFE HTML OUTPUT
+     * ============================================================
+     */
+
+    function escapeHtml(value) {
+
+        if (
+            value === null ||
+            value === undefined
+        ) {
+
+            return "";
+
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /*
+     * ============================================================
+     * GET VALUE
+     * ============================================================
+     */
+
+    function getValue(
+        object,
+        ...names
+    ) {
+
+        for (
+            const name of names
+        ) {
+
+            if (
+                object &&
+                object[name] !== undefined &&
+                object[name] !== null
+            ) {
+
+                return object[name];
+
+            }
+
+        }
+
+        return null;
+
+    }
+
+
+    /*
+     * ============================================================
+     * STATUS TEXT
+     * ============================================================
+     */
+
+    function statusLabel(status) {
+
+        switch (
+            String(status)
+                .toLowerCase()
+        ) {
+
+            case "pending":
+                return "NEW";
+
+            case "approved":
+                return "APPROVED";
+
+            case "rejected":
+                return "REJECTED";
+
+            case "cancelled":
+                return "CANCELLED";
+
+            case "completed":
+                return "COMPLETED";
+
+            default:
+                return String(status || "")
+                    .toUpperCase();
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * STATUS CSS CLASS
+     * ============================================================
+     */
+
+    function statusClass(status) {
+
+        switch (
+            String(status)
+                .toLowerCase()
+        ) {
+
+            case "pending":
+                return "request-new";
+
+            case "approved":
+                return "status-active";
+
+            case "rejected":
+                return "request-declined";
+
+            case "cancelled":
+                return "request-declined";
+
+            case "completed":
+                return "status-active";
+
+            default:
+                return "status-pending";
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * DATE FORMAT
+     * ============================================================
+     */
+
+    function formatDate(value) {
+
+        if (!value) {
+
+            return "Recently";
+
+        }
+
+        const date =
+            new Date(value);
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "Recently";
+
+        }
+
+        const now =
+            new Date();
+
+        const seconds =
+            Math.floor(
+                (now - date) / 1000
+            );
+
+
+        if (seconds < 60) {
+
+            return "Just now";
+
+        }
+
+
+        if (seconds < 3600) {
+
+            const minutes =
+                Math.floor(
+                    seconds / 60
+                );
+
+            return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+
+        }
+
+
+        if (seconds < 86400) {
+
+            const hours =
+                Math.floor(
+                    seconds / 3600
+                );
+
+            return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+
+        }
+
+
+        if (seconds < 604800) {
+
+            const days =
+                Math.floor(
+                    seconds / 86400
+                );
+
+            return `${days} day${days === 1 ? "" : "s"} ago`;
+
+        }
+
+
+        return date.toLocaleDateString(
+            "en-GH",
+            {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOAD RENTAL REQUESTS
+     * ============================================================
+     */
+
+    async function loadRentalRequests() {
+
+        if (
+            !requireAuthentication()
+        ) {
+
+            return;
+
+        }
+
+
+        hideMessage();
+
+
+        requestContainer.innerHTML = `
+            <div class="rental-request-card">
+                <div style="padding:20px;">
+                    Loading rental requests...
+                </div>
+            </div>
+        `;
+
+
+        try {
+
+            const token =
+                getToken();
+
+
+            const response =
+                await fetch(
+                    RENTAL_REQUESTS_ENDPOINT,
+                    {
+                        method: "GET",
+
+                        headers: {
+                            "Accept":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        }
+                    }
+                );
+
+
+            /*
+             * Invalid/expired JWT.
+             */
+
+            if (
+                response.status === 401
+            ) {
+
+                clearAuthentication();
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            if (
+                response.status === 403
+            ) {
+
+                requestContainer.innerHTML =
+                    "";
+
+                showMessage(
+                    "You are not authorized to view rental requests."
+                );
+
+                return;
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `API returned HTTP ${response.status}`
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            /*
+             * Controller currently returns:
+             *
+             * Ok(requests)
+             *
+             * so this will normally be an array.
+             *
+             * The additional checks make the frontend
+             * more tolerant of future API response wrappers.
+             */
+
+            if (
+                Array.isArray(data)
+            ) {
+
+                rentalRequests =
+                    data;
+
+            } else if (
+                data &&
+                Array.isArray(data.data)
+            ) {
+
+                rentalRequests =
+                    data.data;
+
+            } else if (
+                data &&
+                Array.isArray(data.requests)
+            ) {
+
+                rentalRequests =
+                    data.requests;
+
+            } else {
+
+                rentalRequests =
+                    [];
+
+            }
+
+
+            updateSummary();
+
+            renderRequests();
+
+
+        } catch (error) {
+
+            console.error(
+                "HavenGH rental requests error:",
+                error
+            );
+
+
+            rentalRequests =
+                [];
+
+            updateSummary();
+
+
+            requestContainer.innerHTML = `
+                <div class="rental-request-card">
+                    <div style="padding:20px;">
+                        <h3>
+                            Unable to load rental requests
+                        </h3>
+
+                        <p>
+                            Please make sure the HavenGH API
+                            is running and try again.
+                        </p>
+                    </div>
+                </div>
+            `;
+
+
+            showMessage(
+                "Unable to connect to the HavenGH API."
+            );
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * SUMMARY
+     * ============================================================
+     */
+
+    function updateSummary() {
+
+        const pending =
+            rentalRequests.filter(
+                request =>
+                    String(
+                        getValue(
+                            request,
+                            "status",
+                            "Status"
+                        )
+                    ).toLowerCase() ===
+                    "pending"
+            ).length;
+
+
+        const approved =
+            rentalRequests.filter(
+                request =>
+                    String(
+                        getValue(
+                            request,
+                            "status",
+                            "Status"
+                        )
+                    ).toLowerCase() ===
+                    "approved"
+            ).length;
+
+
+        /*
+         * Your current database statuses do not include
+         * "reviewing", so this remains zero until that
+         * status is introduced into the backend.
+         */
+
+        const reviewing =
+            rentalRequests.filter(
+                request =>
+                    String(
+                        getValue(
+                            request,
+                            "status",
+                            "Status"
+                        )
+                    ).toLowerCase() ===
+                    "reviewing"
+            ).length;
+
+
+        newCount.textContent =
+            pending;
+
+        reviewingCount.textContent =
+            reviewing;
+
+        approvedCount.textContent =
+            approved;
+
+        totalCount.textContent =
+            rentalRequests.length;
+
+
+        sidebarCount.textContent =
+            pending;
+
+        notificationCount.textContent =
+            pending;
+
+    }
+
+
+    /*
+     * ============================================================
+     * RENDER REQUESTS
+     * ============================================================
+     */
+
+    function renderRequests() {
+
+        const searchTerm =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        const selectedStatus =
+            statusFilter.value;
+
+
+        const filteredRequests =
+            rentalRequests.filter(
+                request => {
+
+                    const tenantName =
+                        getValue(
+                            request,
+                            "tenantName",
+                            "TenantName",
+                            "fullName",
+                            "FullName"
+                        ) || "";
+
+
+                    const propertyName =
+                        getValue(
+                            request,
+                            "propertyTitle",
+                            "PropertyTitle",
+                            "propertyName",
+                            "PropertyName"
+                        ) || "";
+
+
+                    const status =
+                        String(
+                            getValue(
+                                request,
+                                "status",
+                                "Status"
+                            ) || ""
+                        ).toLowerCase();
+
+
+                    const searchable =
+                        `${tenantName} ${propertyName}`
+                            .toLowerCase();
+
+
+                    const matchesSearch =
+                        !searchTerm ||
+                        searchable.includes(
+                            searchTerm
+                        );
+
+
+                    const matchesStatus =
+                        selectedStatus === "all" ||
+                        status === selectedStatus;
+
+
+                    return (
+                        matchesSearch &&
+                        matchesStatus
+                    );
+
+                }
+            );
+
+
+        if (
+            filteredRequests.length === 0
+        ) {
+
+            requestContainer.innerHTML = `
+                <div class="rental-request-card">
+
+                    <div style="padding:25px;">
+
+                        <h3>
+                            No rental requests found
+                        </h3>
+
+                        <p>
+                            There are no requests matching
+                            your current filter.
+                        </p>
+
+                    </div>
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        requestContainer.innerHTML =
+            filteredRequests
+                .map(
+                    createRequestCard
+                )
+                .join("");
+
+    }
+
+
+    /*
+     * ============================================================
+     * REQUEST CARD
+     * ============================================================
+     */
+
+    function createRequestCard(
+        request
+    ) {
+
+        const requestId =
+            getValue(
+                request,
+                "rentalRequestId",
+                "RentalRequestId"
+            );
+
+
+        const tenantName =
+            getValue(
+                request,
+                "tenantName",
+                "TenantName",
+                "fullName",
+                "FullName"
+            ) || "Tenant";
+
+
+        const tenantImage =
+            getValue(
+                request,
+                "tenantImage",
+                "TenantImage",
+                "profileImage",
+                "ProfileImage"
+            ) || "images/agent-2.jpg";
+
+
+        const propertyName =
+            getValue(
+                request,
+                "propertyTitle",
+                "PropertyTitle",
+                "propertyName",
+                "PropertyName"
+            ) || `Property #${getValue(
+                request,
+                "propertyId",
+                "PropertyId"
+            ) || ""}`;
+
+
+        const location =
+            getValue(
+                request,
+                "location",
+                "Location",
+                "address",
+                "Address"
+            ) || "Location unavailable";
+
+
+        const message =
+            getValue(
+                request,
+                "message",
+                "Message"
+            ) || "No message provided.";
+
+
+        const status =
+            String(
+                getValue(
+                    request,
+                    "status",
+                    "Status"
+                ) || "pending"
+            ).toLowerCase();
+
+
+        const createdAt =
+            getValue(
+                request,
+                "createdAt",
+                "CreatedAt"
+            );
+
+
+        let actionButtons =
+            "";
+
+
+        /*
+         * Only pending requests can be approved
+         * or rejected according to the controller.
+         */
+
+        if (
+            status === "pending"
+        ) {
+
+            actionButtons = `
+
+                <button
+                    type="button"
+                    class="approve-request-button"
+                    data-request-id="${escapeHtml(requestId)}">
+
+                    Approve
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="decline-request-button"
+                    data-request-id="${escapeHtml(requestId)}">
+
+                    Reject
+
+                </button>
+
+            `;
+
+        }
+
+
+        return `
+
+            <article
+                class="rental-request-card"
+                data-request-id="${escapeHtml(requestId)}">
+
+
+                <div class="tenant-profile">
+
+                    <img
+                        src="${escapeHtml(tenantImage)}"
+                        alt="Tenant profile">
+
+                    <div>
+
+                        <h3>
+                            ${escapeHtml(tenantName)}
+                        </h3>
+
+                        <p>
+                            Rental request
+                        </p>
+
+                        <small>
+                            ${escapeHtml(
+                                formatDate(createdAt)
+                            )}
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-property">
+
+                    <span>
+                        PROPERTY
+                    </span>
+
+                    <strong>
+                        ${escapeHtml(propertyName)}
+                    </strong>
+
+                    <p>
+                        📍 ${escapeHtml(location)}
+                    </p>
+
+                </div>
+
+
+                <div class="request-message">
+
+                    <span>
+                        MESSAGE
+                    </span>
+
+                    <p>
+                        "${escapeHtml(message)}"
+                    </p>
+
+                </div>
+
+
+                <div class="request-status">
+
+                    <span
+                        class="${statusClass(status)}">
+
+                        ${escapeHtml(
+                            statusLabel(status)
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="request-actions">
+
+                    <a
+                        href="message.html"
+                        class="request-message-button">
+
+                        Message
+
+                    </a>
+
+                    ${actionButtons}
+
+                </div>
+
+
+            </article>
+
+        `;
+
+    }
+
+
+    /*
+     * ============================================================
+     * APPROVE / REJECT
+     * ============================================================
+     *
+     * ACTUAL BACKEND ROUTE:
+     *
+     * PUT /api/RentalRequests/{id}/status
+     *
+     * Body:
+     * {
+     *     "status": "approved"
+     * }
+     *
+     * or:
+     *
+     * {
+     *     "status": "rejected"
+     * }
+     */
+
+    async function updateRequestStatus(
+        requestId,
+        newStatus
+    ) {
+
+        if (
+            !requireAuthentication()
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            !requestId
+        ) {
+
+            showMessage(
+                "Invalid rental request ID."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            newStatus !== "approved" &&
+            newStatus !== "rejected"
+        ) {
+
+            showMessage(
+                "Invalid request status."
+            );
+
+            return;
+
+        }
+
+
+        const token =
+            getToken();
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${RENTAL_REQUESTS_ENDPOINT}/${encodeURIComponent(requestId)}/status`,
+                    {
+                        method: "PUT",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Accept":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
+
+                        body: JSON.stringify({
+                            status:
+                                newStatus
+                        })
+                    }
+                );
+
+
+            if (
+                response.status === 401
+            ) {
+
+                clearAuthentication();
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            if (
+                response.status === 403
+            ) {
+
+                showMessage(
+                    "You are not authorized to update this rental request."
+                );
+
+                return;
+
+            }
+
+
+            let responseData =
+                null;
+
+
+            try {
+
+                responseData =
+                    await response.json();
+
+            } catch {
+
+                responseData =
+                    null;
+
+            }
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    responseData?.message ||
+                    responseData?.title ||
+                    `Unable to update request. HTTP ${response.status}.`
+                );
+
+            }
+
+
+            /*
+             * Update the local request so the UI
+             * changes immediately.
+             */
+
+            const request =
+                rentalRequests.find(
+                    item =>
+                        String(
+                            getValue(
+                                item,
+                                "rentalRequestId",
+                                "RentalRequestId"
+                            )
+                        ) ===
+                        String(requestId)
+                );
+
+
+            if (request) {
+
+                if (
+                    request.status !== undefined
+                ) {
+
+                    request.status =
+                        newStatus;
+
+                } else {
+
+                    request.Status =
+                        newStatus;
+
+                }
+
+            }
+
+
+            updateSummary();
+
+            renderRequests();
+
+
+            showMessage(
+                newStatus === "approved"
+                    ? "Rental request approved successfully."
+                    : "Rental request rejected successfully.",
+                true
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "HavenGH status update error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to update rental request."
+            );
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * REQUEST BUTTON EVENTS
+     * ============================================================
+     */
+
+    requestContainer.addEventListener(
+        "click",
+        function (event) {
+
+            const approveButton =
+                event.target.closest(
+                    ".approve-request-button"
+                );
+
+
+            if (
+                approveButton
+            ) {
+
+                const requestId =
+                    approveButton.dataset.requestId;
+
+
+                updateRequestStatus(
+                    requestId,
+                    "approved"
+                );
+
+                return;
+
+            }
+
+
+            const rejectButton =
+                event.target.closest(
+                    ".decline-request-button"
+                );
+
+
+            if (
+                rejectButton
+            ) {
+
+                const requestId =
+                    rejectButton.dataset.requestId;
+
+
+                updateRequestStatus(
+                    requestId,
+                    "rejected"
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+     * ============================================================
+     * SEARCH
+     * ============================================================
+     */
+
+    searchInput.addEventListener(
+        "input",
+        renderRequests
+    );
+
+
+    /*
+     * ============================================================
+     * FILTER
+     * ============================================================
+     */
+
+    statusFilter.addEventListener(
+        "change",
+        renderRequests
+    );
+
+
+    /*
+     * ============================================================
+     * CLEAR AUTHENTICATION
+     * ============================================================
+     */
+
+    function clearAuthentication() {
+
+        localStorage.removeItem(
+            "havenGH_token"
+        );
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "jwtToken"
+        );
+
+        localStorage.removeItem(
+            "accessToken"
+        );
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOGOUT
+     * ============================================================
+     */
+
+    document
+        .getElementById("logout-link")
+        .addEventListener(
+            "click",
+            function () {
+
+                clearAuthentication();
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * START
+     * ============================================================
+     */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            loadRentalRequests();
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1644 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="View and manage your HavenGH Stay bookings.">
+
+    <title>My Stay Bookings | HavenGH</title>
+
+    <style>
+        /* ============================================================
+           HAVENGH - MY STAY BOOKINGS
+           Premium Guest Booking Management
+           ============================================================ */
+
+        :root {
+            --green-950: #071c16;
+            --green-900: #0b2a20;
+            --green-850: #10382b;
+            --green-800: #124333;
+            --green-700: #16543f;
+
+            --gold: #d7b45a;
+            --gold-light: #ead28a;
+
+            --cream: #f5f1e7;
+            --cream-dark: #e9e2d3;
+
+            --text: #f8f6ef;
+            --text-soft: #c9d3cd;
+            --text-dark: #1a2a24;
+
+            --border: rgba(215, 180, 90, 0.22);
+            --shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+
+            --success: #4fd18b;
+            --warning: #e7bd54;
+            --danger: #ef7777;
+            --muted: #aab8b1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(215, 180, 90, 0.08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    var(--green-950),
+                    var(--green-900) 55%,
+                    #0d3428
+                );
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(7, 28, 22, 0.94);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            width: min(1180px, calc(100% - 40px));
+            min-height: 76px;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 800;
+
+            background: rgba(215, 180, 90, 0.08);
+        }
+
+        .brand-text strong {
+            display: block;
+
+            color: var(--text);
+            font-size: 18px;
+            letter-spacing: 0.04em;
+        }
+
+        .brand-text span {
+            display: block;
+            margin-top: 2px;
+
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav a {
+            color: var(--text-soft);
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--gold-light);
+        }
+
+        .nav-button {
+            padding: 10px 16px;
+
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+
+            color: var(--gold-light) !important;
+        }
+
+        .nav-button:hover {
+            background: rgba(215, 180, 90, 0.1);
+        }
+
+        /* ============================================================
+           PAGE
+           ============================================================ */
+
+        .page {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 65px 0 90px;
+        }
+
+        .page-heading {
+            margin-bottom: 34px;
+        }
+
+        .eyebrow {
+            margin-bottom: 10px;
+
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .page-heading h1 {
+            color: var(--text);
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+        }
+
+        .page-heading p {
+            max-width: 700px;
+            margin-top: 14px;
+
+            color: var(--text-soft);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           TOOLBAR
+           ============================================================ */
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+
+            margin-bottom: 24px;
+            padding: 18px 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 16px;
+
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .booking-count {
+            color: var(--text-soft);
+            font-size: 14px;
+        }
+
+        .booking-count strong {
+            color: var(--gold-light);
+        }
+
+        .refresh-button {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            padding: 10px 16px;
+
+            color: var(--gold-light);
+            background: rgba(215, 180, 90, 0.06);
+
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .refresh-button:hover {
+            border-color: var(--gold);
+            background: rgba(215, 180, 90, 0.12);
+        }
+
+        /* ============================================================
+           LOADING
+           ============================================================ */
+
+        .state-box {
+            padding: 55px 25px;
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .state-box h2 {
+            margin-bottom: 10px;
+            color: var(--text);
+            font-size: 22px;
+        }
+
+        .state-box p {
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        .state-box.error {
+            border-color: rgba(239, 119, 119, 0.35);
+        }
+
+        .state-box.error h2 {
+            color: #ffaaaa;
+        }
+
+        .state-box button {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ============================================================
+           BOOKING LIST
+           ============================================================ */
+
+        .booking-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .booking-card {
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.02)
+                );
+
+            box-shadow: var(--shadow);
+        }
+
+        .booking-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+
+            padding: 24px 25px;
+
+            border-bottom: 1px solid rgba(215, 180, 90, 0.13);
+        }
+
+        .stay-info h2 {
+            margin-bottom: 8px;
+
+            color: var(--text);
+            font-size: 23px;
+        }
+
+        .stay-location {
+            color: var(--text-soft);
+            font-size: 14px;
+        }
+
+        .stay-location span {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           STATUS
+           ============================================================ */
+
+        .status {
+            flex-shrink: 0;
+
+            padding: 8px 13px;
+
+            border-radius: 999px;
+
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .status.pending {
+            color: #ffe8a0;
+            background: rgba(231, 189, 84, 0.14);
+            border: 1px solid rgba(231, 189, 84, 0.3);
+        }
+
+        .status.approved {
+            color: #8ff0b9;
+            background: rgba(79, 209, 139, 0.12);
+            border: 1px solid rgba(79, 209, 139, 0.3);
+        }
+
+        .status.rejected,
+        .status.cancelled {
+            color: #ffaaaa;
+            background: rgba(239, 119, 119, 0.11);
+            border: 1px solid rgba(239, 119, 119, 0.28);
+        }
+
+        .status.completed {
+            color: #bcd8ff;
+            background: rgba(120, 160, 220, 0.12);
+            border: 1px solid rgba(120, 160, 220, 0.28);
+        }
+
+        /* ============================================================
+           BOOKING DETAILS
+           ============================================================ */
+
+        .booking-body {
+            padding: 24px 25px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .detail {
+            padding: 16px;
+
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 13px;
+
+            background: rgba(0, 0, 0, 0.12);
+        }
+
+        .detail-label {
+            margin-bottom: 6px;
+
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .detail-value {
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+           MESSAGE
+           ============================================================ */
+
+        .response-box {
+            margin-top: 20px;
+            padding: 17px 18px;
+
+            border-left: 3px solid var(--gold);
+            border-radius: 0 12px 12px 0;
+
+            background: rgba(215, 180, 90, 0.055);
+        }
+
+        .response-box strong {
+            display: block;
+            margin-bottom: 6px;
+
+            color: var(--gold-light);
+            font-size: 13px;
+        }
+
+        .response-box p {
+            color: var(--text-soft);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           FOOTER ROW
+           ============================================================ */
+
+        .booking-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 18px 25px;
+
+            border-top: 1px solid rgba(215, 180, 90, 0.13);
+        }
+
+        .created-date {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .cancel-button {
+            border: 1px solid rgba(239, 119, 119, 0.4);
+            border-radius: 10px;
+
+            padding: 9px 14px;
+
+            color: #ffaaaa;
+            background: transparent;
+
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .cancel-button:hover {
+            background: rgba(239, 119, 119, 0.1);
+            border-color: var(--danger);
+        }
+
+        /* ============================================================
+           EMPTY STATE
+           ============================================================ */
+
+        .empty-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .primary-link,
+        .secondary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 12px 18px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .primary-link {
+            color: var(--green-950);
+            background: var(--gold);
+        }
+
+        .primary-link:hover {
+            background: var(--gold-light);
+        }
+
+        .secondary-link {
+            border: 1px solid var(--border);
+            color: var(--gold-light);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+
+        footer {
+            padding: 30px 20px;
+
+            border-top: 1px solid var(--border);
+
+            text-align: center;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+
+        @media (max-width: 850px) {
+            .nav {
+                gap: 13px;
+            }
+
+            .nav a:not(.nav-button) {
+                display: none;
+            }
+
+            .details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-inner {
+                width: min(100% - 25px, 1180px);
+                min-height: 68px;
+            }
+
+            .page {
+                width: min(100% - 25px, 1180px);
+                padding-top: 42px;
+            }
+
+            .brand-mark {
+                width: 38px;
+                height: 38px;
+            }
+
+            .page-heading h1 {
+                font-size: 34px;
+            }
+
+            .toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .refresh-button {
+                width: 100%;
+            }
+
+            .booking-top {
+                flex-direction: column;
+            }
+
+            .status {
+                align-self: flex-start;
+            }
+
+            .booking-body {
+                padding: 18px;
+            }
+
+            .booking-top {
+                padding: 20px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-footer {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 18px 20px;
+            }
+
+            .cancel-button {
+                width: 100%;
+            }
+
+            .empty-actions {
+                flex-direction: column;
+            }
+
+            .primary-link,
+            .secondary-link {
+                width: 100%;
+            }
+        }
+
+        .logout-button {
+    padding: 10px 16px;
+
+    border: 1px solid rgba(239, 119, 119, 0.45);
+    border-radius: 10px;
+
+    color: #ffaaaa;
+    background: transparent;
+
+    font: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logout-button:hover {
+    border-color: var(--danger);
+    background: rgba(239, 119, 119, 0.1);
+    color: #ffd0d0;
+}
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+
+        <a href="stays.html" class="brand">
+            <div class="brand-mark">H</div>
+
+            <div class="brand-text">
+                <strong>HavenGH</strong>
+                <span>Stay in Ghana</span>
+            </div>
+        </a>
+
+       <nav class="nav">
+    <a href="stays.html">Stay</a>
+
+    <a href="stay-properties.html">
+        Find a Stay
+    </a>
+
+    <a href="stay-my-bookings.html"
+       class="active">
+        My Bookings
+    </a>
+
+    <a href="stay-host-register.html"
+       class="nav-button">
+        Become a Host
+    </a>
+
+    <button type="button"
+            id="logoutButton"
+            class="logout-button">
+        Logout
+    </button>
+</nav>
+    </div>
+</header>
+
+
+<main class="page">
+
+    <section class="page-heading">
+        <div class="eyebrow">
+            Guest account
+        </div>
+
+        <h1>My Stay Bookings</h1>
+
+        <p>
+            Keep track of your HavenGH Stay requests,
+            booking dates, payment totals and host responses
+            all in one place.
+        </p>
+    </section>
+
+
+    <div id="toolbar"
+         class="toolbar hidden">
+
+        <div class="booking-count">
+            You have
+            <strong id="bookingCount">0</strong>
+            booking(s).
+        </div>
+
+        <button type="button"
+                id="refreshButton"
+                class="refresh-button">
+            Refresh bookings
+        </button>
+
+    </div>
+
+
+    <!-- ============================================================
+         LOADING
+         ============================================================ -->
+
+    <section id="loadingState"
+             class="state-box">
+
+        <h2>Loading your bookings...</h2>
+
+        <p>
+            Please wait while we retrieve your Stay bookings.
+        </p>
+
+    </section>
+
+
+    <!-- ============================================================
+         LOGIN STATE
+         ============================================================ -->
+
+    <section id="loginState"
+             class="state-box hidden">
+
+        <h2>Sign in to view your bookings</h2>
+
+        <p>
+            You need to be signed in to see bookings
+            associated with your HavenGH account.
+        </p>
+
+        <div class="empty-actions">
+
+            <a href="login.html"
+               class="primary-link">
+                Sign in
+            </a>
+
+            <a href="stay-properties.html"
+               class="secondary-link">
+                Browse stays
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         ERROR STATE
+         ============================================================ -->
+
+    <section id="errorState"
+             class="state-box error hidden">
+
+        <h2>Unable to load bookings</h2>
+
+        <p id="errorMessage">
+            Something went wrong while loading your bookings.
+        </p>
+
+        <button type="button"
+                id="retryButton"
+                class="refresh-button">
+            Try again
+        </button>
+
+    </section>
+
+
+    <!-- ============================================================
+         EMPTY STATE
+         ============================================================ -->
+
+    <section id="emptyState"
+             class="state-box hidden">
+
+        <h2>No Stay bookings yet</h2>
+
+        <p>
+            You have not requested a Stay yet.
+            Explore available hotels, apartments and guest houses
+            and make your first booking.
+        </p>
+
+        <div class="empty-actions">
+
+            <a href="stay-properties.html"
+               class="primary-link">
+                Find a Stay
+            </a>
+
+            <a href="stays.html"
+               class="secondary-link">
+                Back to Stay
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         BOOKINGS
+         ============================================================ -->
+
+    <section id="bookingList"
+             class="booking-list hidden">
+    </section>
+
+</main>
+
+
+<footer>
+    <strong>HavenGH</strong>
+    &nbsp;•&nbsp;
+    Stay in Ghana
+    &nbsp;•&nbsp;
+    Your trusted place to book stays in Ghana.
+</footer>
+
+
+<script>
+"use strict";
+
+/* ============================================================
+   API
+   ============================================================ */
+
+const API_BASE_URL = "http://localhost:5073";
+
+
+/* ============================================================
+   STATE
+   ============================================================ */
+
+let allBookings = [];
+
+
+/* ============================================================
+   AUTH
+   ============================================================ */
+
+function getToken() {
+    return localStorage.getItem("havenGH_token");
+}
+
+
+/* ============================================================
+   DOM HELPERS
+   ============================================================ */
+
+function getElement(id) {
+    return document.getElementById(id);
+}
+
+
+function showElement(id) {
+    getElement(id)?.classList.remove("hidden");
+}
+
+
+function hideElement(id) {
+    getElement(id)?.classList.add("hidden");
+}
+
+
+/* ============================================================
+   HTML SAFETY
+   ============================================================ */
+
+function escapeHtml(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* ============================================================
+   API REQUEST
+   ============================================================ */
+
+async function apiRequest(endpoint, options = {}) {
+
+    const token = getToken();
+
+    const headers = {
+        "Accept": "application/json",
+        ...(options.headers || {})
+    };
+
+    if (token) {
+        headers["Authorization"] =
+            `Bearer ${token}`;
+    }
+
+    const response =
+        await fetch(
+            `${API_BASE_URL}${endpoint}`,
+            {
+                ...options,
+                headers
+            }
+        );
+
+    if (response.status === 401) {
+
+        localStorage.removeItem("havenGH_token");
+
+        throw new Error(
+            "Your session has expired. Please sign in again."
+        );
+    }
+
+    return response;
+}
+
+
+/* ============================================================
+   FORMATTERS
+   ============================================================ */
+
+function formatMoney(value) {
+
+    const amount =
+        Number(value || 0);
+
+    return new Intl.NumberFormat(
+        "en-GH",
+        {
+            style: "currency",
+            currency: "GHS",
+            maximumFractionDigits: 2
+        }
+    ).format(amount);
+}
+
+
+function formatDate(value) {
+
+    if (!value) {
+        return "—";
+    }
+
+    const date =
+        new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return "—";
+    }
+
+    return date.toLocaleDateString(
+        "en-GH",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+}
+
+
+function formatDateRange(checkIn, checkOut) {
+
+    const start =
+        formatDate(checkIn);
+
+    const end =
+        formatDate(checkOut);
+
+    return `${start} → ${end}`;
+}
+
+
+function formatStatus(status) {
+
+    const normalized =
+        String(status || "pending")
+            .trim()
+            .toLowerCase();
+
+    const label =
+        normalized.charAt(0).toUpperCase() +
+        normalized.slice(1);
+
+    return {
+        className: normalized,
+        label
+    };
+}
+
+
+/* ============================================================
+   PAGE STATES
+   ============================================================ */
+
+function showLoading() {
+
+    showElement("loadingState");
+
+    hideElement("loginState");
+    hideElement("errorState");
+    hideElement("emptyState");
+    hideElement("bookingList");
+    hideElement("toolbar");
+}
+
+
+function showLogin() {
+
+    hideElement("loadingState");
+    hideElement("errorState");
+    hideElement("emptyState");
+    hideElement("bookingList");
+    hideElement("toolbar");
+
+    showElement("loginState");
+}
+
+
+function showError(message) {
+
+    hideElement("loadingState");
+    hideElement("loginState");
+    hideElement("emptyState");
+    hideElement("bookingList");
+    hideElement("toolbar");
+
+    getElement("errorMessage").textContent =
+        message ||
+        "Unable to load your bookings.";
+
+    showElement("errorState");
+}
+
+
+function showEmpty() {
+
+    hideElement("loadingState");
+    hideElement("loginState");
+    hideElement("errorState");
+    hideElement("bookingList");
+
+    showElement("toolbar");
+    showElement("emptyState");
+
+    getElement("bookingCount").textContent = "0";
+}
+
+
+/* ============================================================
+   LOAD BOOKINGS
+   ============================================================ */
+
+async function loadBookings() {
+
+    const token = getToken();
+
+    if (!token) {
+        showLogin();
+        return;
+    }
+
+    showLoading();
+
+    try {
+
+        const response =
+            await apiRequest(
+                "/api/StayBookings/my",
+                {
+                    method: "GET"
+                }
+            );
+
+        const rawText =
+            await response.text();
+
+        let data = [];
+
+        if (rawText) {
+
+            try {
+                data = JSON.parse(rawText);
+            }
+            catch {
+                throw new Error(
+                    "The server returned an invalid response."
+                );
+            }
+        }
+
+        if (!response.ok) {
+
+            const message =
+                data?.message ||
+                data?.title ||
+                "Unable to load your bookings.";
+
+            throw new Error(message);
+        }
+
+        allBookings =
+            Array.isArray(data)
+                ? data
+                : [];
+
+        if (allBookings.length === 0) {
+            showEmpty();
+            return;
+        }
+
+        getElement("bookingCount").textContent =
+            allBookings.length;
+
+        showElement("toolbar");
+        hideElement("loadingState");
+        hideElement("loginState");
+        hideElement("errorState");
+        hideElement("emptyState");
+
+        renderBookings();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Stay bookings error:",
+            error
+        );
+
+        showError(
+            error.message ||
+            "Unable to load your bookings."
+        );
+    }
+}
+
+
+/* ============================================================
+   RENDER BOOKINGS
+   ============================================================ */
+
+function renderBookings() {
+
+    const container =
+        getElement("bookingList");
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    allBookings.forEach(
+        function (booking) {
+
+            container.insertAdjacentHTML(
+                "beforeend",
+                renderBookingCard(booking)
+            );
+        }
+    );
+
+    showElement("bookingList");
+}
+
+
+/* ============================================================
+   RENDER BOOKING CARD
+   ============================================================ */
+
+function renderBookingCard(booking) {
+
+    const status =
+        formatStatus(booking.status);
+
+    const stay =
+        booking.stay || {};
+
+    const title =
+        stay.title ||
+        "HavenGH Stay";
+
+    const city =
+        stay.city ||
+        "";
+
+    const area =
+        stay.area ||
+        "";
+
+    let location = city;
+
+    if (area) {
+        location =
+            city
+                ? `${area}, ${city}`
+                : area;
+    }
+
+    const stayType =
+        stay.stayType ||
+        "";
+
+    const bookingId =
+        booking.bookingId ??
+        "—";
+
+    const guests =
+        booking.guests ??
+        "—";
+
+    const nights =
+        booking.nights ??
+        "—";
+
+    const pricePerNight =
+        formatMoney(
+            booking.pricePerNight
+        );
+
+    const totalAmount =
+        formatMoney(
+            booking.totalAmount
+        );
+
+    const dates =
+        formatDateRange(
+            booking.checkInDate,
+            booking.checkOutDate
+        );
+
+    const createdAt =
+        formatDate(
+            booking.createdAt
+        );
+
+    const hostResponse =
+        booking.hostResponse;
+
+    const canCancel =
+        String(booking.status || "")
+            .toLowerCase() === "pending";
+
+    return `
+        <article class="booking-card">
+
+            <div class="booking-top">
+
+                <div class="stay-info">
+
+                    <h2>
+                        ${escapeHtml(title)}
+                    </h2>
+
+                    <div class="stay-location">
+                        ${stayType
+                            ? `<span>${escapeHtml(stayType)}</span> • `
+                            : ""}
+                        ${escapeHtml(location || "Ghana")}
+                    </div>
+
+                </div>
+
+                <span class="status ${escapeHtml(status.className)}">
+                    ${escapeHtml(status.label)}
+                </span>
+
+            </div>
+
+
+            <div class="booking-body">
+
+                <div class="details-grid">
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Booking ID
+                        </div>
+
+                        <div class="detail-value">
+                            #${escapeHtml(bookingId)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Stay dates
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(dates)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Guests
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(guests)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Nights
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(nights)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Price / Night
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(pricePerNight)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Total
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(totalAmount)}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Check-in
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(
+                                formatDate(
+                                    booking.checkInDate
+                                )
+                            )}
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Check-out
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(
+                                formatDate(
+                                    booking.checkOutDate
+                                )
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    hostResponse
+                        ? `
+                            <div class="response-box">
+
+                                <strong>
+                                    Host response
+                                </strong>
+
+                                <p>
+                                    ${escapeHtml(hostResponse)}
+                                </p>
+
+                            </div>
+                          `
+                        : ""
+                }
+
+            </div>
+
+
+            <div class="booking-footer">
+
+                <div class="created-date">
+                    Booking requested
+                    ${escapeHtml(createdAt)}
+                </div>
+
+                ${
+                    canCancel
+                        ? `
+                            <button
+                                type="button"
+                                class="cancel-button"
+                                onclick="cancelBooking(${Number(bookingId)})">
+                                Cancel request
+                            </button>
+                          `
+                        : ""
+                }
+
+            </div>
+
+        </article>
+    `;
+}
+
+
+/* ============================================================
+   CANCEL PENDING BOOKING
+   ============================================================ */
+
+async function cancelBooking(bookingId) {
+
+    if (!bookingId) {
+        return;
+    }
+
+    const confirmed =
+        window.confirm(
+            "Are you sure you want to cancel this booking request?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await apiRequest(
+                `/api/StayBookings/${bookingId}/cancel`,
+                {
+                    method: "POST"
+                }
+            );
+
+        const rawText =
+            await response.text();
+
+        let data = {};
+
+        if (rawText) {
+
+            try {
+                data = JSON.parse(rawText);
+            }
+            catch {
+                data = {};
+            }
+        }
+
+        if (!response.ok) {
+
+            const message =
+                data?.message ||
+                data?.title ||
+                "Unable to cancel this booking.";
+
+            throw new Error(message);
+        }
+
+        await loadBookings();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Cancel booking error:",
+            error
+        );
+
+        window.alert(
+            error.message ||
+            "Unable to cancel this booking."
+        );
+    }
+}
+
+
+/* ============================================================
+   EVENTS
+   ============================================================ */
+
+getElement("refreshButton")
+    ?.addEventListener(
+        "click",
+        loadBookings
+    );
+
+getElement("retryButton")
+    ?.addEventListener(
+        "click",
+        loadBookings
+    );
+
+/* ============================================================
+   LOGOUT
+   ============================================================ */
+
+function logout() {
+
+    localStorage.removeItem("havenGH_token");
+
+    // Also clear these if another HavenGH page uses them.
+    sessionStorage.removeItem("havenGH_token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
+
+    window.location.href = "login.html";
+}
+
+
+getElement("logoutButton")
+    ?.addEventListener(
+        "click",
+        function () {
+
+            const confirmed =
+                window.confirm(
+                    "Are you sure you want to log out?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+            logout();
+        }
+    );
+/* ============================================================
+   INITIAL LOAD
+   ============================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+        loadBookings();
+    }
+);
+
+</script>
+
+</body>
+</html>
+

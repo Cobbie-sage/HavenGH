@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH Stay Host profile, business information and hosting details.">
+
+    <title>Host Profile | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           STAY HOST PROFILE
+        ========================================== */
+
+        .host-profile-page {
+            min-height: 100vh;
+            background: #f7f8f6;
+            padding: 50px 20px 80px;
+        }
+
+        .host-profile-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #064e3b, #0f766e);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,.12);
+        }
+
+        .profile-header-content {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .host-avatar {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: white;
+            color: #064e3b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .host-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-header h1 {
+            margin: 0 0 7px;
+            font-size: 30px;
+        }
+
+        .profile-header p {
+            margin: 0;
+            opacity: .9;
+        }
+
+        .verified-host {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
+            border-radius: 30px;
+            background: rgba(212,175,55,.18);
+            border: 1px solid rgba(212,175,55,.7);
+            color: #f4d76a;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 25px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.06);
+            margin-bottom: 25px;
+        }
+
+        .profile-card h2 {
+            margin: 0 0 5px;
+            color: #064e3b;
+            font-size: 21px;
+        }
+
+        .card-description {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            background: white;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #0f766e;
+            box-shadow: 0 0 0 3px rgba(15,118,110,.1);
+        }
+
+        .save-btn {
+            margin-top: 25px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 9px;
+            background: #064e3b;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            background: #053c2e;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.06);
+            margin-bottom: 25px;
+        }
+
+        .sidebar-card h3 {
+            margin: 0 0 20px;
+            color: #064e3b;
+        }
+
+        .profile-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .profile-item:last-child {
+            border-bottom: none;
+        }
+
+        .profile-item span:first-child {
+            color: #777;
+        }
+
+        .profile-item strong {
+            color: #333;
+            text-align: right;
+        }
+
+        .status {
+            color: #087f5b !important;
+        }
+
+        .quick-links a {
+            display: block;
+            padding: 12px 0;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .quick-links a:last-child {
+            border-bottom: none;
+        }
+
+        .quick-links a:hover {
+            color: #0f766e;
+        }
+
+        .danger-zone {
+            border: 1px solid #f1cccc;
+        }
+
+        .danger-zone h3 {
+            color: #991b1b;
+        }
+
+        .logout-link {
+            color: #991b1b !important;
+        }
+
+        .back-dashboard {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #064e3b;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .back-dashboard:hover {
+            color: #d4af37;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            font-size: 14px;
+        }
+
+        @media (max-width: 850px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .profile-header {
+                padding: 28px 20px;
+            }
+
+            .profile-header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .profile-card {
+                padding: 22px;
+            }
+        }
+
+        /* ============================================================
+   HAVENGH PREMIUM HOST PROFILE
+   ============================================================ */
+
+.host-profile-page {
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(6, 78, 59, .08),
+            transparent 32%
+        ),
+        #f4f6f3;
+}
+
+
+/* Header */
+
+.profile-header {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #032f25 0%,
+            #064e3b 48%,
+            #0f766e 100%
+        );
+    border-radius: 24px;
+    padding: 42px;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow:
+        0 22px 55px rgba(4, 52, 40, .18);
+}
+
+.profile-header::before {
+    content: "";
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    right: -100px;
+    top: -170px;
+    border-radius: 50%;
+    background: rgba(212,175,55,.12);
+}
+
+.profile-header::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    right: 120px;
+    bottom: -130px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.05);
+}
+
+.profile-header-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Avatar */
+
+.host-avatar {
+    width: 100px;
+    height: 100px;
+    border: 4px solid rgba(255,255,255,.25);
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.22);
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #edf5f1
+        );
+}
+
+
+/* Header typography */
+
+.profile-header h1 {
+    font-size: 32px;
+    letter-spacing: -.5px;
+}
+
+.profile-header p {
+    font-size: 15px;
+}
+
+
+/* Verification badge */
+
+.verified-host {
+    background: rgba(212,175,55,.14);
+    border-color: rgba(212,175,55,.55);
+    color: #f8dc72;
+    backdrop-filter: blur(8px);
+}
+
+.verified-host.verified {
+    background: rgba(212,175,55,.18);
+}
+
+
+/* Cards */
+
+.profile-card,
+.sidebar-card {
+    border: 1px solid #e8ece8;
+    box-shadow:
+        0 10px 35px rgba(18, 48, 39, .055);
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.profile-card:hover,
+.sidebar-card:hover {
+    box-shadow:
+        0 16px 42px rgba(18, 48, 39, .09);
+}
+
+
+/* Card headings */
+
+.profile-card h2 {
+    color: #064e3b;
+    font-weight: 750;
+    letter-spacing: -.2px;
+}
+
+
+/* Inputs */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 1px solid #dfe5e1;
+    background: #fbfcfb;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #b9c9c1;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: white;
+    border-color: #0f766e;
+    box-shadow:
+        0 0 0 4px rgba(15,118,110,.09);
+}
+
+
+/* Save button */
+
+.save-btn {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            #064e3b,
+            #075f4a
+        );
+    box-shadow:
+        0 8px 20px rgba(6,78,59,.18);
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.save-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #053c2e,
+            #064e3b
+        );
+    transform: translateY(-1px);
+    box-shadow:
+        0 12px 25px rgba(6,78,59,.24);
+}
+
+.save-btn:disabled {
+    opacity: .65;
+    cursor: wait;
+    transform: none;
+}
+
+
+/* Sidebar */
+
+.sidebar-card h3 {
+    font-weight: 750;
+    letter-spacing: -.2px;
+}
+
+.profile-item {
+    padding: 15px 0;
+}
+
+.profile-item strong {
+    font-weight: 700;
+}
+
+.profile-item .status {
+    color: #087f5b !important;
+}
+
+
+/* Quick links */
+
+.quick-links a {
+    padding: 13px 0;
+    transition:
+        color .2s ease,
+        padding-left .2s ease;
+}
+
+.quick-links a:hover {
+    padding-left: 4px;
+    color: #0f766e;
+}
+
+
+/* Back link */
+
+.back-dashboard {
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+.back-dashboard:hover {
+    transform: translateX(-2px);
+}
+
+
+/* Messages */
+
+.success-message {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.success-message.error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+}
+
+.success-message.success {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #065f46;
+}
+
+
+/* Loading */
+
+#hostProfileForm.loading {
+    opacity: .65;
+    pointer-events: none;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .host-profile-page {
+        padding: 25px 14px 60px;
+    }
+
+    .profile-header {
+        border-radius: 20px;
+        padding: 30px 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 27px;
+    }
+
+    .host-avatar {
+        width: 88px;
+        height: 88px;
+    }
+
+    .profile-card,
+    .sidebar-card {
+        border-radius: 16px;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <span class="logo-main">Haven</span>
+                <span class="logo-accent">GH</span>
+
+            </a>
+
+            <nav class="navbar">
+
+                <a href="index.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="stays.html" class="nav-link">
+                    Stay in Ghana
+                </a>
+
+                <a href="stay-host-dashboard.html" class="nav-link">
+                    Dashboard
+                </a>
+
+            </nav>
+
+        </div>
+
+        <button
+            class="mobile-menu-button"
+            type="button"
+            aria-label="Open navigation menu">
+
+            ☰
+
+        </button>
+
+    </header>
+
+
+    <!-- =========================================
+         PROFILE
+    ========================================== -->
+
+    <main class="host-profile-page">
+
+        <div class="host-profile-container">
+
+            <a
+                href="stay-host-dashboard.html"
+                class="back-dashboard">
+
+                ← Back to Host Dashboard
+
+            </a>
+
+
+            <!-- PROFILE HEADER -->
+
+            <section class="profile-header">
+
+                <div class="profile-header-content">
+
+                    <div class="host-avatar" id="hostAvatar">
+
+                        HG
+
+                    </div>
+
+                    <div>
+
+                        <h1 id="profileName">
+                            Stay Host
+                        </h1>
+
+                        <p id="profileEmail">
+                            host@example.com
+                        </p>
+
+                        <span class="verified-host">
+                            ✓ Verified Stay Host
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div class="profile-layout">
+
+
+                <!-- =================================
+                     MAIN PROFILE
+                ================================== -->
+
+                <div>
+
+
+                    <!-- PERSONAL INFORMATION -->
+
+                    <section class="profile-card">
+
+                        <h2>
+                            Host Information
+                        </h2>
+
+                        <p class="card-description">
+                            Manage the information guests see when
+                            viewing your hosting profile.
+                        </p>
+
+
+                        <form id="hostProfileForm">
+
+                            <div class="form-grid">
+
+
+                                <div class="form-group">
+
+                                    <label for="firstName">
+                                        First Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="firstName"
+                                        placeholder="First name"
+                                        autocomplete="given-name">
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="lastName">
+                                        Last Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="lastName"
+                                        placeholder="Last name"
+                                        autocomplete="family-name">
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="email">
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="Email address"
+                                        autocomplete="email">
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="phone">
+                                        Phone Number
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        placeholder="+233 XX XXX XXXX"
+                                        autocomplete="tel">
+
+                                </div>
+
+
+                                <div class="form-group full">
+
+                                    <label for="bio">
+                                        About You
+                                    </label>
+
+                                    <textarea
+                                        id="bio"
+                                        placeholder="Tell guests a little about yourself or your hosting business..."></textarea>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="save-btn">
+
+                                Save Profile
+
+                            </button>
+
+
+                            <div
+                                id="successMessage"
+                                class="success-message">
+
+                                Profile information saved successfully.
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- BUSINESS INFORMATION -->
+
+                    <section class="profile-card">
+
+                        <h2>
+                            Hosting Business
+                        </h2>
+
+                        <p class="card-description">
+                            Tell guests about the business or organization
+                            operating your stays.
+                        </p>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="businessName">
+                                    Business / Host Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="businessName"
+                                    placeholder="e.g. Golden Stay Ghana">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="hostType">
+                                    Host Type
+                                </label>
+
+                                <select id="hostType">
+
+                                    <option value="">
+                                        Select host type
+                                    </option>
+
+                                    <option value="hotel">
+                                        Hotel
+                                    </option>
+
+                                    <option value="serviced-apartment">
+                                        Serviced Apartment
+                                    </option>
+
+                                    <option value="short-stay-host">
+                                        Short-Stay Host
+                                    </option>
+
+                                    <option value="property-manager">
+                                        Property Manager
+                                    </option>
+
+                                    <option value="hospitality-company">
+                                        Hospitality Company
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="city">
+                                    Main Location
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="city"
+                                    placeholder="e.g. Accra">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="country">
+                                    Country
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="country"
+                                    value="Ghana"
+                                    readonly>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- CONTACT PREFERENCES -->
+
+                    <section class="profile-card">
+
+                        <h2>
+                            Guest Contact Preferences
+                        </h2>
+
+                        <p class="card-description">
+                            Choose how guests can communicate with you.
+                        </p>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="whatsapp">
+                                    WhatsApp Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="whatsapp"
+                                    placeholder="+233 XX XXX XXXX">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="language">
+                                    Preferred Language
+                                </label>
+
+                                <select id="language">
+
+                                    <option value="english">
+                                        English
+                                    </option>
+
+                                    <option value="french">
+                                        French
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- =================================
+                     SIDEBAR
+                ================================== -->
+
+                <aside>
+
+
+                    <!-- ACCOUNT STATUS -->
+
+                    <div class="sidebar-card">
+
+                        <h3>
+                            Account Status
+                        </h3>
+
+
+                        <div class="profile-item">
+
+                            <span>
+                                Verification
+                            </span>
+
+                            <strong class="status">
+                                Verified
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+                            <span>
+                                Host Status
+                            </span>
+
+                            <strong class="status">
+                                Active
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+                            <span>
+                                Subscription
+                            </span>
+
+                            <strong>
+                                Active
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+                            <span>
+                                Member Since
+                            </span>
+
+                            <strong>
+                                2026
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- QUICK LINKS -->
+
+                    <div class="sidebar-card">
+
+                        <h3>
+                            Host Management
+                        </h3>
+
+
+                        <div class="quick-links">
+
+                            <a href="stay-host-dashboard.html">
+                                Dashboard
+                            </a>
+
+                            <a href="stay-host-add.html">
+                                + Add a Stay
+                            </a>
+
+                            <a href="stay-host-stays.html">
+                                Manage My Stays
+                            </a>
+
+                            <a href="stay-host-booking-details.html">
+                                Bookings
+                            </a>
+
+                            <a href="stay-subscription.html">
+                                Subscription
+                            </a>
+
+                            <a href="stay-host-settings.html">
+                                Account Settings
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SECURITY -->
+
+                    <div class="sidebar-card">
+
+                        <h3>
+                            Security
+                        </h3>
+
+
+                        <div class="quick-links">
+
+                            <a href="forget-password.html">
+                                Change Password
+                            </a>
+
+                            <a href="stay-host-settings.html">
+                                Security Settings
+                            </a>
+
+                            <a
+                                href="login.html"
+                                class="logout-link">
+
+                                Log Out
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 HavenGH. All rights reserved.
+            </p>
+
+            <p>
+                Built for Ghana 🇬🇭
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        const form =
+            document.getElementById("hostProfileForm");
+
+        const successMessage =
+            document.getElementById("successMessage");
+
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            /*
+             * FRONTEND TEST ONLY
+             *
+             * Later this form will send the information
+             * to the HavenGH API.
+             */
+
+            successMessage.style.display = "block";
+
+            setTimeout(function() {
+
+                successMessage.style.display = "none";
+
+            }, 3500);
+
+        });
+
+
+        /*
+         * Generate simple initials for the avatar.
+         */
+
+        const firstName =
+            document.getElementById("firstName");
+
+        const lastName =
+            document.getElementById("lastName");
+
+        const avatar =
+            document.getElementById("hostAvatar");
+
+
+        function updateAvatar() {
+
+            const first =
+                firstName.value.trim().charAt(0);
+
+            const last =
+                lastName.value.trim().charAt(0);
+
+            if (first || last) {
+
+                avatar.textContent =
+                    (first + last).toUpperCase();
+
+            }
+
+        }
+
+
+        firstName.addEventListener(
+            "input",
+            updateAvatar
+        );
+
+        lastName.addEventListener(
+            "input",
+            updateAvatar
+        );
+
+    </script>
+
+    <script src="script.js"></script>
+    <script src="host-profile.js"></script>
+
+</body>
+</html>

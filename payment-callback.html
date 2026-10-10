@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment Verification | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+/* =========================================================
+   HAVENGH — PAYMENT VERIFICATION
+   Premium Deep Green + Antique Gold
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --deep-green: #06271f;
+    --dark-green: #031c16;
+    --green: #0d3b2e;
+    --gold: #c8a45d;
+    --light-gold: #e2c783;
+    --soft-gold: #967538;
+    --cream: #f7f3ea;
+    --white: #ffffff;
+    --text: #24332e;
+    --muted: #6c7772;
+    --border: rgba(200, 164, 93, 0.25);
+    --shadow: 0 25px 70px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(200, 164, 93, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(13, 59, 46, 0.25),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            var(--dark-green),
+            var(--deep-green) 50%,
+            #0a4031
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.payment-callback {
+    width: 100%;
+    max-width: 620px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================================
+   PAYMENT CARD
+   ========================================================= */
+
+.payment-card {
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border: 1px solid var(--border);
+    border-radius: 24px;
+
+    padding: 55px 45px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Elegant gold line at the top */
+
+.payment-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--soft-gold),
+            var(--light-gold),
+            var(--gold),
+            var(--light-gold),
+            var(--soft-gold)
+        );
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+#loading h1,
+#success h1,
+#error h1 {
+    margin-top: 24px;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: var(--deep-green);
+
+    letter-spacing: -0.5px;
+}
+
+#loading p,
+#success p,
+#error p {
+    margin-top: 14px;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   SPINNER
+   ========================================================= */
+
+.spinner {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto;
+
+    border: 5px solid rgba(200, 164, 93, 0.20);
+    border-top-color: var(--gold);
+
+    border-radius: 50%;
+
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   ICONS
+   ========================================================= */
+
+.icon {
+    width: 82px;
+    height: 82px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 42px;
+    font-weight: 700;
+
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--gold),
+            var(--soft-gold)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(150, 117, 56, 0.25);
+}
+
+
+/* Success icon */
+
+#success .icon {
+    background:
+        linear-gradient(
+            145deg,
+            #176b51,
+            var(--green)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(13, 59, 46, 0.25);
+}
+
+
+/* Error icon */
+
+#error .error-icon {
+    background:
+        linear-gradient(
+            145deg,
+            #9b4a42,
+            #702d27
+        );
+
+    box-shadow:
+        0 10px 30px rgba(112, 45, 39, 0.20);
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 190px;
+
+    margin-top: 30px;
+    padding: 14px 28px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--soft-gold)
+        );
+
+    color: var(--white);
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    box-shadow:
+        0 8px 22px rgba(150, 117, 56, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--light-gold),
+            var(--gold)
+        );
+
+    box-shadow:
+        0 12px 28px rgba(150, 117, 56, 0.35);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+   ========================================================= */
+
+#successMessage {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+   ========================================================= */
+
+#errorMessage {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 18px;
+    }
+
+    .payment-card {
+        padding: 45px 25px;
+        border-radius: 20px;
+    }
+
+    #loading h1,
+    #success h1,
+    #error h1 {
+        font-size: 25px;
+    }
+
+    #loading p,
+    #success p,
+    #error p {
+        font-size: 15px;
+    }
+
+    .icon {
+        width: 72px;
+        height: 72px;
+
+        font-size: 36px;
+    }
+
+    .spinner {
+        width: 54px;
+        height: 54px;
+    }
+
+    .btn {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <main class="payment-callback">
+
+        <div class="payment-card">
+
+            <!-- ============================= -->
+            <!-- LOADING -->
+            <!-- ============================= -->
+
+            <div id="loading">
+
+                <div class="spinner"></div>
+
+                <h1>Verifying Payment</h1>
+
+                <p>
+                    Please wait while HavenGH confirms your payment.
+                </p>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- SUCCESS -->
+            <!-- ============================= -->
+
+            <div id="success" style="display:none;">
+
+                <div class="icon">✓</div>
+
+                <h1>Payment Successful</h1>
+
+                <p id="successMessage">
+                    Your payment has been verified and your
+                    subscription has been activated successfully.
+                </p>
+
+                <a href="my-plan.html" class="btn">
+                    View My Plan
+                </a>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- ERROR -->
+            <!-- ============================= -->
+
+            <div id="error" style="display:none;">
+
+                <div class="icon error-icon">!</div>
+
+                <h1>Payment Verification Failed</h1>
+
+                <p id="errorMessage">
+                    We could not verify your payment.
+                </p>
+
+                <a href="my-plan.html" class="btn">
+                    Return to Plans
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Payment verification JavaScript -->
+    <script src="payment-callback.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+      content="Create your HavenGH tenant account and start finding your next home in Ghana.">
+
+<title>Tenant Registration | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+<style>
+
+/* ============================================================
+   HAVENGH — PREMIUM TENANT REGISTRATION
+   GLASSMORPHISM + GHANA FLAG BACKGROUND
+   HTML + JAVASCRIPT PRESERVED
+   ============================================================ */
+
+:root {
+    --haven-green: #0b4935;
+    --haven-green-dark: #03281d;
+    --haven-green-deep: #021c15;
+    --haven-green-light: #17694d;
+
+    --haven-gold: #d4af37;
+    --haven-gold-light: #f1d878;
+
+    --haven-white: #ffffff;
+    --haven-cream: #fffaf0;
+
+    --haven-text: #17352b;
+    --haven-muted: #71817a;
+
+    --glass-white: rgba(255,255,255,.86);
+    --glass-light: rgba(255,255,255,.72);
+    --glass-border: rgba(255,255,255,.42);
+
+    --danger: #a62929;
+    --success: #087443;
+}
+
+
+/* ============================================================
+   PAGE
+============================================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+.register-page {
+
+    min-height: 100vh;
+
+    color: var(--haven-text);
+
+    background:
+        linear-gradient(
+            rgba(2, 30, 22, .70),
+            rgba(2, 30, 22, .78)
+        ),
+        url("flag.jpg") center center / cover fixed no-repeat;
+
+    background-color: var(--haven-green-deep);
+
+    position: relative;
+}
+
+
+/* ============================================================
+   HEADER — GLASS
+============================================================ */
+
+.register-header {
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(2, 35, 26, .74);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.13);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.22);
+}
+
+
+.register-header-inner {
+
+    max-width: 1180px;
+
+    min-height: 80px;
+
+    margin: 0 auto;
+
+    padding:
+        0 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* ============================================================
+   BRAND
+============================================================ */
+
+.register-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding:
+        7px 13px 7px 7px;
+
+    border:
+        1px solid rgba(212,175,55,.32);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,.075);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    text-decoration: none;
+
+    transition:
+        .3s ease;
+}
+
+
+.register-brand:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        rgba(212,175,55,.65);
+
+    background:
+        rgba(255,255,255,.11);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.20);
+}
+
+
+.register-brand img {
+
+    width: 45px;
+    height: 45px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(212,175,55,.70);
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.30);
+}
+
+
+.register-brand .brand-name {
+
+    color: #ffffff;
+
+    font-size:
+        1.45rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -.6px;
+}
+
+
+.register-brand .brand-name span {
+
+    color:
+        var(--haven-gold-light);
+}
+
+
+/* ============================================================
+   HOME LINK
+============================================================ */
+
+.home-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        10px 17px;
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255,255,255,.075);
+
+    color:
+        rgba(255,255,255,.90);
+
+    text-decoration:
+        none;
+
+    font-size:
+        .88rem;
+
+    font-weight:
+        700;
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transition:
+        .25s ease;
+}
+
+
+.home-link:hover {
+
+    color:
+        #ffffff;
+
+    background:
+        rgba(212,175,55,.13);
+
+    border-color:
+        rgba(212,175,55,.70);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.18);
+}
+
+
+/* ============================================================
+   MAIN
+============================================================ */
+
+.register-main {
+
+    position: relative;
+
+    padding:
+        65px 20px 85px;
+}
+
+
+.register-wrapper {
+
+    width: 100%;
+
+    max-width:
+        850px;
+
+    margin:
+        0 auto;
+}
+
+
+/* ============================================================
+   HEADING
+============================================================ */
+
+.register-heading {
+
+    text-align:
+        center;
+
+    margin-bottom:
+        32px;
+}
+
+
+.register-heading small {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    padding:
+        7px 13px;
+
+    margin-bottom:
+        13px;
+
+    border:
+        1px solid rgba(212,175,55,.45);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(212,175,55,.12);
+
+    color:
+        var(--haven-gold-light);
+
+    font-size:
+        .70rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.register-heading h1 {
+
+    margin:
+        0;
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(2.1rem, 5vw, 3.2rem);
+
+    line-height:
+        1.08;
+
+    letter-spacing:
+        -1.6px;
+
+    text-shadow:
+        0 5px 25px rgba(0,0,0,.30);
+}
+
+
+.register-heading p {
+
+    max-width:
+        620px;
+
+    margin:
+        15px auto 0;
+
+    color:
+        rgba(255,255,255,.78);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.7;
+}
+
+
+/* ============================================================
+   MAIN GLASS CARD
+============================================================ */
+
+.register-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    padding:
+        clamp(25px, 5vw, 48px);
+
+    border:
+        1px solid var(--glass-border);
+
+    border-radius:
+        28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.91),
+            rgba(245,249,246,.78)
+        );
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+    box-shadow:
+        0 30px 80px rgba(0,25,18,.38),
+        inset 0 1px 0 rgba(255,255,255,.75);
+}
+
+
+.register-card::before {
+
+    content: "";
+
+    position:
+        absolute;
+
+    top: 0;
+    left: 50px;
+    right: 50px;
+
+    height:
+        4px;
+
+    border-radius:
+        0 0 12px 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--haven-gold),
+            var(--haven-gold-light),
+            var(--haven-gold),
+            transparent
+        );
+}
+
+
+/* ============================================================
+   MESSAGE
+============================================================ */
+
+.register-message {
+
+    display:
+        none;
+
+    margin-bottom:
+        22px;
+
+    padding:
+        14px 16px;
+
+    border-radius:
+        13px;
+
+    font-size:
+        .90rem;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.5;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.register-message.error {
+
+    display:
+        block;
+
+    color:
+        var(--danger);
+
+    background:
+        rgba(180,40,40,.08);
+
+    border:
+        1px solid rgba(180,40,40,.20);
+}
+
+
+.register-message.success {
+
+    display:
+        block;
+
+    color:
+        var(--success);
+
+    background:
+        rgba(8,116,67,.08);
+
+    border:
+        1px solid rgba(8,116,67,.20);
+}
+
+
+/* ============================================================
+   FORM GRID
+============================================================ */
+
+.form-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:
+        22px 20px;
+}
+
+
+.form-field.full {
+
+    grid-column:
+        1 / -1;
+}
+
+
+/* ============================================================
+   LABELS
+============================================================ */
+
+.form-field label {
+
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--haven-green-dark);
+
+    font-size:
+        .86rem;
+
+    font-weight:
+        800;
+}
+
+
+/* ============================================================
+   INPUT GLASS
+============================================================ */
+
+.form-field input {
+
+    width:
+        100%;
+
+    min-height:
+        53px;
+
+    box-sizing:
+        border-box;
+
+    padding:
+        0 15px;
+
+    border:
+        1px solid rgba(20,72,54,.15);
+
+    border-radius:
+        14px;
+
+    outline:
+        none;
+
+    background:
+        rgba(255,255,255,.66);
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        .94rem;
+
+    font-weight:
+        600;
+
+    box-shadow:
+        inset 0 1px 3px rgba(0,0,0,.025);
+
+    transition:
+        .25s ease;
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+.form-field input::placeholder {
+
+    color:
+        #9aa7a1;
+
+    font-weight:
+        500;
+}
+
+
+.form-field input:hover {
+
+    background:
+        rgba(255,255,255,.84);
+
+    border-color:
+        rgba(20,104,75,.30);
+}
+
+
+.form-field input:focus {
+
+    background:
+        rgba(255,255,255,.95);
+
+    border-color:
+        var(--haven-green-light);
+
+    box-shadow:
+        0 0 0 4px rgba(20,104,75,.09),
+        0 8px 25px rgba(5,48,35,.08);
+}
+
+
+.field-note {
+
+    margin-top:
+        7px;
+
+    color:
+        var(--haven-muted);
+
+    font-size:
+        .77rem;
+
+    line-height:
+        1.5;
+}
+
+
+/* ============================================================
+   PASSWORD
+============================================================ */
+
+.password-wrapper {
+
+    position:
+        relative;
+}
+
+
+.password-wrapper input {
+
+    padding-right:
+        70px;
+}
+
+
+.show-password {
+
+    position:
+        absolute;
+
+    right:
+        8px;
+
+    top:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid rgba(20,104,75,.13);
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(20,104,75,.06);
+
+    color:
+        var(--haven-green);
+
+    font-size:
+        .76rem;
+
+    font-weight:
+        900;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s ease;
+}
+
+
+.show-password:hover {
+
+    background:
+        var(--haven-green);
+
+    color:
+        #ffffff;
+
+    border-color:
+        var(--haven-green);
+}
+
+
+/* ============================================================
+   TERMS
+============================================================ */
+
+.terms {
+
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        10px;
+
+    margin-top:
+        28px;
+
+    padding:
+        14px;
+
+    border:
+        1px solid rgba(20,104,75,.09);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(20,104,75,.035);
+
+    color:
+        var(--haven-muted);
+
+    font-size:
+        .84rem;
+
+    line-height:
+        1.6;
+
+    cursor:
+        pointer;
+}
+
+
+.terms input {
+
+    width:
+        18px;
+
+    height:
+        18px;
+
+    flex:
+        0 0 auto;
+
+    margin-top:
+        3px;
+
+    accent-color:
+        var(--haven-green);
+
+    cursor:
+        pointer;
+}
+
+
+.terms a {
+
+    color:
+        var(--haven-green);
+
+    font-weight:
+        800;
+
+    text-decoration:
+        none;
+}
+
+
+.terms a:hover {
+
+    color:
+        var(--haven-gold);
+
+    text-decoration:
+        underline;
+}
+
+
+/* ============================================================
+   REGISTER BUTTON
+============================================================ */
+
+.register-button {
+
+    width:
+        100%;
+
+    min-height:
+        58px;
+
+    margin-top:
+        22px;
+
+    border:
+        1px solid rgba(212,175,55,.58);
+
+    border-radius:
+        15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #073b2b,
+            #0d6146
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        .96rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        .15px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 13px 30px rgba(4,45,33,.25),
+        inset 0 1px 0 rgba(255,255,255,.12);
+
+    transition:
+        .3s ease;
+}
+
+
+.register-button:hover:not(:disabled) {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        var(--haven-gold-light);
+
+    background:
+        linear-gradient(
+            135deg,
+            #12694b,
+            #0a3b2b
+        );
+
+    box-shadow:
+        0 18px 38px rgba(4,45,33,.32),
+        0 0 25px rgba(212,175,55,.12);
+}
+
+
+.register-button:active:not(:disabled) {
+
+    transform:
+        translateY(0);
+}
+
+
+.register-button:disabled {
+
+    opacity:
+        .65;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* ============================================================
+   SIGN IN
+============================================================ */
+
+.signin-area {
+
+    margin-top:
+        28px;
+
+    padding-top:
+        24px;
+
+    border-top:
+        1px solid rgba(20,72,54,.11);
+
+    text-align:
+        center;
+
+    color:
+        var(--haven-muted);
+
+    font-size:
+        .88rem;
+}
+
+
+.signin-area a {
+
+    color:
+        var(--haven-green);
+
+    font-weight:
+        900;
+
+    text-decoration:
+        none;
+
+    margin-left:
+        5px;
+
+    transition:
+        .2s ease;
+}
+
+
+.signin-area a:hover {
+
+    color:
+        var(--haven-gold);
+}
+
+
+/* ============================================================
+   FOOTER — GLASS
+============================================================ */
+
+.register-footer {
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    padding:
+        30px 20px 36px;
+
+    background:
+        rgba(2,30,22,.78);
+
+    border-top:
+        1px solid rgba(255,255,255,.11);
+
+    color:
+        rgba(255,255,255,.64);
+
+    text-align:
+        center;
+
+    font-size:
+        .80rem;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+
+.footer-links {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    gap:
+        22px;
+
+    margin-top:
+        11px;
+}
+
+
+.footer-links a {
+
+    color:
+        rgba(255,255,255,.80);
+
+    text-decoration:
+        none;
+
+    font-weight:
+        600;
+
+    transition:
+        .2s ease;
+}
+
+
+.footer-links a:hover {
+
+    color:
+        var(--haven-gold-light);
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width:700px) {
+
+    .register-header-inner {
+
+        min-height:
+            70px;
+
+        padding:
+            0 15px;
+    }
+
+
+    .register-brand {
+
+        padding:
+            5px 9px 5px 5px;
+
+        border-radius:
+            13px;
+    }
+
+
+    .register-brand img {
+
+        width:
+            38px;
+
+        height:
+            38px;
+
+        border-radius:
+            10px;
+    }
+
+
+    .register-brand .brand-name {
+
+        font-size:
+            1.20rem;
+    }
+
+
+    .home-link {
+
+        padding:
+            8px 11px;
+
+        font-size:
+            .76rem;
+    }
+
+
+    .register-main {
+
+        padding:
+            45px 14px 65px;
+    }
+
+
+    .register-heading {
+
+        margin-bottom:
+            25px;
+    }
+
+
+    .register-heading h1 {
+
+        font-size:
+            2rem;
+    }
+
+
+    .register-heading p {
+
+        font-size:
+            .90rem;
+    }
+
+
+    .register-card {
+
+        padding:
+            27px 18px;
+
+        border-radius:
+            21px;
+    }
+
+
+    .register-card::before {
+
+        left:
+            25px;
+
+        right:
+            25px;
+    }
+
+
+    .form-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            19px;
+    }
+
+
+    .form-field.full {
+
+        grid-column:
+            auto;
+    }
+
+
+    .terms {
+
+        font-size:
+            .79rem;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+============================================================ */
+
+@media (max-width:420px) {
+
+    .register-brand .brand-name {
+
+        font-size:
+            1.05rem;
+    }
+
+
+    .home-link {
+
+        font-size:
+            0;
+
+        padding:
+            8px;
+
+        border:
+            none;
+
+        background:
+            rgba(255,255,255,.08);
+    }
+
+
+    .home-link::before {
+
+        content:
+            "←";
+
+        color:
+            #ffffff;
+
+        font-size:
+            1.25rem;
+    }
+
+
+    .register-card {
+
+        padding:
+            23px 15px;
+
+        border-radius:
+            19px;
+    }
+
+
+    .register-heading h1 {
+
+        font-size:
+            1.8rem;
+    }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            .01ms !important;
+
+        transition-duration:
+            .01ms !important;
+    }
+
+}
+
+</style>
+
+
+
+
+</head>
+
+<body>
+
+<div class="register-page">
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="register-header">
+
+    <div class="register-header-inner">
+
+        <a href="index.html" class="register-brand">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <div class="brand-name">
+                Haven<span>GH</span>
+            </div>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="home-link">
+
+            ← Back to HavenGH
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="register-main">
+
+    <div class="register-wrapper">
+
+        <div class="register-heading">
+
+            <small>JOIN HAVENGH</small>
+
+            <h1>
+                Create Your Account
+            </h1>
+
+            <p>
+                Create your HavenGH tenant account and start
+                finding homes across Ghana.
+            </p>
+
+        </div>
+
+
+        <div class="register-card">
+
+            <div
+                id="registerMessage"
+                class="register-message">
+            </div>
+
+
+            <form
+                id="tenant-register-form"
+                novalidate>
+
+
+                <div class="form-grid">
+
+
+                    <!-- FIRST NAME -->
+
+                    <div class="form-field">
+
+                        <label for="tenant-first-name">
+                            First Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tenant-first-name"
+                            name="firstName"
+                            placeholder="Enter your first name"
+                            autocomplete="given-name"
+                            required>
+
+                    </div>
+
+
+                    <!-- LAST NAME -->
+
+                    <div class="form-field">
+
+                        <label for="tenant-last-name">
+                            Last Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tenant-last-name"
+                            name="lastName"
+                            placeholder="Enter your last name"
+                            autocomplete="family-name"
+                            required>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-field full">
+
+                        <label for="tenant-email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="tenant-email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-field full">
+
+                        <label for="tenant-phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="tenant-phone"
+                            name="phone"
+                            placeholder="e.g. 024 123 4567"
+                            autocomplete="tel"
+                            required>
+
+                        <div class="field-note">
+                            Use a phone number you can access.
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-field">
+
+                        <label for="tenant-password">
+                            Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="tenant-password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required>
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="showPasswordBtn">
+
+                                Show
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-field">
+
+                        <label for="tenant-confirm-password">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="tenant-confirm-password"
+                            name="confirmPassword"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="termsAgreement"
+                        required>
+
+                    <span>
+                        I agree to the
+                        <a href="terms.html">
+                            HavenGH Terms &amp; Service
+                        </a>
+                        and acknowledge the
+                        <a href="privacy-policy.html">
+                            Privacy Policy
+                        </a>
+                    </span>
+
+                </label>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="register-button"
+                    id="registerButton">
+
+                    Create Tenant Account
+
+                </button>
+
+
+            </form>
+
+
+            <!-- SIGN IN -->
+
+            <div class="signin-area">
+
+                Already have a HavenGH account?
+
+                <a href="tenant-login.html">
+                    Sign In
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="register-footer">
+
+    © 2026 HavenGH. All rights reserved.
+
+    <div class="footer-links">
+
+        <a href="terms.html">
+            Terms &amp; Service
+        </a>
+
+        <a href="privacy-policy.html">
+            Privacy
+        </a>
+
+    </div>
+
+</footer>
+```
+
+</div>
+
+<script>
+"use strict";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const API_BASE_URL = "http://localhost:5073";
+    const API_URL = `${API_BASE_URL}/api/Auth/register-tenant`;
+
+    const form =
+        document.getElementById("tenant-register-form");
+
+    const registerButton =
+        document.getElementById("registerButton");
+
+    const message =
+        document.getElementById("registerMessage");
+
+    const password =
+        document.getElementById("tenant-password");
+
+    const confirmPassword =
+        document.getElementById("tenant-confirm-password");
+
+    const showPasswordBtn =
+        document.getElementById("showPasswordBtn");
+
+    const firstNameInput =
+        document.getElementById("tenant-first-name");
+
+    const lastNameInput =
+        document.getElementById("tenant-last-name");
+
+    const emailInput =
+        document.getElementById("tenant-email");
+
+    const phoneInput =
+        document.getElementById("tenant-phone");
+
+    const termsAgreement =
+        document.getElementById("termsAgreement");
+
+
+    /* =========================================================
+       SHOW / HIDE PASSWORD
+    ========================================================= */
+
+    showPasswordBtn.addEventListener("click", function () {
+
+        const hidden = password.type === "password";
+
+        password.type = hidden ? "text" : "password";
+        confirmPassword.type = hidden ? "text" : "password";
+
+        showPasswordBtn.textContent =
+            hidden ? "Hide" : "Show";
+
+    });
+
+
+    /* =========================================================
+       MESSAGE
+    ========================================================= */
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            "register-message " + type;
+
+        message.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
+
+
+    function clearMessage() {
+
+        message.textContent = "";
+        message.className = "register-message";
+
+    }
+
+
+    /* =========================================================
+       BUTTON STATE
+    ========================================================= */
+
+    function setSubmitting(isSubmitting) {
+
+        registerButton.disabled = isSubmitting;
+
+        registerButton.textContent =
+            isSubmitting
+                ? "Creating Account..."
+                : "Create Tenant Account";
+
+    }
+
+
+    /* =========================================================
+       API ERROR HANDLER
+    ========================================================= */
+
+    async function getApiError(response) {
+
+        let data = null;
+
+        try {
+
+            data = await response.json();
+
+        } catch {
+
+            data = null;
+
+        }
+
+        if (data) {
+
+            if (data.message) {
+                return data.message;
+            }
+
+            if (data.error) {
+                return data.error;
+            }
+
+            if (data.title) {
+                return data.title;
+            }
+
+            if (data.errors) {
+
+                const errors = [];
+
+                Object.values(data.errors).forEach(function (value) {
+
+                    if (Array.isArray(value)) {
+
+                        errors.push(...value);
+
+                    } else if (value) {
+
+                        errors.push(value);
+
+                    }
+
+                });
+
+                if (errors.length) {
+                    return errors.join(" ");
+                }
+            }
+        }
+
+        return "Registration failed. Please check your information and try again.";
+    }
+
+
+    /* =========================================================
+       EMAIL VALIDATION
+    ========================================================= */
+
+    function isValidEmail(email) {
+
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    }
+
+
+    /* =========================================================
+       PHONE VALIDATION
+    ========================================================= */
+
+    function isValidPhone(phone) {
+
+        const cleaned =
+            phone.replace(/[\s\-()]/g, "");
+
+        return /^\+?\d{9,15}$/.test(cleaned);
+
+    }
+
+
+    /* =========================================================
+       FORM SUBMISSION
+    ========================================================= */
+
+    form.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        clearMessage();
+
+
+        const firstName =
+            firstNameInput.value.trim();
+
+        const lastName =
+            lastNameInput.value.trim();
+
+        const email =
+            emailInput.value.trim().toLowerCase();
+
+        const phone =
+            phoneInput.value.trim();
+
+        const passwordValue =
+            password.value;
+
+        const confirmPasswordValue =
+            confirmPassword.value;
+
+        const termsAccepted =
+            termsAgreement.checked;
+
+
+        /* =====================================================
+           REQUIRED FIELDS
+        ===================================================== */
+
+        if (
+            !firstName ||
+            !lastName ||
+            !email ||
+            !phone ||
+            !passwordValue ||
+            !confirmPasswordValue
+        ) {
+
+            showMessage(
+                "Please complete all required fields.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        /* =====================================================
+           NAME VALIDATION
+        ===================================================== */
+
+        if (firstName.length < 2) {
+
+            showMessage(
+                "Please enter a valid first name.",
+                "error"
+            );
+
+            firstNameInput.focus();
+
+            return;
+        }
+
+
+        if (lastName.length < 2) {
+
+            showMessage(
+                "Please enter a valid last name.",
+                "error"
+            );
+
+            lastNameInput.focus();
+
+            return;
+        }
+
+
+        /* =====================================================
+           EMAIL
+        ===================================================== */
+
+        if (!isValidEmail(email)) {
+
+            showMessage(
+                "Please enter a valid email address.",
+                "error"
+            );
+
+            emailInput.focus();
+
+            return;
+        }
+
+
+        /* =====================================================
+           PHONE
+        ===================================================== */
+
+        if (!isValidPhone(phone)) {
+
+            showMessage(
+                "Please enter a valid phone number.",
+                "error"
+            );
+
+            phoneInput.focus();
+
+            return;
+        }
+
+
+        /* =====================================================
+           PASSWORD
+        ===================================================== */
+
+        if (passwordValue.length < 8) {
+
+            showMessage(
+                "Password must contain at least 8 characters.",
+                "error"
+            );
+
+            password.focus();
+
+            return;
+        }
+
+
+        if (passwordValue !== confirmPasswordValue) {
+
+            showMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            confirmPassword.focus();
+
+            return;
+        }
+
+
+        /* =====================================================
+           TERMS
+        ===================================================== */
+
+        if (!termsAccepted) {
+
+            showMessage(
+                "Please accept the HavenGH Terms & Service.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        /* =====================================================
+           SUBMIT
+        ===================================================== */
+
+        setSubmitting(true);
+
+
+        try {
+
+            const response = await fetch(
+                API_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        firstName: firstName,
+
+                        lastName: lastName,
+
+                        email: email,
+
+                        phone: phone,
+
+                        password: passwordValue,
+
+                        confirmPassword: confirmPasswordValue
+
+                    })
+                }
+            );
+
+
+            if (!response.ok) {
+
+                const errorMessage =
+                    await getApiError(response);
+
+                showMessage(
+                    errorMessage,
+                    "error"
+                );
+
+                return;
+            }
+
+
+            let data = null;
+
+            try {
+
+                data = await response.json();
+
+            } catch {
+
+                data = null;
+
+            }
+
+
+            /* =================================================
+               SUCCESS
+            ================================================= */
+
+            showMessage(
+                data?.message ||
+                "Your HavenGH tenant account was created successfully. Redirecting to sign in...",
+                "success"
+            );
+
+
+            form.reset();
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "sign-in.html";
+
+            }, 1500);
+
+
+        } catch (error) {
+
+            console.error(
+                "HavenGH tenant registration error:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to connect to HavenGH. Please make sure the API is running on http://localhost:5073.",
+                "error"
+            );
+
+
+        } finally {
+
+            setSubmitting(false);
+
+        }
+
+    });
+
+});
+</script>
+
+</body>
+
+</html>

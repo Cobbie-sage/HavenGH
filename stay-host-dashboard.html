@@ -1,0 +1,4756 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="HavenGH Stay Host Dashboard - Manage your stays, bookings, subscription and profile.">
+
+    <title>Stay Host Dashboard | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================================
+   HAVENGH STAY HOST DASHBOARD
+   PREMIUM / READABILITY / RESPONSIVE CSS
+===================================================== */
+
+:root {
+
+    --green: #064e3b;
+    --green-dark: #043c2e;
+    --green-deep: #022c22;
+    --green-light: #0f766e;
+
+    --gold: #d4af37;
+    --gold-light: #f4e7b2;
+
+    --cream: #f6f7f4;
+    --white: #ffffff;
+
+    --text: #1f2937;
+    --text-dark: #111827;
+    --muted: #6b7280;
+
+    --border: #e5e7eb;
+    --border-soft: #edf0ee;
+
+    --danger: #b91c1c;
+    --warning: #b45309;
+    --success: #047857;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, .07);
+
+    --shadow-hover:
+        0 16px 38px rgba(0, 0, 0, .11);
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    line-height: 1.5;
+
+    overflow-x: hidden;
+}
+
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+
+button {
+
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   DASHBOARD LAYOUT
+===================================================== */
+
+.dashboard {
+
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    width: 260px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #064e3b 0%,
+            #043c2e 100%
+        );
+
+    color: #ffffff;
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    bottom: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 20px 18px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(212,175,55,.45)
+        transparent;
+}
+
+
+/* =====================================================
+   SIDEBAR SCROLLBAR
+===================================================== */
+
+.sidebar::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+
+.sidebar::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+
+.sidebar::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(212,175,55,.45);
+
+    border-radius: 10px;
+}
+
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(212,175,55,.75);
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding:
+        8px
+        12px
+        25px;
+
+    flex-shrink: 0;
+}
+
+
+.brand img {
+
+    width: 42px;
+
+    height: 42px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.brand-name {
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    letter-spacing: .4px;
+
+    color: #ffffff;
+}
+
+
+.brand-name span {
+
+    color: var(--gold);
+}
+
+
+.host-label {
+
+    font-size: 10px;
+
+    letter-spacing: 1.4px;
+
+    color: #d5e3de;
+
+    text-transform: uppercase;
+
+    margin-top: 3px;
+}
+
+
+/* =====================================================
+   SIDEBAR SECTION TITLES
+===================================================== */
+
+.sidebar-section-title {
+
+    color: #c9d9d3;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+
+    padding:
+        10px
+        12px;
+
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   SIDEBAR NAV
+===================================================== */
+
+.sidebar-nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.sidebar-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding:
+        12px
+        14px;
+
+    border-radius: 10px;
+
+    color: #edf5f2;
+
+    font-size: 14px;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+    flex-shrink: 0;
+}
+
+
+.sidebar-link:hover {
+
+    background:
+        rgba(255,255,255,.12);
+
+    color: #ffffff;
+
+    transform: translateX(2px);
+}
+
+
+.sidebar-link.active {
+
+    background: #ffffff;
+
+    color: var(--green-dark);
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.10);
+}
+
+
+.sidebar-link.active .sidebar-icon {
+
+    color: var(--green-dark);
+}
+
+
+.sidebar-icon {
+
+    width: 22px;
+
+    min-width: 22px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    color: #dce9e5;
+}
+
+
+/* =====================================================
+   SIDEBAR BOTTOM
+===================================================== */
+
+.sidebar-bottom {
+
+    margin-top: 25px;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.12);
+
+    flex-shrink: 0;
+}
+
+
+.logout-link {
+
+    color: #ffd8d8;
+}
+
+
+.logout-link:hover {
+
+    background:
+        rgba(185,28,28,.18);
+
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+
+    margin-left: 260px;
+
+    width:
+        calc(100% - 260px);
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    height: 78px;
+
+    background: #ffffff;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 38px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 500;
+}
+
+
+.mobile-menu {
+
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--green-dark);
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.notification {
+
+    position: relative;
+
+    font-size: 20px;
+
+    color: var(--green-dark);
+
+    cursor: pointer;
+}
+
+
+.notification-dot {
+
+    position: absolute;
+
+    top: -2px;
+
+    right: -3px;
+
+    width: 7px;
+
+    height: 7px;
+
+    background: var(--gold);
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   HOST MINI PROFILE
+===================================================== */
+
+.host-mini-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+.host-avatar {
+
+    width: 39px;
+
+    height: 39px;
+
+    border-radius: 50%;
+
+    background: var(--green-dark);
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.host-mini-profile strong {
+
+    display: block;
+
+    font-size: 13px;
+
+    color: var(--text-dark);
+}
+
+
+.host-mini-profile small {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content {
+
+    padding: 38px;
+
+    max-width: 1500px;
+
+    margin: auto;
+}
+
+
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.eyebrow {
+
+    color: #a47f0b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+}
+
+
+.welcome h1 {
+
+    color: var(--green-dark);
+
+    font-size: 32px;
+
+    line-height: 1.2;
+
+    margin-bottom: 7px;
+}
+
+
+.welcome p {
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   PRIMARY BUTTON
+===================================================== */
+
+.primary-btn {
+
+    border: none;
+
+    background: var(--green-dark);
+
+    color: #ffffff;
+
+    padding:
+        13px
+        20px;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    white-space: nowrap;
+}
+
+
+.primary-btn:hover {
+
+    background: var(--green-deep);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(4,60,46,.18);
+}
+
+
+/* =====================================================
+   STAT CARDS
+===================================================== */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+
+.stat-card {
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.stat-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+
+.stat-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 17px;
+}
+
+
+.stat-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 10px;
+
+    background: #edf7f3;
+
+    color: var(--green-dark);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+
+.stat-card small {
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.stat-card h2 {
+
+    color: var(--green-dark);
+
+    font-size: 27px;
+
+    margin-bottom: 5px;
+}
+
+
+.stat-change {
+
+    font-size: 11px;
+
+    color: #15803d;
+}
+
+
+/* =====================================================
+   DASHBOARD GRID
+===================================================== */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1.55fr 1fr;
+
+    gap: 22px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =====================================================
+   GENERAL CARD
+===================================================== */
+
+.card {
+
+    background: #ffffff;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 16px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+.card-header {
+
+    padding:
+        21px
+        23px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.card-header h3 {
+
+    color: var(--green-dark);
+
+    font-size: 17px;
+}
+
+
+.card-header a {
+
+    color: var(--green-light);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition: color .2s ease;
+}
+
+
+.card-header a:hover {
+
+    color: var(--green-deep);
+}
+
+
+/* =====================================================
+   BOOKINGS
+===================================================== */
+
+.booking {
+
+    padding:
+        18px
+        23px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom:
+        1px solid
+        #f0f0f0;
+
+    gap: 15px;
+}
+
+
+.booking-info {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+.booking-image {
+
+    width: 54px;
+
+    height: 54px;
+
+    border-radius: 10px;
+
+    object-fit: cover;
+
+    background: #f0f3f1;
+}
+
+
+.booking strong {
+
+    font-size: 13px;
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--text-dark);
+}
+
+
+.booking small {
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   SUBSCRIPTION
+===================================================== */
+
+.subscription-card {
+
+    padding: 25px;
+}
+
+
+.plan-name {
+
+    color: var(--green-dark);
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+
+.plan-price {
+
+    font-size: 27px;
+
+    color: var(--green-dark);
+
+    font-weight: 700;
+}
+
+
+.plan-price span {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: normal;
+}
+
+
+.plan-status {
+
+    display: inline-block;
+
+    margin:
+        13px 0 20px;
+
+    background: #ecfdf5;
+
+    color: #047857;
+
+    border:
+        1px solid
+        #bbf7d0;
+
+    padding:
+        6px
+        10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.plan-feature {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-bottom: 11px;
+
+    color: #4b5563;
+
+    font-size: 12px;
+}
+
+
+.plan-feature span {
+
+    color: #a47f0b;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   OUTLINE BUTTON
+===================================================== */
+
+.outline-btn {
+
+    width: 100%;
+
+    border:
+        1px solid
+        var(--green-dark);
+
+    color: var(--green-dark);
+
+    background: #ffffff;
+
+    padding: 11px;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    margin-top: 8px;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+
+.outline-btn:hover {
+
+    background: #f0fdf9;
+
+    color: var(--green-deep);
+}
+
+
+/* =====================================================
+   STAYS
+===================================================== */
+
+.stays-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+
+    padding: 20px;
+}
+
+
+.stay-mini-card {
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.stay-mini-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.08);
+}
+
+
+.stay-mini-card img {
+
+    width: 100%;
+
+    height: 145px;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #eeeeee;
+}
+
+
+.stay-mini-content {
+
+    padding: 14px;
+}
+
+
+.stay-mini-content h4 {
+
+    color: var(--green-dark);
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+
+    line-height: 1.35;
+}
+
+
+.stay-mini-content p {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-bottom: 10px;
+
+    line-height: 1.45;
+}
+
+
+.stay-meta {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.stay-price {
+
+    font-weight: 700;
+
+    color: var(--green-dark);
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   STATUS BADGES
+===================================================== */
+
+.stay-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 9px;
+
+    padding:
+        5px
+        8px;
+
+    border-radius: 15px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.stay-status.draft {
+
+    background: #f3f4f6;
+
+    color: #4b5563;
+}
+
+
+.stay-status.pending {
+
+    background: #fff7ed;
+
+    color: var(--warning);
+
+    border:
+        1px solid
+        #fed7aa;
+}
+
+
+.stay-status.published {
+
+    background: #ecfdf5;
+
+    color: var(--success);
+
+    border:
+        1px solid
+        #bbf7d0;
+}
+
+
+.stay-status.archived {
+
+    background: #fef2f2;
+
+    color: var(--danger);
+
+    border:
+        1px solid
+        #fecaca;
+}
+
+
+/* =====================================================
+   SUBMIT REVIEW BUTTON
+===================================================== */
+
+.review-btn {
+
+    width: 100%;
+
+    margin-top: 13px;
+
+    border: none;
+
+    background: var(--green-dark);
+
+    color: #ffffff;
+
+    padding:
+        10px
+        12px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.review-btn:hover {
+
+    background: var(--green-deep);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+.review-btn:disabled {
+
+    opacity: .65;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =====================================================
+   STAY MESSAGES
+===================================================== */
+
+.pending-message {
+
+    margin-top: 13px;
+
+    padding:
+        9px
+        10px;
+
+    border-radius: 8px;
+
+    background: #fffaf0;
+
+    color: var(--warning);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+.live-message {
+
+    margin-top: 13px;
+
+    padding:
+        9px
+        10px;
+
+    border-radius: 8px;
+
+    background: #ecfdf5;
+
+    color: var(--success);
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+.draft-message {
+
+    margin-top: 13px;
+
+    padding:
+        9px
+        10px;
+
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   ACTION MESSAGE
+===================================================== */
+
+.action-message {
+
+    display: none;
+
+    margin:
+        0 20px 18px;
+
+    padding:
+        12px
+        14px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.action-message.success {
+
+    display: block;
+
+    background: #ecfdf5;
+
+    color: #047857;
+
+    border:
+        1px solid
+        #bbf7d0;
+}
+
+
+.action-message.error {
+
+    display: block;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    border:
+        1px solid
+        #fecaca;
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-card {
+
+    padding: 25px;
+}
+
+
+.profile-head {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+}
+
+
+.large-avatar {
+
+    width: 65px;
+
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: var(--green-dark);
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+
+.profile-head h3 {
+
+    color: var(--green-dark);
+
+    margin-bottom: 4px;
+}
+
+
+.profile-head p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.profile-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding:
+        12px 0;
+
+    border-bottom:
+        1px solid
+        #f0f0f0;
+
+    font-size: 12px;
+
+    gap: 15px;
+}
+
+
+.profile-item span:first-child {
+
+    color: var(--muted);
+}
+
+
+.profile-item strong {
+
+    color: var(--text-dark);
+
+    text-align: right;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   ACCESSIBILITY / FOCUS
+===================================================== */
+
+.sidebar-link:focus-visible,
+.primary-btn:focus-visible,
+.outline-btn:focus-visible,
+.review-btn:focus-visible,
+.mobile-menu:focus-visible {
+
+    outline:
+        3px solid
+        rgba(212,175,55,.65);
+
+    outline-offset: 2px;
+}
+
+
+/* =====================================================
+   SHORT SCREEN SUPPORT
+===================================================== */
+
+@media (max-height: 700px) and (min-width: 851px) {
+
+    .sidebar {
+
+        padding-top: 12px;
+
+        padding-bottom: 12px;
+    }
+
+
+    .brand {
+
+        padding-bottom: 17px;
+    }
+
+
+    .sidebar-section-title {
+
+        padding-top: 7px;
+
+        padding-bottom: 7px;
+    }
+
+
+    .sidebar-link {
+
+        padding-top: 9px;
+
+        padding-bottom: 9px;
+    }
+
+
+    .sidebar-nav {
+
+        gap: 3px;
+    }
+
+
+    .sidebar-bottom {
+
+        margin-top: 16px;
+
+        padding-top: 12px;
+    }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .stats-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+
+        transform:
+            translateX(-100%);
+
+        transition:
+            transform .25s ease;
+
+        box-shadow:
+            8px 0 30px
+            rgba(0,0,0,.18);
+
+        width: 275px;
+
+        padding:
+            18px;
+    }
+
+
+    .sidebar.open {
+
+        transform:
+            translateX(0);
+    }
+
+
+    .main {
+
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+
+    .mobile-menu {
+
+        display: block;
+    }
+
+
+    .topbar {
+
+        padding:
+            0 20px;
+    }
+
+
+    .content {
+
+        padding:
+            25px 18px;
+    }
+
+
+    .welcome {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .primary-btn {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .stats-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .stays-list {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .host-mini-profile div {
+
+        display: none;
+    }
+
+
+    .welcome h1 {
+
+        font-size: 26px;
+    }
+
+
+    .welcome p {
+
+        font-size: 13px;
+    }
+
+
+    .booking {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .card-header {
+
+        padding:
+            18px;
+    }
+
+
+    .subscription-card {
+
+        padding:
+            20px;
+    }
+
+
+    .profile-card {
+
+        padding:
+            20px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .content {
+
+        padding:
+            20px 14px;
+    }
+
+
+    .topbar {
+
+        padding:
+            0 14px;
+    }
+
+
+    .stats-grid {
+
+        gap: 12px;
+    }
+
+
+    .stat-card {
+
+        padding:
+            18px;
+    }
+
+
+    .stays-list {
+
+        padding:
+            14px;
+    }
+
+}
+       
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+
+        <a href="stays.html" class="brand">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH">
+
+            <div>
+
+                <div class="brand-name">
+
+                    Haven<span>GH</span>
+
+                </div>
+
+                <div class="host-label">
+
+                    Stay Host
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <div class="sidebar-section-title">
+
+            Host Management
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <a
+                href="stay-host-dashboard.html"
+                class="sidebar-link active">
+
+                <span class="sidebar-icon">⌂</span>
+
+                Overview
+
+            </a>
+
+
+            <a
+                href="stay-properties.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">▣</span>
+
+                My Stays
+
+            </a>
+
+
+            <a
+                href="stay-host-add-stay.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">＋</span>
+
+                Add New Stay
+
+            </a>
+
+
+            <a
+                href="stay-host-bookings.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">▤</span>
+
+                Bookings
+
+            </a>
+
+
+            <div class="sidebar-section-title">
+
+                Account
+
+            </div>
+
+
+            <a
+                href="stay-subscription.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">◆</span>
+
+                Subscription
+
+            </a>
+
+
+            <a
+                href="stay-host-profile.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">♙</span>
+
+                My Profile
+
+            </a>
+
+
+            <a
+                href="stay-host-settings.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">⚙</span>
+
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <a
+                href="index.html"
+                class="sidebar-link">
+
+                <span class="sidebar-icon">←</span>
+
+                Back to HavenGH
+
+            </a>
+
+
+            <a
+                href="login.html"
+                class="sidebar-link logout-link">
+
+                <span class="sidebar-icon">↪</span>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <div class="main">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <button
+                class="mobile-menu"
+                id="mobileMenuBtn"
+                type="button"
+                aria-label="Open menu">
+
+                ☰
+
+            </button>
+
+
+            <div></div>
+
+
+            <div class="topbar-right">
+
+
+                <div class="notification">
+
+                    ♧
+
+                    <span class="notification-dot"></span>
+
+                </div>
+
+
+                <div class="host-mini-profile">
+
+
+                    <div
+                        class="host-avatar"
+                        id="topbarAvatar">
+
+                        H
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="topbarHostName">
+
+                            Stay Host
+
+                        </strong>
+
+
+                        <small>
+
+                            Host Account
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <main class="content">
+
+
+            <!-- =================================================
+                 WELCOME
+            ================================================== -->
+
+            <section class="welcome">
+
+
+                <div>
+
+
+                    <div class="eyebrow">
+
+                        HAVENGH STAY HOST
+
+                    </div>
+
+
+                    <h1 id="welcomeName">
+
+                        Welcome back, Host.
+
+                    </h1>
+
+
+                    <p>
+
+                        Manage your stays, bookings and hosting
+                        activity from one place.
+
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="stay-host-add-stay.html"
+                    class="primary-btn">
+
+                    + Add New Stay
+
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 STATS
+            ================================================== -->
+
+            <section class="stats-grid">
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-top">
+
+                        <small>
+
+                            Active Stays
+
+                        </small>
+
+
+                        <div class="stat-icon">
+
+                            ▣
+
+                        </div>
+
+                    </div>
+
+
+                    <h2 id="activeStaysCount">
+
+                        0
+
+                    </h2>
+
+
+                    <span
+                        class="stat-change"
+                        id="activeStaysMessage">
+
+                        Ready for your first listing
+
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-top">
+
+                        <small>
+
+                            Total Bookings
+
+                        </small>
+
+
+                        <div class="stat-icon">
+
+                            ▤
+
+                        </div>
+
+                    </div>
+
+
+                    <h2 id="totalBookingsCount">
+
+                        0
+
+                    </h2>
+
+
+                    <span class="stat-change">
+
+                        No bookings yet
+
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-top">
+
+                        <small>
+
+                            Upcoming Guests
+
+                        </small>
+
+
+                        <div class="stat-icon">
+
+                            ♙
+
+                        </div>
+
+                    </div>
+
+
+                    <h2 id="upcomingGuestsCount">
+
+                        0
+
+                    </h2>
+
+
+                    <span class="stat-change">
+
+                        No upcoming stays
+
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+
+                    <div class="stat-top">
+
+                        <small>
+
+                            Estimated Earnings
+
+                        </small>
+
+
+                        <div class="stat-icon">
+
+                            ₵
+
+                        </div>
+
+                    </div>
+
+
+                    <h2 id="estimatedEarnings">
+
+                        GH₵0
+
+                    </h2>
+
+
+                    <span class="stat-change">
+
+                        Earnings will appear here
+
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 BOOKINGS + SUBSCRIPTION
+            ================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- BOOKINGS -->
+
+                <div class="card">
+
+
+                    <div class="card-header">
+
+                        <h3>
+
+                            Recent Bookings
+
+                        </h3>
+
+
+                        <a href="stay-host-bookings.html">
+
+                            View all →
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="booking">
+
+
+                        <div class="booking-info">
+
+
+                            <div
+                                class="booking-image"
+                                style="
+                                    display:flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    color:#aaa;
+                                ">
+
+                                —
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    No bookings yet
+
+                                </strong>
+
+
+                                <small>
+
+                                    Your reservations will appear here.
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBSCRIPTION -->
+
+                <div class="card">
+
+
+                    <div class="card-header">
+
+                        <h3>
+
+                            Your Subscription
+
+                        </h3>
+
+
+                        <a href="stay-subscription.html">
+
+                            Manage
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="subscription-card">
+
+
+                        <div class="plan-name">
+
+                            Starter
+
+                        </div>
+
+
+                        <div class="plan-price">
+
+                            Free
+
+                            <span>
+
+                                / current plan
+
+                            </span>
+
+                        </div>
+
+
+                        <span class="plan-status">
+
+                            ACTIVE
+
+                        </span>
+
+
+                        <div class="plan-feature">
+
+                            <span>✓</span>
+
+                            Create your first stay listing
+
+                        </div>
+
+
+                        <div class="plan-feature">
+
+                            <span>✓</span>
+
+                            Manage your host profile
+
+                        </div>
+
+
+                        <div class="plan-feature">
+
+                            <span>✓</span>
+
+                            Receive booking requests
+
+                        </div>
+
+
+                        <a
+                            href="stay-subscription.html"
+                            class="outline-btn"
+                            style="
+                                display:block;
+                                text-align:center;
+                            ">
+
+                            View Host Plans
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MY STAYS + PROFILE
+            ================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- =================================================
+                     MY STAYS
+                ================================================== -->
+
+                <div class="card">
+
+
+                    <div class="card-header">
+
+
+                        <h3>
+
+                            My Stays
+
+                        </h3>
+
+
+                        <a href="stay-properties.html">
+
+                            View all →
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- API ACTION MESSAGE -->
+
+                    <div
+                        id="stayActionMessage"
+                        class="action-message">
+
+                    </div>
+
+
+                    <!-- STAYS -->
+
+                    <div
+                        class="stays-list"
+                        id="myStaysList">
+
+
+                        <div
+                            id="staysLoading"
+                            style="
+                                grid-column:1/-1;
+                                min-height:180px;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                text-align:center;
+                                color:#7b8c85;
+                                font-size:13px;
+                            ">
+
+                            Loading your stays...
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROFILE
+                ================================================== -->
+
+                <div class="card">
+
+
+                    <div class="card-header">
+
+
+                        <h3>
+
+                            Host Profile
+
+                        </h3>
+
+
+                        <a href="stay-host-profile.html">
+
+                            Edit
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="profile-card">
+
+
+                        <div class="profile-head">
+
+
+                            <div class="large-avatar"
+                                 id="profileAvatar">
+
+                                H
+
+                            </div>
+
+
+                            <div>
+
+
+                                <h3 id="profileName">
+
+                                    Stay Host
+
+                                </h3>
+
+
+                                <p>
+
+                                    HavenGH Host
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+
+                            <span>
+
+                                Email
+
+                            </span>
+
+
+                            <strong id="profileEmail">
+
+                                Not connected
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+
+                            <span>
+
+                                Phone
+
+                            </span>
+
+
+                            <strong id="profilePhone">
+
+                                Not added
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+
+                            <span>
+
+                                Location
+
+                            </span>
+
+
+                            <strong id="profileLocation">
+
+                                Ghana
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="profile-item">
+
+
+                            <span>
+
+                                Verification
+
+                            </span>
+
+
+                            <strong id="profileVerification">
+
+                                Pending
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MOBILE MENU
+====================================================== -->
+
+<script>
+
+"use strict";
+
+/* ============================================================
+   HAVENGH STAY HOST DASHBOARD
+   API CONNECTION
+============================================================ */
+
+const STAY_API_BASE_URL = "http://localhost:5073";
+
+const stayHostToken =
+    localStorage.getItem("havenGH_token");
+
+
+/* ============================================================
+   ELEMENTS
+============================================================ */
+
+const mobileMenuBtn =
+    document.getElementById("mobileMenuBtn");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+const welcomeName =
+    document.getElementById("welcomeName");
+
+const topbarHostName =
+    document.getElementById("topbarHostName");
+
+const topbarAvatar =
+    document.getElementById("topbarAvatar");
+
+const profileAvatar =
+    document.getElementById("profileAvatar");
+
+const profileName =
+    document.getElementById("profileName");
+
+const profileEmail =
+    document.getElementById("profileEmail");
+
+const profilePhone =
+    document.getElementById("profilePhone");
+
+const profileLocation =
+    document.getElementById("profileLocation");
+
+const profileVerification =
+    document.getElementById("profileVerification");
+
+const activeStaysCount =
+    document.getElementById("activeStaysCount");
+
+const activeStaysMessage =
+    document.getElementById("activeStaysMessage");
+
+const totalBookingsCount =
+    document.getElementById("totalBookingsCount");
+
+const upcomingGuestsCount =
+    document.getElementById("upcomingGuestsCount");
+
+const estimatedEarnings =
+    document.getElementById("estimatedEarnings");
+
+const myStaysList =
+    document.getElementById("myStaysList");
+
+const staysLoading =
+    document.getElementById("staysLoading");
+
+const stayActionMessage =
+    document.getElementById("stayActionMessage");
+
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+
+if (mobileMenuBtn && sidebar) {
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        function () {
+
+            sidebar.classList.toggle("open");
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   AUTHENTICATION
+============================================================ */
+
+if (!stayHostToken) {
+
+    window.location.href = "login.html";
+
+}
+
+
+/* ============================================================
+   API REQUEST
+============================================================ */
+
+async function stayApiRequest(
+    endpoint,
+    options = {}
+) {
+
+    const response =
+        await fetch(
+            `${STAY_API_BASE_URL}${endpoint}`,
+            {
+                ...options,
+
+                headers: {
+
+                    "Authorization":
+                        `Bearer ${stayHostToken}`,
+
+                    "Content-Type":
+                        "application/json",
+
+                    ...(options.headers || {})
+
+                }
+            }
+        );
+
+
+    /* --------------------------------------------------------
+       SESSION EXPIRED
+    -------------------------------------------------------- */
+
+    if (response.status === 401) {
+
+        clearStayHostSession();
+
+        window.location.href =
+            "login.html";
+
+        return null;
+
+    }
+
+
+    return response;
+
+}
+
+
+/* ============================================================
+   CLEAR SESSION
+============================================================ */
+
+function clearStayHostSession() {
+
+    localStorage.removeItem(
+        "havenGH_token"
+    );
+
+    localStorage.removeItem(
+        "havenGH_role"
+    );
+
+    localStorage.removeItem(
+        "havenGH_userId"
+    );
+
+}
+
+
+/* ============================================================
+   READ API RESPONSE
+============================================================ */
+
+async function readApiResponse(response) {
+
+    if (!response) {
+
+        return null;
+
+    }
+
+
+    const text =
+        await response.text();
+
+
+    if (!text) {
+
+        return null;
+
+    }
+
+
+    try {
+
+        return JSON.parse(text);
+
+    }
+    catch {
+
+        return {
+            message: text
+        };
+
+    }
+
+}
+
+
+/* ============================================================
+   LOAD HOST PROFILE
+============================================================ */
+
+async function loadHostProfile() {
+
+    try {
+
+        const response =
+            await stayApiRequest(
+                "/api/Auth/me"
+            );
+
+
+        if (!response || !response.ok) {
+
+            return null;
+
+        }
+
+
+        const user =
+            await readApiResponse(response);
+
+
+        if (!user) {
+
+            return null;
+
+        }
+
+
+        const fullName =
+            user.fullName ||
+            user.FullName ||
+            user.name ||
+            user.Name ||
+            "Stay Host";
+
+
+        const email =
+            user.email ||
+            user.Email ||
+            "Not connected";
+
+
+        const phone =
+            user.phone ||
+            user.Phone ||
+            "Not added";
+
+
+        if (welcomeName) {
+
+            welcomeName.textContent =
+                `Welcome back, ${fullName}.`;
+
+        }
+
+
+        if (topbarHostName) {
+
+            topbarHostName.textContent =
+                fullName;
+
+        }
+
+
+        if (profileName) {
+
+            profileName.textContent =
+                fullName;
+
+        }
+
+
+        const initials =
+            getInitials(fullName);
+
+
+        if (topbarAvatar) {
+
+            topbarAvatar.textContent =
+                initials;
+
+        }
+
+
+        if (profileAvatar) {
+
+            profileAvatar.textContent =
+                initials;
+
+        }
+
+
+        if (profileEmail) {
+
+            profileEmail.textContent =
+                email;
+
+        }
+
+
+        if (profilePhone) {
+
+            profilePhone.textContent =
+                phone;
+
+        }
+
+
+        if (profileLocation) {
+
+            profileLocation.textContent =
+                "Ghana";
+
+        }
+
+
+        if (profileVerification) {
+
+            profileVerification.textContent =
+                getVerificationStatus(user);
+
+        }
+
+
+        return user;
+
+    }
+    catch (error) {
+
+        console.error(
+            "Unable to load host profile:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* ============================================================
+   INITIALS
+============================================================ */
+
+function getInitials(name) {
+
+    if (!name) {
+
+        return "H";
+
+    }
+
+
+    const words =
+        String(name)
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+    if (words.length === 1) {
+
+        return words[0]
+            .substring(0, 2)
+            .toUpperCase();
+
+    }
+
+
+    return (
+        words[0][0] +
+        words[words.length - 1][0]
+    ).toUpperCase();
+
+}
+
+
+/* ============================================================
+   VERIFICATION STATUS
+============================================================ */
+
+function getVerificationStatus(user) {
+
+    if (
+        user.emailVerified === true ||
+        user.EmailVerified === true
+    ) {
+
+        return "Verified";
+
+    }
+
+
+    if (
+        user.phoneVerified === true ||
+        user.PhoneVerified === true
+    ) {
+
+        return "Verified";
+
+    }
+
+
+    return "Pending";
+
+}
+
+
+/* ============================================================
+   LOAD MY STAYS
+============================================================ */
+
+async function loadMyStays() {
+
+    try {
+
+        const response =
+            await stayApiRequest(
+                "/api/Stays/my"
+            );
+
+
+        if (!response) {
+
+            return [];
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Unable to load stays. Server returned ${response.status}.`
+            );
+
+        }
+
+
+        const stays =
+            await readApiResponse(response);
+
+
+        if (!Array.isArray(stays)) {
+
+            throw new Error(
+                "Invalid stays response."
+            );
+
+        }
+
+
+        /* ----------------------------------------------------
+           ACTIVE STAYS = PUBLISHED
+        ---------------------------------------------------- */
+
+        const activeStays =
+            stays.filter(
+                stay =>
+                    normalizeStatus(stay.status) ===
+                    "published"
+            );
+
+
+        if (activeStaysCount) {
+
+            activeStaysCount.textContent =
+                activeStays.length;
+
+        }
+
+
+        updateActiveStayMessage(
+            stays,
+            activeStays
+        );
+
+
+        renderMyStays(stays);
+
+
+        return stays;
+
+    }
+    catch (error) {
+
+        console.error(
+            "Unable to load stays:",
+            error
+        );
+
+
+        if (staysLoading) {
+
+            staysLoading.textContent =
+                "Unable to load your stays.";
+
+        }
+
+
+        if (activeStaysCount) {
+
+            activeStaysCount.textContent =
+                "0";
+
+        }
+
+
+        return [];
+
+    }
+
+}
+
+
+/* ============================================================
+   ACTIVE STAY MESSAGE
+============================================================ */
+
+function updateActiveStayMessage(
+    stays,
+    activeStays
+) {
+
+    if (!activeStaysMessage) {
+
+        return;
+
+    }
+
+
+    if (activeStays.length > 0) {
+
+        activeStaysMessage.textContent =
+            activeStays.length === 1
+                ? "1 stay currently live"
+                : `${activeStays.length} stays currently live`;
+
+        return;
+
+    }
+
+
+    if (stays.length === 0) {
+
+        activeStaysMessage.textContent =
+            "Ready for your first listing";
+
+        return;
+
+    }
+
+
+    const pendingCount =
+        stays.filter(
+            stay =>
+                normalizeStatus(stay.status) ===
+                "pending"
+        ).length;
+
+
+    const draftCount =
+        stays.filter(
+            stay =>
+                normalizeStatus(stay.status) ===
+                "draft"
+        ).length;
+
+
+    if (pendingCount > 0) {
+
+        activeStaysMessage.textContent =
+            pendingCount === 1
+                ? "1 stay awaiting review"
+                : `${pendingCount} stays awaiting review`;
+
+        return;
+
+    }
+
+
+    if (draftCount > 0) {
+
+        activeStaysMessage.textContent =
+            draftCount === 1
+                ? "1 draft needs attention"
+                : `${draftCount} drafts need attention`;
+
+        return;
+
+    }
+
+
+    activeStaysMessage.textContent =
+        "Your stays are not live yet";
+
+}
+
+
+/* ============================================================
+   LOAD HOST BOOKINGS
+============================================================ */
+
+async function loadHostBookings() {
+
+    try {
+
+        const response =
+            await stayApiRequest(
+                "/api/StayBookings/host"
+            );
+
+
+        if (!response) {
+
+            return [];
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Unable to load bookings. Server returned ${response.status}.`
+            );
+
+        }
+
+
+        const bookings =
+            await readApiResponse(response);
+
+
+        if (!Array.isArray(bookings)) {
+
+            throw new Error(
+                "Invalid bookings response."
+            );
+
+        }
+
+
+        updateBookingStatistics(
+            bookings
+        );
+
+
+        renderRecentBookings(
+            bookings
+        );
+
+
+        return bookings;
+
+    }
+    catch (error) {
+
+        console.error(
+            "Unable to load host bookings:",
+            error
+        );
+
+
+        if (totalBookingsCount) {
+
+            totalBookingsCount.textContent =
+                "0";
+
+        }
+
+
+        if (upcomingGuestsCount) {
+
+            upcomingGuestsCount.textContent =
+                "0";
+
+        }
+
+
+        if (estimatedEarnings) {
+
+            estimatedEarnings.textContent =
+                "GH₵0";
+
+        }
+
+
+        return [];
+
+    }
+
+}
+
+
+/* ============================================================
+   BOOKING STATISTICS
+============================================================ */
+
+function updateBookingStatistics(
+    bookings
+) {
+
+    /* --------------------------------------------------------
+       TOTAL BOOKINGS
+       Includes every booking belonging to the host.
+       Pending / approved / completed / rejected / cancelled.
+    -------------------------------------------------------- */
+
+    if (totalBookingsCount) {
+
+        totalBookingsCount.textContent =
+            bookings.length;
+
+    }
+
+
+    /* --------------------------------------------------------
+       UPCOMING GUESTS
+       Approved bookings only.
+       Checkout must be today or in the future.
+    -------------------------------------------------------- */
+
+    const today =
+        new Date();
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const upcomingBookings =
+        bookings.filter(
+            booking => {
+
+                const status =
+                    normalizeStatus(
+                        booking.status
+                    );
+
+
+                if (status !== "approved") {
+
+                    return false;
+
+                }
+
+
+                const checkout =
+                    parseApiDate(
+                        booking.checkOutDate
+                    );
+
+
+                if (!checkout) {
+
+                    return false;
+
+                }
+
+
+                checkout.setHours(
+                    0,
+                    0,
+                    0,
+                    0
+                );
+
+
+                return checkout >= today;
+
+            }
+        );
+
+
+    const upcomingGuests =
+        upcomingBookings.reduce(
+            (
+                total,
+                booking
+            ) => {
+
+                const guests =
+                    Number(
+                        booking.guests
+                    );
+
+
+                return total +
+                    (
+                        Number.isFinite(guests)
+                            ? guests
+                            : 0
+                    );
+
+            },
+            0
+        );
+
+
+    if (upcomingGuestsCount) {
+
+        upcomingGuestsCount.textContent =
+            upcomingGuests;
+
+    }
+
+
+    /* --------------------------------------------------------
+       ESTIMATED EARNINGS
+       Approved + completed bookings.
+       Excludes pending, rejected and cancelled.
+    -------------------------------------------------------- */
+
+    const earningBookings =
+        bookings.filter(
+            booking => {
+
+                const status =
+                    normalizeStatus(
+                        booking.status
+                    );
+
+
+                return (
+                    status === "approved" ||
+                    status === "completed"
+                );
+
+            }
+        );
+
+
+    const earnings =
+        earningBookings.reduce(
+            (
+                total,
+                booking
+            ) => {
+
+                const amount =
+                    Number(
+                        booking.totalAmount
+                    );
+
+
+                return total +
+                    (
+                        Number.isFinite(amount)
+                            ? amount
+                            : 0
+                    );
+
+            },
+            0
+        );
+
+
+    if (estimatedEarnings) {
+
+        estimatedEarnings.textContent =
+            formatCurrency(
+                earnings
+            );
+
+    }
+
+}
+
+
+/* ============================================================
+   RENDER RECENT BOOKINGS
+============================================================ */
+
+function renderRecentBookings(
+    bookings
+) {
+
+    const bookingCard =
+        document.querySelector(
+            ".dashboard-grid .card:first-child"
+        );
+
+
+    if (!bookingCard) {
+
+        return;
+
+    }
+
+
+    const header =
+        bookingCard.querySelector(
+            ".card-header"
+        );
+
+
+    if (!header) {
+
+        return;
+
+    }
+
+
+    /* --------------------------------------------------------
+       Remove existing booking rows
+    -------------------------------------------------------- */
+
+    bookingCard
+        .querySelectorAll(
+            ".booking"
+        )
+        .forEach(
+            element =>
+                element.remove()
+        );
+
+
+    if (
+        !Array.isArray(bookings) ||
+        bookings.length === 0
+    ) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+
+        empty.className =
+            "booking";
+
+
+        empty.innerHTML = `
+
+            <div class="booking-info">
+
+                <div
+                    class="booking-image"
+                    style="
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        color:#aaa;
+                    "
+                >
+                    —
+                </div>
+
+                <div>
+
+                    <strong>
+                        No bookings yet
+                    </strong>
+
+                    <small>
+                        Your reservations will appear here.
+                    </small>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        bookingCard.appendChild(
+            empty
+        );
+
+
+        return;
+
+    }
+
+
+    const recentBookings =
+        bookings.slice(
+            0,
+            4
+        );
+
+
+    recentBookings.forEach(
+        booking => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "booking";
+
+
+            const guestName =
+                getGuestName(
+                    booking
+                );
+
+
+            const stayTitle =
+                booking.stay?.title ||
+                "Stay";
+
+
+            const checkIn =
+                formatDate(
+                    booking.checkInDate
+                );
+
+
+            const checkOut =
+                formatDate(
+                    booking.checkOutDate
+                );
+
+
+            const status =
+                normalizeStatus(
+                    booking.status
+                );
+
+
+            const statusText =
+                formatBookingStatus(
+                    status
+                );
+
+
+            const amount =
+                formatCurrency(
+                    booking.totalAmount
+                );
+
+
+            row.innerHTML = `
+
+                <div class="booking-info">
+
+                    <div
+                        class="booking-image"
+                        style="
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            color:#064e3b;
+                            font-weight:700;
+                            background:#edf7f3;
+                        "
+                    >
+                        ${escapeHtml(
+                            getInitials(
+                                guestName
+                            )
+                        )}
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ${escapeHtml(
+                                guestName
+                            )}
+                        </strong>
+
+                        <small>
+                            ${escapeHtml(
+                                stayTitle
+                            )}
+                            ·
+                            ${escapeHtml(
+                                checkIn
+                            )}
+                            – 
+                            ${escapeHtml(
+                                checkOut
+                            )}
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div
+                    style="
+                        text-align:right;
+                        min-width:90px;
+                    "
+                >
+
+                    <strong
+                        style="
+                            color:#064e3b;
+                        "
+                    >
+                        ${escapeHtml(
+                            amount
+                        )}
+                    </strong>
+
+                    <small
+                        style="
+                            display:block;
+                            margin-top:3px;
+                            color:#6b7280;
+                        "
+                    >
+                        ${escapeHtml(
+                            statusText
+                        )}
+                    </small>
+
+                </div>
+
+            `;
+
+
+            bookingCard.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   GUEST NAME
+============================================================ */
+
+function getGuestName(
+    booking
+) {
+
+    const guest =
+        booking?.guest;
+
+
+    if (!guest) {
+
+        return "Guest";
+
+    }
+
+
+    if (
+        guest.fullName ||
+        guest.FullName
+    ) {
+
+        return (
+            guest.fullName ||
+            guest.FullName
+        );
+
+    }
+
+
+    if (guest.email) {
+
+        return guest.email;
+
+    }
+
+
+    if (guest.Email) {
+
+        return guest.Email;
+
+    }
+
+
+    if (guest.phone) {
+
+        return guest.phone;
+
+    }
+
+
+    if (guest.Phone) {
+
+        return guest.Phone;
+
+    }
+
+
+    return "Guest";
+
+}
+
+
+/* ============================================================
+   BOOKING STATUS
+============================================================ */
+
+function formatBookingStatus(
+    status
+) {
+
+    switch (
+        normalizeStatus(status)
+    ) {
+
+        case "pending":
+
+            return "Pending";
+
+
+        case "approved":
+
+            return "Approved";
+
+
+        case "completed":
+
+            return "Completed";
+
+
+        case "rejected":
+
+            return "Rejected";
+
+
+        case "cancelled":
+
+            return "Cancelled";
+
+
+        default:
+
+            return String(
+                status || "Unknown"
+            );
+
+    }
+
+}
+
+
+/* ============================================================
+   RENDER MY STAYS
+============================================================ */
+
+function renderMyStays(
+    stays
+) {
+
+    if (!myStaysList) {
+
+        return;
+
+    }
+
+
+    if (
+        !Array.isArray(stays) ||
+        stays.length === 0
+    ) {
+
+        myStaysList.innerHTML = `
+
+            <div
+                style="
+                    grid-column:1/-1;
+                    min-height:180px;
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    justify-content:center;
+                    text-align:center;
+                    color:#7b8c85;
+                    font-size:13px;
+                    gap:10px;
+                "
+            >
+
+                <div
+                    style="
+                        font-size:32px;
+                        color:#064e3b;
+                    "
+                >
+                    +
+                </div>
+
+                <div>
+                    No stays listed yet.
+                </div>
+
+                <a
+                    href="stay-host-add-stay.html"
+                    style="
+                        color:#064e3b;
+                        font-weight:700;
+                    "
+                >
+                    Add Your First Stay →
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const visibleStays =
+        stays.slice(
+            0,
+            4
+        );
+
+
+    myStaysList.innerHTML =
+        visibleStays
+            .map(
+                renderStayCard
+            )
+            .join("");
+
+}
+
+
+/* ============================================================
+   STAY CARD
+============================================================ */
+
+function renderStayCard(
+    stay
+) {
+
+    const title =
+        escapeHtml(
+            stay.title ||
+            "Untitled Stay"
+        );
+
+
+    const city =
+        escapeHtml(
+            stay.city ||
+            "Ghana"
+        );
+
+
+    const area =
+        stay.area
+            ? `, ${escapeHtml(stay.area)}`
+            : "";
+
+
+    const stayType =
+        formatStayType(
+            stay.stayType
+        );
+
+
+    const price =
+        formatCurrency(
+            stay.pricePerNight
+        );
+
+
+    const status =
+        normalizeStatus(
+            stay.status ||
+            "draft"
+        );
+
+
+    const statusLabel =
+        formatStatus(
+            status
+        );
+
+
+    const imageUrl =
+        getPrimaryImage(
+            stay
+        );
+
+
+    const imageHtml =
+        imageUrl
+            ? `
+
+                <img
+                    src="${escapeAttribute(imageUrl)}"
+                    alt="${escapeAttribute(
+                        stay.title ||
+                        "Stay"
+                    )}"
+                    onerror="
+                        this.style.display='none';
+                        this.nextElementSibling.style.display='flex';
+                    "
+                >
+
+                <div
+                    style="
+                        height:145px;
+                        display:none;
+                        align-items:center;
+                        justify-content:center;
+                        background:#f1f5f3;
+                        color:#7b8c85;
+                        font-size:13px;
+                    "
+                >
+                    No stay image
+                </div>
+
+            `
+            : `
+
+                <div
+                    style="
+                        height:145px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        background:#f1f5f3;
+                        color:#7b8c85;
+                        font-size:13px;
+                    "
+                >
+                    No stay image
+                </div>
+
+            `;
+
+
+    let actionHtml = "";
+
+
+    if (status === "draft") {
+
+        actionHtml = `
+
+            <button
+                type="button"
+                class="review-btn"
+                data-stay-id="${stay.stayId}"
+                onclick="
+                    submitStayForReview(
+                        ${stay.stayId},
+                        this
+                    )
+                "
+            >
+                Submit for Review →
+            </button>
+
+        `;
+
+    }
+
+    else if (status === "pending") {
+
+        actionHtml = `
+
+            <div class="pending-message">
+
+                Your stay has been submitted and is
+                awaiting HavenGH admin review.
+
+            </div>
+
+        `;
+
+    }
+
+    else if (status === "published") {
+
+        actionHtml = `
+
+            <div class="live-message">
+
+                ✓ Your stay is live and visible to travellers.
+
+            </div>
+
+        `;
+
+    }
+
+    else if (status === "archived") {
+
+        actionHtml = `
+
+            <div
+                class="pending-message"
+                style="
+                    background:#fef2f2;
+                    color:#b91c1c;
+                "
+            >
+
+                This stay is archived.
+
+            </div>
+
+        `;
+
+    }
+
+    else {
+
+        actionHtml = `
+
+            <div class="draft-message">
+
+                Current status:
+                ${escapeHtml(
+                    statusLabel
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+
+    return `
+
+        <div class="stay-mini-card">
+
+            ${imageHtml}
+
+            <div class="stay-mini-content">
+
+                <h4>
+                    ${title}
+                </h4>
+
+                <p>
+                    ${escapeHtml(stayType)}
+                    ·
+                    ${city}${area}
+                </p>
+
+                <div class="stay-meta">
+
+                    <span class="stay-price">
+                        ${price}/night
+                    </span>
+
+                    <span
+                        class="
+                            stay-status
+                            ${escapeHtml(status)}
+                        "
+                    >
+                        ${escapeHtml(statusLabel)}
+                    </span>
+
+                </div>
+
+                ${actionHtml}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ============================================================
+   SUBMIT STAY FOR REVIEW
+============================================================ */
+
+async function submitStayForReview(
+    stayId,
+    button
+) {
+
+    if (!stayId) {
+
+        return;
+
+    }
+
+
+    if (!stayHostToken) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    const confirmed =
+        window.confirm(
+            "Submit this stay for HavenGH admin review?\n\n" +
+            "Once submitted, the stay will move from Draft to Pending Review."
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    try {
+
+        if (button) {
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "Submitting...";
+
+        }
+
+
+        showStayActionMessage(
+            "Submitting your stay for review...",
+            "success"
+        );
+
+
+        const response =
+            await stayApiRequest(
+                `/api/Stays/${stayId}/submit-review`,
+                {
+                    method: "POST",
+                    body: JSON.stringify({})
+                }
+            );
+
+
+        if (!response) {
+
+            return;
+
+        }
+
+
+        const data =
+            await readApiResponse(
+                response
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data?.message ||
+                `Unable to submit stay. Server returned ${response.status}.`
+            );
+
+        }
+
+
+        showStayActionMessage(
+            data?.message ||
+            "Stay submitted successfully for admin review.",
+            "success"
+        );
+
+
+        await loadMyStays();
+
+    }
+    catch (error) {
+
+        console.error(
+            "Submit stay for review failed:",
+            error
+        );
+
+
+        showStayActionMessage(
+            error.message ||
+            "Unable to submit your stay for review. Please try again.",
+            "error"
+        );
+
+
+        if (button) {
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Submit for Review →";
+
+        }
+
+    }
+
+}
+
+
+/* ============================================================
+   ACTION MESSAGE
+============================================================ */
+
+function showStayActionMessage(
+    message,
+    type
+) {
+
+    if (!stayActionMessage) {
+
+        return;
+
+    }
+
+
+    stayActionMessage.textContent =
+        message;
+
+
+    stayActionMessage.className =
+        `action-message ${type}`;
+
+}
+
+
+/* ============================================================
+   PRIMARY IMAGE
+============================================================ */
+
+function getPrimaryImage(
+    stay
+) {
+
+    if (
+        !stay.images ||
+        !Array.isArray(stay.images) ||
+        stay.images.length === 0
+    ) {
+
+        return null;
+
+    }
+
+
+    const primary =
+        stay.images.find(
+            image =>
+                image.isPrimary === true
+        );
+
+
+    const image =
+        primary ||
+        stay.images[0];
+
+
+    if (
+        !image ||
+        !image.imageUrl
+    ) {
+
+        return null;
+
+    }
+
+
+    const rawUrl =
+        image.imageUrl;
+
+
+    if (
+        rawUrl.startsWith(
+            "http://"
+        ) ||
+        rawUrl.startsWith(
+            "https://"
+        )
+    ) {
+
+        return rawUrl;
+
+    }
+
+
+    return `${STAY_API_BASE_URL}${rawUrl}`;
+
+}
+
+
+/* ============================================================
+   STAY TYPE
+============================================================ */
+
+function formatStayType(
+    type
+) {
+
+    if (!type) {
+
+        return "Stay";
+
+    }
+
+
+    return String(type)
+        .replace(
+            /-/g,
+            " "
+        )
+        .replace(
+            /\b\w/g,
+            letter =>
+                letter.toUpperCase()
+        );
+
+}
+
+
+/* ============================================================
+   STATUS NORMALIZATION
+============================================================ */
+
+function normalizeStatus(
+    status
+) {
+
+    return String(
+        status ||
+        ""
+    )
+        .trim()
+        .toLowerCase();
+
+}
+
+
+/* ============================================================
+   STATUS LABEL
+============================================================ */
+
+function formatStatus(
+    status
+) {
+
+    switch (
+        normalizeStatus(status)
+    ) {
+
+        case "published":
+
+            return "LIVE";
+
+
+        case "draft":
+
+            return "DRAFT";
+
+
+        case "pending":
+
+            return "PENDING REVIEW";
+
+
+        case "archived":
+
+            return "ARCHIVED";
+
+
+        default:
+
+            return String(
+                status ||
+                "UNKNOWN"
+            ).toUpperCase();
+
+    }
+
+}
+
+
+/* ============================================================
+   CURRENCY
+============================================================ */
+
+function formatCurrency(
+    value
+) {
+
+    const amount =
+        Number(value);
+
+
+    if (!Number.isFinite(amount)) {
+
+        return "GH₵0";
+
+    }
+
+
+    return "GH₵" +
+        amount.toLocaleString(
+            "en-GH",
+            {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+/* ============================================================
+   DATE PARSER
+============================================================ */
+
+function parseApiDate(
+    value
+) {
+
+    if (!value) {
+
+        return null;
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return null;
+
+    }
+
+
+    return date;
+
+}
+
+
+/* ============================================================
+   DATE FORMAT
+============================================================ */
+
+function formatDate(
+    value
+) {
+
+    const date =
+        parseApiDate(
+            value
+        );
+
+
+    if (!date) {
+
+        return "—";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-GH",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* ============================================================
+   HTML SAFETY
+============================================================ */
+
+function escapeHtml(
+    value
+) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(
+    value
+) {
+
+    return escapeHtml(
+        value
+    );
+
+}
+
+
+/* ============================================================
+   LOGOUT
+============================================================ */
+
+const logoutLink =
+    document.querySelector(
+        ".logout-link"
+    );
+
+
+if (logoutLink) {
+
+    logoutLink.addEventListener(
+        "click",
+        function () {
+
+            clearStayHostSession();
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   INITIALIZE DASHBOARD
+============================================================ */
+
+async function initializeStayHostDashboard() {
+
+    if (!stayHostToken) {
+
+        return;
+
+    }
+
+
+    /*
+       Run the independent API requests together.
+       This makes the dashboard load faster.
+    */
+
+    await Promise.all([
+        loadHostProfile(),
+        loadMyStays(),
+        loadHostBookings()
+    ]);
+
+}
+
+
+initializeStayHostDashboard();
+
+</script>
+</body>
+
+</html>
+

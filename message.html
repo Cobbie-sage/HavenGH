@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="HavenGH landlord and agent messaging inbox.">
+
+    <title>Messages | HavenGH</title>
+
+
+        <link
+        rel="stylesheet"
+        href="landlord-messages.css">
+             
+</head>
+
+
+<body class="dashboard-page">
+
+
+    <!-- =========================================================
+         SIDEBAR
+         ========================================================= -->
+
+    <aside class="dashboard-sidebar">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+
+        <nav class="dashboard-nav">
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="my-properties.html">
+                My Properties
+            </a>
+
+            <a href="add-property.html">
+                Add Property
+            </a>
+
+            <a href="rental-requests.html">
+                Rental Requests
+            </a>
+
+            <a
+                href="landlord-messages.html"
+                class="active">
+
+                Messages
+
+            </a>
+
+            <a href="profile.html">
+                My Profile
+            </a>
+
+            <a href="settings.html">
+                Settings
+            </a>
+
+        </nav>
+
+
+        <a
+            href="login.html"
+            id="logout-link"
+            class="dashboard-logout">
+
+            Log out
+
+        </a>
+
+    </aside>
+
+
+
+    <!-- =========================================================
+         MAIN
+         ========================================================= -->
+
+    <main class="dashboard-main">
+
+
+        <button
+            class="dashboard-menu-button"
+            type="button"
+            aria-label="Open dashboard menu"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+
+        <!-- =====================================================
+             HEADER
+             ===================================================== -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <p class="dashboard-label">
+                    Landlord / Agent Dashboard
+                </p>
+
+                <h1>
+                    Messages
+                </h1>
+
+                <p>
+                    Communicate with tenants about your properties.
+                </p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             MESSAGES SECTION
+             ===================================================== -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        Inbox
+                    </p>
+
+                    <h2>
+                        Your Conversations
+                    </h2>
+
+                    <p id="conversation-count">
+                        0 conversations
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SEARCH
+                 ================================================= -->
+
+            <div class="message-search-container">
+
+                <input
+                    type="search"
+                    id="message-search"
+                    placeholder="Search conversations..."
+                    autocomplete="off">
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONVERSATION LAYOUT
+                 ================================================= -->
+
+            <div class="messages-layout">
+
+
+                <!-- =============================================
+                     CONVERSATION LIST
+                     ============================================= -->
+
+                <aside class="conversation-panel">
+
+                    <div class="conversation-panel-header">
+
+                        <span>
+                            Conversations
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="conversation-list"
+                        class="conversation-list">
+
+                        <div class="empty-conversations">
+
+                            <p>
+                                Loading conversations...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+
+
+                <!-- =============================================
+                     ACTIVE CHAT
+                     ============================================= -->
+
+                <section
+                    id="active-chat"
+                    class="active-chat"
+                    hidden>
+
+
+                    <!-- =========================================
+                         CHAT HEADER
+                         ========================================= -->
+
+                    <header class="chat-header">
+
+
+                        <div class="chat-header-info">
+
+                            <p
+                                class="dashboard-label"
+                                id="chat-property-name">
+
+                                Property
+
+                            </p>
+
+
+                            <h2
+                                id="chat-property-title">
+
+                                Conversation
+
+                            </h2>
+
+
+                            <p
+                                id="chat-property-location">
+
+                                Conversation
+
+                            </p>
+
+                        </div>
+
+
+                        <a
+                            href="#"
+                            id="chat-property-link"
+                            class="btn btn-dark"
+                            hidden>
+
+                            View Property
+
+                        </a>
+
+                    </header>
+
+
+
+                    <!-- =========================================
+                         CHAT MESSAGES
+                         ========================================= -->
+
+                    <div
+                        id="chat-messages"
+                        class="chat-messages">
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         MESSAGE FORM
+                         ========================================= -->
+
+                    <form
+                        id="message-form"
+                        class="message-form">
+
+                        <div class="message-compose">
+
+
+                            <textarea
+                                id="message-input"
+                                rows="3"
+                                maxlength="2000"
+                                placeholder="Type your message..."
+                                required>
+                            </textarea>
+
+
+                            <button
+                                type="submit"
+                                id="send-message-button"
+                                class="btn btn-dark">
+
+                                Send
+
+                            </button>
+
+
+                        </div>
+
+                    </form>
+
+
+                </section>
+
+
+
+                <!-- =============================================
+                     EMPTY CHAT
+                     ============================================= -->
+
+                <section
+                    id="chat-empty-state"
+                    class="chat-empty-state">
+
+                    <div>
+
+                        <div class="chat-empty-icon">
+                            💬
+                        </div>
+
+                        <h2>
+                            Select a conversation
+                        </h2>
+
+                        <p>
+                            Choose a conversation from your inbox
+                            to view and reply to messages.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script src="message.js"></script>
+
+</body>
+
+</html>

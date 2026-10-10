@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH property listings.">
+
+    <title>My Properties | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard-layout">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-logo">
+
+            <a href="index.html" class="logo">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <span class="logo-main">
+                    Haven
+                </span>
+
+                <span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- USER -->
+
+       <div class="dashboard-user">
+
+         <div id="dashboard-user-image" class="dashboard-user-avatar">
+
+        <img
+            id="dashboard-user-avatar-img"
+            src=""
+            alt="Profile picture"
+            hidden>
+
+        <span id="dashboard-user-avatar-fallback">
+            H
+        </span>
+
+    </div>
+
+    <div>
+
+        <strong id="dashboard-user-name">
+            Loading...
+        </strong>
+
+        <span id="dashboard-user-role">
+            Loading...
+        </span>
+
+    </div>
+
+</div>
+
+        <!-- NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+            <a href="dashboard.html"
+               class="dashboard-link">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a href="my-properties.html"
+               class="dashboard-link active">
+
+                <span>▣</span>
+                My Properties
+
+            </a>
+
+
+            <a href="add-property.html"
+               class="dashboard-link">
+
+                <span>＋</span>
+                Add Property
+
+            </a>
+
+
+            <a href="request.html"
+               class="dashboard-link">
+
+                <span>◉</span>
+                Rental Requests
+
+                <b>3</b>
+
+            </a>
+
+
+            <a href="message.html"
+               class="dashboard-link">
+
+                <span>✉</span>
+                Messages
+
+                <b>2</b>
+
+            </a>
+
+
+            <a href="profile.html"
+               class="dashboard-link">
+
+                <span>♙</span>
+                My Profile
+
+            </a>
+
+
+            <a href="my-plan.html"
+               class="dashboard-link">
+
+                <span>◆</span>
+                My Plan
+
+            </a>
+
+
+            <a href="settings.html"
+               class="dashboard-link">
+
+                <span>⚙</span>
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+            <a href="index.html"
+               class="dashboard-link">
+
+                <span>←</span>
+                Back to Website
+
+            </a>
+
+
+            <a href="login.html"
+               class="dashboard-link logout">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="dashboard-main">
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-topbar">
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open dashboard menu"
+                aria-expanded="false">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+                    Manage your listings
+                </p>
+
+                <h1>
+                    My Properties
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-label="Open notifications"
+                    aria-expanded="false">
+
+                    ♧
+
+                    <span id="notification-count">
+                        2
+                    </span>
+
+                </button>
+
+
+                <a
+                    href="add-property.html"
+                    class="dashboard-add-button">
+
+                    + Add Property
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             CONTENT
+        ========================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="dashboard-welcome">
+
+                <span class="section-label">
+                    YOUR LISTINGS
+                </span>
+
+                <h2>
+                    Manage your properties
+                </h2>
+
+                <p>
+                    Add, edit and manage the properties
+                    you have listed on HavenGH.
+                </p>
+
+            </section>
+
+
+            <!-- =========================
+                 FILTER BAR
+            ========================== -->
+
+            <section class="property-filter-bar">
+
+                <div class="property-search">
+
+                    <input
+                        type="search"
+                        id="property-search"
+                        placeholder="Search your properties..."
+                        autocomplete="off"
+                        aria-label="Search your properties">
+
+                </div>
+
+
+                <select
+                    id="property-status"
+                    aria-label="Filter by property status">
+
+                    <option value="all">
+                        All Properties
+                    </option>
+
+                    <option value="published">
+                        Active
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="rented">
+                        Rented
+                    </option>
+
+                    <option value="draft">
+                        Draft
+                    </option>
+
+                    <option value="archived">
+                        Archived
+                    </option>
+
+                </select>
+
+
+                <select
+                    id="property-type-filter"
+                    aria-label="Filter by property type">
+
+                    <option value="all">
+                        All Types
+                    </option>
+
+                    <option value="single-room">
+                        Single Room
+                    </option>
+
+                    <option value="single-room-porch">
+                        Single Room with Porch
+                    </option>
+
+                    <option value="chamber-hall">
+                        Chamber & Hall
+                    </option>
+
+                    <option value="apartment">
+                        Apartment
+                    </option>
+
+                    <option value="house">
+                        House
+                    </option>
+
+                </select>
+
+            </section>
+
+
+            <!-- =========================
+                 PROPERTY COUNT
+            ========================== -->
+
+            <div class="property-list-heading">
+
+                <h3 id="my-properties-count">
+                    Loading properties...
+                </h3>
+
+                <span id="my-properties-active">
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <!-- =========================
+                 API MESSAGE
+            ========================== -->
+
+            <div
+                id="my-properties-message"
+                role="status"
+                aria-live="polite"
+                style="display:none;">
+
+            </div>
+
+
+            <!-- =========================
+                 PROPERTY LIST
+            ========================== -->
+
+            <section
+                class="my-property-list"
+                id="my-property-list">
+
+                <!--
+                    Properties are loaded from:
+                    GET /api/Properties/my
+                -->
+
+            </section>
+
+
+            <!-- =========================
+                 EMPTY STATE
+            ========================== -->
+
+            <section
+                id="my-properties-empty"
+                class="add-property-prompt"
+                style="display:none;">
+
+                <div>
+
+                    <span class="prompt-icon">
+                        +
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            No properties found
+                        </h3>
+
+                        <p>
+                            Add your first property to
+                            start receiving rental requests.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="add-property.html"
+                    class="dashboard-add-button">
+
+                    + Add Property
+
+                </a>
+
+            </section>
+
+
+            <!-- =========================
+                 ADD PROPERTY PROMPT
+            ========================== -->
+
+            <section
+                class="add-property-prompt"
+                id="add-property-prompt">
+
+                <div>
+
+                    <span class="prompt-icon">
+                        +
+                    </span>
+
+                    <div>
+
+                        <h3>
+                            Have another property?
+                        </h3>
+
+                        <p>
+                            Add another room, apartment
+                            or house to your HavenGH listings.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="add-property.html"
+                    class="dashboard-add-button">
+
+                    + Add Property
+
+                </a>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="my-properties.js"></script>
+
+</body>
+
+</html>

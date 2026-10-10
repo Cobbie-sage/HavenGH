@@ -1,0 +1,1456 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Properties | HavenGH</title>
+
+    <link
+        rel="stylesheet"
+         href="style.css"
+    >
+<style>
+
+   /* ============================================================
+   HAVENGH — ADMIN PROPERTIES
+   PREMIUM GREEN / GOLD / WHITE THEME
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   MAIN PAGE
+   ------------------------------------------------------------ */
+
+.admin-properties-page {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(212, 175, 55, 0.08),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #061f17 0%,
+            #082f23 45%,
+            #041b14 100%
+        );
+
+    color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   PROPERTY GRID
+   ------------------------------------------------------------ */
+
+#admin-properties-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 24px;
+}
+
+/* ------------------------------------------------------------
+   PROPERTY CARD
+   ------------------------------------------------------------ */
+
+.admin-property-card {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d4935 0%,
+            #082f23 55%,
+            #06251c 100%
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.admin-property-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(240, 196, 60, 0.65);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.42),
+        0 0 25px rgba(212, 175, 55, 0.07);
+}
+
+/* ------------------------------------------------------------
+   PROPERTY IMAGE
+   ------------------------------------------------------------ */
+
+.admin-property-image {
+    position: relative;
+    height: 205px;
+    overflow: hidden;
+
+    background: #06271d;
+}
+
+.admin-property-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+.admin-property-card:hover .admin-property-image img {
+    transform: scale(1.05);
+}
+
+.admin-property-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.58)
+        );
+
+    pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   BADGES
+   ------------------------------------------------------------ */
+
+.admin-property-badges {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+.admin-property-status,
+.admin-property-featured {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+
+    backdrop-filter: blur(10px);
+}
+
+/* ------------------------------------------------------------
+   STATUS
+   ------------------------------------------------------------ */
+
+.status-published {
+    color: #ffffff;
+    background: rgba(19, 130, 79, 0.90);
+    border: 1px solid rgba(106, 232, 161, 0.35);
+}
+
+.status-pending {
+    color: #ffffff;
+    background: rgba(171, 127, 15, 0.92);
+    border: 1px solid rgba(255, 222, 93, 0.45);
+}
+
+.status-draft {
+    color: #ffffff;
+    background: rgba(48, 73, 64, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.status-rented {
+    color: #ffffff;
+    background: rgba(25, 83, 108, 0.94);
+    border: 1px solid rgba(118, 207, 245, 0.3);
+}
+
+.status-archived {
+    color: #ffffff;
+    background: rgba(132, 48, 48, 0.94);
+    border: 1px solid rgba(255, 133, 133, 0.3);
+}
+
+/* ------------------------------------------------------------
+   FEATURED
+   ------------------------------------------------------------ */
+
+.admin-property-featured {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #b88b16
+        );
+
+    border: 1px solid rgba(255, 235, 145, 0.65);
+
+    box-shadow:
+        0 4px 15px rgba(212, 175, 55, 0.18);
+}
+
+/* ------------------------------------------------------------
+   PROPERTY BODY
+   ------------------------------------------------------------ */
+
+.admin-property-body {
+    padding: 20px;
+}
+
+/* ------------------------------------------------------------
+   TITLE
+   ------------------------------------------------------------ */
+
+.admin-property-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.admin-property-heading h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+.admin-property-type {
+    flex-shrink: 0;
+
+    color: #e5c451;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------
+   LOCATION
+   ------------------------------------------------------------ */
+
+.admin-property-location {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+    margin: 8px 0 13px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.admin-property-location::before {
+    content: "●";
+
+    color: #d4af37;
+
+    font-size: 8px;
+}
+
+/* ------------------------------------------------------------
+   DESCRIPTION
+   ------------------------------------------------------------ */
+
+.admin-property-description {
+    margin: 0 0 16px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    line-height: 1.6;
+
+    max-height: 42px;
+    overflow: hidden;
+}
+
+/* ------------------------------------------------------------
+   PROPERTY INFORMATION
+   ------------------------------------------------------------ */
+
+.admin-property-meta {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 7px;
+    margin-bottom: 17px;
+}
+
+.admin-property-meta span {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 10px;
+
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 8px;
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.admin-property-meta span:hover {
+    border-color: rgba(212, 175, 55, 0.35);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+/* ------------------------------------------------------------
+   PRICE
+   ------------------------------------------------------------ */
+
+.admin-property-price {
+    padding-top: 15px;
+    margin-bottom: 17px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 850;
+}
+
+.admin-property-price strong {
+    color: #e5c451;
+}
+
+.admin-property-price small {
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 500;
+    opacity: 0.72;
+}
+
+/* ------------------------------------------------------------
+   ACTION BUTTONS
+   ------------------------------------------------------------ */
+
+.admin-property-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.admin-property-action {
+    flex: 1;
+
+    min-width: 70px;
+    min-height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 11px;
+
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.055);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.admin-property-action:hover {
+    transform: translateY(-2px);
+
+    color: #ffffff;
+
+    background: rgba(212, 175, 55, 0.14);
+
+    border-color: rgba(212, 175, 55, 0.55);
+}
+
+/* VIEW */
+
+.admin-property-action.view {
+    color: #e5c451;
+
+    border-color: rgba(212, 175, 55, 0.30);
+}
+
+.admin-property-action.view:hover {
+    color: #ffffff;
+
+    background: rgba(212, 175, 55, 0.18);
+}
+
+/* PUBLISH */
+
+.admin-property-action.primary {
+    color: #ffffff;
+
+    background: rgba(17, 126, 76, 0.48);
+
+    border-color: rgba(71, 202, 133, 0.35);
+}
+
+.admin-property-action.primary:hover {
+    background: #117e4c;
+
+    border-color: #36bd7a;
+}
+
+/* SECONDARY */
+
+.admin-property-action.secondary {
+    color: #ffffff;
+}
+
+.admin-property-action.secondary:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+/* ARCHIVE */
+
+.admin-property-action.danger {
+    color: #ffffff;
+
+    border-color: rgba(221, 92, 92, 0.30);
+}
+
+.admin-property-action.danger:hover {
+    background: rgba(170, 48, 48, 0.40);
+
+    border-color: rgba(255, 110, 110, 0.55);
+}
+
+/* ------------------------------------------------------------
+   EMPTY STATE
+   ------------------------------------------------------------ */
+
+.admin-properties-empty {
+    grid-column: 1 / -1;
+
+    padding: 60px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0c4634,
+            #06291f
+        );
+
+    border: 1px dashed rgba(212, 175, 55, 0.35);
+
+    border-radius: 18px;
+}
+
+.admin-properties-empty h3 {
+    margin: 0 0 8px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+}
+
+.admin-properties-empty p {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    opacity: 0.72;
+}
+
+/* ------------------------------------------------------------
+   SEARCH
+   ------------------------------------------------------------ */
+
+#admin-property-search {
+    color: #ffffff !important;
+
+    background: #082f23 !important;
+
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+}
+
+#admin-property-search::placeholder {
+    color: rgba(255, 255, 255, 0.58);
+}
+
+#admin-property-search:focus {
+    outline: none;
+
+    border-color: #d4af37 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.10);
+}
+
+/* ------------------------------------------------------------
+   FILTERS
+   ------------------------------------------------------------ */
+
+#admin-property-status,
+#admin-property-type {
+    color: #ffffff !important;
+
+    background-color: #082f23 !important;
+
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+}
+
+#admin-property-status:focus,
+#admin-property-type:focus {
+    outline: none;
+
+    border-color: #d4af37 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.10);
+}
+
+#admin-property-status option,
+#admin-property-type option {
+    background: #082f23;
+    color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   TOAST
+   ------------------------------------------------------------ */
+
+.havenGH-admin-toast {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 9999;
+
+    max-width: 360px;
+
+    padding: 15px 20px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0c4935,
+            #06291f
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.40);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.40);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.havenGH-admin-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 1200px) {
+
+    #admin-properties-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 760px) {
+
+    #admin-properties-list {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .admin-property-image {
+        height: 190px;
+    }
+
+    .admin-property-body {
+        padding: 17px;
+    }
+
+    .admin-property-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-property-action {
+        min-width: 0;
+    }
+
+    .havenGH-admin-toast {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        max-width: none;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .admin-property-image {
+        height: 175px;
+    }
+
+    .admin-property-actions {
+        grid-template-columns: 1fr;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+
+
+<div class="dashboard-layout">
+
+
+    <!-- =================================================
+         ADMIN SIDEBAR
+    ================================================== -->
+
+    <aside class="dashboard-sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="dashboard-logo">
+
+            <a
+                href="havengh logo.jpeg"
+                class="logo"
+            >
+
+                <span class="logo-main">
+                    Haven
+                </span>
+
+                <span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="dashboard-user">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="Administrator profile picture"
+            >
+
+            <div>
+
+                <strong>
+                    HavenGH Admin
+                </strong>
+
+                <span>
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+
+            <a
+                href="admin-dashboard.html"
+                class="dashboard-link"
+            >
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="admin-users.html"
+                class="dashboard-link"
+            >
+
+                <span>♙</span>
+
+                Users
+
+            </a>
+
+
+            <a
+                href="admin-properties.html"
+                class="dashboard-link active"
+            >
+
+                <span>▣</span>
+
+                Properties
+
+            </a>
+
+
+            <a
+                href="admin-stays.html"
+                class="dashboard-link"
+            >
+
+                <span>🏠</span>
+
+                Stay in Ghana
+
+            </a>
+
+
+            <a
+                href="admin-rental-requests.html"
+                class="dashboard-link"
+            >
+
+                <span>◉</span>
+
+                Rental Requests
+
+            </a>
+
+
+            <a
+                href="admin-messages.html"
+                class="dashboard-link"
+            >
+
+                <span>✉</span>
+
+                Messages
+
+            </a>
+
+
+            <a
+                href="admin-payments.html"
+                class="dashboard-link"
+            >
+
+                <span>GH₵</span>
+
+                Payments
+
+            </a>
+
+
+            <a
+                href="admin-subscriptions.html"
+                class="dashboard-link"
+            >
+
+                <span>◆</span>
+
+                Subscriptions
+
+            </a>
+
+
+            <a
+                href="admin-audit-logs.html"
+                class="dashboard-link"
+            >
+
+                <span>▤</span>
+
+                Audit Logs
+
+            </a>
+
+
+            <a
+                href="admin-settings.html"
+                class="dashboard-link"
+            >
+
+                <span>⚙</span>
+
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+
+            <a
+                href="index.html"
+                class="dashboard-link"
+            >
+
+                <span>←</span>
+
+                Back to Website
+
+            </a>
+
+
+            <a
+                href="login.html"
+                class="dashboard-link logout"
+            >
+
+                <span>↪</span>
+
+                Log Out
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-topbar">
+
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open admin menu"
+            >
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+
+                    Wednesday, August 26, 2026
+
+                </p>
+
+
+                <h1>
+
+                    Properties
+
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-label="Notifications"
+                    aria-expanded="false"
+                >
+
+                    ♧
+
+                    <span id="adminNotificationCount">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+        ================================================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="dashboard-welcome">
+
+
+                <div>
+
+                    <span class="section-label">
+
+                        PROPERTY MANAGEMENT
+
+                    </span>
+
+
+                    <h2>
+
+                        Manage HavenGH properties.
+
+                    </h2>
+
+
+                    <p>
+
+                        Review rental properties,
+                        monitor listing status and
+                        manage property activity
+                        across the HavenGH platform.
+
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROPERTY STATISTICS
+            ================================================== -->
+
+            <section class="dashboard-stats">
+
+
+                <!-- TOTAL -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+
+                        ▣
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Properties
+                        </span>
+
+                        <strong id="adminTotalProperties">
+                            —
+                        </strong>
+
+                        <small>
+                            All property listings
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PUBLISHED -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Published
+                        </span>
+
+                        <strong id="adminPublishedProperties">
+                            —
+                        </strong>
+
+                        <small>
+                            Public listings
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PENDING -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong id="adminPendingProperties">
+                            —
+                        </strong>
+
+                        <small>
+                            Awaiting review
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RENTED -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Rented
+                        </span>
+
+                        <strong id="adminRentedProperties">
+                            —
+                        </strong>
+
+                        <small>
+                            Currently rented
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DRAFT -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▤
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Drafts
+                        </span>
+
+                        <strong id="adminDraftProperties">
+                            —
+                        </strong>
+
+                        <small>
+                            Unpublished listings
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROPERTY MANAGEMENT PANEL
+            ================================================== -->
+
+            <section
+                class="dashboard-panel"
+                style="margin-top: 24px;"
+            >
+
+
+                <div class="panel-heading">
+
+
+                    <div>
+
+                        <span class="section-label">
+
+                            PROPERTIES
+
+                        </span>
+
+
+                        <h2>
+
+                            Property listings
+
+                        </h2>
+
+                    </div>
+
+
+                    <span>
+
+                        HavenGH Property Management
+
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- SEARCH AND FILTER -->
+
+                <div
+                    style="
+                        display:flex;
+                        gap:12px;
+                        margin-bottom:24px;
+                        flex-wrap:wrap;
+                    "
+                >
+
+
+                    <input
+                        type="search"
+                        id="admin-property-search"
+                        placeholder="Search properties..."
+                        aria-label="Search properties"
+                        style="
+                            flex:1;
+                            min-width:220px;
+                            padding:12px 14px;
+                            border:1px solid #ddd;
+                            border-radius:8px;
+                        "
+                    >
+
+
+                    <select
+                        id="admin-property-status"
+                        aria-label="Filter properties by status"
+                        style="
+                            padding:12px 14px;
+                            border:1px solid #ddd;
+                            border-radius:8px;
+                        "
+                    >
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="published">
+                            Published
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="draft">
+                            Draft
+                        </option>
+
+                        <option value="rented">
+                            Rented
+                        </option>
+
+                        <option value="archived">
+                            Archived
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="admin-property-type"
+                        aria-label="Filter properties by type"
+                        style="
+                            padding:12px 14px;
+                            border:1px solid #ddd;
+                            border-radius:8px;
+                        "
+                    >
+
+                        <option value="all">
+                            All Types
+                        </option>
+
+                        <option value="single-room">
+                            Single Room
+                        </option>
+
+                        <option value="single-room-porch">
+                            Single Room + Porch
+                        </option>
+
+                        <option value="chamber-hall">
+                            Chamber & Hall
+                        </option>
+
+                        <option value="apartment">
+                            Apartment
+                        </option>
+
+                        <option value="house">
+                            House
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- PROPERTY LIST -->
+
+                <div id="admin-properties-list">
+
+
+                    <div class="request-item">
+
+
+                        <div>
+
+                            <h3>
+                                Property records
+                            </h3>
+
+
+                            <p>
+
+                                Property listings will
+                                appear here when connected
+                                to the HavenGH API.
+
+                            </p>
+
+
+                            <small>
+
+                                Administrator access is
+                                required to manage listings.
+
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROPERTY SECURITY
+            ================================================== -->
+
+            <section
+                class="dashboard-plan"
+                style="margin-top:24px;"
+            >
+
+
+                <div>
+
+                    <span class="section-label">
+
+                        SECURITY
+
+                    </span>
+
+
+                    <h2>
+
+                        Property administration
+
+                    </h2>
+
+
+                    <p>
+
+                        Property management actions will
+                        be protected by authenticated
+                        administrator access and
+                        server-side authorization.
+
+                    </p>
+
+                </div>
+
+
+                <div class="plan-progress">
+
+
+                    <div class="progress-text">
+
+                        <span>
+                            Admin Access
+                        </span>
+
+
+                        <strong>
+                            Protected
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <span
+                            style="width:100%;"
+                        ></span>
+
+                    </div>
+
+
+                    <small>
+
+                        Property management will be
+                        connected to the HavenGH API.
+
+                    </small>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =====================================================
+     EXISTING HAVENGH MAIN JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+<script src="admin-properties.js"></script>
+
+
+</body>
+
+</html>

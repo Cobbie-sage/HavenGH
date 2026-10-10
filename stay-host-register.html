@@ -1,0 +1,3077 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Create a HavenGH Stay account as a guest or accommodation host.">
+
+    <title>Create Stay Account | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+    
+/* =========================================================
+   HAVENGH — STAY REGISTRATION
+   PREMIUM GLASS / ACCRA EDITION
+   CSS ONLY — REGISTRATION JAVASCRIPT UNCHANGED
+========================================================= */
+
+:root {
+    --green-950: #061b14;
+    --green-900: #08271d;
+    --green-850: #0c3527;
+    --green-800: #104733;
+    --green-700: #176044;
+
+    --gold: #d4af37;
+    --gold-light: #efd27a;
+    --gold-soft: rgba(212, 175, 55, 0.18);
+
+    --white: #ffffff;
+    --cream: #f8f5ed;
+
+    --text: #17251f;
+    --muted: #68756f;
+
+    --glass-light: rgba(255, 255, 255, 0.13);
+    --glass-light-strong: rgba(255, 255, 255, 0.19);
+
+    --glass-dark: rgba(4, 27, 20, 0.62);
+    --glass-dark-soft: rgba(4, 27, 20, 0.42);
+
+    --border-light: rgba(255, 255, 255, 0.22);
+    --border-gold: rgba(212, 175, 55, 0.40);
+
+    --shadow:
+        0 25px 70px rgba(0, 0, 0, 0.28);
+
+    --shadow-soft:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    --radius: 20px;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    min-height: 100vh;
+
+    color: var(--white);
+
+    background:
+        linear-gradient(
+            rgba(4, 24, 18, 0.48),
+            rgba(4, 24, 18, 0.60)
+        ),
+        url("Accra.jpg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   FIXED BACKGROUND LIGHT / DARK EFFECT
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -2;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 18% 20%,
+            rgba(255, 255, 255, 0.12),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 82% 75%,
+            rgba(212, 175, 55, 0.10),
+            transparent 30%
+        );
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3, 24, 18, 0.12),
+            rgba(0, 0, 0, 0.24)
+        );
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    width: 100%;
+
+    background:
+        rgba(5, 27, 20, 0.72);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.18);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+}
+
+
+/* =========================================================
+   HEADER CONTAINER
+========================================================= */
+
+.nav-container {
+    min-height: 82px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    color: var(--white);
+
+    font-size: 1.55rem;
+
+    font-weight: 850;
+
+    letter-spacing: -0.045em;
+
+    white-space: nowrap;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    display: block;
+
+    flex-shrink: 0;
+
+    margin-right: 6px;
+
+    border-radius: 12px;
+
+    padding: 2px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.45);
+
+    box-shadow:
+        0 7px 22px
+        rgba(0, 0, 0, 0.30),
+
+        0 0 0 1px
+        rgba(212, 175, 55, 0.16);
+
+    /*
+       Helps the JPEG look cleaner without
+       altering the actual registration logic.
+    */
+    filter:
+        contrast(1.08)
+        saturate(1.08)
+        brightness(1.03);
+}
+
+.logo-main {
+    color: var(--white);
+}
+
+.logo-accent {
+    color: var(--gold-light);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 9px;
+}
+
+.nav-link {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    min-height: 42px;
+
+    padding:
+        0 13px;
+
+    border-radius: 10px;
+
+    color:
+        rgba(255, 255, 255, 0.84);
+
+    font-size: 0.88rem;
+
+    font-weight: 650;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--white);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    transform:
+        translateY(-1px);
+}
+
+.nav-link.active {
+    color: var(--gold-light);
+
+    background:
+        rgba(212, 175, 55, 0.10);
+}
+
+
+/* =========================================================
+   LOGIN LINK
+========================================================= */
+
+.login-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding:
+        0 14px;
+
+    border-radius: 10px;
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    font-size: 0.86rem;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.login-link:hover {
+    color: var(--gold-light);
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   TENANT LOGIN BUTTON
+========================================================= */
+
+.navbar .btn.btn-dark {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding:
+        0 17px;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.42);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            #e8c75f
+        );
+
+    color:
+        var(--green-950);
+
+    font-size: 0.84rem;
+
+    font-weight: 850;
+
+    box-shadow:
+        0 8px 22px
+        rgba(212, 175, 55, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.navbar .btn.btn-dark:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(212, 175, 55, 0.28);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 46px;
+    height: 46px;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.40);
+
+    border-radius: 12px;
+
+    background:
+        rgba(5, 35, 26, 0.78);
+
+    color:
+        var(--gold-light);
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transition:
+        all 0.25s ease;
+}
+
+.mobile-menu-button:hover {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+
+    border-color:
+        var(--gold);
+
+    transform:
+        translateY(-1px);
+}
+
+.mobile-menu-button:active {
+    transform:
+        scale(0.96);
+}
+
+.mobile-menu-button:focus-visible {
+    outline:
+        2px solid
+        var(--gold-light);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    position: relative;
+
+    min-height: calc(100vh - 82px);
+}
+
+
+/* =========================================================
+   REGISTRATION SECTION
+========================================================= */
+
+.stay-register-section {
+    min-height:
+        calc(100vh - 82px);
+
+    padding:
+        85px 20px 100px;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   SUBTLE SECTION LIGHT
+========================================================= */
+
+.stay-register-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 220px;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.12),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.stay-register-container {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            100%,
+            1120px
+        );
+
+    margin:
+        0 auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        0.92fr
+        1.08fr;
+
+    gap:
+        65px;
+
+    align-items:
+        center;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.stay-register-intro {
+    padding:
+        20px 10px;
+}
+
+.stay-register-intro .section-label {
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        0.70rem;
+
+    font-weight:
+        850;
+
+    letter-spacing:
+        0.18em;
+
+    text-transform:
+        uppercase;
+}
+
+.stay-register-intro .section-label::before {
+    content: "";
+
+    width:
+        28px;
+
+    height:
+        1px;
+
+    background:
+        var(--gold);
+}
+
+.stay-register-intro h1 {
+    margin:
+        18px 0 20px;
+
+    color:
+        var(--white);
+
+    font-size:
+        clamp(
+            2.6rem,
+            5vw,
+            4.5rem
+        );
+
+    line-height:
+        1.02;
+
+    letter-spacing:
+        -0.055em;
+
+    font-weight:
+        850;
+
+    text-shadow:
+        0 8px 30px
+        rgba(0, 0, 0, 0.32);
+}
+
+.stay-register-intro h1 span {
+    color:
+        var(--gold-light);
+}
+
+.stay-register-intro > p {
+    max-width:
+        570px;
+
+    margin:
+        0 0 35px;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+    text-shadow:
+        0 3px 15px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.stay-benefits {
+    display:
+        grid;
+
+    gap:
+        13px;
+}
+
+.stay-benefit {
+    display:
+        flex;
+
+    gap:
+        14px;
+
+    align-items:
+        flex-start;
+
+    padding:
+        14px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(255, 255, 255, 0.085);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.10);
+
+    backdrop-filter:
+        blur(13px);
+
+    -webkit-backdrop-filter:
+        blur(13px);
+
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.stay-benefit:hover {
+    transform:
+        translateX(4px);
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-color:
+        rgba(212, 175, 55, 0.30);
+}
+
+.stay-benefit-icon {
+    width:
+        40px;
+
+    height:
+        40px;
+
+    min-width:
+        40px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.35);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(212, 175, 55, 0.14);
+
+    color:
+        var(--gold-light);
+
+    font-weight:
+        850;
+
+    font-size:
+        12px;
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(212, 175, 55, 0.05);
+}
+
+.stay-benefit h3 {
+    margin:
+        0 0 4px;
+
+    color:
+        var(--white);
+
+    font-size:
+        0.94rem;
+}
+
+.stay-benefit p {
+    margin:
+        0;
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size:
+        0.77rem;
+
+    line-height:
+        1.55;
+}
+
+
+/* =========================================================
+   REGISTRATION GLASS CARD
+========================================================= */
+
+.stay-register-card {
+    position:
+        relative;
+
+    padding:
+        38px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+
+    border-radius:
+        24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.20),
+            rgba(255, 255, 255, 0.09)
+        );
+
+    box-shadow:
+        0 30px 90px
+        rgba(0, 0, 0, 0.30);
+
+    backdrop-filter:
+        blur(24px);
+
+    -webkit-backdrop-filter:
+        blur(24px);
+
+    overflow:
+        hidden;
+}
+
+.stay-register-card::before {
+    content: "";
+
+    position:
+        absolute;
+
+    top:
+        -100px;
+
+    right:
+        -100px;
+
+    width:
+        260px;
+
+    height:
+        260px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(212, 175, 55, 0.09);
+
+    pointer-events:
+        none;
+}
+
+.stay-register-card::after {
+    content: "";
+
+    position:
+        absolute;
+
+    left:
+        30px;
+
+    right:
+        30px;
+
+    top:
+        0;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.55),
+            transparent
+        );
+
+    pointer-events:
+        none;
+}
+
+.stay-register-card h2 {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--white);
+
+    font-size:
+        1.65rem;
+
+    letter-spacing:
+        -0.025em;
+}
+
+.form-description {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    margin:
+        0 0 25px;
+
+    color:
+        rgba(255, 255, 255, 0.67);
+
+    font-size:
+        0.82rem;
+
+    line-height:
+        1.55;
+}
+
+
+/* =========================================================
+   ACCOUNT TYPE
+========================================================= */
+
+.account-type-label {
+    display:
+        block;
+
+    margin:
+        0 0 10px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        750;
+}
+
+.account-type-options {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        12px;
+
+    margin-bottom:
+        22px;
+}
+
+.account-type-option {
+    position:
+        relative;
+}
+
+.account-type-option input {
+    position:
+        absolute;
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+}
+
+.account-type-card {
+    display:
+        block;
+
+    min-height:
+        145px;
+
+    padding:
+        17px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.17);
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(255, 255, 255, 0.075);
+
+    cursor:
+        pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.account-type-card:hover {
+    border-color:
+        rgba(212, 175, 55, 0.42);
+
+    background:
+        rgba(255, 255, 255, 0.11);
+
+    transform:
+        translateY(-2px);
+}
+
+.account-type-option input:checked
++ .account-type-card {
+    border-color:
+        rgba(212, 175, 55, 0.72);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(212, 175, 55, 0.17),
+            rgba(255, 255, 255, 0.09)
+        );
+
+    box-shadow:
+        0 0 0 1px
+        rgba(212, 175, 55, 0.16),
+
+        0 15px 35px
+        rgba(0, 0, 0, 0.12);
+}
+
+.account-type-card-icon {
+    width:
+        38px;
+
+    height:
+        38px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    margin-bottom:
+        11px;
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.35);
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(212, 175, 55, 0.13);
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        15px;
+}
+
+.account-type-card strong {
+    display:
+        block;
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--white);
+
+    font-size:
+        0.87rem;
+}
+
+.account-type-card span {
+    display:
+        block;
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        0.70rem;
+
+    line-height:
+        1.45;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.stay-form-group {
+    margin-bottom:
+        17px;
+}
+
+.stay-form-group label {
+    display:
+        block;
+
+    margin-bottom:
+        7px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size:
+        0.76rem;
+
+    font-weight:
+        700;
+}
+
+.stay-form-group input,
+.stay-form-group select {
+    width:
+        100%;
+
+    min-height:
+        48px;
+
+    padding:
+        12px 14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    border-radius:
+        10px;
+
+    outline:
+        none;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    color:
+        var(--white);
+
+    font-size:
+        0.84rem;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.stay-form-group input::placeholder {
+    color:
+        rgba(255,255,255,0.42);
+}
+
+.stay-form-group select option {
+    color:
+        var(--green-950);
+
+    background:
+        var(--white);
+}
+
+.stay-form-group input:focus,
+.stay-form-group select:focus {
+    border-color:
+        rgba(212,175,55,0.70);
+
+    background:
+        rgba(255,255,255,0.14);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,175,55,0.10);
+}
+
+.stay-form-row {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        15px;
+}
+
+
+/* =========================================================
+   HOST DETAILS
+========================================================= */
+
+.host-details {
+    display:
+        none;
+
+    padding:
+        18px;
+
+    margin-bottom:
+        20px;
+
+    border:
+        1px solid
+        rgba(212,175,55,0.22);
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(255,255,255,0.075);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+}
+
+.host-details.visible {
+    display:
+        block;
+}
+
+.host-details-heading {
+    margin-bottom:
+        15px;
+}
+
+.host-details-heading strong {
+    display:
+        block;
+
+    margin-bottom:
+        4px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        0.87rem;
+}
+
+.host-details-heading span {
+    color:
+        rgba(255,255,255,0.57);
+
+    font-size:
+        0.70rem;
+}
+
+
+/* =========================================================
+   TERMS
+========================================================= */
+
+.stay-checkbox {
+    display:
+        flex;
+
+    gap:
+        9px;
+
+    align-items:
+        flex-start;
+
+    margin:
+        19px 0;
+}
+
+.stay-checkbox input {
+    width:
+        auto;
+
+    margin-top:
+        3px;
+
+    accent-color:
+        var(--gold);
+}
+
+.stay-checkbox label {
+    color:
+        rgba(255,255,255,0.58);
+
+    font-size:
+        0.70rem;
+
+    line-height:
+        1.55;
+}
+
+.stay-checkbox a {
+    color:
+        var(--gold-light);
+
+    font-weight:
+        700;
+}
+
+.stay-checkbox a:hover {
+    color:
+        var(--white);
+}
+
+
+/* =========================================================
+   REGISTER BUTTON
+========================================================= */
+
+.stay-register-btn {
+    position:
+        relative;
+
+    width:
+        100%;
+
+    min-height:
+        51px;
+
+    padding:
+        13px 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.20);
+
+    border-radius:
+        11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #ebc965
+        );
+
+    color:
+        var(--green-950);
+
+    font-size:
+        0.88rem;
+
+    font-weight:
+        850;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 12px 30px
+        rgba(212,175,55,0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.stay-register-btn:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 35px
+        rgba(212,175,55,0.27);
+
+    filter:
+        brightness(1.04);
+}
+
+.stay-register-btn:disabled {
+    opacity:
+        0.65;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.stay-message {
+    display:
+        none;
+
+    margin-top:
+        14px;
+
+    padding:
+        12px;
+
+    border-radius:
+        10px;
+
+    font-size:
+        0.75rem;
+
+    text-align:
+        center;
+
+    line-height:
+        1.5;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+.stay-message.success {
+    display:
+        block;
+
+    background:
+        rgba(16,185,129,0.15);
+
+    color:
+        #b8f7dc;
+
+    border:
+        1px solid
+        rgba(52,211,153,0.30);
+}
+
+.stay-message.error {
+    display:
+        block;
+
+    background:
+        rgba(239,68,68,0.13);
+
+    color:
+        #ffd0d0;
+
+    border:
+        1px solid
+        rgba(248,113,113,0.28);
+}
+
+
+/* =========================================================
+   LOGIN / BACK
+========================================================= */
+
+.stay-login-link {
+    margin-top:
+        20px;
+
+    color:
+        rgba(255,255,255,0.56);
+
+    text-align:
+        center;
+
+    font-size:
+        0.75rem;
+}
+
+.stay-login-link a {
+    color:
+        var(--gold-light);
+
+    font-weight:
+        750;
+}
+
+.stay-login-link a:hover {
+    color:
+        var(--white);
+}
+
+.stay-back-link {
+    margin-top:
+        12px;
+
+    text-align:
+        center;
+
+    font-size:
+        0.70rem;
+}
+
+.stay-back-link a {
+    color:
+        rgba(255,255,255,0.42);
+}
+
+.stay-back-link a:hover {
+    color:
+        var(--gold-light);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    position:
+        relative;
+
+    background:
+        rgba(3,20,15,0.72);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.footer-bottom {
+    min-height:
+        75px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    color:
+        rgba(255,255,255,0.52);
+
+    font-size:
+        0.70rem;
+}
+
+.footer-bottom p {
+    margin:
+        0;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .stay-register-container {
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            680px;
+
+        gap:
+            35px;
+    }
+
+    .stay-register-intro {
+        text-align:
+            center;
+
+        padding:
+            10px;
+    }
+
+    .stay-register-intro > p {
+        margin-left:
+            auto;
+
+        margin-right:
+            auto;
+    }
+
+    .stay-register-intro .section-label {
+        justify-content:
+            center;
+    }
+
+    .stay-benefit {
+        text-align:
+            left;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .nav-container {
+        min-height:
+            72px;
+
+        padding:
+            0 15px;
+    }
+
+    .navbar {
+        display:
+            none;
+
+        position:
+            absolute;
+
+        top:
+            76px;
+
+        left:
+            14px;
+
+        right:
+            14px;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            5px;
+
+        padding:
+            10px;
+
+        border:
+            1px solid
+            rgba(255,255,255,0.18);
+
+        border-radius:
+            16px;
+
+        background:
+            rgba(5,31,23,0.94);
+
+        box-shadow:
+            0 25px 60px
+            rgba(0,0,0,0.35);
+
+        backdrop-filter:
+            blur(22px);
+
+        -webkit-backdrop-filter:
+            blur(22px);
+    }
+
+    .navbar.mobile-open {
+        display:
+            flex;
+    }
+
+    .navbar .nav-link,
+    .navbar .login-link,
+    .navbar .btn.btn-dark {
+        width:
+            100%;
+
+        min-height:
+            48px;
+
+        justify-content:
+            flex-start;
+
+        padding:
+            0 15px;
+    }
+
+    .navbar .btn.btn-dark {
+        margin-top:
+            5px;
+
+        justify-content:
+            center;
+    }
+
+    .mobile-menu-button {
+        display:
+            flex;
+
+        position:
+            absolute;
+
+        top:
+            13px;
+
+        right:
+            15px;
+
+        z-index:
+            1100;
+    }
+
+    .logo {
+        font-size:
+            1.35rem;
+    }
+
+    .logo img {
+        width:
+            42px;
+
+        height:
+            42px;
+    }
+
+    .stay-register-section {
+        padding:
+            55px 15px 70px;
+    }
+
+    .stay-register-intro h1 {
+        font-size:
+            clamp(
+                2.3rem,
+                10vw,
+                3.3rem
+            );
+    }
+
+    .stay-register-card {
+        padding:
+            27px 21px;
+
+        border-radius:
+            20px;
+    }
+
+    .footer-bottom {
+        padding:
+            20px 15px;
+
+        flex-direction:
+            column;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+
+        gap:
+            5px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .stay-register-section {
+        padding:
+            40px 12px 55px;
+    }
+
+    .stay-register-intro {
+        padding:
+            5px;
+    }
+
+    .stay-register-intro h1 {
+        font-size:
+            2.25rem;
+    }
+
+    .stay-register-intro > p {
+        font-size:
+            0.88rem;
+    }
+
+    .stay-benefit {
+        padding:
+            12px;
+    }
+
+    .stay-benefit-icon {
+        width:
+            36px;
+
+        height:
+            36px;
+
+        min-width:
+            36px;
+    }
+
+    .account-type-options {
+        grid-template-columns:
+            1fr;
+    }
+
+    .account-type-card {
+        min-height:
+            auto;
+    }
+
+    .stay-form-row {
+        grid-template-columns:
+            1fr;
+
+        gap:
+            0;
+    }
+
+    .stay-register-card {
+        padding:
+            24px 17px;
+    }
+
+    .stay-register-card h2 {
+        font-size:
+            1.4rem;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .logo {
+        font-size:
+            1.18rem;
+    }
+
+    .logo img {
+        width:
+            38px;
+
+        height:
+            38px;
+    }
+
+    .mobile-menu-button {
+        width:
+            42px;
+
+        height:
+            42px;
+    }
+
+    .stay-register-intro h1 {
+        font-size:
+            2rem;
+    }
+}
+
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+
+        <nav class="navbar">
+
+            <a href="index.html"
+               class="nav-link">
+                Home
+            </a>
+
+            <a href="properties.html"
+               class="nav-link">
+                Find a Home
+            </a>
+
+            <a href="stays.html"
+               class="nav-link active">
+                Stay in Ghana
+            </a>
+
+            <a href="login.html"
+               class="login-link">
+                Agent/Landlord
+            </a>
+
+            <a href="tenant-login.html"
+               class="btn btn-dark">
+                Tenant Login
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <button
+        class="mobile-menu-button"
+        type="button"
+        aria-label="Open navigation menu">
+
+        ☰
+
+    </button>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+<section class="stay-register-section">
+
+    <div class="stay-register-container">
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <div class="stay-register-intro">
+
+            <span class="section-label">
+                STAY IN GHANA
+            </span>
+
+
+            <h1>
+
+                Your stay.
+                <span>Your Haven.</span>
+
+            </h1>
+
+
+            <p>
+
+                Create one HavenGH Stay account to
+                discover accommodation in Ghana or
+                host your own property for travellers.
+
+            </p>
+
+
+            <div class="stay-benefits">
+
+
+                <div class="stay-benefit">
+
+                    <div class="stay-benefit-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            For Guests
+                        </h3>
+
+                        <p>
+                            Find hotels, serviced apartments,
+                            villas and short-stay accommodation
+                            before your trip to Ghana.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stay-benefit">
+
+                    <div class="stay-benefit-icon">
+                        GH
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Built for Ghana
+                        </h3>
+
+                        <p>
+                            Discover and manage stays across
+                            Ghana from one simple HavenGH account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stay-benefit">
+
+                    <div class="stay-benefit-icon">
+                        ★
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            For Hosts
+                        </h3>
+
+                        <p>
+                            List your accommodation and reach
+                            travellers planning their visit to Ghana.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             REGISTRATION CARD
+        ================================================== -->
+
+        <div class="stay-register-card">
+
+            <h2 id="registerTitle">
+                Create your Stay account
+            </h2>
+
+
+            <p class="form-description"
+               id="registerDescription">
+
+                Choose how you want to use HavenGH Stay.
+
+            </p>
+
+
+            <form id="stayRegisterForm">
+
+
+                <!-- =================================================
+                     ACCOUNT TYPE
+                ================================================== -->
+
+                <label class="account-type-label">
+                    I want to
+                </label>
+
+
+                <div class="account-type-options">
+
+
+                    <!-- GUEST -->
+
+                    <div class="account-type-option">
+
+                        <input
+                            type="radio"
+                            id="accountGuest"
+                            name="accountType"
+                            value="guest"
+                            checked>
+
+                        <label
+                            for="accountGuest"
+                            class="account-type-card">
+
+                            <div class="account-type-card-icon">
+                                ♡
+                            </div>
+
+                            <strong>
+                                Stay as a Guest
+                            </strong>
+
+                            <span>
+                                Book accommodation and manage
+                                your Stay reservations.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- HOST -->
+
+                    <div class="account-type-option">
+
+                        <input
+                            type="radio"
+                            id="accountHost"
+                            name="accountType"
+                            value="host">
+
+                        <label
+                            for="accountHost"
+                            class="account-type-card">
+
+                            <div class="account-type-card-icon">
+                                ★
+                            </div>
+
+                            <strong>
+                                Become a Host
+                            </strong>
+
+                            <span>
+                                List your accommodation and
+                                manage guest bookings.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PERSONAL INFORMATION
+                ================================================== -->
+
+                <div class="stay-form-group">
+
+                    <label for="stayName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="stayName"
+                        name="stayName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        maxlength="150"
+                        required>
+
+                </div>
+
+
+                <div class="stay-form-group">
+
+                    <label for="stayEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="stayEmail"
+                        name="stayEmail"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        maxlength="30"
+                        required>
+
+                </div>
+
+
+                <div class="stay-form-group">
+
+                    <label for="stayPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="stayPhone"
+                        name="stayPhone"
+                        placeholder="e.g. 024 XXX XXXX"
+                        autocomplete="tel"
+                        maxlength="30"
+                        required>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     HOST-ONLY INFORMATION
+                ================================================== -->
+
+                <div
+                    class="host-details"
+                    id="hostDetails">
+
+                    <div class="host-details-heading">
+
+                        <strong>
+                            Accommodation details
+                        </strong>
+
+                        <span>
+                            These details help us understand
+                            what you plan to list.
+                        </span>
+
+                    </div>
+
+
+                    <div class="stay-form-group">
+
+                        <label for="hostType">
+                            What are you listing?
+                        </label>
+
+                        <select
+                            id="hostType"
+                            name="hostType">
+
+                            <option value="">
+                                Select accommodation type
+                            </option>
+
+                            <option value="hotel">
+                                Hotel
+                            </option>
+
+                            <option value="serviced-apartment">
+                                Serviced Apartment
+                            </option>
+
+                            <option value="short-stay">
+                                Short-Stay Apartment
+                            </option>
+
+                            <option value="guest-house">
+                                Guest House
+                            </option>
+
+                            <option value="villa">
+                                Villa
+                            </option>
+
+                            <option value="other">
+                                Other Accommodation
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="stay-form-group">
+
+                        <label for="hostLocation">
+                            Main Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="hostLocation"
+                            name="hostLocation"
+                            placeholder="e.g. East Legon, Accra"
+                            maxlength="150">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PASSWORD
+                ================================================== -->
+
+                <div class="stay-form-row">
+
+
+                    <div class="stay-form-group">
+
+                        <label for="stayPassword">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="stayPassword"
+                            name="stayPassword"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required>
+
+                    </div>
+
+
+                    <div class="stay-form-group">
+
+                        <label for="stayConfirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="stayConfirmPassword"
+                            name="stayConfirmPassword"
+                            placeholder="Repeat password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     TERMS
+                ================================================== -->
+
+                <div class="stay-checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="stayTerms"
+                        name="stayTerms"
+                        required>
+
+
+                    <label for="stayTerms">
+
+                        I agree to the HavenGH
+
+                        <a href="terms.html">
+                            Terms of Service
+                        </a>
+
+                        and
+
+                        <a href="privacy-policy.html">
+                            Privacy Policy
+                        </a>.
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SUBMIT
+                ================================================== -->
+
+                <button
+                    type="submit"
+                    class="stay-register-btn"
+                    id="stayRegisterBtn">
+
+                    Create Guest Account
+
+                </button>
+
+
+
+                <!-- =================================================
+                     MESSAGE
+                ================================================== -->
+
+                <div
+                    id="stayMessage"
+                    class="stay-message">
+                </div>
+
+
+            </form>
+
+
+
+            <!-- =================================================
+                 LOGIN
+            ================================================== -->
+
+            <div class="stay-login-link">
+
+                Already have a Stay account?
+
+                <a href="sign-in.html">
+                    Sign in
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 BACK
+            ================================================== -->
+
+            <div class="stay-back-link">
+
+                <a href="stays.html">
+                    ← Back to Stay in Ghana
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 HavenGH. All rights reserved.
+        </p>
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     EXISTING HAVENGH SCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+
+<!-- =====================================================
+     UNIFIED STAY REGISTRATION
+===================================================== -->
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   API
+===================================================== */
+
+const STAY_REGISTER_API_URL =
+    "http://localhost:5073/api/Auth/register-stay";
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const stayRegisterForm =
+    document.getElementById("stayRegisterForm");
+
+const stayRegisterBtn =
+    document.getElementById("stayRegisterBtn");
+
+const stayMessage =
+    document.getElementById("stayMessage");
+
+const hostDetails =
+    document.getElementById("hostDetails");
+
+const hostType =
+    document.getElementById("hostType");
+
+const hostLocation =
+    document.getElementById("hostLocation");
+
+const registerTitle =
+    document.getElementById("registerTitle");
+
+const registerDescription =
+    document.getElementById("registerDescription");
+
+
+
+/* =====================================================
+   ACCOUNT TYPE
+===================================================== */
+
+function getSelectedAccountType() {
+
+    const selected =
+        document.querySelector(
+            'input[name="accountType"]:checked'
+        );
+
+    return selected
+        ? selected.value
+        : "";
+}
+
+
+
+/* =====================================================
+   UPDATE ACCOUNT TYPE UI
+===================================================== */
+
+function updateAccountTypeUI() {
+
+    const accountType =
+        getSelectedAccountType();
+
+
+    if (accountType === "host") {
+
+        hostDetails.classList.add("visible");
+
+        hostType.required = true;
+
+        hostLocation.required = true;
+
+
+        registerTitle.textContent =
+            "Create your host account";
+
+        registerDescription.textContent =
+            "Create your HavenGH Stay host account and start preparing your accommodation listing.";
+
+        stayRegisterBtn.textContent =
+            "Create Host Account";
+
+    }
+
+    else {
+
+        hostDetails.classList.remove("visible");
+
+        hostType.required = false;
+
+        hostLocation.required = false;
+
+
+        registerTitle.textContent =
+            "Create your guest account";
+
+        registerDescription.textContent =
+            "Create your HavenGH Stay guest account and manage your accommodation bookings.";
+
+        stayRegisterBtn.textContent =
+            "Create Guest Account";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   ACCOUNT TYPE LISTENERS
+===================================================== */
+
+document
+    .querySelectorAll(
+        'input[name="accountType"]'
+    )
+    .forEach(function (radio) {
+
+        radio.addEventListener(
+            "change",
+            updateAccountTypeUI
+        );
+
+    });
+
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showStayMessage(
+    message,
+    type
+) {
+
+    stayMessage.textContent =
+        message;
+
+    stayMessage.className =
+        "stay-message " + type;
+
+}
+
+
+
+/* =====================================================
+   SUBMIT REGISTRATION
+===================================================== */
+
+stayRegisterForm.addEventListener(
+    "submit",
+    async function (event) {
+
+        event.preventDefault();
+
+
+        /* ---------------------------------------------
+           GET VALUES
+        --------------------------------------------- */
+
+        const fullName =
+            document
+                .getElementById("stayName")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("stayEmail")
+                .value
+                .trim();
+
+
+        const phone =
+            document
+                .getElementById("stayPhone")
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById("stayPassword")
+                .value;
+
+
+        const confirmPassword =
+            document
+                .getElementById("stayConfirmPassword")
+                .value;
+
+
+        const termsAccepted =
+            document
+                .getElementById("stayTerms")
+                .checked;
+
+
+        const accountType =
+            getSelectedAccountType();
+
+
+
+        /* ---------------------------------------------
+           VALIDATE ACCOUNT TYPE
+        --------------------------------------------- */
+
+        if (
+            accountType !== "guest" &&
+            accountType !== "host"
+        ) {
+
+            showStayMessage(
+                "Please choose whether you are registering as a guest or host.",
+                "error"
+            );
+
+            return;
+        }
+
+
+
+        /* ---------------------------------------------
+           VALIDATE PASSWORD
+        --------------------------------------------- */
+
+        if (password.length < 8) {
+
+            showStayMessage(
+                "Password must be at least 8 characters long.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (password !== confirmPassword) {
+
+            showStayMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+        }
+
+
+
+        /* ---------------------------------------------
+           VALIDATE TERMS
+        --------------------------------------------- */
+
+        if (!termsAccepted) {
+
+            showStayMessage(
+                "Please agree to the Terms of Service and Privacy Policy.",
+                "error"
+            );
+
+            return;
+        }
+
+
+
+        /* ---------------------------------------------
+           HOST VALIDATION
+        --------------------------------------------- */
+
+        if (accountType === "host") {
+
+            if (!hostType.value) {
+
+                showStayMessage(
+                    "Please select your accommodation type.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!hostLocation.value.trim()) {
+
+                showStayMessage(
+                    "Please enter the main location of your accommodation.",
+                    "error"
+                );
+
+                return;
+            }
+
+        }
+
+
+
+        /* ---------------------------------------------
+           DISABLE BUTTON
+        --------------------------------------------- */
+
+        stayRegisterBtn.disabled = true;
+
+        stayRegisterBtn.textContent =
+            "Creating Account...";
+
+
+        stayMessage.className =
+            "stay-message";
+
+
+
+        /* ---------------------------------------------
+           SEND TO API
+        --------------------------------------------- */
+
+        try {
+
+            const response =
+                await fetch(
+                    STAY_REGISTER_API_URL,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Accept":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            fullName:
+                                fullName,
+
+                            email:
+                                email,
+
+                            phone:
+                                phone,
+
+                            password:
+                                password,
+
+                            accountType:
+                                accountType
+
+                        })
+                    }
+                );
+
+
+
+            /* -----------------------------------------
+               READ RESPONSE
+            ----------------------------------------- */
+
+            let data = null;
+
+            try {
+
+                data =
+                    await response.json();
+
+            }
+
+            catch {
+
+                data = null;
+
+            }
+
+
+
+            /* -----------------------------------------
+               API ERROR
+            ----------------------------------------- */
+
+            if (!response.ok) {
+
+                showStayMessage(
+                    data?.message ||
+                    "Registration failed. Please try again.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+
+            /* -----------------------------------------
+               SAVE SESSION
+            ----------------------------------------- */
+
+            if (data?.token) {
+
+                localStorage.setItem(
+                    "havenGH_token",
+                    data.token
+                );
+
+            }
+
+
+            if (data?.role) {
+
+                localStorage.setItem(
+                    "havenGH_role",
+                    data.role
+                );
+
+            }
+
+
+            if (data?.userId) {
+
+                localStorage.setItem(
+                    "havenGH_userId",
+                    data.userId
+                );
+
+            }
+
+
+
+            /* -----------------------------------------
+               VERIFY API DASHBOARD RESPONSE
+            ----------------------------------------- */
+
+            if (!data?.dashboard) {
+
+                showStayMessage(
+                    "Account created, but the dashboard destination was not provided by the server.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+
+            /* -----------------------------------------
+               SUCCESS MESSAGE
+            ----------------------------------------- */
+
+            const successMessage =
+                accountType === "host"
+
+                    ? "Your Stay Host account has been created successfully."
+
+                    : "Your Stay Guest account has been created successfully.";
+
+
+            showStayMessage(
+                successMessage,
+                "success"
+            );
+
+
+
+            /* -----------------------------------------
+               REDIRECT USING API RESPONSE
+            ----------------------------------------- */
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        data.dashboard;
+
+                },
+                1000
+            );
+
+        }
+
+
+        catch (error) {
+
+            console.error(
+                "Stay registration error:",
+                error
+            );
+
+
+            showStayMessage(
+                "Unable to connect to HavenGH. Please make sure the API is running.",
+                "error"
+            );
+
+        }
+
+
+        finally {
+
+            stayRegisterBtn.disabled = false;
+
+            updateAccountTypeUI();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   INITIAL UI
+===================================================== */
+
+updateAccountTypeUI();
+
+</script>
+
+
+</body>
+</html>
+

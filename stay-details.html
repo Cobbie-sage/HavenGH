@@ -1,0 +1,3654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="View detailed accommodation information and request a stay through HavenGH.">
+
+    <title>Stay Details | HavenGH</title>
+
+
+    <style>
+
+        /* ============================================================
+           HAVENGH
+           STAY DETAILS
+           Premium accommodation details page
+           ============================================================ */
+
+        :root {
+
+            --green-950: #022c22;
+            --green-900: #064e3b;
+            --green-800: #065f46;
+            --green-700: #047857;
+            --green-600: #059669;
+
+            --gold: #d4a017;
+            --gold-light: #f1c75b;
+
+            --cream: #f7f5ef;
+
+            --surface: #ffffff;
+            --surface-soft: #f2f6f3;
+
+            --text: #17231e;
+            --muted: #66736d;
+
+            --border: #e2e9e5;
+
+            --shadow:
+                0 18px 50px rgba(2, 44, 34, 0.10);
+
+            --shadow-soft:
+                0 8px 30px rgba(2, 44, 34, 0.07);
+
+            --radius: 20px;
+        }
+
+
+        /* ============================================================
+           RESET
+           ============================================================ */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background: #f7f9f7;
+
+            line-height: 1.6;
+
+            min-height: 100vh;
+        }
+
+
+        img {
+            max-width: 100%;
+        }
+
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+
+        button {
+            border: 0;
+        }
+
+
+        a {
+            color: inherit;
+        }
+
+
+        .container {
+
+            width:
+                min(
+                    1180px,
+                    calc(100% - 40px)
+                );
+
+            margin: 0 auto;
+        }
+
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+
+        .header {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+                rgba(2, 44, 34, 0.97);
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+
+            backdrop-filter: blur(14px);
+        }
+
+
+        .nav-container {
+
+            min-height: 76px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+
+            position: relative;
+        }
+
+
+        .logo {
+
+            display: inline-flex;
+
+            align-items: baseline;
+
+            gap: 2px;
+
+            text-decoration: none;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+
+            white-space: nowrap;
+
+            flex-shrink: 0;
+        }
+
+
+        .logo-main {
+            color: #ffffff;
+        }
+
+
+        .logo-accent {
+            color: var(--gold-light);
+        }
+
+
+        /* ============================================================
+           DESKTOP NAV
+           ============================================================ */
+
+        .navbar {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .nav-link,
+        .login-link {
+
+            position: relative;
+
+            color:
+                rgba(255, 255, 255, 0.82);
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            padding: 8px 0;
+
+            transition:
+                color .2s ease;
+        }
+
+
+        .nav-link:hover,
+        .login-link:hover,
+        .nav-link.active {
+
+            color: #ffffff;
+        }
+
+
+        .nav-link.active::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: -4px;
+
+            height: 2px;
+
+            background:
+                var(--gold-light);
+
+            border-radius: 99px;
+        }
+
+
+        /* ============================================================
+           MOBILE MENU BUTTON
+           ============================================================ */
+
+        .mobile-menu-toggle {
+
+            display: none;
+
+            width: 44px;
+
+            height: 44px;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.15);
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+        }
+
+
+        .mobile-menu-toggle span {
+
+            display: block;
+
+            width: 21px;
+
+            height: 2px;
+
+            background: #ffffff;
+
+            border-radius: 10px;
+
+            transition:
+                transform .2s ease,
+                opacity .2s ease;
+        }
+
+
+        .mobile-menu-toggle:hover {
+
+            background:
+                rgba(255, 255, 255, 0.14);
+        }
+
+
+        /* ============================================================
+           PAGE
+           ============================================================ */
+
+        .stay-detail-page {
+
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f5f8f6 0%,
+                    #ffffff 55%,
+                    #f5f8f6 100%
+                );
+        }
+
+
+        .stay-detail {
+
+            padding:
+                42px 0 90px;
+        }
+
+
+        /* ============================================================
+           BACK LINK
+           ============================================================ */
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 26px;
+
+            color: var(--green-900);
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            transition:
+                color .2s ease,
+                transform .2s ease;
+        }
+
+
+        .back-link:hover {
+
+            color: var(--green-600);
+
+            transform:
+                translateX(-3px);
+        }
+
+
+        /* ============================================================
+           PAGE STATES
+           ============================================================ */
+
+        .page-state {
+
+            min-height: 520px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 60px 20px;
+        }
+
+
+        .loader {
+
+            width: 46px;
+
+            height: 46px;
+
+            border:
+                4px solid #dce8e2;
+
+            border-top-color:
+                var(--green-700);
+
+            border-radius: 50%;
+
+            animation:
+                spin .8s linear infinite;
+
+            margin-bottom: 20px;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        .state-title {
+
+            color: var(--green-950);
+
+            font-size: 26px;
+
+            font-weight: 850;
+
+            margin-bottom: 8px;
+        }
+
+
+        .state-text {
+
+            max-width: 520px;
+
+            color: var(--muted);
+
+            margin-bottom: 22px;
+        }
+
+
+        .state-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                12px 20px;
+
+            background:
+                var(--green-900);
+
+            color: #ffffff;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-weight: 750;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+        }
+
+
+        .state-button:hover {
+
+            background:
+                var(--green-800);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* ============================================================
+           IMAGE GALLERY
+           ============================================================ */
+
+        .stay-gallery {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.55fr)
+                minmax(260px, .75fr);
+
+            gap: 14px;
+
+            margin-bottom: 32px;
+        }
+
+
+        .main-image-wrapper {
+
+            position: relative;
+
+            min-height: 510px;
+
+            overflow: hidden;
+
+            border-radius:
+                var(--radius);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-950),
+                    var(--green-800)
+                );
+
+            box-shadow:
+                var(--shadow);
+        }
+
+
+        .stay-main-image {
+
+            width: 100%;
+
+            height: 510px;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform .5s ease;
+        }
+
+
+        .main-image-wrapper:hover
+        .stay-main-image {
+
+            transform:
+                scale(1.015);
+        }
+
+
+        .image-overlay {
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            padding:
+                70px 28px 25px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(2, 44, 34, .80),
+                    rgba(2, 44, 34, 0)
+                );
+
+            pointer-events: none;
+        }
+
+
+        .featured-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding:
+                7px 12px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(212, 160, 23, .96);
+
+            color: #1d1604;
+
+            font-size: 12px;
+
+            font-weight: 850;
+
+            letter-spacing: .2px;
+        }
+
+
+        .gallery-side {
+
+            display: grid;
+
+            grid-template-rows:
+                1fr 1fr;
+
+            gap: 14px;
+        }
+
+
+        .gallery-placeholder {
+
+            position: relative;
+
+            min-height: 248px;
+
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e7efea,
+                    #d7e5dd
+                );
+        }
+
+
+        .gallery-placeholder img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform .4s ease;
+        }
+
+
+        .gallery-placeholder:hover img {
+
+            transform:
+                scale(1.03);
+        }
+
+
+        .gallery-placeholder.empty {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: var(--green-800);
+
+            font-size: 14px;
+
+            font-weight: 750;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+
+        /* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+
+        .stay-detail-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.5fr)
+                minmax(320px, .72fr);
+
+            gap: 35px;
+
+            align-items: start;
+        }
+
+
+        .stay-main-content {
+
+            min-width: 0;
+        }
+
+
+        /* ============================================================
+           STAY HEADER
+           ============================================================ */
+
+        .stay-type {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            margin-bottom: 12px;
+
+            color:
+                var(--green-700);
+
+            font-size: 13px;
+
+            font-weight: 850;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .stay-title {
+
+            color:
+                var(--green-950);
+
+            font-size:
+                clamp(
+                    30px,
+                    4vw,
+                    46px
+                );
+
+            line-height: 1.08;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 12px;
+
+            overflow-wrap: anywhere;
+        }
+
+
+        .stay-location {
+
+            color:
+                var(--muted);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            font-size: 15px;
+
+            margin-bottom: 26px;
+        }
+
+
+        .location-icon {
+
+            color:
+                var(--gold);
+
+            font-size: 18px;
+        }
+
+
+        /* ============================================================
+           QUICK DETAILS
+           ============================================================ */
+
+        .quick-details {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(0, 1fr)
+                );
+
+            gap: 10px;
+
+            margin-bottom: 32px;
+        }
+
+
+        .quick-detail {
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 13px;
+
+            padding: 15px;
+
+            box-shadow:
+                var(--shadow-soft);
+        }
+
+
+        .quick-detail-label {
+
+            display: block;
+
+            color: #78847e;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .quick-detail-value {
+
+            display: block;
+
+            color:
+                var(--green-900);
+
+            font-size: 15px;
+
+            font-weight: 800;
+        }
+
+
+        /* ============================================================
+           CONTENT CARDS
+           ============================================================ */
+
+        .content-card {
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding: 30px;
+
+            box-shadow:
+                var(--shadow-soft);
+
+            margin-bottom: 25px;
+        }
+
+
+        .content-card h2 {
+
+            color:
+                var(--green-950);
+
+            font-size: 22px;
+
+            font-weight: 850;
+
+            margin-bottom: 15px;
+        }
+
+
+        .description-text {
+
+            color: #53615b;
+
+            white-space: pre-line;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            overflow-wrap: anywhere;
+        }
+
+
+        /* ============================================================
+           AMENITIES
+           ============================================================ */
+
+        .amenities-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 10px;
+        }
+
+
+        .amenity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding:
+                12px 14px;
+
+            background:
+                var(--surface-soft);
+
+            border-radius: 10px;
+
+            color:
+                var(--green-900);
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            min-width: 0;
+        }
+
+
+        .amenity-icon {
+
+            width: 28px;
+
+            height: 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 8px;
+
+            background:
+                #dfece5;
+
+            font-size: 14px;
+        }
+
+
+        .no-amenities {
+
+            color:
+                var(--muted);
+
+            font-size: 14px;
+        }
+
+
+        /* ============================================================
+           BOOKING CARD
+           ============================================================ */
+
+        .stay-info-card {
+
+            position: sticky;
+
+            top: 105px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f5f9f6
+                );
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 22px 55px
+                rgba(2, 44, 34, .12);
+        }
+
+
+        .price-label {
+
+            color:
+                var(--muted);
+
+            font-size: 13px;
+
+            font-weight: 650;
+
+            margin-bottom: 3px;
+        }
+
+
+        .stay-price {
+
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 7px;
+
+            color:
+                var(--green-950);
+
+            margin-bottom: 22px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .stay-price-amount {
+
+            font-size: 32px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+        }
+
+
+        .stay-price-night {
+
+            color:
+                var(--muted);
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .booking-divider {
+
+            height: 1px;
+
+            background:
+                var(--border);
+
+            margin: 20px 0;
+        }
+
+
+        .booking-note {
+
+            display: flex;
+
+            gap: 10px;
+
+            padding: 13px;
+
+            background:
+                #edf7f1;
+
+            border-radius: 10px;
+
+            color:
+                var(--green-800);
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        .book-button {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 100%;
+
+            min-height: 54px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-900),
+                    var(--green-700)
+                );
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 850;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 22px
+                rgba(6, 78, 59, .20);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                opacity .2s ease;
+        }
+
+
+        .book-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 14px 28px
+                rgba(6, 78, 59, .25);
+        }
+
+
+        .book-button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        .book-button:focus-visible {
+
+            outline:
+                3px solid
+                rgba(212, 160, 23, .45);
+
+            outline-offset: 3px;
+        }
+
+
+        .booking-message {
+
+            display: none;
+
+            margin-top: 13px;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            background:
+                #ecfdf5;
+
+            border:
+                1px solid
+                #c9eadb;
+
+            color:
+                #065f46;
+
+            font-size: 13px;
+
+            text-align: center;
+
+            line-height: 1.5;
+        }
+
+
+        .booking-message.error {
+
+            background:
+                #fff4f4;
+
+            border-color:
+                #f0cccc;
+
+            color:
+                #9b1c1c;
+        }
+
+
+        .secure-note {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            color:
+                #7a8580;
+
+            font-size: 11px;
+
+            margin-top: 14px;
+
+            text-align: center;
+        }
+
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+
+        .footer {
+
+            background:
+                var(--green-950);
+
+            color:
+                rgba(255, 255, 255, .75);
+
+            margin-top: 40px;
+        }
+
+
+        .footer-bottom {
+
+            min-height: 85px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            font-size: 13px;
+        }
+
+
+        .footer-bottom p:last-child {
+
+            color:
+                var(--gold-light);
+        }
+
+
+        /* ============================================================
+           TABLET
+           ============================================================ */
+
+        @media (max-width: 1000px) {
+
+            .navbar {
+                gap: 15px;
+            }
+
+
+            .stay-gallery {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .gallery-side {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+                grid-template-rows:
+                    220px;
+            }
+
+
+            .gallery-placeholder {
+
+                min-height: 220px;
+            }
+
+
+            .stay-detail-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .stay-info-card {
+
+                position: static;
+            }
+
+        }
+
+
+        /* ============================================================
+           MOBILE NAVIGATION
+           ============================================================ */
+
+        @media (max-width: 800px) {
+
+            .container {
+
+                width:
+                    min(
+                        calc(100% - 28px),
+                        700px
+                    );
+            }
+
+
+            .header {
+
+                position: sticky;
+
+                top: 0;
+            }
+
+
+            .nav-container {
+
+                min-height: 68px;
+
+                gap: 15px;
+            }
+
+
+            .mobile-menu-toggle {
+
+                display: flex;
+            }
+
+
+            .navbar {
+
+                display: none;
+
+                position: absolute;
+
+                top: calc(100% + 1px);
+
+                left: 0;
+
+                right: 0;
+
+                width: 100%;
+
+                padding: 12px;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 3px;
+
+                background:
+                    rgba(2, 44, 34, 0.99);
+
+                border-top:
+                    1px solid
+                    rgba(255, 255, 255, .06);
+
+                border-bottom:
+                    1px solid
+                    rgba(255, 255, 255, .08);
+
+                box-shadow:
+                    0 18px 35px
+                    rgba(0, 0, 0, .16);
+            }
+
+
+            .navbar.active {
+
+                display: flex;
+            }
+
+
+            .navbar .nav-link,
+            .navbar .login-link {
+
+                display: block;
+
+                width: 100%;
+
+                padding:
+                    13px 14px;
+
+                border-radius: 8px;
+
+                color:
+                    rgba(255, 255, 255, .84);
+            }
+
+
+            .navbar .nav-link:hover,
+            .navbar .login-link:hover,
+            .navbar .nav-link.active {
+
+                background:
+                    rgba(255, 255, 255, .07);
+
+                color:
+                    #ffffff;
+            }
+
+
+            .nav-link.active::after {
+
+                display: none;
+            }
+
+
+            .navbar .login-link {
+
+                margin-top: 4px;
+
+                border-top:
+                    1px solid
+                    rgba(255, 255, 255, .08);
+
+                border-radius: 0;
+
+                padding-top: 16px;
+            }
+
+
+            .stay-detail {
+
+                padding-top: 28px;
+            }
+
+
+            .main-image-wrapper {
+
+                min-height: 350px;
+            }
+
+
+            .stay-main-image {
+
+                height: 350px;
+            }
+
+
+            .quick-details {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+            }
+
+
+            .content-card {
+
+                padding: 23px;
+            }
+
+        }
+
+
+        /* ============================================================
+           SMALL MOBILE
+           ============================================================ */
+
+        @media (max-width: 520px) {
+
+            .logo {
+
+                font-size: 24px;
+            }
+
+
+            .stay-gallery {
+
+                margin-bottom: 24px;
+            }
+
+
+            .gallery-side {
+
+                display: none;
+            }
+
+
+            .main-image-wrapper {
+
+                min-height: 285px;
+
+                border-radius: 15px;
+            }
+
+
+            .stay-main-image {
+
+                height: 285px;
+            }
+
+
+            .stay-title {
+
+                font-size: 30px;
+
+                letter-spacing: -1px;
+            }
+
+
+            .stay-location {
+
+                font-size: 14px;
+
+                align-items: flex-start;
+            }
+
+
+            .quick-details {
+
+                gap: 8px;
+
+                margin-bottom: 25px;
+            }
+
+
+            .quick-detail {
+
+                padding: 12px;
+            }
+
+
+            .quick-detail-label {
+
+                font-size: 10px;
+            }
+
+
+            .quick-detail-value {
+
+                font-size: 13px;
+            }
+
+
+            .amenities-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .content-card {
+
+                padding: 20px;
+
+                border-radius: 16px;
+            }
+
+
+            .content-card h2 {
+
+                font-size: 20px;
+            }
+
+
+            .stay-info-card {
+
+                padding: 22px;
+
+                border-radius: 17px;
+            }
+
+
+            .stay-price-amount {
+
+                font-size: 28px;
+            }
+
+
+            .footer-bottom {
+
+                flex-direction: column;
+
+                justify-content: center;
+
+                padding: 20px 0;
+
+                text-align: center;
+            }
+
+        }
+
+
+        /* ============================================================
+           VERY SMALL SCREENS
+           ============================================================ */
+
+        @media (max-width: 360px) {
+
+            .container {
+
+                width:
+                    calc(100% - 22px);
+            }
+
+
+            .stay-title {
+
+                font-size: 27px;
+            }
+
+
+            .quick-detail {
+
+                padding: 10px;
+            }
+
+
+            .stay-info-card {
+
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="stay-detail-page">
+
+
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+
+            <a href="index.html"
+               class="logo"
+               aria-label="HavenGH Home">
+
+                <span class="logo-main">
+                    Haven
+                </span>
+
+                <span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+
+            <nav
+                class="navbar"
+                id="mainNav"
+                aria-label="Main navigation">
+
+                <a href="index.html"
+                   class="nav-link">
+
+                    Home
+
+                </a>
+
+
+                <a href="properties.html"
+                   class="nav-link">
+
+                    Find a Home
+
+                </a>
+
+
+                <a href="stay-properties.html"
+                   class="nav-link active">
+
+                    Find a Stay
+
+                </a>
+
+
+                <a href="stays.html"
+                   class="nav-link">
+
+                    Stay in Ghana
+
+                </a>
+
+
+                <a href="login.html"
+                   class="login-link">
+
+                    Login
+
+                </a>
+
+            </nav>
+
+
+            <button
+                type="button"
+                class="mobile-menu-toggle"
+                id="mobileMenuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mainNav">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+    <!-- ============================================================
+         MAIN
+         ============================================================ -->
+
+    <main class="stay-detail">
+
+        <div class="container">
+
+
+            <!-- ====================================================
+                 BACK
+                 ==================================================== -->
+
+            <a
+                href="stay-properties.html"
+                class="back-link">
+
+                ← Back to Stays
+
+            </a>
+
+
+            <!-- ====================================================
+                 LOADING
+                 ==================================================== -->
+
+            <section
+                id="loadingState"
+                class="page-state">
+
+                <div class="loader"></div>
+
+                <h2 class="state-title">
+                    Loading stay details
+                </h2>
+
+                <p class="state-text">
+                    Please wait while we retrieve this
+                    accommodation from HavenGH.
+                </p>
+
+            </section>
+
+
+            <!-- ====================================================
+                 ERROR
+                 ==================================================== -->
+
+            <section
+                id="errorState"
+                class="page-state hidden">
+
+                <h2 class="state-title">
+                    Stay not found
+                </h2>
+
+                <p
+                    id="errorText"
+                    class="state-text">
+
+                    We could not find the accommodation
+                    you requested.
+
+                </p>
+
+                <a
+                    href="stay-properties.html"
+                    class="state-button">
+
+                    Browse available stays
+
+                </a>
+
+            </section>
+
+
+            <!-- ====================================================
+                 STAY CONTENT
+                 ==================================================== -->
+
+            <section
+                id="stayContent"
+                class="hidden">
+
+
+                <!-- =================================================
+                     IMAGE GALLERY
+                     ================================================= -->
+
+                <div class="stay-gallery">
+
+
+                    <div class="main-image-wrapper">
+
+                        <img
+                            id="stayImage"
+                            class="stay-main-image"
+                            src=""
+                            alt="Stay accommodation"
+                        >
+
+
+                        <div class="image-overlay">
+
+                            <span
+                                id="featuredBadge"
+                                class="featured-badge hidden">
+
+                                ★ Featured Stay
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="gallery-side">
+
+
+                        <div
+                            id="galleryImageTwo"
+                            class="gallery-placeholder empty">
+
+                            HavenGH Stay
+
+                        </div>
+
+
+                        <div
+                            id="galleryImageThree"
+                            class="gallery-placeholder empty">
+
+                            Explore Ghana
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     DETAIL GRID
+                     ================================================= -->
+
+                <div class="stay-detail-grid">
+
+
+                    <!-- =============================================
+                         LEFT
+                         ============================================= -->
+
+                    <div class="stay-main-content">
+
+
+                        <div
+                            id="stayType"
+                            class="stay-type">
+
+                            Stay
+
+                        </div>
+
+
+                        <h1
+                            id="stayTitle"
+                            class="stay-title">
+
+                            Stay
+
+                        </h1>
+
+
+                        <p
+                            id="stayLocation"
+                            class="stay-location">
+
+                            <span class="location-icon">
+                                ●
+                            </span>
+
+                            <span>
+                                Ghana
+                            </span>
+
+                        </p>
+
+
+                        <!-- =========================================
+                             QUICK DETAILS
+                             ========================================= -->
+
+                        <div class="quick-details">
+
+
+                            <div class="quick-detail">
+
+                                <span
+                                    class="quick-detail-label">
+
+                                    Bedrooms
+
+                                </span>
+
+                                <span
+                                    id="bedroomsValue"
+                                    class="quick-detail-value">
+
+                                    —
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="quick-detail">
+
+                                <span
+                                    class="quick-detail-label">
+
+                                    Bathrooms
+
+                                </span>
+
+                                <span
+                                    id="bathroomsValue"
+                                    class="quick-detail-value">
+
+                                    —
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="quick-detail">
+
+                                <span
+                                    class="quick-detail-label">
+
+                                    Guests
+
+                                </span>
+
+                                <span
+                                    id="guestsValue"
+                                    class="quick-detail-value">
+
+                                    —
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="quick-detail">
+
+                                <span
+                                    class="quick-detail-label">
+
+                                    Rooms
+
+                                </span>
+
+                                <span
+                                    id="roomsValue"
+                                    class="quick-detail-value">
+
+                                    —
+
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- =========================================
+                             DESCRIPTION
+                             ========================================= -->
+
+                        <div class="content-card">
+
+                            <h2>
+                                About this stay
+                            </h2>
+
+                            <p
+                                id="stayDescription"
+                                class="description-text">
+
+                                No description available.
+
+                            </p>
+
+                        </div>
+
+
+                        <!-- =========================================
+                             AMENITIES
+                             ========================================= -->
+
+                        <div class="content-card">
+
+                            <h2>
+                                Amenities
+                            </h2>
+
+                            <div
+                                id="amenitiesGrid"
+                                class="amenities-grid">
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- =============================================
+                         BOOKING CARD
+                         ============================================= -->
+
+                    <aside class="stay-info-card">
+
+
+                        <div class="price-label">
+
+                            Price per night
+
+                        </div>
+
+
+                        <div class="stay-price">
+
+                            <span
+                                id="stayPrice"
+                                class="stay-price-amount">
+
+                                GH₵0
+
+                            </span>
+
+                            <span
+                                class="stay-price-night">
+
+                                / night
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="booking-divider"></div>
+
+
+                        <div class="booking-note">
+
+                            <span>
+                                ✓
+                            </span>
+
+                            <span>
+
+                                Request your preferred dates
+                                and let the host confirm
+                                your stay.
+
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="book-button"
+                            id="bookStayButton">
+
+                            Request to Book
+
+                        </button>
+
+
+                        <div
+                            id="bookingMessage"
+                            class="booking-message">
+
+                        </div>
+
+
+                        <div class="secure-note">
+
+                            <span>
+                                🔒
+                            </span>
+
+                            <span>
+                                HavenGH secure booking request
+                            </span>
+
+                        </div>
+
+
+                    </aside>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+
+    <footer class="footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 HavenGH. All rights reserved.
+            </p>
+
+            <p>
+                Built for Ghana 🇬🇭
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        "use strict";
+
+
+        /* ============================================================
+           API
+           ============================================================ */
+
+        const API_BASE_URL =
+            "http://localhost:5073";
+
+
+        const STAYS_API =
+            `${API_BASE_URL}/api/Stays`;
+
+
+        /* ============================================================
+           HELPERS
+           ============================================================ */
+
+        function escapeHtml(value) {
+
+            return String(value ?? "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        function formatMoney(value) {
+
+            const number =
+                Number(value);
+
+
+            if (!Number.isFinite(number)) {
+
+                return "GH₵0";
+
+            }
+
+
+            return "GH₵" +
+                number.toLocaleString(
+                    "en-GH",
+                    {
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2
+                    }
+                );
+
+        }
+
+
+        function formatStayType(type) {
+
+            if (!type) {
+
+                return "Stay";
+
+            }
+
+
+            return String(type)
+                .replace(/[-_]+/g, " ")
+                .replace(/\b\w/g, function (letter) {
+
+                    return letter.toUpperCase();
+
+                });
+
+        }
+
+
+        function getImageUrl(rawUrl) {
+
+            if (!rawUrl) {
+
+                return "";
+
+            }
+
+
+            const url =
+                String(rawUrl).trim();
+
+
+            if (!url) {
+
+                return "";
+
+            }
+
+
+            if (
+                url.startsWith("http://") ||
+                url.startsWith("https://")
+            ) {
+
+                return url;
+
+            }
+
+
+            return API_BASE_URL +
+                (
+                    url.startsWith("/")
+                        ? ""
+                        : "/"
+                ) +
+                url;
+
+        }
+
+
+        /* ============================================================
+           API FIELD HELPERS
+           Supports normal ASP.NET camelCase JSON and
+           PascalCase JSON if serializer settings change.
+           ============================================================ */
+
+        function getField(object, camelName, pascalName) {
+
+            if (!object) {
+
+                return undefined;
+
+            }
+
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    object,
+                    camelName
+                )
+            ) {
+
+                return object[camelName];
+
+            }
+
+
+            if (
+                Object.prototype.hasOwnProperty.call(
+                    object,
+                    pascalName
+                )
+            ) {
+
+                return object[pascalName];
+
+            }
+
+
+            return undefined;
+
+        }
+
+
+        function getImages(stay) {
+
+            const images =
+                getField(
+                    stay,
+                    "images",
+                    "Images"
+                );
+
+
+            return Array.isArray(images)
+                ? images
+                : [];
+
+        }
+
+
+        function getImageField(image, camelName, pascalName) {
+
+            return getField(
+                image,
+                camelName,
+                pascalName
+            );
+
+        }
+
+
+        /* ============================================================
+           PRIMARY IMAGE
+           ============================================================ */
+
+        function getPrimaryImage(stay) {
+
+            const images =
+                getImages(stay);
+
+
+            if (!images.length) {
+
+                return "";
+
+            }
+
+
+            const primary =
+                images.find(function (image) {
+
+                    return image &&
+                        (
+                            getImageField(
+                                image,
+                                "isPrimary",
+                                "IsPrimary"
+                            ) === true
+                        );
+
+                });
+
+
+            if (primary) {
+
+                const primaryUrl =
+                    getImageField(
+                        primary,
+                        "imageUrl",
+                        "ImageUrl"
+                    );
+
+
+                if (primaryUrl) {
+
+                    return getImageUrl(
+                        primaryUrl
+                    );
+
+                }
+
+            }
+
+
+            const sortedImages =
+                [...images]
+                    .filter(function (image) {
+
+                        return image &&
+                            getImageField(
+                                image,
+                                "imageUrl",
+                                "ImageUrl"
+                            );
+
+                    })
+                    .sort(function (a, b) {
+
+                        const orderA =
+                            Number(
+                                getImageField(
+                                    a,
+                                    "displayOrder",
+                                    "DisplayOrder"
+                                ) ?? 0
+                            );
+
+
+                        const orderB =
+                            Number(
+                                getImageField(
+                                    b,
+                                    "displayOrder",
+                                    "DisplayOrder"
+                                ) ?? 0
+                            );
+
+
+                        return orderA - orderB;
+
+                    });
+
+
+            if (sortedImages.length) {
+
+                return getImageUrl(
+                    getImageField(
+                        sortedImages[0],
+                        "imageUrl",
+                        "ImageUrl"
+                    )
+                );
+
+            }
+
+
+            return "";
+
+        }
+
+
+        /* ============================================================
+           GALLERY IMAGES
+           ============================================================ */
+
+        function getGalleryImages(stay) {
+
+            const images =
+                getImages(stay);
+
+
+            return images
+                .filter(function (image) {
+
+                    return image &&
+                        getImageField(
+                            image,
+                            "imageUrl",
+                            "ImageUrl"
+                        );
+
+                })
+                .sort(function (a, b) {
+
+                    const orderA =
+                        Number(
+                            getImageField(
+                                a,
+                                "displayOrder",
+                                "DisplayOrder"
+                            ) ?? 0
+                        );
+
+
+                    const orderB =
+                        Number(
+                            getImageField(
+                                b,
+                                "displayOrder",
+                                "DisplayOrder"
+                            ) ?? 0
+                        );
+
+
+                    return orderA - orderB;
+
+                })
+                .map(function (image) {
+
+                    return getImageUrl(
+                        getImageField(
+                            image,
+                            "imageUrl",
+                            "ImageUrl"
+                        )
+                    );
+
+                })
+                .filter(Boolean);
+
+        }
+
+
+        /* ============================================================
+           AMENITIES
+           ============================================================ */
+
+        function splitAmenities(value) {
+
+            if (!value) {
+
+                return [];
+
+            }
+
+
+            return String(value)
+                .split(/[,;\n]+/)
+                .map(function (item) {
+
+                    return item.trim();
+
+                })
+                .filter(Boolean);
+
+        }
+
+
+        function amenityIcon(name) {
+
+            const value =
+                String(name)
+                    .toLowerCase();
+
+
+            if (
+                value.includes("wifi") ||
+                value.includes("wi-fi") ||
+                value.includes("internet")
+            ) {
+
+                return "📶";
+
+            }
+
+
+            if (
+                value.includes("air") &&
+                value.includes("condition")
+            ) {
+
+                return "❄";
+
+            }
+
+
+            if (
+                value.includes("parking")
+            ) {
+
+                return "🚗";
+
+            }
+
+
+            if (
+                value.includes("pool") ||
+                value.includes("swimming")
+            ) {
+
+                return "🏊";
+
+            }
+
+
+            if (
+                value.includes("kitchen") ||
+                value.includes("cooking")
+            ) {
+
+                return "🍳";
+
+            }
+
+
+            if (
+                value.includes("security") ||
+                value.includes("guard")
+            ) {
+
+                return "🛡";
+
+            }
+
+
+            if (
+                value.includes("tv") ||
+                value.includes("television")
+            ) {
+
+                return "📺";
+
+            }
+
+
+            if (
+                value.includes("gym") ||
+                value.includes("fitness")
+            ) {
+
+                return "🏋";
+
+            }
+
+
+            if (
+                value.includes("balcony") ||
+                value.includes("terrace")
+            ) {
+
+                return "🌿";
+
+            }
+
+
+            return "✓";
+
+        }
+
+
+        /* ============================================================
+           STATE
+           ============================================================ */
+
+        function showLoading() {
+
+            document
+                .getElementById("loadingState")
+                .classList
+                .remove("hidden");
+
+
+            document
+                .getElementById("errorState")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("stayContent")
+                .classList
+                .add("hidden");
+
+        }
+
+
+        function showError(message) {
+
+            document
+                .getElementById("loadingState")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("stayContent")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("errorState")
+                .classList
+                .remove("hidden");
+
+
+            document
+                .getElementById("errorText")
+                .textContent =
+                    message ||
+                    "We could not load this stay.";
+
+        }
+
+
+        function showContent() {
+
+            document
+                .getElementById("loadingState")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("errorState")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("stayContent")
+                .classList
+                .remove("hidden");
+
+        }
+
+
+        /* ============================================================
+           RENDER AMENITIES
+           ============================================================ */
+
+        function renderAmenities(stay) {
+
+            const grid =
+                document.getElementById(
+                    "amenitiesGrid"
+                );
+
+
+            const amenities =
+                splitAmenities(
+                    getField(
+                        stay,
+                        "amenities",
+                        "Amenities"
+                    )
+                );
+
+
+            if (!amenities.length) {
+
+                grid.innerHTML =
+                    '<p class="no-amenities">' +
+                    'No amenities have been listed for this stay yet.' +
+                    '</p>';
+
+                return;
+
+            }
+
+
+            grid.innerHTML =
+                amenities
+                    .map(function (amenity) {
+
+                        return `
+                            <div class="amenity">
+
+                                <span class="amenity-icon">
+                                    ${amenityIcon(amenity)}
+                                </span>
+
+                                <span>
+                                    ${escapeHtml(amenity)}
+                                </span>
+
+                            </div>
+                        `;
+
+                    })
+                    .join("");
+
+        }
+
+
+        /* ============================================================
+           RENDER GALLERY
+           ============================================================ */
+
+        function renderGallery(stay) {
+
+            const images =
+                getGalleryImages(stay);
+
+
+            const mainImage =
+                document.getElementById(
+                    "stayImage"
+                );
+
+
+            const wrapper =
+                document.querySelector(
+                    ".main-image-wrapper"
+                );
+
+
+            const galleryTwo =
+                document.getElementById(
+                    "galleryImageTwo"
+                );
+
+
+            const galleryThree =
+                document.getElementById(
+                    "galleryImageThree"
+                );
+
+
+            /* --------------------------------------------------------
+               RESET
+               -------------------------------------------------------- */
+
+            mainImage.style.display =
+                "block";
+
+
+            galleryTwo.className =
+                "gallery-placeholder empty";
+
+
+            galleryTwo.innerHTML =
+                "HavenGH Stay";
+
+
+            galleryThree.className =
+                "gallery-placeholder empty";
+
+
+            galleryThree.innerHTML =
+                "Explore Ghana";
+
+
+            /* --------------------------------------------------------
+               NO IMAGES
+               -------------------------------------------------------- */
+
+            if (!images.length) {
+
+                mainImage.removeAttribute("src");
+
+                mainImage.alt =
+                    "No stay image available";
+
+                mainImage.style.display =
+                    "none";
+
+                wrapper.style.background =
+                    "linear-gradient(135deg, #022c22, #065f46)";
+
+                return;
+
+            }
+
+
+            /* --------------------------------------------------------
+               PRIMARY IMAGE
+               -------------------------------------------------------- */
+
+            const primaryImage =
+                getPrimaryImage(stay);
+
+
+            mainImage.src =
+                primaryImage || images[0];
+
+
+            mainImage.alt =
+                getField(
+                    stay,
+                    "title",
+                    "Title"
+                ) ||
+                "HavenGH stay";
+
+
+            mainImage.onerror =
+                function () {
+
+                    this.onerror = null;
+
+                    this.style.display =
+                        "none";
+
+                    wrapper.style.background =
+                        "linear-gradient(135deg, #022c22, #065f46)";
+
+                };
+
+
+            /* --------------------------------------------------------
+               SECOND IMAGE
+               -------------------------------------------------------- */
+
+            if (images[1]) {
+
+                galleryTwo.classList
+                    .remove("empty");
+
+
+                galleryTwo.innerHTML = `
+                    <img
+                        src="${escapeHtml(images[1])}"
+                        alt="${escapeHtml(
+                            getField(
+                                stay,
+                                "title",
+                                "Title"
+                            ) || "Stay image"
+                        )}"
+                    >
+                `;
+
+
+                const image =
+                    galleryTwo.querySelector(
+                        "img"
+                    );
+
+
+                image.onerror =
+                    function () {
+
+                        galleryTwo.className =
+                            "gallery-placeholder empty";
+
+                        galleryTwo.innerHTML =
+                            "HavenGH Stay";
+
+                    };
+
+            }
+
+
+            /* --------------------------------------------------------
+               THIRD IMAGE
+               -------------------------------------------------------- */
+
+            if (images[2]) {
+
+                galleryThree.classList
+                    .remove("empty");
+
+
+                galleryThree.innerHTML = `
+                    <img
+                        src="${escapeHtml(images[2])}"
+                        alt="${escapeHtml(
+                            getField(
+                                stay,
+                                "title",
+                                "Title"
+                            ) || "Stay image"
+                        )}"
+                    >
+                `;
+
+
+                const image =
+                    galleryThree.querySelector(
+                        "img"
+                    );
+
+
+                image.onerror =
+                    function () {
+
+                        galleryThree.className =
+                            "gallery-placeholder empty";
+
+                        galleryThree.innerHTML =
+                            "Explore Ghana";
+
+                    };
+
+            }
+
+        }
+
+
+        /* ============================================================
+           RENDER STAY
+           ============================================================ */
+
+        function renderStay(stay) {
+
+            const title =
+                getField(
+                    stay,
+                    "title",
+                    "Title"
+                );
+
+
+            const stayType =
+                getField(
+                    stay,
+                    "stayType",
+                    "StayType"
+                );
+
+
+            const area =
+                getField(
+                    stay,
+                    "area",
+                    "Area"
+                );
+
+
+            const city =
+                getField(
+                    stay,
+                    "city",
+                    "City"
+                );
+
+
+            const price =
+                getField(
+                    stay,
+                    "pricePerNight",
+                    "PricePerNight"
+                );
+
+
+            const bedrooms =
+                getField(
+                    stay,
+                    "bedrooms",
+                    "Bedrooms"
+                );
+
+
+            const bathrooms =
+                getField(
+                    stay,
+                    "bathrooms",
+                    "Bathrooms"
+                );
+
+
+            const maxGuests =
+                getField(
+                    stay,
+                    "maxGuests",
+                    "MaxGuests"
+                );
+
+
+            const rooms =
+                getField(
+                    stay,
+                    "rooms",
+                    "Rooms"
+                );
+
+
+            const description =
+                getField(
+                    stay,
+                    "description",
+                    "Description"
+                );
+
+
+            const isFeatured =
+                getField(
+                    stay,
+                    "isFeatured",
+                    "IsFeatured"
+                );
+
+
+            /* --------------------------------------------------------
+               DOCUMENT TITLE
+               -------------------------------------------------------- */
+
+            document.title =
+                (
+                    title ||
+                    "Stay Details"
+                ) +
+                " | HavenGH";
+
+
+            /* --------------------------------------------------------
+               TITLE
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("stayTitle")
+                .textContent =
+                    title ||
+                    "HavenGH Stay";
+
+
+            /* --------------------------------------------------------
+               TYPE
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("stayType")
+                .textContent =
+                    formatStayType(
+                        stayType
+                    );
+
+
+            /* --------------------------------------------------------
+               LOCATION
+               -------------------------------------------------------- */
+
+            const locationParts =
+                [
+                    area,
+                    city
+                ]
+                .filter(function (value) {
+
+                    return value &&
+                        String(value).trim();
+
+                });
+
+
+            document
+                .getElementById("stayLocation")
+                .innerHTML = `
+
+                    <span class="location-icon">
+                        ●
+                    </span>
+
+                    <span>
+                        ${escapeHtml(
+                            locationParts.length
+                                ? locationParts.join(", ")
+                                : "Ghana"
+                        )}
+                    </span>
+
+                `;
+
+
+            /* --------------------------------------------------------
+               PRICE
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("stayPrice")
+                .textContent =
+                    formatMoney(price);
+
+
+            /* --------------------------------------------------------
+               BEDROOMS
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("bedroomsValue")
+                .textContent =
+                    bedrooms != null
+                        ? bedrooms
+                        : "—";
+
+
+            /* --------------------------------------------------------
+               BATHROOMS
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("bathroomsValue")
+                .textContent =
+                    bathrooms != null
+                        ? bathrooms
+                        : "—";
+
+
+            /* --------------------------------------------------------
+               GUESTS
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("guestsValue")
+                .textContent =
+                    maxGuests != null
+                        ? maxGuests
+                        : "—";
+
+
+            /* --------------------------------------------------------
+               ROOMS
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("roomsValue")
+                .textContent =
+                    rooms != null
+                        ? rooms
+                        : "—";
+
+
+            /* --------------------------------------------------------
+               DESCRIPTION
+               -------------------------------------------------------- */
+
+            document
+                .getElementById("stayDescription")
+                .textContent =
+                    description &&
+                    String(description).trim()
+                        ? description
+                        : "The host has not added a description for this stay yet.";
+
+
+            /* --------------------------------------------------------
+               FEATURED
+               -------------------------------------------------------- */
+
+            const featuredBadge =
+                document.getElementById(
+                    "featuredBadge"
+                );
+
+
+            if (isFeatured === true) {
+
+                featuredBadge.classList
+                    .remove("hidden");
+
+            } else {
+
+                featuredBadge.classList
+                    .add("hidden");
+
+            }
+
+
+            /* --------------------------------------------------------
+               GALLERY
+               -------------------------------------------------------- */
+
+            renderGallery(stay);
+
+
+            /* --------------------------------------------------------
+               AMENITIES
+               -------------------------------------------------------- */
+
+            renderAmenities(stay);
+
+
+            /* --------------------------------------------------------
+               SHOW PAGE
+               -------------------------------------------------------- */
+
+            showContent();
+
+        }
+
+
+        /* ============================================================
+           LOAD STAY
+           ============================================================ */
+
+        async function loadStay() {
+
+            showLoading();
+
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+
+            const id =
+                params.get("id");
+
+
+            /* --------------------------------------------------------
+               MISSING ID
+               -------------------------------------------------------- */
+
+            if (!id) {
+
+                showError(
+                    "No stay was selected. Please return to the Stay listings and choose an accommodation."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${STAYS_API}/${encodeURIComponent(id)}`,
+                        {
+                            method: "GET",
+
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                const rawText =
+                    await response.text();
+
+
+                let data =
+                    null;
+
+
+                /* ----------------------------------------------------
+                   PARSE RESPONSE
+                   ---------------------------------------------------- */
+
+                if (rawText) {
+
+                    try {
+
+                        data =
+                            JSON.parse(
+                                rawText
+                            );
+
+                    } catch (parseError) {
+
+                        console.error(
+                            "Invalid API JSON:",
+                            parseError
+                        );
+
+
+                        throw new Error(
+                            "The server returned an invalid response."
+                        );
+
+                    }
+
+                }
+
+
+                /* ----------------------------------------------------
+                   API ERROR
+                   ---------------------------------------------------- */
+
+                if (!response.ok) {
+
+                    const message =
+                        data?.message ||
+                        data?.Message ||
+                        data?.title ||
+                        data?.Title ||
+                        (
+                            response.status === 404
+                                ? "This stay could not be found or is no longer available."
+                                : `Unable to load this stay. Server returned ${response.status}.`
+                        );
+
+
+                    throw new Error(
+                        message
+                    );
+
+                }
+
+
+                /* ----------------------------------------------------
+                   EMPTY RESPONSE
+                   ---------------------------------------------------- */
+
+                if (!data) {
+
+                    throw new Error(
+                        "No stay information was returned."
+                    );
+
+                }
+
+
+                /* ----------------------------------------------------
+                   RENDER
+                   ---------------------------------------------------- */
+
+                renderStay(data);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Stay details error:",
+                    error
+                );
+
+
+                showError(
+                    error.message ||
+                    "Unable to load this stay. Please try again."
+                );
+
+            }
+
+        }
+
+
+        /* ============================================================
+           BOOKING BUTTON
+           ============================================================ */
+
+        function setupBookingButton() {
+
+            const button =
+                document.getElementById(
+                    "bookStayButton"
+                );
+
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const params =
+                        new URLSearchParams(
+                            window.location.search
+                        );
+
+
+                    const id =
+                        params.get("id");
+
+
+                    if (!id) {
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * IMPORTANT:
+                     *
+                     * This page does NOT create
+                     * the booking itself.
+                     *
+                     * It sends the selected StayId
+                     * to the booking page.
+                     *
+                     * The booking page then calls:
+                     *
+                     * POST /api/StayBookings
+                     */
+
+                    window.location.href =
+                        `stay-booking.html?id=${encodeURIComponent(id)}`;
+
+                }
+            );
+
+        }
+
+
+        /* ============================================================
+           MOBILE NAVIGATION
+           ============================================================ */
+
+        function setupMobileNavigation() {
+
+            const toggle =
+                document.getElementById(
+                    "mobileMenuToggle"
+                );
+
+
+            const nav =
+                document.getElementById(
+                    "mainNav"
+                );
+
+
+            if (!toggle || !nav) {
+
+                return;
+
+            }
+
+
+            toggle.addEventListener(
+                "click",
+                function () {
+
+                    const isOpen =
+                        nav.classList.toggle(
+                            "active"
+                        );
+
+
+                    toggle.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                            ? "true"
+                            : "false"
+                    );
+
+
+                    toggle.setAttribute(
+                        "aria-label",
+                        isOpen
+                            ? "Close navigation menu"
+                            : "Open navigation menu"
+                    );
+
+                }
+            );
+
+
+            /* --------------------------------------------------------
+               Close menu when a link is clicked
+               -------------------------------------------------------- */
+
+            nav.querySelectorAll("a")
+                .forEach(function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            nav.classList
+                                .remove("active");
+
+
+                            toggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+
+                            toggle.setAttribute(
+                                "aria-label",
+                                "Open navigation menu"
+                            );
+
+                        }
+                    );
+
+                });
+
+
+            /* --------------------------------------------------------
+               Close menu if window becomes desktop width
+               -------------------------------------------------------- */
+
+            window.addEventListener(
+                "resize",
+                function () {
+
+                    if (
+                        window.innerWidth > 800
+                    ) {
+
+                        nav.classList
+                            .remove("active");
+
+
+                        toggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                        toggle.setAttribute(
+                            "aria-label",
+                            "Open navigation menu"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* ============================================================
+           START
+           ============================================================ */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                setupMobileNavigation();
+
+                setupBookingButton();
+
+                loadStay();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

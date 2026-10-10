@@ -1,0 +1,2876 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="description"
+    content="View property details on HavenGH.">
+
+<title>Property Details | HavenGH</title>
+
+<style>
+
+   
+/* ============================================================
+   HAVENGH PROPERTY DETAILS
+   PREMIUM GLASS / GHANA FLAG DESIGN
+   Background: flag.jpg
+   HTML + JAVASCRIPT UNCHANGED
+============================================================ */
+
+:root {
+    --green-950: #031f17;
+    --green-900: #064e3b;
+    --green-800: #08705a;
+    --green-700: #0d8068;
+
+    --gold: #d4af37;
+    --gold-light: #f4d96b;
+
+    --white: #ffffff;
+    --cream: #f7f3e8;
+
+    --text: #17251f;
+    --muted: #68756f;
+
+    --danger: #a83232;
+
+    --glass: rgba(255, 255, 255, 0.78);
+    --glass-strong: rgba(255, 255, 255, 0.88);
+    --glass-dark: rgba(3, 40, 30, 0.78);
+
+    --glass-border:
+        rgba(255, 255, 255, 0.48);
+
+    --gold-border:
+        rgba(212, 175, 55, 0.48);
+
+    --shadow:
+        0 25px 70px rgba(0, 0, 0, 0.20);
+
+    --soft-shadow:
+        0 14px 38px rgba(0, 0, 0, 0.13);
+}
+
+
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--text);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(2, 27, 20, 0.68),
+            rgba(2, 27, 20, 0.76)
+        ),
+        url("flag.jpg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+}
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(212, 175, 55, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(255, 255, 255, 0.08),
+            transparent 30%
+        );
+
+    z-index: -1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ============================================================
+   TOP BAR
+============================================================ */
+
+.topbar {
+    min-height: 78px;
+
+    padding:
+        0 5.5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: var(--white);
+
+    background:
+        rgba(2, 31, 23, 0.86);
+
+    border-bottom:
+        1px solid
+        rgba(212, 175, 55, 0.38);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.24);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* ============================================================
+   BRAND / LOGO
+============================================================ */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+        6px 13px 6px 7px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    font-size: 25px;
+    font-weight: 900;
+
+    letter-spacing: -.8px;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+.brand:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(212, 175, 55, 0.10);
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.brand img {
+    width: 50px;
+    height: 50px;
+
+    object-fit: contain;
+    object-position: center;
+
+    display: block;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.16);
+
+    padding: 3px;
+
+    filter:
+        contrast(1.12)
+        saturate(1.08)
+        drop-shadow(
+            0 4px 8px
+            rgba(0, 0, 0, 0.30)
+        );
+
+    transform:
+        translateZ(0);
+
+    backface-visibility:
+        hidden;
+}
+
+.brand-main {
+    color:
+        #ffffff;
+}
+
+.brand-accent {
+    color:
+        var(--gold-light);
+}
+
+
+/* ============================================================
+   BACK BUTTON
+============================================================ */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding:
+        10px 17px;
+
+    border-radius: 12px;
+
+    color:
+        #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.065);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    font-size: 14px;
+    font-weight: 800;
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.back-link:hover {
+    background:
+        rgba(212, 175, 55, 0.16);
+
+    border-color:
+        var(--gold);
+
+    color:
+        var(--gold-light);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ============================================================
+   PAGE
+============================================================ */
+
+.page {
+    width:
+        min(1180px, 92%);
+
+    margin:
+        42px auto 85px;
+}
+
+
+/* ============================================================
+   LOADING / ERROR
+============================================================ */
+
+.loading,
+.error-box {
+    background:
+        var(--glass-strong);
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    border-radius:
+        22px;
+
+    padding:
+        45px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(125%);
+}
+
+.loading {
+    color:
+        var(--green-900);
+
+    font-weight:
+        800;
+}
+
+.error-box {
+    border-top:
+        4px solid
+        var(--danger);
+}
+
+.error-box h2 {
+    color:
+        var(--danger);
+
+    margin-bottom:
+        10px;
+}
+
+.error-box p {
+    color:
+        var(--muted);
+
+    margin-bottom:
+        20px;
+}
+
+.hidden {
+    display:
+        none !important;
+}
+
+
+/* ============================================================
+   PROPERTY HERO
+============================================================ */
+
+.property-hero {
+    position: relative;
+
+    overflow: hidden;
+
+    color:
+        #ffffff;
+
+    border-radius:
+        28px;
+
+    padding:
+        48px;
+
+    margin-bottom:
+        30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3, 50, 38, 0.88),
+            rgba(5, 91, 68, 0.66)
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    box-shadow:
+        0 28px 65px
+        rgba(0, 0, 0, 0.25);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(130%);
+}
+
+.property-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -150px;
+    top: -190px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(212, 175, 55, 0.13);
+
+    border:
+        1px solid
+        rgba(244, 217, 107, 0.16);
+}
+
+.property-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    right: 150px;
+    bottom: -170px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+.property-hero > * {
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* ============================================================
+   STATUS
+============================================================ */
+
+.status {
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    padding:
+        8px 15px;
+
+    margin-bottom:
+        17px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(212, 175, 55, 0.16);
+
+    border:
+        1px solid
+        rgba(244, 217, 107, 0.50);
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        12px;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        1px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.12);
+}
+
+.property-hero h1 {
+    font-size:
+        clamp(32px, 5vw, 52px);
+
+    line-height:
+        1.08;
+
+    margin-bottom:
+        12px;
+
+    max-width:
+        850px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -1.8px;
+}
+
+.property-type {
+    color:
+        rgba(255, 255, 255, 0.84);
+
+    font-size:
+        17px;
+
+    font-weight:
+        600;
+}
+
+
+/* ============================================================
+   MAIN GRID
+============================================================ */
+
+.details-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1.65fr)
+        minmax(280px, .9fr);
+
+    gap:
+        28px;
+
+    align-items:
+        start;
+}
+
+
+/* ============================================================
+   ALL CARDS — GLASS
+============================================================ */
+
+.card {
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--glass);
+
+    border:
+        1px solid
+        var(--glass-border);
+
+    border-radius:
+        23px;
+
+    padding:
+        29px;
+
+    margin-bottom:
+        28px;
+
+    box-shadow:
+        var(--soft-shadow);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(125%);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.card:hover {
+    box-shadow:
+        0 22px 50px
+        rgba(0, 0, 0, 0.17);
+
+    border-color:
+        rgba(255, 255, 255, 0.68);
+}
+
+.card h2 {
+    color:
+        var(--green-900);
+
+    font-size:
+        21px;
+
+    font-weight:
+        900;
+
+    margin-bottom:
+        20px;
+}
+
+
+/* ============================================================
+   SUBTLE GLASS HIGHLIGHT
+============================================================ */
+
+.card::after {
+    content: "";
+
+    position:
+        absolute;
+
+    width:
+        190px;
+
+    height:
+        190px;
+
+    right:
+        -125px;
+
+    top:
+        -125px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255, 255, 255, 0.16);
+
+    pointer-events:
+        none;
+}
+
+
+/* ============================================================
+   IMAGE GALLERY
+============================================================ */
+
+.gallery-card {
+    padding:
+        16px;
+
+    background:
+        rgba(255, 255, 255, 0.69);
+}
+
+.gallery-main {
+    position:
+        relative;
+
+    width:
+        100%;
+}
+
+.main-image {
+    width:
+        100%;
+
+    height:
+        500px;
+
+    border-radius:
+        18px;
+
+    overflow:
+        hidden;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-950),
+            var(--green-800)
+        );
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        28px;
+
+    font-weight:
+        900;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255,255,255,.10);
+}
+
+.main-image img {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+
+    transition:
+        transform .45s ease,
+        opacity .25s ease;
+}
+
+.main-image:hover img {
+    transform:
+        scale(1.025);
+}
+
+
+/* ============================================================
+   GALLERY ARROWS
+============================================================ */
+
+.gallery-arrow {
+    position:
+        absolute;
+
+    top:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.34);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(3, 31, 23, .72);
+
+    color:
+        var(--gold-light);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        32px;
+
+    line-height:
+        1;
+
+    cursor:
+        pointer;
+
+    z-index:
+        5;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.25);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease,
+        border-color .2s ease;
+}
+
+.gallery-arrow:hover {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+
+    border-color:
+        var(--gold);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+.gallery-prev {
+    left:
+        16px;
+}
+
+.gallery-next {
+    right:
+        16px;
+}
+
+
+/* ============================================================
+   GALLERY COUNTER
+============================================================ */
+
+.gallery-counter {
+    position:
+        absolute;
+
+    right:
+        16px;
+
+    bottom:
+        16px;
+
+    padding:
+        8px 12px;
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(3, 31, 23, .75);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    color:
+        #ffffff;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    z-index:
+        5;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+
+/* ============================================================
+   THUMBNAILS
+============================================================ */
+
+.gallery-thumbnails {
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    margin-top:
+        12px;
+
+    overflow-x:
+        auto;
+
+    padding:
+        3px 3px 6px;
+}
+
+.gallery-thumbnail {
+    width:
+        84px;
+
+    height:
+        65px;
+
+    flex-shrink:
+        0;
+
+    padding:
+        0;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        11px;
+
+    border:
+        2px solid
+        transparent;
+
+    background:
+        rgba(255,255,255,.55);
+
+    cursor:
+        pointer;
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.gallery-thumbnail img {
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+}
+
+.gallery-thumbnail:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        var(--gold);
+}
+
+.gallery-thumbnail.active {
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(212,175,55,.20),
+        0 8px 20px
+        rgba(0,0,0,.12);
+}
+
+.gallery-empty {
+    color:
+        rgba(255,255,255,.75);
+
+    font-size:
+        14px;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.description {
+    white-space:
+        pre-line;
+
+    color:
+        #485750;
+
+    font-size:
+        15px;
+
+    line-height:
+        1.9;
+}
+
+
+/* ============================================================
+   SECTION HEADINGS
+============================================================ */
+
+.section-heading,
+.location-heading {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    margin-bottom:
+        24px;
+}
+
+.section-heading h2,
+.location-heading h2 {
+    margin-bottom:
+        2px;
+}
+
+.section-icon,
+.location-icon {
+    width:
+        48px;
+
+    height:
+        48px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-950),
+            var(--green-800)
+        );
+
+    color:
+        var(--gold-light);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        20px;
+
+    box-shadow:
+        0 10px 22px
+        rgba(3, 31, 23, .20);
+
+    border:
+        1px solid
+        rgba(212,175,55,.35);
+}
+
+.section-label,
+.location-label {
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+}
+
+
+/* ============================================================
+   PROPERTY DETAILS CARD
+============================================================ */
+
+.property-details-card::before,
+.location-card::before,
+.price-card::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        4px;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--gold),
+            var(--green-700)
+        );
+}
+
+
+/* ============================================================
+   SPEC GRID
+============================================================ */
+
+.spec-grid {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap:
+        14px;
+}
+
+.spec {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        13px;
+
+    padding:
+        17px;
+
+    background:
+        rgba(247, 243, 232, 0.72);
+
+    border:
+        1px solid
+        rgba(212,175,55,.20);
+
+    border-radius:
+        15px;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+.spec:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(212,175,55,.58);
+
+    box-shadow:
+        0 12px 28px
+        rgba(0,0,0,.10);
+}
+
+.spec-icon {
+    width:
+        43px;
+
+    height:
+        43px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--green-900);
+
+    color:
+        var(--gold-light);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        20px;
+
+    font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+
+    box-shadow:
+        0 7px 16px
+        rgba(3,31,23,.16);
+}
+
+.spec-info {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        3px;
+}
+
+.spec-info strong {
+    font-size:
+        21px;
+
+    line-height:
+        1;
+
+    color:
+        var(--green-900);
+}
+
+.spec-info span {
+    font-size:
+        13px;
+
+    color:
+        var(--muted);
+}
+
+
+/* ============================================================
+   LOCATION
+============================================================ */
+
+.location-content,
+.agent-contact-box {
+    padding:
+        18px;
+
+    background:
+        rgba(247,243,232,.72);
+
+    border:
+        1px solid
+        rgba(212,175,55,.20);
+
+    border-radius:
+        14px;
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.location {
+    font-size:
+        16px;
+
+    font-weight:
+        700;
+
+    color:
+        var(--green-900);
+
+    line-height:
+        1.7;
+}
+
+
+/* ============================================================
+   PRICE
+============================================================ */
+
+.price {
+    font-size:
+        34px;
+
+    font-weight:
+        900;
+
+    color:
+        var(--green-900);
+
+    letter-spacing:
+        -.7px;
+}
+
+.period {
+    color:
+        var(--muted);
+
+    font-size:
+        15px;
+
+    margin-left:
+        5px;
+}
+
+
+/* ============================================================
+   OWNER
+============================================================ */
+
+.owner-row {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        7px;
+}
+
+.owner-icon {
+    width:
+        54px;
+
+    height:
+        54px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-950),
+            var(--green-700)
+        );
+
+    color:
+        var(--gold-light);
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        22px;
+
+    font-weight:
+        900;
+
+    border:
+        2px solid
+        rgba(212,175,55,.50);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.16);
+}
+
+.owner-info {
+    min-width:
+        0;
+}
+
+.owner-info strong {
+    display:
+        block;
+
+    color:
+        var(--green-900);
+
+    overflow-wrap:
+        anywhere;
+}
+
+.owner-info span {
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+============================================================ */
+
+.action-button {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    min-width:
+        48px;
+
+    min-height:
+        48px;
+
+    padding:
+        0;
+
+    margin:
+        0;
+
+    border-radius:
+        13px;
+
+    text-align:
+        center;
+
+    font-weight:
+        800;
+
+    font-size:
+        14px;
+
+    cursor:
+        pointer;
+
+    border:
+        1px solid
+        transparent;
+
+    transition:
+        background .22s ease,
+        color .22s ease,
+        border-color .22s ease,
+        transform .22s ease,
+        box-shadow .22s ease;
+}
+
+.action-button:hover {
+    transform:
+        translateY(-3px);
+}
+
+
+/* ============================================================
+   ACTION ROW
+============================================================ */
+
+.icon-action-row {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    width:
+        100%;
+
+    margin-top:
+        15px;
+}
+
+.icon-action-row .action-button {
+    flex:
+        0 0 48px;
+}
+
+
+/* ============================================================
+   WHATSAPP
+============================================================ */
+
+.icon-action {
+    width:
+        48px;
+
+    height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        13px;
+
+    border:
+        1px solid
+        rgba(37,211,102,.30);
+
+    padding:
+        0;
+
+    cursor:
+        pointer;
+
+    background:
+        rgba(255,255,255,.55);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.whatsapp svg {
+    width:
+        40px;
+
+    height:
+        40px;
+
+    display:
+        block;
+}
+
+.whatsapp:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 22px
+        rgba(37,211,102,.18);
+}
+
+
+/* ============================================================
+   HAVENGH CHAT
+============================================================ */
+
+.chat-agent {
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-950),
+            var(--green-800)
+        );
+
+    color:
+        var(--gold-light);
+
+    border:
+        1px solid
+        var(--gold);
+
+    box-shadow:
+        0 8px 20px
+        rgba(3,31,23,.16);
+}
+
+.chat-agent:hover {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+
+    border-color:
+        var(--gold-light);
+
+    box-shadow:
+        0 12px 25px
+        rgba(212,175,55,.25);
+}
+
+
+/* ============================================================
+   REQUEST
+============================================================ */
+
+.request-button {
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-900),
+            var(--green-700)
+        );
+
+    color:
+        #ffffff;
+
+    border:
+        1px solid
+        var(--gold);
+
+    box-shadow:
+        0 8px 20px
+        rgba(3,31,23,.15);
+}
+
+.request-button:hover {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+
+    box-shadow:
+        0 12px 25px
+        rgba(212,175,55,.25);
+}
+
+
+/* ============================================================
+   SAVE
+============================================================ */
+
+.save-button {
+    background:
+        rgba(255,255,255,.55);
+
+    color:
+        var(--gold);
+
+    border:
+        1px solid
+        var(--gold);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.save-button:hover {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+
+    box-shadow:
+        0 12px 25px
+        rgba(212,175,55,.22);
+}
+
+.save-button.saved {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+}
+
+.save-button.saved span {
+    color:
+        var(--green-950);
+}
+
+
+/* ============================================================
+   VIEW CONTACT
+============================================================ */
+
+.view-contact {
+    background:
+        rgba(247,243,232,.78);
+
+    color:
+        var(--green-900);
+
+    border:
+        1px solid
+        var(--gold);
+}
+
+.view-contact:hover {
+    background:
+        var(--gold);
+
+    color:
+        var(--green-950);
+}
+
+
+/* ============================================================
+   EDIT
+============================================================ */
+
+.edit {
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold),
+            var(--gold-light)
+        );
+
+    color:
+        var(--green-950);
+
+    border:
+        1px solid
+        rgba(255,255,255,.35);
+
+    box-shadow:
+        0 8px 20px
+        rgba(212,175,55,.20);
+}
+
+.edit:hover {
+    background:
+        var(--gold-light);
+
+    box-shadow:
+        0 12px 25px
+        rgba(212,175,55,.27);
+}
+
+
+/* ============================================================
+   BACK
+============================================================ */
+
+.back-button {
+    background:
+        rgba(255,255,255,.60);
+
+    color:
+        var(--green-900);
+
+    border:
+        1px solid
+        rgba(6,78,59,.20);
+
+    backdrop-filter:
+        blur(8px);
+}
+
+.back-button:hover {
+    background:
+        rgba(255,255,255,.85);
+
+    border-color:
+        var(--green-700);
+
+    color:
+        var(--green-950);
+}
+
+
+/* ============================================================
+   AGENT CONTACT
+============================================================ */
+
+.agent-contact-box {
+    margin-top:
+        15px;
+}
+
+.agent-contact-box strong {
+    display:
+        block;
+
+    color:
+        var(--green-900);
+
+    margin-bottom:
+        10px;
+}
+
+.agent-contact-box a {
+    display:
+        block;
+
+    margin-top:
+        8px;
+
+    color:
+        var(--green-800);
+
+    font-weight:
+        800;
+
+    overflow-wrap:
+        anywhere;
+}
+
+.agent-contact-box a:hover {
+    color:
+        #a27d10;
+}
+
+
+/* ============================================================
+   META
+============================================================ */
+
+.meta {
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        18px 25px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+}
+
+.meta strong {
+    color:
+        var(--green-900);
+}
+
+
+/* ============================================================
+   DESKTOP GLASS EFFECT
+============================================================ */
+
+@media (min-width: 901px) {
+
+    .details-grid > aside {
+        position:
+            sticky;
+
+        top:
+            105px;
+    }
+
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+
+    .details-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .main-image {
+        height:
+            430px;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+
+    body {
+        background-attachment:
+            scroll;
+    }
+
+    .topbar {
+        padding:
+            0 4%;
+
+        min-height:
+            72px;
+    }
+
+    .page {
+        width:
+            94%;
+
+        margin-top:
+            28px;
+
+        margin-bottom:
+            55px;
+    }
+
+    .property-hero {
+        padding:
+            32px 25px;
+
+        border-radius:
+            22px;
+    }
+
+    .property-hero h1 {
+        font-size:
+            34px;
+    }
+
+    .card {
+        padding:
+            23px;
+
+        border-radius:
+            19px;
+    }
+
+    .gallery-card {
+        padding:
+            11px;
+    }
+
+    .main-image {
+        height:
+            350px;
+
+        border-radius:
+            14px;
+    }
+
+    .spec-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES
+============================================================ */
+
+@media (max-width: 520px) {
+
+    .topbar {
+        min-height:
+            67px;
+
+        padding:
+            0 3%;
+    }
+
+    .brand {
+        gap:
+            7px;
+
+        padding:
+            5px 9px 5px 5px;
+
+        font-size:
+            20px;
+    }
+
+    .brand img {
+        width:
+            38px;
+
+        height:
+            38px;
+
+        border-radius:
+            9px;
+    }
+
+    .back-link {
+        padding:
+            8px 11px;
+
+        font-size:
+            12px;
+    }
+
+    .property-hero {
+        padding:
+            27px 20px;
+
+        border-radius:
+            18px;
+    }
+
+    .property-hero h1 {
+        font-size:
+            30px;
+
+        letter-spacing:
+            -1px;
+    }
+
+    .property-type {
+        font-size:
+            15px;
+    }
+
+    .card {
+        border-radius:
+            16px;
+
+        padding:
+            19px;
+
+        margin-bottom:
+            20px;
+    }
+
+    .gallery-card {
+        padding:
+            8px;
+    }
+
+    .main-image {
+        height:
+            280px;
+
+        border-radius:
+            12px;
+    }
+
+    .gallery-arrow {
+        width:
+            38px;
+
+        height:
+            38px;
+
+        font-size:
+            26px;
+    }
+
+    .gallery-prev {
+        left:
+            9px;
+    }
+
+    .gallery-next {
+        right:
+            9px;
+    }
+
+    .gallery-counter {
+        right:
+            9px;
+
+        bottom:
+            9px;
+    }
+
+    .gallery-thumbnail {
+        width:
+            70px;
+
+        height:
+            54px;
+    }
+
+    .spec-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .section-heading,
+    .location-heading {
+        gap:
+            11px;
+    }
+
+    .section-icon,
+    .location-icon {
+        width:
+            42px;
+
+        height:
+            42px;
+    }
+
+    .spec {
+        padding:
+            15px;
+    }
+
+    .price {
+        font-size:
+            28px;
+    }
+
+}
+
+
+/* ============================================================
+   EXTRA SMALL PHONES
+============================================================ */
+
+@media (max-width: 380px) {
+
+    .brand-main,
+    .brand-accent {
+        font-size:
+            18px;
+    }
+
+    .brand img {
+        width:
+            34px;
+
+        height:
+            34px;
+    }
+
+    .back-link {
+        padding:
+            7px 9px;
+
+        font-size:
+            11px;
+    }
+
+    .property-hero h1 {
+        font-size:
+            27px;
+    }
+
+    .icon-action-row {
+        gap:
+            7px;
+    }
+
+    .action-button,
+    .icon-action,
+    .icon-action-row .action-button {
+        width:
+            44px;
+
+        height:
+            44px;
+
+        min-width:
+            44px;
+
+        min-height:
+            44px;
+    }
+}
+
+
+
+</style>
+
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+
+<a
+    href="index.html"
+    class="brand"
+    aria-label="HavenGH Home">
+
+    <img
+        src="havengh logo.jpeg"
+        alt="HavenGH Logo">
+
+    <span class="brand-main">
+        Haven
+    </span>
+
+    <span class="brand-accent">
+        GH
+    </span>
+
+</a>
+
+
+<a
+    href="index.html"
+    class="back-link">
+
+    ← Home
+
+</a>
+
+
+</header>
+
+<main class="page">
+
+
+<!-- =====================================================
+     LOADING
+====================================================== -->
+
+<div
+    id="loading"
+    class="loading">
+
+    Loading property details...
+
+</div>
+
+
+
+<!-- =====================================================
+     ERROR
+====================================================== -->
+
+<div
+    id="error-box"
+    class="error-box hidden">
+
+    <h2>
+        Unable to load property
+    </h2>
+
+    <p id="error-message">
+        Something went wrong.
+    </p>
+
+    <a
+        href="index.html"
+        class="action-button back-button">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+
+<!-- =====================================================
+     PROPERTY PAGE
+====================================================== -->
+
+<div
+    id="property-page"
+    class="hidden">
+
+
+    <!-- =================================================
+         HERO
+    ================================================== -->
+
+    <section class="property-hero">
+
+        <span
+            id="property-status"
+            class="status">
+
+            Published
+
+        </span>
+
+
+        <h1 id="property-title">
+            Property
+        </h1>
+
+
+        <p
+            id="property-type"
+            class="property-type">
+
+            Apartment
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CONTENT GRID
+    ================================================== -->
+
+    <div class="details-grid">
+
+
+        <!-- =================================================
+             LEFT COLUMN
+        ================================================== -->
+
+        <div>
+
+
+            <!-- =================================================
+                 IMAGE GALLERY
+            ================================================== -->
+
+            <section class="card gallery-card">
+
+                <div class="gallery-main">
+
+
+                    <div
+                        id="main-image"
+                        class="main-image">
+
+                        HavenGH
+
+                    </div>
+
+
+                    <button
+                        id="gallery-prev"
+                        class="gallery-arrow gallery-prev"
+                        type="button"
+                        aria-label="Previous image">
+
+                        ‹
+
+                    </button>
+
+
+                    <button
+                        id="gallery-next"
+                        class="gallery-arrow gallery-next"
+                        type="button"
+                        aria-label="Next image">
+
+                        ›
+
+                    </button>
+
+
+                    <div
+                        id="gallery-counter"
+                        class="gallery-counter">
+
+                        1 / 1
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    id="gallery-thumbnails"
+                    class="gallery-thumbnails">
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DESCRIPTION
+            ================================================== -->
+
+            <section class="card">
+
+                <h2>
+                    About this property
+                </h2>
+
+
+                <p
+                    id="property-description"
+                    class="description">
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROPERTY DETAILS
+            ================================================== -->
+
+            <section
+                class="card property-details-card">
+
+
+                <div class="section-heading">
+
+
+                    <div class="section-icon">
+                        ✦
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Property Details
+                        </h2>
+
+                        <p class="section-label">
+                            Key features of this property
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="spec-grid">
+
+
+                    <!-- BEDROOMS -->
+
+                    <div class="spec">
+
+                        <div class="spec-icon">
+                            🛏
+                        </div>
+
+
+                        <div class="spec-info">
+
+                            <strong id="bedrooms">
+                                —
+                            </strong>
+
+                            <span>
+                                Bedrooms
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- BATHROOMS -->
+
+                    <div class="spec">
+
+                        <div class="spec-icon">
+                            🛁
+                        </div>
+
+
+                        <div class="spec-info">
+
+                            <strong id="bathrooms">
+                                —
+                            </strong>
+
+                            <span>
+                                Bathrooms
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- VIEWS -->
+
+                    <div class="spec">
+
+                        <div class="spec-icon">
+                            👁
+                        </div>
+
+
+                        <div class="spec-info">
+
+                            <strong id="views">
+                                —
+                            </strong>
+
+                            <span>
+                                Views
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 LOCATION
+            ================================================== -->
+
+            <section
+                class="card location-card">
+
+
+                <div class="location-heading">
+
+
+                    <div class="location-icon">
+                        📍
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Location
+                        </h2>
+
+                        <p class="location-label">
+                            Property location
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="location-content">
+
+                    <p
+                        id="location"
+                        class="location">
+
+                        Location not provided
+
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RIGHT COLUMN
+        ================================================== -->
+
+        <aside>
+
+
+            <!-- =================================================
+                 PRICE
+            ================================================== -->
+
+            <section
+                class="card price-card">
+
+
+                <h2>
+                    Rental Price
+                </h2>
+
+
+                <div>
+
+                    <span
+                        id="price"
+                        class="price">
+
+                        GH₵0
+
+                    </span>
+
+
+                    <span
+                        id="price-period"
+                        class="period">
+
+                        / Monthly
+
+                    </span>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 OWNER
+            ================================================== -->
+
+           
+
+
+            <!-- =================================================
+     OWNER
+================================================== -->
+
+<section class="card">
+
+    <h2>
+        Property Owner
+    </h2>
+
+    <div class="owner-row">
+
+        <div class="owner-icon">
+            H
+        </div>
+
+        <div class="owner-info">
+
+            <strong id="owner-email">
+                —
+            </strong>
+
+            <span id="owner-role">
+                Property Owner
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHAT -->
+
+  <!-- =====================================================
+     PROPERTY ACTION ICONS
+====================================================== -->
+
+<div class="icon-action-row">
+
+    <!-- WhatsApp -->
+   <a
+    id="whatsapp-button"
+    class="icon-action whatsapp"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contact on WhatsApp"
+    title="WhatsApp">
+
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+
+        <!-- Green WhatsApp background -->
+        <circle
+            cx="16"
+            cy="16"
+            r="16"
+            fill="#25D366"/>
+
+        <!-- White WhatsApp speech bubble -->
+        <path
+            fill="#ffffff"
+            d="M16 6.2c-5.4 0-9.8 4.2-9.8 9.4
+               0 1.7.5 3.3 1.4 4.7L6.1 25.8
+               l5.7-1.5c1.3.7 2.7 1 4.2 1
+               5.4 0 9.8-4.2 9.8-9.4
+               S21.4 6.2 16 6.2Z"/>
+
+        <!-- Green phone inside the white bubble -->
+        <path
+            fill="#25D366"
+            d="M20.7 18.1c-.3-.2-1.8-.9-2.1-1
+               -.3-.1-.5-.2-.7.2
+               -.2.3-.8 1-1 1.2
+               -.2.2-.4.2-.7.1
+               -.3-.2-1.3-.5-2.5-1.5
+               -.9-.8-1.5-1.7-1.7-2
+               -.2-.3 0-.5.2-.7
+               .2-.2.4-.4.5-.6
+               .2-.2.2-.4.3-.6
+               .1-.2 0-.4 0-.6
+               -.1-.2-.7-1.7-.9-2.3
+               -.2-.6-.5-.5-.7-.5
+               h-.6c-.2 0-.5.1-.7.3
+               -.2.2-.9.9-.9 2.2
+               0 1.3.9 2.6 1 2.8
+               .1.2 1.7 2.7 4.2 3.8
+               .6.3 1.1.5 1.5.6
+               .6.2 1.1.2 1.5.1
+               .5-.1 1.6-.7 1.8-1.3
+               .2-.6.2-1.1.1-1.2
+               -.1-.1-.3-.2-.6-.4Z"/>
+
+    </svg>
+
+</a>
+
+    <!-- HavenGH Chat -->
+    <a
+        id="chat-agent-button"
+        class="action-button chat-agent"
+        href="#"
+        aria-label="Chat on HavenGH"
+        title="HavenGH Chat">
+
+        <span>💬</span>
+
+    </a>
+
+
+    <!-- Request Property -->
+    <button
+        id="request-property-button"
+        class="action-button request-button"
+        type="button"
+        aria-label="Request Property"
+        title="Request Property">
+
+        <span>📩</span>
+
+    </button>
+
+
+    <!-- Save Property -->
+    <button
+        id="save-property-button"
+        class="action-button save-button"
+        type="button"
+        aria-label="Save Property"
+        title="Save Property">
+
+        <span>♡</span>
+
+    </button>
+
+
+</div> 
+    <!-- EDIT -->
+
+    <a
+        id="edit-button"
+        class="action-button edit hidden"
+        href="#">
+
+        Edit Property
+
+    </a>
+
+
+    <!-- BACK -->
+
+    <a
+        href="properties.html"
+        class="action-button back-button">
+
+        ← Back 
+
+    </a>
+
+</section>
+
+
+
+            <!-- =================================================
+                 PROPERTY META
+            ================================================== -->
+
+            <section class="card">
+
+
+                <div class="meta">
+
+
+                    <span>
+
+                        Property ID:
+
+                        <strong id="property-id">
+                            —
+                        </strong>
+
+                    </span>
+
+
+                    <span>
+
+                        Listed:
+
+                        <strong id="created-at">
+                            —
+                        </strong>
+
+                    </span>
+
+
+                </div>
+
+
+            </section>
+
+
+        </aside>
+
+
+    </div>
+
+</div>
+
+
+</main>
+
+<script src="property-details.js"></script>
+
+</body>
+
+</html>

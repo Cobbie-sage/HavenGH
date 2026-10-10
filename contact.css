@@ -1,0 +1,1984 @@
+
+/* ============================================================
+   HavenGH — CONTACT PAGE
+   Premium Glassmorphism Theme
+   Fixed HavenGH Background
+   Dark Green • Antique Gold • Warm Glass
+   Responsive / Mobile First
+   ============================================================ */
+
+
+/* ============================================================
+   1. ROOT / DESIGN TOKENS
+   ============================================================ */
+
+:root {
+
+    --haven-deep-green: #071f17;
+    --haven-green: #0d3a2a;
+    --haven-green-light: #1b6047;
+
+    --haven-cream: #f5f2e9;
+    --haven-white: #ffffff;
+
+    --haven-text: #17352b;
+    --haven-text-soft: #68756f;
+    --haven-text-light: #87918c;
+
+    --haven-accent: #c09a3e;
+    --haven-accent-soft: #e0c56d;
+    --haven-accent-light: #f0d993;
+
+    --glass-white: rgba(255, 255, 255, 0.76);
+    --glass-white-light: rgba(255, 255, 255, 0.62);
+    --glass-dark: rgba(7, 31, 23, 0.78);
+
+    --glass-border:
+        rgba(255, 255, 255, 0.42);
+
+    --haven-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.16);
+
+    --haven-shadow-soft:
+        0 10px 35px rgba(0, 0, 0, 0.11);
+
+    --haven-radius:
+        18px;
+
+    --haven-transition:
+        0.25s ease;
+}
+
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    /*
+       FIXED HAVENGH BACKGROUND
+
+       The logo image stays behind the entire page
+       while the user scrolls.
+    */
+
+    background:
+
+        linear-gradient(
+            rgba(0, 0, 0, 0.20),
+            rgba(0, 0, 0, 0.28)
+        ),
+
+        url("havengh logo.jpeg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+
+    background-color:
+        #111;
+
+    color:
+        var(--haven-text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height:
+        1.6;
+
+    -webkit-font-smoothing:
+        antialiased;
+}
+
+
+/* ============================================================
+   3. BACKGROUND LIGHT EFFECT
+   ============================================================ */
+
+body::before {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        -1;
+
+    pointer-events:
+        none;
+
+    background:
+
+        radial-gradient(
+            circle at 18% 15%,
+            rgba(255, 255, 255, 0.10),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 82% 80%,
+            rgba(224, 197, 109, 0.07),
+            transparent 32%
+        );
+}
+
+
+/* ============================================================
+   4. BASIC ELEMENTS
+   ============================================================ */
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   5. CONTAINER
+   ============================================================ */
+
+.container {
+
+    width:
+        min(1180px, calc(100% - 40px));
+
+    margin:
+        0 auto;
+}
+
+
+/* ============================================================
+   6. HEADER
+   ============================================================ */
+
+.header {
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        1000;
+
+    background:
+        rgba(7, 31, 23, 0.86);
+
+    border-bottom:
+        1px solid rgba(224, 197, 109, 0.16);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+.nav-container {
+
+    min-height:
+        76px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        30px;
+}
+
+
+/* ============================================================
+   7. LOGO
+   ============================================================ */
+
+.logo {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.7px;
+
+    white-space:
+        nowrap;
+}
+
+.logo-main {
+    color:
+        #ffffff;
+}
+
+.logo-accent {
+
+    color:
+        var(--haven-accent-soft);
+
+    margin-left:
+        2px;
+}
+
+
+/* ============================================================
+   8. NAVIGATION
+   ============================================================ */
+
+.navbar {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        30px;
+}
+
+.nav-link {
+
+    position:
+        relative;
+
+    padding:
+        27px 0;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+    transition:
+        color var(--haven-transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+
+    color:
+        #ffffff;
+}
+
+.nav-link::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        17px;
+
+    height:
+        2px;
+
+    background:
+        var(--haven-accent);
+
+    transform:
+        scaleX(0);
+
+    transition:
+        transform var(--haven-transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+
+    transform:
+        scaleX(1);
+}
+
+
+/* ============================================================
+   9. NAV ACTIONS
+   ============================================================ */
+
+.nav-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        18px;
+}
+
+.login-link {
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+    transition:
+        color var(--haven-transition);
+}
+
+.login-link:hover {
+    color:
+        #ffffff;
+}
+
+
+/* ============================================================
+   10. BUTTONS
+   ============================================================ */
+
+.btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        44px;
+
+    padding:
+        0 20px;
+
+    border:
+        1px solid transparent;
+
+    border-radius:
+        9px;
+
+    font-size:
+        14px;
+
+    font-weight:
+        650;
+
+    transition:
+        background var(--haven-transition),
+        border-color var(--haven-transition),
+        box-shadow var(--haven-transition),
+        transform var(--haven-transition),
+        color var(--haven-transition);
+}
+
+
+.btn-dark {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-accent-light),
+            var(--haven-accent)
+        );
+
+    color:
+        var(--haven-deep-green);
+
+    border-color:
+        var(--haven-accent-light);
+
+    box-shadow:
+        0 7px 22px rgba(192, 154, 62, 0.20);
+}
+
+.btn-dark:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5dfa0,
+            var(--haven-accent-light)
+        );
+
+    border-color:
+        #f5dfa0;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(192, 154, 62, 0.28);
+}
+
+
+/* ============================================================
+   11. CONTACT HERO
+   ============================================================ */
+
+.properties-hero {
+
+    position:
+        relative;
+
+    min-height:
+        420px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    padding:
+        90px 0;
+
+    color:
+        #ffffff;
+
+    overflow:
+        hidden;
+
+    /*
+       CLEAR IMAGE WITH LIGHT DARK OVERLAY
+    */
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.48),
+            rgba(0, 0, 0, 0.22),
+            rgba(0, 0, 0, 0.38)
+        ),
+
+        url("havengh logo.jpeg")
+        center center /
+        cover
+        no-repeat;
+}
+
+
+.properties-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(224, 197, 109, 0.12),
+            transparent 30%
+        );
+}
+
+
+.properties-hero .container {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* ============================================================
+   12. SECTION LABEL
+   ============================================================ */
+
+.section-label {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        16px;
+
+    color:
+        var(--haven-accent-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2.5px;
+
+    text-transform:
+        uppercase;
+}
+
+.section-label::before {
+
+    content:
+        "";
+
+    width:
+        34px;
+
+    height:
+        1px;
+
+    background:
+        var(--haven-accent);
+}
+
+
+/* ============================================================
+   13. HERO TITLE
+   ============================================================ */
+
+.properties-hero h1 {
+
+    max-width:
+        760px;
+
+    margin-bottom:
+        18px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(42px, 5.5vw, 66px);
+
+    line-height:
+        1.05;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -2.5px;
+
+    text-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.40);
+}
+
+
+/* ============================================================
+   14. HERO DESCRIPTION
+   ============================================================ */
+
+.properties-hero p {
+
+    max-width:
+        650px;
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.8;
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.30);
+}
+
+
+/* ============================================================
+   15. CONTACT MAIN SECTIONS
+   ============================================================ */
+
+.dashboard-section {
+
+    padding:
+        75px 0;
+
+    /*
+       TRANSPARENT GLASS LAYER
+    */
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+}
+
+
+/* ============================================================
+   16. PROFILE GRID
+   ============================================================ */
+
+.profile-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        28px;
+}
+
+
+/* ============================================================
+   17. GLASS CARDS
+   ============================================================ */
+
+.profile-card {
+
+    padding:
+        34px;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.60);
+
+    border-radius:
+        var(--haven-radius);
+
+    box-shadow:
+        var(--haven-shadow);
+
+    backdrop-filter:
+        blur(13px);
+
+    -webkit-backdrop-filter:
+        blur(13px);
+
+    color:
+        var(--haven-text);
+}
+
+
+.profile-card:hover {
+
+    border-color:
+        rgba(224, 197, 109, 0.38);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ============================================================
+   18. PROFILE CARD HEADING
+   ============================================================ */
+
+.profile-card-heading {
+
+    margin-bottom:
+        24px;
+}
+
+.profile-card-heading .section-label {
+
+    margin-bottom:
+        10px;
+}
+
+.profile-card-heading h2 {
+
+    color:
+        var(--haven-deep-green);
+
+    font-size:
+        30px;
+
+    line-height:
+        1.2;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        -0.8px;
+}
+
+
+.profile-card > p {
+
+    margin-bottom:
+        28px;
+
+    color:
+        var(--haven-text-soft);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.8;
+}
+
+
+/* ============================================================
+   19. CONTACT LIST
+   ============================================================ */
+
+.contact-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        14px;
+}
+
+
+.contact-item {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        15px;
+
+    padding:
+        15px;
+
+    background:
+        rgba(255, 255, 255, 0.48);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.55);
+
+    border-radius:
+        11px;
+
+    transition:
+        background var(--haven-transition),
+        transform var(--haven-transition),
+        border-color var(--haven-transition);
+}
+
+.contact-item:hover {
+
+    background:
+        rgba(255, 255, 255, 0.68);
+
+    border-color:
+        rgba(192, 154, 62, 0.28);
+
+    transform:
+        translateX(3px);
+}
+
+
+/* ============================================================
+   20. CONTACT ICON
+   ============================================================ */
+
+.contact-icon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    flex:
+        0 0 42px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-green),
+            var(--haven-deep-green)
+        );
+
+    color:
+        var(--haven-accent-light);
+
+    font-size:
+        17px;
+
+    font-weight:
+        800;
+
+    box-shadow:
+        0 5px 15px rgba(7, 31, 23, 0.16);
+}
+
+
+.contact-item small {
+
+    display:
+        block;
+
+    margin-bottom:
+        2px;
+
+    color:
+        var(--haven-text-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.8px;
+}
+
+
+.contact-item strong {
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        14px;
+
+    font-weight:
+        650;
+}
+
+
+.contact-item a {
+
+    transition:
+        color var(--haven-transition);
+}
+
+.contact-item a:hover {
+
+    color:
+        var(--haven-green-light);
+}
+
+
+/* ============================================================
+   21. CONTACT TIP
+   ============================================================ */
+
+.profile-tip {
+
+    margin-top:
+        25px;
+
+    padding:
+        18px;
+
+    background:
+        rgba(224, 197, 109, 0.17);
+
+    border:
+        1px solid rgba(192, 154, 62, 0.24);
+
+    border-radius:
+        11px;
+}
+
+
+.profile-tip strong {
+
+    display:
+        block;
+
+    margin-bottom:
+        6px;
+
+    color:
+        var(--haven-deep-green);
+
+    font-size:
+        14px;
+}
+
+
+.profile-tip p {
+
+    margin:
+        0;
+
+    color:
+        var(--haven-text-soft);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+
+/* ============================================================
+   22. CONTACT FORM
+   ============================================================ */
+
+.profile-form {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        19px;
+}
+
+
+.profile-field {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        7px;
+}
+
+
+.profile-field label {
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        13px;
+
+    font-weight:
+        650;
+}
+
+
+/* ============================================================
+   23. INPUTS / SELECT / TEXTAREA
+   ============================================================ */
+
+.profile-field input,
+.profile-field select,
+.profile-field textarea {
+
+    width:
+        100%;
+
+    border:
+        1px solid rgba(18, 73, 54, 0.14);
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    color:
+        var(--haven-text);
+
+    outline:
+        none;
+
+    font-size:
+        14px;
+
+    transition:
+        border-color var(--haven-transition),
+        box-shadow var(--haven-transition),
+        background var(--haven-transition);
+}
+
+
+.profile-field input,
+.profile-field select {
+
+    height:
+        48px;
+
+    padding:
+        0 14px;
+}
+
+
+.profile-field textarea {
+
+    min-height:
+        140px;
+
+    padding:
+        13px 14px;
+
+    resize:
+        vertical;
+
+    line-height:
+        1.6;
+}
+
+
+.profile-field input::placeholder,
+.profile-field textarea::placeholder {
+
+    color:
+        var(--haven-text-light);
+}
+
+
+.profile-field input:hover,
+.profile-field select:hover,
+.profile-field textarea:hover {
+
+    border-color:
+        rgba(18, 73, 54, 0.25);
+
+    background:
+        rgba(255, 255, 255, 0.84);
+}
+
+
+.profile-field input:focus,
+.profile-field select:focus,
+.profile-field textarea:focus {
+
+    border-color:
+        var(--haven-accent);
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    box-shadow:
+        0 0 0 3px rgba(192, 154, 62, 0.12);
+}
+
+
+/* ============================================================
+   24. FORM MESSAGE
+   ============================================================ */
+
+.form-message {
+
+    padding:
+        13px 15px;
+
+    border-radius:
+        9px;
+
+    font-size:
+        13px;
+
+    line-height:
+        1.5;
+}
+
+
+.success-message {
+
+    background:
+        rgba(232, 239, 233, 0.90);
+
+    border:
+        1px solid rgba(27, 96, 71, 0.20);
+
+    color:
+        var(--haven-green);
+}
+
+
+/* ============================================================
+   25. FORM BUTTON
+   ============================================================ */
+
+.profile-form .btn {
+
+    width:
+        100%;
+
+    min-height:
+        50px;
+
+    margin-top:
+        3px;
+}
+
+
+/* ============================================================
+   26. SUPPORT SECTION
+   ============================================================ */
+
+.dashboard-section + .dashboard-section {
+
+    padding-top:
+        20px;
+}
+
+
+.section-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        28px;
+}
+
+
+.dashboard-label {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--haven-accent-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2.3px;
+
+    text-transform:
+        uppercase;
+
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+.section-heading h2 {
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(28px, 4vw, 40px);
+
+    line-height:
+        1.15;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        -1px;
+
+    text-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ============================================================
+   27. SUPPORT CARDS
+   ============================================================ */
+
+.profile-grid .profile-card h3 {
+
+    margin-bottom:
+        10px;
+
+    color:
+        var(--haven-deep-green);
+
+    font-size:
+        21px;
+
+    line-height:
+        1.3;
+}
+
+
+.profile-grid .profile-card p {
+
+    margin-bottom:
+        22px;
+
+    color:
+        var(--haven-text-soft);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.75;
+}
+
+
+.profile-grid .profile-card .btn {
+
+    width:
+        auto;
+}
+
+
+/* ============================================================
+   28. FOOTER
+   ============================================================ */
+
+.footer {
+
+    background:
+        rgba(7, 31, 23, 0.88);
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.10);
+}
+
+
+.footer-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+    gap:
+        50px;
+
+    padding:
+        65px 0 55px;
+}
+
+
+.footer-brand {
+
+    max-width:
+        270px;
+}
+
+
+.footer-logo {
+
+    margin-bottom:
+        15px;
+}
+
+
+.footer-brand p {
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+
+.footer-column h4 {
+
+    margin-bottom:
+        18px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        13px;
+
+    font-weight:
+        650;
+}
+
+
+.footer-column a {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        13px;
+
+    transition:
+        color var(--haven-transition),
+        transform var(--haven-transition);
+}
+
+
+.footer-column a:hover {
+
+    color:
+        #ffffff;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ============================================================
+   29. FOOTER BOTTOM
+   ============================================================ */
+
+.footer-bottom {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding:
+        20px 0 22px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    font-size:
+        12px;
+}
+
+
+/* ============================================================
+   30. TABLET
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        gap:
+            22px;
+    }
+
+    .profile-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            22px;
+    }
+
+    .footer-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            40px;
+    }
+}
+
+
+/* ============================================================
+   31. MOBILE NAVIGATION
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+    .container {
+
+        width:
+            min(100% - 28px, 700px);
+    }
+
+
+    .nav-container {
+
+        min-height:
+            68px;
+
+        gap:
+            15px;
+    }
+
+
+    .navbar {
+
+        display:
+            none;
+    }
+
+
+    .navbar.open {
+
+        position:
+            absolute;
+
+        left:
+            14px;
+
+        right:
+            14px;
+
+        top:
+            68px;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            0;
+
+        padding:
+            8px;
+
+        background:
+            rgba(7, 31, 23, 0.96);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.10);
+
+        border-radius:
+            10px;
+
+        box-shadow:
+            0 18px 35px rgba(0, 0, 0, 0.25);
+
+        backdrop-filter:
+            blur(18px);
+
+        -webkit-backdrop-filter:
+            blur(18px);
+    }
+
+
+    .navbar.open .nav-link {
+
+        padding:
+            13px 14px;
+
+        border-radius:
+            7px;
+    }
+
+
+    .navbar.open .nav-link:hover {
+
+        background:
+            rgba(255, 255, 255, 0.06);
+    }
+
+
+    .navbar.open .nav-link::after {
+        display:
+            none;
+    }
+
+
+    .nav-actions {
+        gap:
+            10px;
+    }
+
+
+    .login-link {
+        display:
+            none;
+    }
+
+
+    .nav-actions .btn {
+
+        min-height:
+            40px;
+
+        padding:
+            0 14px;
+
+        font-size:
+            12px;
+    }
+
+
+    /* HERO */
+
+    .properties-hero {
+
+        min-height:
+            390px;
+
+        padding:
+            70px 0;
+
+        background-position:
+            center center;
+    }
+
+
+    .properties-hero h1 {
+
+        font-size:
+            46px;
+    }
+
+
+    /* CONTACT */
+
+    .dashboard-section {
+
+        padding:
+            55px 0;
+    }
+
+
+    .profile-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+    }
+
+
+    .profile-card {
+
+        padding:
+            26px;
+    }
+}
+
+
+/* ============================================================
+   32. SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width:
+            calc(100% - 24px);
+    }
+
+
+    .logo {
+
+        font-size:
+            22px;
+    }
+
+
+    .nav-actions .btn {
+
+        min-height:
+            38px;
+
+        padding:
+            0 11px;
+
+        font-size:
+            11px;
+    }
+
+
+    /* HERO */
+
+    .properties-hero {
+
+        min-height:
+            390px;
+
+        padding:
+            60px 0 65px;
+
+        background-position:
+            center center;
+    }
+
+
+    .section-label {
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            1.5px;
+    }
+
+
+    .properties-hero h1 {
+
+        margin-bottom:
+            14px;
+
+        font-size:
+            37px;
+
+        letter-spacing:
+            -1.3px;
+    }
+
+
+    .properties-hero p {
+
+        font-size:
+            14px;
+
+        line-height:
+            1.7;
+    }
+
+
+    /* CONTACT CARDS */
+
+    .dashboard-section {
+
+        padding:
+            45px 0;
+    }
+
+
+    .profile-card {
+
+        padding:
+            21px;
+
+        border-radius:
+            15px;
+    }
+
+
+    .profile-card-heading h2 {
+
+        font-size:
+            26px;
+    }
+
+
+    .contact-item {
+
+        padding:
+            13px;
+    }
+
+
+    .contact-icon {
+
+        width:
+            38px;
+
+        height:
+            38px;
+
+        flex-basis:
+            38px;
+
+        font-size:
+            15px;
+    }
+
+
+    .profile-field input,
+    .profile-field select {
+
+        height:
+            46px;
+    }
+
+
+    .profile-field textarea {
+
+        min-height:
+            125px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size:
+            29px;
+    }
+
+
+    .profile-grid .profile-card .btn {
+
+        width:
+            100%;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            32px;
+
+        padding:
+            48px 0 40px;
+    }
+
+
+    .footer-brand {
+
+        max-width:
+            100%;
+    }
+
+
+    .footer-bottom {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            7px;
+
+        padding:
+            18px 0 20px;
+    }
+}
+
+
+/* ============================================================
+   33. VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .container {
+
+        width:
+            calc(100% - 20px);
+    }
+
+
+    .nav-container {
+
+        min-height:
+            64px;
+    }
+
+
+    .logo {
+
+        font-size:
+            20px;
+    }
+
+
+    .nav-actions .btn {
+
+        padding:
+            0 9px;
+
+        font-size:
+            10px;
+    }
+
+
+    .properties-hero {
+
+        min-height:
+            360px;
+    }
+
+
+    .properties-hero h1 {
+
+        font-size:
+            31px;
+    }
+
+
+    .properties-hero p {
+
+        font-size:
+            13px;
+    }
+
+
+    .profile-card {
+
+        padding:
+            18px;
+    }
+}
+
+
+/* ============================================================
+   34. ACCESSIBILITY
+   ============================================================ */
+
+:focus-visible {
+
+    outline:
+        2px solid var(--haven-accent);
+
+    outline-offset:
+        3px;
+}
+
+
+/* ============================================================
+   35. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+

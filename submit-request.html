@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Send a rental request to a HavenGH property owner.">
+
+<title>Request Property | HavenGH</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+
+        background:
+            linear-gradient(
+                135deg,
+                #061f15 0%,
+                #0b3d28 45%,
+                #06261a 100%
+            );
+
+        color: #ffffff;
+        min-height: 100vh;
+    }
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .topbar {
+        width: 100%;
+        padding: 18px 6%;
+        border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+
+        background:
+            rgba(4, 28, 19, 0.94);
+
+        backdrop-filter: blur(12px);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .brand {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .brand span {
+        color: #c9a227;
+    }
+
+    .back-link {
+        color: #e8dfc2;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+
+        transition:
+            color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .back-link:hover {
+        color: #c9a227;
+        transform: translateX(-3px);
+    }
+
+    /* =====================================================
+       PAGE
+    ===================================================== */
+
+    .page {
+        width: min(1100px, 92%);
+        margin: 0 auto;
+        padding: 55px 0 80px;
+    }
+
+    .page-heading {
+        margin-bottom: 32px;
+    }
+
+    .eyebrow {
+        color: #c9a227;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .page-heading h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.1;
+        margin-bottom: 12px;
+    }
+
+    .page-heading p {
+        color: #c8d5ce;
+        max-width: 650px;
+        line-height: 1.7;
+    }
+
+    /* =====================================================
+       LAYOUT
+    ===================================================== */
+
+    .request-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 28px;
+        align-items: start;
+    }
+
+    .card {
+        background:
+            rgba(7, 49, 32, 0.88);
+
+        border: 1px solid rgba(201, 162, 39, 0.22);
+
+        border-radius: 20px;
+
+        box-shadow:
+            0 20px 55px rgba(0, 0, 0, 0.28);
+
+        overflow: hidden;
+    }
+
+    /* =====================================================
+       PROPERTY CARD
+    ===================================================== */
+
+    .property-image-wrapper {
+        position: relative;
+        height: 300px;
+        background: #092619;
+        overflow: hidden;
+    }
+
+    .property-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .property-image-placeholder {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #9eafa6;
+        font-size: 0.95rem;
+    }
+
+    .property-content {
+        padding: 25px;
+    }
+
+    .property-type {
+        display: inline-flex;
+        align-items: center;
+
+        padding: 6px 11px;
+
+        border-radius: 999px;
+
+        background: rgba(201, 162, 39, 0.12);
+        border: 1px solid rgba(201, 162, 39, 0.35);
+
+        color: #d8b63d;
+
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        margin-bottom: 14px;
+    }
+
+    .property-content h2 {
+        font-size: 1.55rem;
+        line-height: 1.3;
+        margin-bottom: 12px;
+    }
+
+    .property-location {
+        color: #b9c9c1;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .property-price {
+        color: #c9a227;
+        font-size: 1.45rem;
+        font-weight: 800;
+    }
+
+    .property-period {
+        color: #a9b9b1;
+        font-size: 0.9rem;
+        margin-left: 4px;
+    }
+
+    .property-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .meta-item {
+        padding: 9px 12px;
+
+        border-radius: 10px;
+
+        background: rgba(0, 0, 0, 0.16);
+
+        color: #d2ddd7;
+
+        font-size: 0.85rem;
+    }
+
+    /* =====================================================
+       FORM
+    ===================================================== */
+
+    .form-card {
+        padding: 30px;
+    }
+
+    .form-card h2 {
+        font-size: 1.55rem;
+        margin-bottom: 8px;
+    }
+
+    .form-intro {
+        color: #aebfb6;
+        line-height: 1.65;
+        margin-bottom: 28px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 9px;
+
+        color: #f2f4f2;
+
+        font-size: 0.9rem;
+        font-weight: 700;
+    }
+
+    .required {
+        color: #c9a227;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 190px;
+
+        resize: vertical;
+
+        padding: 15px 16px;
+
+        border-radius: 13px;
+
+        border: 1px solid rgba(201, 162, 39, 0.25);
+
+        background: rgba(2, 25, 16, 0.72);
+
+        color: #ffffff;
+
+        font-family: inherit;
+        font-size: 0.95rem;
+
+        outline: none;
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    textarea::placeholder {
+        color: #71857b;
+    }
+
+    textarea:focus {
+        border-color: #c9a227;
+
+        box-shadow:
+            0 0 0 3px rgba(201, 162, 39, 0.10);
+    }
+
+    .character-count {
+        margin-top: 7px;
+        text-align: right;
+
+        color: #7f958a;
+        font-size: 0.78rem;
+    }
+
+    .info-box {
+        padding: 15px 16px;
+
+        margin-bottom: 22px;
+
+        border-radius: 12px;
+
+        background: rgba(201, 162, 39, 0.08);
+
+        border:
+            1px solid rgba(201, 162, 39, 0.22);
+
+        color: #d4d9d2;
+
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .submit-button {
+        width: 100%;
+
+        border: none;
+        border-radius: 13px;
+
+        padding: 15px 20px;
+
+        background: #c9a227;
+        color: #123524;
+
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+    .submit-button:hover:not(:disabled) {
+        background: #dfc052;
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 10px 25px rgba(201, 162, 39, 0.18);
+    }
+
+    .submit-button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+    }
+
+    /* =====================================================
+       MESSAGES
+    ===================================================== */
+
+    .message {
+        display: none;
+
+        padding: 14px 16px;
+
+        margin-bottom: 20px;
+
+        border-radius: 12px;
+
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .message.show {
+        display: block;
+    }
+
+    .message.error {
+        background: rgba(150, 30, 30, 0.18);
+        border: 1px solid rgba(230, 90, 90, 0.35);
+        color: #ffbaba;
+    }
+
+    .message.success {
+        background: rgba(32, 130, 80, 0.18);
+        border: 1px solid rgba(80, 190, 125, 0.35);
+        color: #b9f0ce;
+    }
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
+
+    .loading {
+        min-height: 300px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: #b9c9c1;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 800px) {
+
+        .request-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .property-image-wrapper {
+            height: 260px;
+        }
+
+        .page {
+            padding-top: 35px;
+        }
+    }
+
+    @media (max-width: 520px) {
+
+        .topbar {
+            padding: 16px 5%;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+        }
+
+        .back-link {
+            font-size: 0.82rem;
+        }
+
+        .page {
+            width: 94%;
+            padding-bottom: 50px;
+        }
+
+        .form-card,
+        .property-content {
+            padding: 21px;
+        }
+
+        .property-image-wrapper {
+            height: 220px;
+        }
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+
+<a href="index.html" class="brand">
+    Haven<span>GH</span>
+</a>
+
+<a href="#" id="back-property-link" class="back-link">
+    ← Back to Property
+</a>
+
+
+</header>
+
+<main class="page">
+
+
+<section class="page-heading">
+
+    <div class="eyebrow">
+        HavenGH Rental Request
+    </div>
+
+    <h1>
+        Request this property
+    </h1>
+
+    <p>
+        Send a message to the property owner or agent to let
+        them know you are interested in renting this property.
+    </p>
+
+</section>
+
+
+<div id="loading" class="card loading">
+    Loading property...
+</div>
+
+
+<div id="error-message" class="message error"></div>
+
+
+<div id="request-layout"
+     class="request-layout hidden">
+
+
+    <!-- =================================================
+         PROPERTY
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="property-image-wrapper">
+
+            <img id="property-image"
+                 class="property-image hidden"
+                 alt="Property image">
+
+            <div id="property-image-placeholder"
+                 class="property-image-placeholder">
+                Property image unavailable
+            </div>
+
+        </div>
+
+
+        <div class="property-content">
+
+            <div id="property-type"
+                 class="property-type">
+                Property
+            </div>
+
+            <h2 id="property-title">
+                Property
+            </h2>
+
+            <div id="property-location"
+                 class="property-location">
+                Location
+            </div>
+
+            <div>
+                <span id="property-price"
+                      class="property-price">
+                    GH₵0
+                </span>
+
+                <span id="property-period"
+                      class="property-period">
+                    monthly
+                </span>
+            </div>
+
+
+            <div class="property-meta">
+
+                <div id="property-bedrooms"
+                     class="meta-item">
+                    Bedrooms: —
+                </div>
+
+                <div id="property-bathrooms"
+                     class="meta-item">
+                    Bathrooms: —
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         REQUEST FORM
+    ================================================== -->
+
+    <section class="card form-card">
+
+        <h2>
+            Send your request
+        </h2>
+
+        <p class="form-intro">
+            Introduce yourself and tell the owner or agent
+            why you are interested in the property.
+        </p>
+
+
+        <div id="form-message"
+             class="message">
+        </div>
+
+
+        <form id="request-form">
+
+            <div class="form-group">
+
+                <label for="request-message">
+                    Message
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="request-message"
+                    maxlength="2000"
+                    required
+                    placeholder="Example: Hello, I am interested in this property and would like to know if it is still available. I would also like to arrange a viewing.">
+                </textarea>
+
+                <div class="character-count">
+                    <span id="character-count">0</span>/2000
+                </div>
+
+            </div>
+
+
+            <div class="info-box">
+                Your request will be sent to the property's
+                owner or agent. You can view the status of your
+                request from your HavenGH account.
+            </div>
+
+
+            <button
+                id="submit-button"
+                class="submit-button"
+                type="submit">
+
+                Send Rental Request
+
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+</main>
+
+<script>
+
+"use strict";
+
+
+/* ============================================================
+   CONFIGURATION
+============================================================ */
+
+const API_BASE_URL =
+    "http://localhost:5073";
+
+
+/* ============================================================
+   DOM
+============================================================ */
+
+const loading =
+    document.getElementById("loading");
+
+const errorMessage =
+    document.getElementById("error-message");
+
+const requestLayout =
+    document.getElementById("request-layout");
+
+const requestForm =
+    document.getElementById("request-form");
+
+const requestMessage =
+    document.getElementById("request-message");
+
+const characterCount =
+    document.getElementById("character-count");
+
+const submitButton =
+    document.getElementById("submit-button");
+
+const formMessage =
+    document.getElementById("form-message");
+
+
+/* ============================================================
+   TOKEN
+============================================================ */
+
+function getToken() {
+
+    return (
+        sessionStorage.getItem("havenGH_token") ||
+        localStorage.getItem("havenGH_token") ||
+        sessionStorage.getItem("token") ||
+        localStorage.getItem("token") ||
+        sessionStorage.getItem("jwtToken") ||
+        localStorage.getItem("jwtToken") ||
+        sessionStorage.getItem("accessToken") ||
+        localStorage.getItem("accessToken") ||
+        null
+    );
+}
+
+
+/* ============================================================
+   PROPERTY ID
+============================================================ */
+
+function getPropertyId() {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    const value =
+        params.get("id");
+
+    const propertyId =
+        Number(value);
+
+    if (!Number.isInteger(propertyId) ||
+        propertyId <= 0) {
+
+        return null;
+    }
+
+    return propertyId;
+}
+
+
+/* ============================================================
+   MESSAGE HELPERS
+============================================================ */
+
+function showError(message) {
+
+    errorMessage.textContent =
+        message || "Something went wrong.";
+
+    errorMessage.classList.add("show");
+}
+
+
+function showFormMessage(message, type) {
+
+    formMessage.textContent =
+        message || "";
+
+    formMessage.className =
+        `message ${type} show`;
+}
+
+
+function hideFormMessage() {
+
+    formMessage.textContent = "";
+
+    formMessage.className =
+        "message";
+}
+
+
+/* ============================================================
+   FORMAT HELPERS
+============================================================ */
+
+function formatPrice(price) {
+
+    const amount =
+        Number(price || 0);
+
+    return "GH₵" +
+        amount.toLocaleString(
+            "en-GH",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+}
+
+
+function formatLocation(location) {
+
+    if (!location) {
+        return "Location not provided";
+    }
+
+    const parts = [
+
+        location.addressLine ??
+        location.AddressLine,
+
+        location.area ??
+        location.Area,
+
+        location.city ??
+        location.City,
+
+        location.region ??
+        location.Region,
+
+        location.country ??
+        location.Country
+
+    ]
+    .map(value =>
+        typeof value === "string"
+            ? value.trim()
+            : value
+    )
+    .filter(Boolean);
+
+    return parts.length
+        ? parts.join(", ")
+        : "Location not provided";
+}
+
+
+/* ============================================================
+   IMAGE URL
+============================================================ */
+
+function getImageUrl(imageUrl) {
+
+    if (!imageUrl) {
+        return null;
+    }
+
+    if (
+        imageUrl.startsWith("http://") ||
+        imageUrl.startsWith("https://")
+    ) {
+
+        return imageUrl;
+    }
+
+    return API_BASE_URL +
+        (imageUrl.startsWith("/")
+            ? imageUrl
+            : "/" + imageUrl);
+}
+
+
+/* ============================================================
+   LOAD PROPERTY
+============================================================ */
+
+async function loadProperty() {
+
+    const propertyId =
+        getPropertyId();
+
+    if (!propertyId) {
+
+        loading.classList.add("hidden");
+
+        showError(
+            "Invalid property. Please return to the property page and try again."
+        );
+
+        return;
+    }
+
+
+    const token =
+        getToken();
+
+    if (!token) {
+
+        window.location.href =
+            `login.html?returnUrl=${encodeURIComponent(
+                window.location.href
+            )}`;
+
+        return;
+    }
+
+
+    document.getElementById(
+        "back-property-link"
+    ).href =
+        `property-details.html?id=${propertyId}`;
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/Properties/${propertyId}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (response.status === 401) {
+
+            window.location.href =
+                `login.html?returnUrl=${encodeURIComponent(
+                    window.location.href
+                )}`;
+
+            return;
+        }
+
+
+        if (!response.ok) {
+
+            let message =
+                "Unable to load this property.";
+
+            try {
+
+                const data =
+                    await response.json();
+
+                message =
+                    data.message ||
+                    data.title ||
+                    message;
+
+            } catch (_) {}
+
+            throw new Error(message);
+        }
+
+
+        const property =
+            await response.json();
+
+
+        renderProperty(property);
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load property:",
+            error
+        );
+
+        loading.classList.add("hidden");
+
+        showError(
+            error.message ||
+            "Unable to load this property."
+        );
+    }
+}
+
+
+/* ============================================================
+   RENDER PROPERTY
+============================================================ */
+
+function renderProperty(property) {
+
+    const propertyId =
+        property.propertyId ??
+        property.PropertyId;
+
+
+    const title =
+        property.title ??
+        property.Title ??
+        "Untitled Property";
+
+
+    const propertyType =
+        property.propertyType ??
+        property.PropertyType ??
+        "Property";
+
+
+    const price =
+        property.price ??
+        property.Price ??
+        0;
+
+
+    const pricePeriod =
+        property.pricePeriod ??
+        property.PricePeriod ??
+        "";
+
+
+    const bedrooms =
+        property.bedrooms ??
+        property.Bedrooms;
+
+
+    const bathrooms =
+        property.bathrooms ??
+        property.Bathrooms;
+
+
+    const location =
+        property.location ??
+        property.Location ??
+        null;
+
+
+    const images =
+        property.images ??
+        property.Images ??
+        [];
+
+
+    document.title =
+        `${title} | Request Property | HavenGH`;
+
+
+    document.getElementById(
+        "property-title"
+    ).textContent =
+        title;
+
+
+    document.getElementById(
+        "property-type"
+    ).textContent =
+        propertyType;
+
+
+    document.getElementById(
+        "property-price"
+    ).textContent =
+        formatPrice(price);
+
+
+    document.getElementById(
+        "property-period"
+    ).textContent =
+        pricePeriod || "monthly";
+
+
+    document.getElementById(
+        "property-location"
+    ).textContent =
+        formatLocation(location);
+
+
+    document.getElementById(
+        "property-bedrooms"
+    ).textContent =
+        `Bedrooms: ${bedrooms ?? "—"}`;
+
+
+    document.getElementById(
+        "property-bathrooms"
+    ).textContent =
+        `Bathrooms: ${bathrooms ?? "—"}`;
+
+
+    /*
+     * Primary image
+     */
+
+    let primaryImage = null;
+
+
+    if (Array.isArray(images) &&
+        images.length > 0) {
+
+        const primary =
+            images.find(image =>
+                (image.isPrimary ??
+                 image.IsPrimary) === true
+            );
+
+        const selected =
+            primary ||
+            images[0];
+
+        primaryImage =
+            selected.imageUrl ??
+            selected.ImageUrl ??
+            null;
+    }
+
+
+    const imageElement =
+        document.getElementById(
+            "property-image"
+        );
+
+    const imagePlaceholder =
+        document.getElementById(
+            "property-image-placeholder"
+        );
+
+
+    const imageUrl =
+        getImageUrl(primaryImage);
+
+
+    if (imageUrl) {
+
+        imageElement.src =
+            imageUrl;
+
+        imageElement.alt =
+            title;
+
+        imageElement.classList.remove(
+            "hidden"
+        );
+
+        imagePlaceholder.classList.add(
+            "hidden"
+        );
+
+    } else {
+
+        imageElement.classList.add(
+            "hidden"
+        );
+
+        imagePlaceholder.classList.remove(
+            "hidden"
+        );
+    }
+
+
+    loading.classList.add(
+        "hidden"
+    );
+
+    requestLayout.classList.remove(
+        "hidden"
+    );
+}
+
+
+/* ============================================================
+   CHARACTER COUNT
+============================================================ */
+
+requestMessage.addEventListener(
+    "input",
+    () => {
+
+        characterCount.textContent =
+            requestMessage.value.length;
+    }
+);
+
+
+/* ============================================================
+   SUBMIT REQUEST
+============================================================ */
+
+requestForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        hideFormMessage();
+
+
+        const propertyId =
+            getPropertyId();
+
+
+        const message =
+            requestMessage.value.trim();
+
+
+        if (!propertyId) {
+
+            showFormMessage(
+                "Invalid property.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        if (!message) {
+
+            showFormMessage(
+                "Please enter a message before sending your request.",
+                "error"
+            );
+
+            requestMessage.focus();
+
+            return;
+        }
+
+
+        if (message.length > 2000) {
+
+            showFormMessage(
+                "Your message cannot exceed 2000 characters.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const token =
+            getToken();
+
+
+        if (!token) {
+
+            window.location.href =
+                `login.html?returnUrl=${encodeURIComponent(
+                    window.location.href
+                )}`;
+
+            return;
+        }
+
+
+        submitButton.disabled =
+            true;
+
+        submitButton.textContent =
+            "Sending Request...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/RentalRequests`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
+
+                        body: JSON.stringify({
+                            propertyId:
+                                propertyId,
+
+                            message:
+                                message
+                        })
+                    }
+                );
+
+
+            let data = null;
+
+            try {
+                data =
+                    await response.json();
+            } catch (_) {}
+
+
+            if (response.status === 401) {
+
+                window.location.href =
+                    `login.html?returnUrl=${encodeURIComponent(
+                        window.location.href
+                    )}`;
+
+                return;
+            }
+
+
+            if (response.status === 403) {
+
+                showFormMessage(
+                    "Only logged-in tenants can send rental requests.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (response.status === 409) {
+
+                showFormMessage(
+                    data?.message ||
+                    "You already have a pending request for this property.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data?.message ||
+                    data?.title ||
+                    "Unable to send your rental request."
+                );
+            }
+
+
+            showFormMessage(
+                "Your rental request has been sent successfully.",
+                "success"
+            );
+
+
+            requestMessage.value =
+                "";
+
+            characterCount.textContent =
+                "0";
+
+
+            /*
+             * Give the success message a moment
+             * before returning to the property.
+             */
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        `property-details.html?id=${propertyId}`;
+
+                },
+                1500
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Rental request error:",
+                error
+            );
+
+            showFormMessage(
+                error.message ||
+                "Unable to send your rental request.",
+                "error"
+            );
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "Send Rental Request";
+        }
+    }
+);
+
+
+/* ============================================================
+   START
+============================================================ */
+
+loadProperty();
+
+</script>
+
+</body>
+
+</html>

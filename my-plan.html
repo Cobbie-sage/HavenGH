@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+      content="Manage your HavenGH subscription plan, property listing limits and account features.">
+
+<title>My Plan | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+
+<!-- =========================
+     SIDEBAR
+========================== -->
+
+<aside class="dashboard-sidebar">
+
+    <div class="dashboard-logo">
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <div class="dashboard-user">
+
+         <div id="dashboard-user-image" class="dashboard-user-avatar">
+
+        <img
+            id="dashboard-user-avatar-img"
+            src=""
+            alt="Profile picture"
+            hidden>
+
+        <span id="dashboard-user-avatar-fallback">
+            H
+        </span>
+
+    </div>
+
+    <div>
+
+        <strong id="dashboard-user-name">
+            Loading...
+        </strong>
+
+        <span id="dashboard-user-role">
+            Loading...
+        </span>
+
+    </div>
+
+</div>
+    <nav class="dashboard-nav">
+
+        <a
+            href="dashboard.html"
+            class="dashboard-link">
+
+            <span>⌂</span>
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="my-properties.html"
+            class="dashboard-link">
+
+            <span>▣</span>
+            My Properties
+
+        </a>
+
+
+        <a
+            href="add-property.html"
+            class="dashboard-link">
+
+            <span>＋</span>
+            Add Property
+
+        </a>
+
+
+        <a
+            href="request.html"
+            class="dashboard-link">
+
+            <span>◉</span>
+            Rental Requests
+
+            <b>3</b>
+
+        </a>
+
+
+        <a
+            href="message.html"
+            class="dashboard-link">
+
+            <span>✉</span>
+            Messages
+
+            <b>2</b>
+
+        </a>
+
+
+        <a
+            href="profile.html"
+            class="dashboard-link">
+
+            <span>♙</span>
+            My Profile
+
+        </a>
+
+
+        <a
+            href="my-plan.html"
+            class="dashboard-link active">
+
+            <span>◆</span>
+            My Plan
+
+        </a>
+
+
+        <a
+            href="settings.html"
+            class="dashboard-link">
+
+            <span>⚙</span>
+            Settings
+
+        </a>
+
+    </nav>
+
+
+    <div class="dashboard-sidebar-bottom">
+
+        <a
+            href="index.html"
+            class="dashboard-link">
+
+            <span>←</span>
+            Back to Website
+
+        </a>
+
+
+        <a
+             href="login.html"
+            id="logout-button"
+            class="dashboard-link logout">
+
+            <span>↪</span>
+            Log Out
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main class="dashboard-main">
+
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+
+    <header class="dashboard-topbar">
+
+        <button
+            class="dashboard-menu-button"
+            type="button"
+            aria-label="Open dashboard menu">
+
+            ☰
+
+        </button>
+
+
+        <div>
+
+            <p class="dashboard-date">
+                Manage your subscription
+            </p>
+
+            <h1>
+                My Plan
+            </h1>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         DASHBOARD CONTENT
+    ========================== -->
+
+    <div class="dashboard-content">
+
+
+        <!-- =========================
+             INTRO
+        ========================== -->
+
+        <section class="dashboard-welcome">
+
+            <span class="section-label">
+                HAVENGH PLANS
+            </span>
+
+            <h2>
+                Choose the plan that fits your business
+            </h2>
+
+            <p>
+                Start for free and upgrade when you need more
+                property listings and visibility.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             CURRENT PLAN
+        ========================== -->
+
+        <section class="current-plan-card">
+
+            <div>
+
+                <span class="current-plan-label">
+                    CURRENT PLAN
+                </span>
+
+                <h2>
+                    Free
+                </h2>
+
+                <p>
+                    You are currently using the Free Limited plan.
+                </p>
+
+            </div>
+
+
+            <div class="plan-usage">
+
+                <div class="usage-top">
+
+                    <span>
+                        Property listings
+                    </span>
+
+                    <strong>
+                        0/5
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="usage-bar"
+                    aria-label="Property listing usage">
+
+                    <span style="width: 100%;"></span>
+
+                </div>
+
+
+                <small>
+                    You have reached your free listing limit.
+                </small>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             AVAILABLE PLANS
+        ========================== -->
+
+        <section class="plans-grid">
+
+
+            <!-- =========================
+                 FREE PLAN
+            ========================== -->
+
+            <article class="plan-card">
+
+                <div class="plan-card-top">
+
+                    <span class="plan-name">
+                        FREE
+                    </span>
+
+                    <h2>
+                        GH₵0
+                        <small>/ month</small>
+                    </h2>
+
+                    <p>
+                        Perfect for landlords who are just getting started.
+                    </p>
+
+                </div>
+
+
+                <ul class="plan-features">
+
+                    <li>
+                        ✓ 5 active property listings
+                    </li>
+
+                    <li>
+                        ✓ Property photo gallery
+                    </li>
+
+                    <li>
+                        ✓ WhatsApp contact
+                    </li>
+
+                    <li>
+                        ✓ Phone contact
+                    </li>
+
+                    <li>
+                        ✓ Rental requests
+                    </li>
+
+                    <li>
+                        ✓ Basic profile
+                    </li>
+
+                    <li class="disabled">
+                        × Featured listings
+                    </li>
+
+                    <li class="disabled">
+                        × Priority placement
+                    </li>
+
+                </ul>
+
+
+                <button
+                    type="button"
+                    class="plan-current-button"
+                    disabled>
+
+                    Current Plan
+
+                </button>
+
+            </article>
+
+
+
+            <!-- =========================
+                 STANDARD PLAN
+            ========================== -->
+
+            <article class="plan-card plan-featured">
+
+                <span class="popular-plan">
+                    MOST POPULAR
+                </span>
+
+
+                <div class="plan-card-top">
+
+                    <span class="plan-name">
+                        STANDARD
+                    </span>
+
+                    <h2>
+                        GH₵50
+                        <small>/ month</small>
+                    </h2>
+
+                    <p>
+                        For landlords and agents with more properties.
+                    </p>
+
+                </div>
+
+
+                <ul class="plan-features">
+
+                    <li>
+                        ✓ 10 active property listings
+                    </li>
+
+                    <li>
+                        ✓ Unlimited property photos
+                    </li>
+
+                    <li>
+                        ✓ WhatsApp contact
+                    </li>
+
+                    <li>
+                        ✓ Phone contact
+                    </li>
+
+                    <li>
+                        ✓ Rental requests
+                    </li>
+
+                    <li>
+                        ✓ Professional profile
+                    </li>
+
+                    <li>
+                        ✓ Featured listings
+                    </li>
+
+                    <li>
+                        ✓ Priority placement
+                    </li>
+
+                </ul>
+
+
+                <button
+                    type="button"
+                    class="plan-upgrade-button"
+                    data-plan="standard">
+
+                    Upgrade to Standard
+
+                </button>
+
+            </article>
+
+
+
+            <!-- =========================
+                 BUSINESS PLAN
+            ========================== -->
+
+            <article class="plan-card">
+
+                <div class="plan-card-top">
+
+                    <span class="plan-name">
+                        BUSINESS
+                    </span>
+
+                    <h2>
+                        GH₵100
+                        <small>/ month</small>
+                    </h2>
+
+                    <p>
+                        Designed for professional property agents.
+                    </p>
+
+                </div>
+
+
+                <ul class="plan-features">
+
+                    <li>
+                        ✓ 30 active property listings
+                    </li>
+
+                    <li>
+                        ✓ Unlimited photos
+                    </li>
+
+                    <li>
+                        ✓ WhatsApp contact
+                    </li>
+
+                    <li>
+                        ✓ Phone contact
+                    </li>
+
+                    <li>
+                        ✓ Rental requests
+                    </li>
+
+                    <li>
+                        ✓ Professional agent profile
+                    </li>
+
+                    <li>
+                        ✓ Featured listings
+                    </li>
+
+                    <li>
+                        ✓ Priority placement
+                    </li>
+
+                </ul>
+
+
+                <button
+                    type="button"
+                    class="plan-upgrade-button"
+                    data-plan="business">
+
+                    Upgrade to Business
+
+                </button>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =========================
+             WHY UPGRADE
+        ========================== -->
+
+        <section class="upgrade-info">
+
+            <div>
+
+                <span class="section-label">
+                    GROW YOUR BUSINESS
+                </span>
+
+                <h2>
+                    Get your properties in front of more people.
+                </h2>
+
+                <p>
+                    Upgrading allows you to list more properties
+                    and receive greater visibility across HavenGH.
+                </p>
+
+            </div>
+
+
+            <a
+                href="add-property.html"
+                class="dashboard-add-button">
+
+                Add a Property
+
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+</div>
+
+<script src="my-plan.js"></script>
+
+</body>
+
+</html>

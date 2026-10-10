@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+      content="HavenGH Privacy Policy. Learn how HavenGH collects, uses and protects your personal information.">
+<title>Privacy Policy | HavenGH</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ============================================================
+   HAVENGH PRIVACY POLICY
+   PREMIUM GHANA DESIGN
+   Background: ghana.jpg
+   CSS ONLY — HTML CONTENT UNCHANGED
+============================================================ */
+
+:root {
+    --haven-green: #064e3b;
+    --haven-green-dark: #032f24;
+    --haven-green-deep: #021f18;
+    --haven-teal: #0f766e;
+
+    --haven-gold: #d4af37;
+    --haven-gold-light: #f8efc8;
+
+    --haven-white: #ffffff;
+    --haven-text: #18231f;
+    --haven-muted: #66736d;
+
+    --glass-white: rgba(255, 255, 255, 0.86);
+    --glass-soft: rgba(255, 255, 255, 0.72);
+
+    --border-light: rgba(255, 255, 255, 0.52);
+
+    --shadow-large:
+        0 28px 70px rgba(0, 0, 0, 0.24);
+
+    --shadow-medium:
+        0 16px 40px rgba(0, 0, 0, 0.16);
+
+    --radius-large: 26px;
+    --radius-medium: 18px;
+
+    --container-width: 1120px;
+}
+
+
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    color: var(--haven-text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.75;
+
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(2, 31, 24, 0.76),
+            rgba(2, 31, 24, 0.82)
+        ),
+        url("ghana.jpg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+}
+
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.container {
+    width: min(
+        var(--container-width),
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background:
+        rgba(3, 35, 27, 0.88);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.13);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(135%);
+}
+
+.nav-container {
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* ============================================================
+   LOGO
+============================================================ */
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    padding: 7px 13px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.11);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.16);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+
+    background:
+        rgba(212, 175, 55, 0.10);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.logo-main {
+    color: #ffffff;
+
+    font-size: 25px;
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+.logo-accent {
+    color: var(--haven-gold);
+
+    font-size: 25px;
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+.navbar {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+}
+
+.nav-link {
+    position: relative;
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        color 0.25s ease;
+}
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -9px;
+
+    height: 2px;
+
+    background:
+        var(--haven-gold);
+
+    transform:
+        scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.nav-link:hover {
+    color:
+        var(--haven-gold);
+}
+
+.nav-link:hover::after {
+    transform:
+        scaleX(1);
+}
+
+
+/* ============================================================
+   NAV ACTIONS
+============================================================ */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.login-link {
+    color:
+        rgba(255, 255, 255, 0.92);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    padding: 10px 12px;
+
+    transition:
+        color 0.25s ease;
+}
+
+.login-link:hover {
+    color:
+        var(--haven-gold);
+}
+
+.btn.btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-green),
+            #08705a
+        );
+
+    border:
+        1px solid
+        rgba(212, 175, 55, 0.45);
+
+    color:
+        #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.20);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.btn.btn-dark:hover {
+    transform:
+        translateY(-2px);
+
+    border-color:
+        var(--haven-gold);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+
+/* ============================================================
+   PRIVACY HERO
+============================================================ */
+
+.properties-hero {
+    position: relative;
+
+    padding:
+        90px 0 75px;
+
+    color:
+        #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(3, 60, 46, 0.84),
+            rgba(2, 39, 30, 0.62)
+        );
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    overflow: hidden;
+}
+
+.properties-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(212, 175, 55, 0.10);
+
+    filter:
+        blur(5px);
+
+    pointer-events: none;
+}
+
+.properties-hero .container {
+    position: relative;
+    z-index: 2;
+
+    padding:
+        40px 45px;
+
+    border-radius:
+        var(--radius-large);
+
+    background:
+        rgba(255, 255, 255, 0.095);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.19);
+
+    box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(130%);
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 13px;
+
+    color:
+        var(--haven-gold);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.properties-hero h1 {
+    margin:
+        0 0 14px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(42px, 6vw, 68px);
+
+    line-height:
+        1.02;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -2px;
+}
+
+.properties-hero p {
+    max-width: 680px;
+
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    font-size: 17px;
+
+    line-height: 1.75;
+}
+
+
+/* ============================================================
+   MAIN CONTENT AREA
+============================================================ */
+
+main {
+    position: relative;
+}
+
+.dashboard-section {
+    padding:
+        55px 0 90px;
+
+    background:
+        transparent;
+}
+
+
+/* ============================================================
+   PRIVACY CONTENT CARD
+============================================================ */
+
+.profile-card {
+    position: relative;
+
+    max-width: 920px;
+
+    margin:
+        0 auto;
+
+    padding:
+        48px 52px;
+
+    border-radius:
+        var(--radius-large);
+
+    background:
+        var(--glass-white);
+
+    border:
+        1px solid
+        var(--border-light);
+
+    box-shadow:
+        var(--shadow-large);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(125%);
+
+    overflow: hidden;
+}
+
+.profile-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--haven-gold),
+            var(--haven-green),
+            var(--haven-gold)
+        );
+}
+
+.profile-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: -150px;
+    right: -130px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(212, 175, 55, 0.08);
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   LAST UPDATED
+============================================================ */
+
+.profile-card > p:first-child {
+    display: inline-block;
+
+    margin:
+        0 0 30px;
+
+    padding:
+        10px 15px;
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(6, 78, 59, 0.075);
+
+    border:
+        1px solid
+        rgba(6, 78, 59, 0.11);
+
+    color:
+        var(--haven-muted);
+
+    font-size: 13px;
+}
+
+.profile-card > p:first-child strong {
+    color:
+        var(--haven-green);
+}
+
+
+/* ============================================================
+   HEADINGS
+============================================================ */
+
+.profile-card h2 {
+    position: relative;
+
+    margin:
+        42px 0 14px;
+
+    padding-top:
+        16px;
+
+    color:
+        var(--haven-green-dark);
+
+    font-size:
+        clamp(21px, 3vw, 27px);
+
+    line-height:
+        1.3;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -0.5px;
+}
+
+.profile-card h2:first-of-type {
+    margin-top: 10px;
+}
+
+.profile-card h2::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 45px;
+    height: 3px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--haven-gold),
+            transparent
+        );
+}
+
+
+/* ============================================================
+   TEXT
+============================================================ */
+
+.profile-card p {
+    margin:
+        0 0 18px;
+
+    color:
+        #3f4c47;
+
+    font-size:
+        15.5px;
+
+    line-height:
+        1.85;
+}
+
+.profile-card strong {
+    color:
+        var(--haven-green-dark);
+}
+
+
+/* ============================================================
+   LISTS
+============================================================ */
+
+.profile-card ul {
+    margin:
+        12px 0 25px;
+
+    padding-left:
+        22px;
+}
+
+.profile-card li {
+    position: relative;
+
+    margin-bottom:
+        10px;
+
+    padding-left:
+        7px;
+
+    color:
+        #3f4c47;
+
+    line-height:
+        1.75;
+}
+
+.profile-card li::marker {
+    color:
+        var(--haven-gold);
+
+    font-weight:
+        900;
+}
+
+
+/* ============================================================
+   LINKS INSIDE PRIVACY CONTENT
+============================================================ */
+
+.profile-card a {
+    color:
+        var(--haven-green);
+
+    font-weight:
+        700;
+
+    text-decoration:
+        underline;
+
+    text-decoration-color:
+        rgba(212, 175, 55, 0.55);
+
+    text-underline-offset:
+        3px;
+
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.profile-card a:hover {
+    color:
+        #a47f12;
+
+    text-decoration-color:
+        var(--haven-gold);
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.footer {
+    position: relative;
+
+    color:
+        rgba(255, 255, 255, 0.82);
+
+    background:
+        rgba(2, 31, 24, 0.93);
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 -20px 50px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.7fr
+        1fr
+        1fr
+        1fr;
+
+    gap:
+        45px;
+
+    padding:
+        58px 0 45px;
+}
+
+.footer-brand p {
+    max-width: 280px;
+
+    margin-top:
+        16px;
+
+    color:
+        rgba(255, 255, 255, 0.64);
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+}
+
+.footer-logo {
+    display: inline-flex;
+}
+
+.footer-column {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.footer-column h4 {
+    margin:
+        0 0 9px;
+
+    color:
+        var(--haven-gold);
+
+    font-size:
+        13px;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        1.4px;
+}
+
+.footer-column a {
+    color:
+        rgba(255, 255, 255, 0.68);
+
+    text-decoration:
+        none;
+
+    font-size:
+        14px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-column a:hover {
+    color:
+        #ffffff;
+
+    transform:
+        translateX(3px);
+}
+
+
+/* ============================================================
+   FOOTER BOTTOM
+============================================================ */
+
+.footer-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        20px 0 24px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.55);
+
+    font-size:
+        12px;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        gap: 16px;
+    }
+
+    .nav-container {
+        gap: 15px;
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            1.5fr
+            1fr
+            1fr;
+    }
+
+    .profile-card {
+        padding:
+            40px 38px;
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+
+    body {
+        background-attachment:
+            scroll;
+    }
+
+    .container {
+        width:
+            calc(100% - 24px);
+    }
+
+    .nav-container {
+        min-height:
+            74px;
+
+        flex-wrap:
+            wrap;
+
+        padding:
+            10px 0;
+    }
+
+    .navbar {
+        display:
+            none;
+    }
+
+    .nav-actions {
+        margin-left:
+            auto;
+    }
+
+    .login-link {
+        display:
+            none;
+    }
+
+    .btn.btn-dark {
+        min-height:
+            40px;
+
+        padding:
+            0 13px;
+
+        font-size:
+            12px;
+    }
+
+    .logo {
+        padding:
+            6px 10px;
+    }
+
+    .logo-main,
+    .logo-accent {
+        font-size:
+            22px;
+    }
+
+    .properties-hero {
+        padding:
+            55px 0 45px;
+    }
+
+    .properties-hero .container {
+        padding:
+            30px 25px;
+
+        border-radius:
+            21px;
+    }
+
+    .properties-hero h1 {
+        font-size:
+            42px;
+
+        letter-spacing:
+            -1.5px;
+    }
+
+    .properties-hero p {
+        font-size:
+            15px;
+    }
+
+    .dashboard-section {
+        padding:
+            30px 0 55px;
+    }
+
+    .profile-card {
+        padding:
+            32px 24px;
+
+        border-radius:
+            21px;
+    }
+
+    .profile-card h2 {
+        margin-top:
+            35px;
+
+        font-size:
+            22px;
+    }
+
+    .profile-card p,
+    .profile-card li {
+        font-size:
+            15px;
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            35px 25px;
+
+        padding:
+            45px 0 35px;
+    }
+
+    .footer-brand {
+        grid-column:
+            1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            7px;
+    }
+}
+
+
+/* ============================================================
+   SMALL PHONES
+============================================================ */
+
+@media (max-width: 450px) {
+
+    .container {
+        width:
+            calc(100% - 18px);
+    }
+
+    .nav-container {
+        min-height:
+            68px;
+    }
+
+    .logo-main,
+    .logo-accent {
+        font-size:
+            20px;
+    }
+
+    .btn.btn-dark {
+        padding:
+            0 10px;
+
+        font-size:
+            11px;
+    }
+
+    .properties-hero {
+        padding:
+            42px 0 35px;
+    }
+
+    .properties-hero .container {
+        padding:
+            26px 20px;
+    }
+
+    .properties-hero h1 {
+        font-size:
+            35px;
+    }
+
+    .properties-hero p {
+        font-size:
+            14px;
+    }
+
+    .profile-card {
+        padding:
+            28px 19px;
+    }
+
+    .profile-card > p:first-child {
+        font-size:
+            12px;
+    }
+
+    .profile-card h2 {
+        font-size:
+            20px;
+    }
+
+    .profile-card p,
+    .profile-card li {
+        font-size:
+            14px;
+        line-height:
+            1.75;
+    }
+
+    .footer-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .footer-brand {
+        grid-column:
+            auto;
+    }
+}
+
+
+</style>
+</head>
+<body>
+<!-- =========================
+     HEADER
+========================== -->
+<header class="header">
+    <div class="container nav-container">
+        <a href="index.html" class="logo">
+            <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+        </a>
+        <nav class="navbar">
+            <a href="index.html" class="nav-link">
+                Home
+            </a>
+            <a href="properties.html" class="nav-link">
+                Find a Home
+            </a>
+            <a href="index.html#how-it-works" class="nav-link">
+                How It Works
+            </a>
+            <a href="index.html#about" class="nav-link">
+                About
+            </a>
+        </nav>
+        <div class="nav-actions">
+            <a href="login.html" class="login-link">
+                Log in
+            </a>
+            <a href="register.html" class="btn btn-dark">
+                List a Property
+            </a>
+        </div>
+    </div>
+</header>
+<!-- =========================
+     PRIVACY POLICY
+========================== -->
+<main>
+    <section class="properties-hero">
+        <div class="container">
+            <span class="section-label">
+                YOUR PRIVACY
+            </span>
+            <h1>
+                Privacy Policy
+            </h1>
+            <p>
+                Learn how HavenGH collects, uses, stores and
+                protects your personal information.
+            </p>
+        </div>
+    </section>
+    <section class="dashboard-section">
+        <div class="container">
+            <div class="profile-card">
+                <p>
+                    <strong>Last Updated:</strong>
+                    August 2026
+                </p>
+                <h2>
+                    1. Introduction
+                </h2>
+                <p>
+                    Welcome to HavenGH. We respect your privacy
+                    and are committed to protecting your personal
+                    information when you use our website and
+                    services.
+                </p>
+                <p>
+                    This Privacy Policy explains what information
+                    we collect, why we collect it, how we use it,
+                    how we protect it and the choices available
+                    to you.
+                </p>
+                <h2>
+                    2. Information We Collect
+                </h2>
+                <p>
+                    Depending on how you use HavenGH, we may
+                    collect information including:
+                </p>
+                <ul>
+                    <li>Full name</li>
+                    <li>Email address</li>
+                    <li>Phone number</li>
+                    <li>Account login information</li>
+                    <li>Property information</li>
+                    <li>Rental requests</li>
+                    <li>Saved properties</li>
+                    <li>Messages between users</li>
+                    <li>Profile information</li>
+                    <li>Information you provide when contacting us</li>
+                </ul>
+                <h2>
+                    3. How We Use Your Information
+                </h2>
+                <p>
+                    We may use your information to:
+                </p>
+                <ul>
+                    <li>Create and manage your HavenGH account.</li>
+                    <li>
+                        Allow tenants to search for and save
+                        properties.
+                    </li>
+                    <li>
+                        Allow tenants to send rental requests.
+                    </li>
+                    <li>
+                        Allow tenants and agents to communicate.
+                    </li>
+                    <li>
+                        Allow agents and landlords to list and
+                        manage properties.
+                    </li>
+                    <li>
+                        Provide customer support.
+                    </li>
+                    <li>
+                        Improve the HavenGH website and services.
+                    </li>
+                    <li>
+                        Detect and prevent fraudulent or
+                        unauthorised activity.
+                    </li>
+                </ul>
+                <h2>
+                    4. Property and Contact Information
+                </h2>
+                <p>
+                    Agents and landlords may provide property
+                    information for publication on HavenGH.
+                </p>
+                <p>
+                    Some information submitted by agents or
+                    landlords may be displayed publicly so that
+                    potential tenants can view properties and
+                    contact the relevant agent or landlord.
+                </p>
+                <p>
+                    Users should therefore avoid submitting
+                    sensitive personal information in public
+                    property descriptions.
+                </p>
+                <h2>
+                    5. Messages and Rental Requests
+                </h2>
+                <p>
+                    When a tenant sends a rental request or
+                    message to an agent or landlord, information
+                    necessary to provide that communication
+                    service may be shared with the intended
+                    recipient.
+                </p>
+                <p>
+                    HavenGH may retain these communications to
+                    provide the service, maintain security,
+                    resolve disputes and improve the platform.
+                </p>
+                <h2>
+                    6. Account Security
+                </h2>
+                <p>
+                    We take reasonable technical and organisational
+                    measures to protect personal information from
+                    unauthorised access, loss, misuse or disclosure.
+                </p>
+                <p>
+                    However, no online service can guarantee
+                    absolute security. Users should keep their
+                    passwords confidential and notify HavenGH if
+                    they believe their account has been accessed
+                    without permission.
+                </p>
+                <h2>
+                    7. Sharing of Information
+                </h2>
+                <p>
+                    We do not intend to sell users' personal
+                    information.
+                </p>
+                <p>
+                    Information may be shared where necessary to
+                    provide a service, where the user has requested
+                    or authorised the sharing, or where disclosure
+                    is required or permitted by applicable law.
+                </p>
+                <h2>
+                    8. Data Retention
+                </h2>
+                <p>
+                    We will retain personal information only for
+                    as long as reasonably necessary for the
+                    purposes for which it was collected, to
+                    provide our services, comply with legal
+                    obligations, resolve disputes and protect
+                    our legitimate interests.
+                </p>
+                <h2>
+                    9. Your Privacy Rights
+                </h2>
+                <p>
+                    Depending on applicable law, users may have
+                    rights concerning their personal information,
+                    including rights to access, correct or object
+                    to certain processing of their information.
+                </p>
+                <p>
+                    Ghana's Data Protection Act 2012 (Act 843)
+                    provides data subjects with rights relating
+                    to their personal information. ([Data Protection Ghana](https://dataprotection.org.gh/for-individuals/?utm))
+                </p>
+                <h2>
+                    10. Cookies and Local Storage
+                </h2>
+                <p>
+                    HavenGH may use cookies, browser storage or
+                    similar technologies to support login sessions,
+                    preferences, saved properties and website
+                    functionality.
+                </p>
+                <p>
+                    As the platform develops, this policy may be
+                    updated to describe additional technologies
+                    used by HavenGH.
+                </p>
+                <h2>
+                    11. Children's Privacy
+                </h2>
+                <p>
+                    HavenGH is not intended to knowingly collect
+                    personal information from children in
+                    circumstances where such collection is not
+                    permitted by applicable law.
+                </p>
+                <h2>
+                    12. Changes to This Privacy Policy
+                </h2>
+                <p>
+                    We may update this Privacy Policy from time
+                    to time as HavenGH develops or as legal and
+                    regulatory requirements change.
+                </p>
+                <p>
+                    When changes are made, the updated version
+                    will be published on this page together with
+                    the relevant update date.
+                </p>
+                <h2>
+                    13. Contact HavenGH
+                </h2>
+                <p>
+                    If you have questions, concerns or requests
+                    regarding this Privacy Policy or your personal
+                    information, please contact HavenGH through
+                    the contact details provided on our website.
+                </p>
+                <p>
+                    We will review privacy-related requests and
+                    respond in accordance with applicable
+                    requirements.
+                </p>
+                <h2>
+                    14. Data Protection in Ghana
+                </h2>
+                <p>
+                    HavenGH intends to handle personal information
+                    in accordance with applicable Ghanaian
+                    data-protection requirements, including the
+                    Data Protection Act 2012 (Act 843).
+                </p>
+                <p>
+                    The Data Protection Commission is the statutory
+                    body responsible for enforcing Ghana's data
+                    protection framework. ([Data Protection Ghana](https://dataprotection.org.gh))
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- =========================
+     FOOTER
+========================== -->
+<footer class="footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <a href="index.html" class="logo footer-logo">
+                <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+            </a>
+            <p>
+                Find a place you'll love to call home.
+            </p>
+        </div>
+        <div class="footer-column">
+            <h4>
+                Discover
+            </h4>
+            <a href="properties.html">
+                Find a Home
+            </a>
+            <a href="properties.html">
+                Single Rooms
+            </a>
+            <a href="properties.html">
+                Apartments
+            </a>
+            <a href="properties.html">
+                Houses
+            </a>
+        </div>
+        <div class="footer-column">
+            <h4>
+                For Agents
+            </h4>
+            <a href="register.html">
+                List a Property
+            </a>
+            <a href="login.html">
+                 Login
+            </a>
+        </div>
+        <div class="footer-column">
+            <h4>
+                Company
+            </h4>
+            <a href="index.html#about">
+                About Us
+            </a>
+            <a href="contact.html">
+                Contact
+            </a>
+            <a href="terms.html">
+                Terms 
+            </a>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>
+            ©️ 2026 HavenGH. All rights reserved.
+        </p>
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+      content="Manage HavenGH stay bookings, reservations and guests.">
+
+<title>Bookings | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+    /* =========================================================
+       HAVENGH PREMIUM HOST BOOKINGS
+    ========================================================= */
+
+    :root {
+        --haven-green: #064e3b;
+        --haven-green-dark: #043c2e;
+        --haven-teal: #0f766e;
+        --haven-gold: #d4af37;
+        --haven-bg: #f5f8f6;
+        --haven-card: #ffffff;
+        --haven-border: #e3ebe7;
+        --haven-text: #17221e;
+        --haven-muted: #6b7280;
+
+        --success-bg: #ecfdf5;
+        --success-text: #065f46;
+
+        --warning-bg: #fff8df;
+        --warning-text: #8a6800;
+
+        --danger-bg: #fef2f2;
+        --danger-text: #991b1b;
+
+        --info-bg: #eff6ff;
+        --info-text: #1d4ed8;
+    }
+
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+        margin: 0;
+        background: var(--haven-bg);
+        color: var(--haven-text);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    a {
+        text-decoration: none;
+    }
+
+
+    button,
+    input,
+    select {
+        font-family: inherit;
+    }
+
+
+    .bookings-page {
+        min-height: 100vh;
+    }
+
+
+    .bookings-container {
+        width: min(1200px, calc(100% - 40px));
+        margin: auto;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .bookings-header {
+        background: #fff;
+        border-bottom: 1px solid var(--haven-border);
+        padding: 17px 0;
+    }
+
+
+    .bookings-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+
+    .bookings-brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+    }
+
+
+    .bookings-brand img {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+
+    .bookings-brand-name {
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--haven-green);
+    }
+
+
+    .bookings-brand-name span {
+        color: var(--haven-gold);
+    }
+
+
+    .host-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        background: #eef7f4;
+        color: var(--haven-green);
+
+        padding: 8px 14px;
+        border-radius: 30px;
+
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+
+    .host-badge::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #16a34a;
+    }
+
+
+    /* =========================================================
+       MAIN
+    ========================================================= */
+
+    .bookings-main {
+        padding: 45px 0 80px;
+    }
+
+
+    .back-link {
+        display: inline-flex;
+        margin-bottom: 24px;
+
+        color: var(--haven-green);
+
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+
+    .back-link:hover {
+        color: var(--haven-gold);
+    }
+
+
+    /* =========================================================
+       PAGE HEADING
+    ========================================================= */
+
+    .bookings-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        gap: 25px;
+        margin-bottom: 30px;
+    }
+
+
+    .heading-label {
+        display: block;
+
+        color: var(--haven-gold);
+
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+
+        margin-bottom: 8px;
+    }
+
+
+    .bookings-heading h1 {
+        margin: 0 0 8px;
+
+        color: var(--haven-green);
+
+        font-size: clamp(30px, 4vw, 42px);
+    }
+
+
+    .bookings-heading p {
+        margin: 0;
+
+        color: var(--haven-muted);
+
+        font-size: 14px;
+    }
+
+
+    /* =========================================================
+       STAT CARDS
+    ========================================================= */
+
+    .booking-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 16px;
+        margin-bottom: 30px;
+    }
+
+
+    .stat-card {
+        background: var(--haven-card);
+
+        border: 1px solid var(--haven-border);
+        border-radius: 17px;
+
+        padding: 21px;
+
+        box-shadow:
+            0 8px 25px rgba(6, 78, 59, .05);
+    }
+
+
+    .stat-card span {
+        display: block;
+
+        color: var(--haven-muted);
+
+        font-size: 12px;
+        font-weight: 700;
+
+        margin-bottom: 9px;
+    }
+
+
+    .stat-card strong {
+        color: var(--haven-green);
+
+        font-size: 29px;
+    }
+
+
+    .stat-card.pending {
+        border-left: 4px solid var(--haven-gold);
+    }
+
+
+    .stat-card.confirmed {
+        border-left: 4px solid #16a34a;
+    }
+
+
+    .stat-card.declined {
+        border-left: 4px solid #dc2626;
+    }
+
+
+    /* =========================================================
+       TOOLBAR
+    ========================================================= */
+
+    .booking-toolbar {
+        background: white;
+
+        border: 1px solid var(--haven-border);
+        border-radius: 17px;
+
+        padding: 18px;
+        margin-bottom: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+
+    .search-wrapper {
+        position: relative;
+        flex: 1;
+    }
+
+
+    .search-wrapper input {
+        width: 100%;
+
+        padding: 13px 15px;
+
+        border: 1px solid var(--haven-border);
+        border-radius: 10px;
+
+        outline: none;
+
+        font-size: 14px;
+    }
+
+
+    .search-wrapper input:focus {
+        border-color: var(--haven-teal);
+
+        box-shadow:
+            0 0 0 3px rgba(15,118,110,.08);
+    }
+
+
+    .status-filter {
+        padding: 13px 15px;
+
+        border: 1px solid var(--haven-border);
+        border-radius: 10px;
+
+        background: white;
+        color: var(--haven-text);
+
+        font-size: 14px;
+
+        min-width: 190px;
+    }
+
+
+    /* =========================================================
+       BOOKINGS CARD
+    ========================================================= */
+
+    .bookings-card {
+        background: white;
+
+        border: 1px solid var(--haven-border);
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 10px 35px rgba(6, 78, 59, .06);
+    }
+
+
+    .bookings-card-header {
+        padding: 23px 25px;
+
+        border-bottom: 1px solid var(--haven-border);
+    }
+
+
+    .bookings-card-header h2 {
+        margin: 0;
+
+        color: var(--haven-green);
+
+        font-size: 19px;
+    }
+
+
+    .bookings-card-header p {
+        margin: 6px 0 0;
+
+        color: var(--haven-muted);
+
+        font-size: 13px;
+    }
+
+
+    /* =========================================================
+       BOOKING ROW
+    ========================================================= */
+
+    .booking-list {
+        display: grid;
+    }
+
+
+    .booking-item {
+        display: grid;
+
+        grid-template-columns:
+            90px
+            minmax(180px, 1.4fr)
+            minmax(150px, 1fr)
+            130px
+            120px
+            150px;
+
+        gap: 18px;
+
+        align-items: center;
+
+        padding: 20px 25px;
+
+        border-bottom: 1px solid var(--haven-border);
+
+        transition:
+            background .2s ease,
+            transform .2s ease;
+    }
+
+
+    .booking-item:last-child {
+        border-bottom: none;
+    }
+
+
+    .booking-item:hover {
+        background: #fbfdfc;
+    }
+
+
+    /* =========================================================
+       IMAGE
+    ========================================================= */
+
+    .booking-image {
+        width: 90px;
+        height: 70px;
+
+        object-fit: cover;
+
+        border-radius: 11px;
+
+        background: #edf3f0;
+    }
+
+
+    /* =========================================================
+       DETAILS
+    ========================================================= */
+
+    .booking-property h3 {
+        margin: 0 0 5px;
+
+        color: var(--haven-green);
+
+        font-size: 15px;
+    }
+
+
+    .booking-property p {
+        margin: 0;
+
+        color: var(--haven-muted);
+
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+       GUEST
+    ========================================================= */
+
+    .guest-name {
+        font-weight: 700;
+
+        color: var(--haven-text);
+
+        margin-bottom: 4px;
+    }
+
+
+    .guest-contact {
+        color: var(--haven-muted);
+
+        font-size: 11px;
+
+        margin-bottom: 5px;
+
+        word-break: break-word;
+    }
+
+
+    .guest-dates {
+        color: var(--haven-muted);
+
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+       PRICE
+    ========================================================= */
+
+    .booking-price strong {
+        display: block;
+
+        color: var(--haven-green);
+
+        font-size: 15px;
+    }
+
+
+    .booking-price span {
+        display: block;
+
+        color: var(--haven-muted);
+
+        font-size: 11px;
+
+        margin-top: 3px;
+    }
+
+
+    /* =========================================================
+       STATUS
+    ========================================================= */
+
+    .status-pill {
+        display: inline-flex;
+
+        justify-content: center;
+        align-items: center;
+
+        padding: 7px 11px;
+
+        border-radius: 20px;
+
+        font-size: 11px;
+        font-weight: 800;
+
+        white-space: nowrap;
+    }
+
+
+    .status-pending {
+        background: var(--warning-bg);
+        color: var(--warning-text);
+    }
+
+
+    .status-approved {
+        background: var(--success-bg);
+        color: var(--success-text);
+    }
+
+
+    .status-rejected {
+        background: var(--danger-bg);
+        color: var(--danger-text);
+    }
+
+
+    .status-cancelled {
+        background: #f3f4f6;
+        color: #4b5563;
+    }
+
+
+    .status-completed {
+        background: var(--info-bg);
+        color: var(--info-text);
+    }
+
+
+    /* =========================================================
+       ACTIONS
+    ========================================================= */
+
+    .booking-actions {
+        display: flex;
+
+        align-items: center;
+        justify-content: flex-end;
+
+        gap: 7px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .view-button,
+    .action-button {
+        display: inline-flex;
+
+        justify-content: center;
+        align-items: center;
+
+        padding: 9px 11px;
+
+        border-radius: 9px;
+
+        font-size: 11px;
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition: .2s ease;
+    }
+
+
+    .view-button {
+        border: 1px solid var(--haven-green);
+
+        background: white;
+        color: var(--haven-green);
+    }
+
+
+    .view-button:hover {
+        background: var(--haven-green);
+        color: white;
+    }
+
+
+    .action-button {
+        border: none;
+    }
+
+
+    .approve-button {
+        background: var(--haven-green);
+        color: white;
+    }
+
+
+    .approve-button:hover {
+        background: var(--haven-green-dark);
+    }
+
+
+    .reject-button {
+        background: var(--danger-bg);
+        color: var(--danger-text);
+
+        border: 1px solid #fecaca;
+    }
+
+
+    .reject-button:hover {
+        background: #fee2e2;
+    }
+
+
+    .action-button:disabled {
+        opacity: .55;
+        cursor: not-allowed;
+    }
+
+
+    /* =========================================================
+       BOOKING MESSAGE
+    ========================================================= */
+
+    .booking-message {
+        grid-column: 2 / -1;
+
+        padding: 10px 12px;
+
+        background: #f8faf9;
+
+        border-radius: 9px;
+
+        color: var(--haven-muted);
+
+        font-size: 11px;
+
+        border-left: 3px solid var(--haven-gold);
+    }
+
+
+    .booking-message strong {
+        color: var(--haven-text);
+    }
+
+
+    /* =========================================================
+       LOADING
+    ========================================================= */
+
+    .loading-state {
+        text-align: center;
+
+        padding: 60px 25px;
+
+        color: var(--haven-muted);
+
+        font-size: 14px;
+    }
+
+
+    .loading-spinner {
+        width: 34px;
+        height: 34px;
+
+        margin: 0 auto 14px;
+
+        border: 3px solid #dce8e3;
+        border-top-color: var(--haven-green);
+
+        border-radius: 50%;
+
+        animation: bookingSpin .8s linear infinite;
+    }
+
+
+    @keyframes bookingSpin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+
+    /* =========================================================
+       EMPTY STATE
+    ========================================================= */
+
+    .empty-state {
+        display: none;
+
+        text-align: center;
+
+        padding: 65px 25px;
+    }
+
+
+    .empty-icon {
+        width: 60px;
+        height: 60px;
+
+        margin: 0 auto 15px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 50%;
+
+        background: #eef7f4;
+        color: var(--haven-green);
+
+        font-size: 25px;
+    }
+
+
+    .empty-state h3 {
+        color: var(--haven-green);
+
+        margin: 0 0 8px;
+    }
+
+
+    .empty-state p {
+        color: var(--haven-muted);
+
+        font-size: 14px;
+
+        margin: 0;
+    }
+
+
+    /* =========================================================
+       ERROR STATE
+    ========================================================= */
+
+    .error-state {
+        display: none;
+
+        text-align: center;
+
+        padding: 55px 25px;
+    }
+
+
+    .error-state h3 {
+        margin: 0 0 8px;
+
+        color: var(--danger-text);
+    }
+
+
+    .error-state p {
+        margin: 0 0 18px;
+
+        color: var(--haven-muted);
+
+        font-size: 14px;
+    }
+
+
+    .retry-button {
+        border: none;
+
+        background: var(--haven-green);
+        color: white;
+
+        padding: 11px 18px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+        font-weight: 800;
+
+        cursor: pointer;
+    }
+
+
+    .retry-button:hover {
+        background: var(--haven-green-dark);
+    }
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    .booking-toast {
+        position: fixed;
+
+        right: 25px;
+        bottom: 25px;
+
+        max-width: 380px;
+
+        padding: 14px 18px;
+
+        border-radius: 12px;
+
+        background: var(--haven-green);
+        color: white;
+
+        box-shadow:
+            0 12px 35px rgba(0,0,0,.18);
+
+        font-size: 13px;
+        font-weight: 700;
+
+        z-index: 9999;
+
+        opacity: 0;
+        transform: translateY(15px);
+
+        pointer-events: none;
+
+        transition: .25s ease;
+    }
+
+
+    .booking-toast.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    .booking-toast.error {
+        background: #991b1b;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .bookings-footer {
+        background: white;
+
+        border-top: 1px solid var(--haven-border);
+
+        padding: 25px 0;
+    }
+
+
+    .footer-inner {
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+        color: var(--haven-muted);
+
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 1150px) {
+
+        .booking-item {
+            grid-template-columns:
+                80px
+                1.4fr
+                1fr
+                110px
+                110px;
+        }
+
+        .booking-actions {
+            grid-column: 5;
+        }
+
+        .booking-message {
+            grid-column: 2 / -1;
+        }
+    }
+
+
+    @media (max-width: 1000px) {
+
+        .booking-stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .booking-item {
+            grid-template-columns:
+                80px
+                1fr
+                120px;
+        }
+
+        .booking-price {
+            display: none;
+        }
+
+        .booking-status-wrapper {
+            display: none;
+        }
+
+        .booking-actions {
+            grid-column: 3;
+        }
+
+        .booking-message {
+            grid-column: 2 / -1;
+        }
+    }
+
+
+    @media (max-width: 700px) {
+
+        .bookings-container {
+            width: min(100% - 25px, 1200px);
+        }
+
+
+        .bookings-heading {
+            align-items: flex-start;
+
+            flex-direction: column;
+        }
+
+
+        .booking-toolbar {
+            flex-direction: column;
+
+            align-items: stretch;
+        }
+
+
+        .status-filter {
+            width: 100%;
+        }
+
+
+        .booking-item {
+            grid-template-columns: 70px 1fr;
+
+            gap: 13px;
+
+            padding: 18px;
+        }
+
+
+        .booking-image {
+            width: 70px;
+            height: 60px;
+        }
+
+
+        .booking-actions {
+            grid-column: 2;
+
+            justify-content: flex-start;
+        }
+
+
+        .booking-message {
+            grid-column: 1 / -1;
+        }
+
+
+        .booking-stats {
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+        .footer-inner {
+            flex-direction: column;
+        }
+
+
+        .booking-toast {
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            max-width: none;
+        }
+    }
+
+
+    @media (max-width: 450px) {
+
+        .booking-stats {
+            grid-template-columns: 1fr;
+        }
+
+
+        .host-badge {
+            font-size: 11px;
+            padding: 7px 10px;
+        }
+
+
+        .bookings-brand-name {
+            font-size: 21px;
+        }
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="bookings-page">
+
+
+<!-- =========================================================
+     HEADER
+========================================================== -->
+
+<header class="bookings-header">
+
+    <div class="bookings-container bookings-header-inner">
+
+        <a href="stay-host-dashboard.html" class="bookings-brand">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <div class="bookings-brand-name">
+                Haven<span>GH</span>
+            </div>
+
+        </a>
+
+        <div class="host-badge">
+            Host Portal
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================== -->
+
+<main class="bookings-main">
+
+    <div class="bookings-container">
+
+
+        <a
+            href="stay-host-dashboard.html"
+            class="back-link">
+
+            ← Back to Dashboard
+
+        </a>
+
+
+        <!-- =====================================================
+             HEADING
+        ====================================================== -->
+
+        <div class="bookings-heading">
+
+            <div>
+
+                <span class="heading-label">
+                    HOST MANAGEMENT
+                </span>
+
+                <h1>
+                    Your Bookings
+                </h1>
+
+                <p>
+                    Manage guest reservations and stay requests
+                    from one secure place.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             STATISTICS
+        ====================================================== -->
+
+        <section class="booking-stats">
+
+            <div class="stat-card pending">
+
+                <span>
+                    Pending
+                </span>
+
+                <strong id="pendingCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card confirmed">
+
+                <span>
+                    Confirmed
+                </span>
+
+                <strong id="confirmedCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card declined">
+
+                <span>
+                    Declined
+                </span>
+
+                <strong id="declinedCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    Total Bookings
+                </span>
+
+                <strong id="totalCount">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SEARCH / FILTER
+        ====================================================== -->
+
+        <div class="booking-toolbar">
+
+            <div class="search-wrapper">
+
+                <input
+                    type="search"
+                    id="bookingSearch"
+                    placeholder="Search guest, stay or location..."
+                    autocomplete="off">
+
+            </div>
+
+
+            <select
+                id="statusFilter"
+                class="status-filter">
+
+                <option value="all">
+                    All bookings
+                </option>
+
+                <option value="pending">
+                    Pending
+                </option>
+
+                <option value="approved">
+                    Confirmed
+                </option>
+
+                <option value="rejected">
+                    Declined
+                </option>
+
+                <option value="cancelled">
+                    Cancelled
+                </option>
+
+                <option value="completed">
+                    Completed
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =====================================================
+             BOOKINGS CARD
+        ====================================================== -->
+
+        <section class="bookings-card">
+
+            <div class="bookings-card-header">
+
+                <h2>
+                    Reservation Requests
+                </h2>
+
+                <p>
+                    Review and manage your latest stay bookings.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 LOADING
+            ================================================== -->
+
+            <div
+                class="loading-state"
+                id="loadingState">
+
+                <div class="loading-spinner"></div>
+
+                Loading your bookings...
+
+            </div>
+
+
+            <!-- =================================================
+                 BOOKING LIST
+            ================================================== -->
+
+            <div
+                class="booking-list"
+                id="bookingList">
+
+            </div>
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <div
+                class="empty-state"
+                id="emptyState">
+
+                <div class="empty-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    No bookings found
+                </h3>
+
+                <p>
+                    Try changing your search or booking filter.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ERROR STATE
+            ================================================== -->
+
+            <div
+                class="error-state"
+                id="errorState">
+
+                <h3>
+                    Unable to load bookings
+                </h3>
+
+                <p id="errorMessage">
+                    Something went wrong while loading your bookings.
+                </p>
+
+                <button
+                    type="button"
+                    class="retry-button"
+                    id="retryButton">
+
+                    Try Again
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="bookings-footer">
+
+    <div class="bookings-container footer-inner">
+
+        <span>
+            © 2026 HavenGH. All rights reserved.
+        </span>
+
+        <span>
+            Built for Ghana 🇬🇭
+        </span>
+
+    </div>
+
+</footer>
+
+
+</div>
+
+<!-- =============================================================
+     TOAST
+============================================================== -->
+
+<div
+    class="booking-toast"
+    id="bookingToast">
+</div>
+
+<!-- =============================================================
+     BOOKING PAGE SCRIPT
+============================================================== -->
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   HAVENGH API
+========================================================= */
+
+const API_BASE_URL = "http://localhost:5073";
+
+
+/* =========================================================
+   PAGE STATE
+========================================================= */
+
+let allBookings = [];
+
+
+/* =========================================================
+   DOM READY
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput =
+        document.getElementById("bookingSearch");
+
+    const statusFilter =
+        document.getElementById("statusFilter");
+
+    const retryButton =
+        document.getElementById("retryButton");
+
+
+    searchInput.addEventListener(
+        "input",
+        filterBookings
+    );
+
+
+    statusFilter.addEventListener(
+        "change",
+        filterBookings
+    );
+
+
+    retryButton.addEventListener(
+        "click",
+        loadBookings
+    );
+
+
+    loadBookings();
+
+});
+
+
+/* =========================================================
+   GET TOKEN
+========================================================= */
+
+function getToken() {
+    return (
+        sessionStorage.getItem("havenGH_token") ||
+        localStorage.getItem("havenGH_token") ||
+        localStorage.getItem("token") ||
+        localStorage.getItem("accessToken") ||
+        ""
+    );
+}
+/* =========================================================
+   AUTH CHECK
+========================================================= */
+
+function requireAuthentication() {
+
+    const token = getToken();
+
+    if (!token) {
+
+        window.location.href = "login.html";
+
+        return false;
+    }
+
+    return true;
+
+}
+
+
+/* =========================================================
+   API REQUEST
+========================================================= */
+
+async function apiRequest(endpoint, options = {}) {
+
+    const token = getToken();
+
+
+    const headers = {
+        "Content-Type": "application/json",
+        ...(options.headers || {})
+    };
+
+
+    if (token) {
+
+        headers.Authorization =
+            `Bearer ${token}`;
+
+    }
+
+
+    const response = await fetch(
+        `${API_BASE_URL}${endpoint}`,
+        {
+            ...options,
+            headers
+        }
+    );
+
+
+ if (response.status === 401) {
+
+    sessionStorage.removeItem("havenGH_token");
+
+    localStorage.removeItem("havenGH_token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("havenGH_user");
+
+    window.location.href = "login.html";
+
+    return null;
+}
+
+
+    return response;
+
+}
+
+
+/* =========================================================
+   LOAD HOST BOOKINGS
+========================================================= */
+
+async function loadBookings() {
+
+    if (!requireAuthentication()) {
+        return;
+    }
+
+
+    showLoading();
+
+
+    try {
+
+        const response =
+            await apiRequest(
+                "/api/StayBookings/host",
+                {
+                    method: "GET"
+                }
+            );
+
+
+        if (!response) {
+            return;
+        }
+
+
+        const rawText =
+            await response.text();
+
+
+        let data = [];
+
+
+        if (rawText) {
+
+            try {
+
+                data = JSON.parse(rawText);
+
+            } catch (parseError) {
+
+                throw new Error(
+                    "The server returned an invalid response."
+                );
+
+            }
+
+        }
+
+
+        if (!response.ok) {
+
+            const message =
+                data?.message ||
+                data?.title ||
+                "Unable to load your bookings.";
+
+            throw new Error(message);
+
+        }
+
+
+        allBookings =
+            Array.isArray(data)
+                ? data
+                : [];
+
+
+        updateStatistics();
+
+        renderBookings();
+
+
+    } catch (error) {
+
+        console.error(
+            "Stay host bookings error:",
+            error
+        );
+
+
+        showError(
+            error.message ||
+            "Unable to load bookings."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RENDER BOOKINGS
+========================================================= */
+
+function renderBookings() {
+
+    const bookingList =
+        document.getElementById("bookingList");
+
+    const emptyState =
+        document.getElementById("emptyState");
+
+    const errorState =
+        document.getElementById("errorState");
+
+
+    errorState.style.display = "none";
+
+
+    const searchInput =
+        document.getElementById("bookingSearch");
+
+
+    const statusFilter =
+        document.getElementById("statusFilter");
+
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    const selectedStatus =
+        statusFilter.value;
+
+
+    const filteredBookings =
+        allBookings.filter(function (booking) {
+
+            const stay =
+                booking.stay || {};
+
+
+            const guest =
+                booking.guest || {};
+
+
+            const searchableText = [
+
+                guest.email || "",
+
+                guest.phone || "",
+
+                stay.title || "",
+
+                stay.stayType || "",
+
+                stay.city || "",
+
+                stay.area || "",
+
+                stay.address || "",
+
+                booking.status || "",
+
+                booking.guestMessage || ""
+
+            ]
+                .join(" ")
+                .toLowerCase();
+
+
+            const matchesSearch =
+                searchableText.includes(search);
+
+
+            const matchesStatus =
+                selectedStatus === "all" ||
+                String(booking.status || "").toLowerCase() === selectedStatus;
+
+
+            return matchesSearch &&
+                   matchesStatus;
+
+        });
+
+
+    bookingList.innerHTML = "";
+
+
+    if (filteredBookings.length === 0) {
+
+        emptyState.style.display = "block";
+
+        return;
+
+    }
+
+
+    emptyState.style.display = "none";
+
+
+    filteredBookings.forEach(function (booking) {
+
+        bookingList.appendChild(
+            createBookingElement(booking)
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   CREATE BOOKING ELEMENT
+========================================================= */
+
+function createBookingElement(booking) {
+
+    const article =
+        document.createElement("article");
+
+
+    article.className =
+        "booking-item";
+
+
+    const status =
+        String(
+            booking.status || "pending"
+        ).toLowerCase();
+
+
+    article.dataset.status =
+        status;
+
+
+    const stay =
+        booking.stay || {};
+
+
+    const guest =
+        booking.guest || {};
+
+
+    const stayTitle =
+        escapeHtml(
+            stay.title || "Stay"
+        );
+
+
+    const city =
+        escapeHtml(
+            stay.city || "Ghana"
+        );
+
+
+    const area =
+        stay.area
+            ? `, ${escapeHtml(stay.area)}`
+            : "";
+
+
+    const guestEmail =
+        escapeHtml(
+            guest.email || "Guest"
+        );
+
+
+    const guestPhone =
+        guest.phone
+            ? escapeHtml(guest.phone)
+            : "";
+
+
+    const guestDisplay =
+        guestEmail;
+
+
+    const checkIn =
+        formatDate(
+            booking.checkInDate
+        );
+
+
+    const checkOut =
+        formatDate(
+            booking.checkOutDate
+        );
+
+
+    const price =
+        formatCurrency(
+            booking.totalAmount
+        );
+
+
+    const pricePerNight =
+        formatCurrency(
+            booking.pricePerNight
+        );
+
+
+    const nights =
+        Number(
+            booking.nights || 0
+        );
+
+
+    const guests =
+        Number(
+            booking.guests || 0
+        );
+
+
+    const imageUrl =
+        getStayImage(stay);
+
+
+    const statusLabel =
+        getStatusLabel(status);
+
+
+    const statusClass =
+        getStatusClass(status);
+
+
+    const bookingId =
+        Number(
+            booking.bookingId
+        );
+
+
+    article.innerHTML = `
+
+        <img
+            class="booking-image"
+            src="${imageUrl}"
+            alt="${stayTitle}"
+            onerror="this.src='havengh logo.jpeg';">
+
+
+        <div class="booking-property">
+
+            <h3>
+                ${stayTitle}
+            </h3>
+
+            <p>
+                📍 ${area ? area.substring(2) + ", " : ""}${city}
+            </p>
+
+            <p>
+                ${escapeHtml(stay.stayType || "Stay")}
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <div class="guest-name">
+                ${guestDisplay}
+            </div>
+
+            ${
+                guestPhone
+                    ? `
+                        <div class="guest-contact">
+                            ${guestPhone}
+                        </div>
+                      `
+                    : ""
+            }
+
+            <div class="guest-dates">
+                ${checkIn} – ${checkOut}
+            </div>
+
+            <div class="guest-dates">
+                ${guests} ${guests === 1 ? "guest" : "guests"}
+            </div>
+
+        </div>
+
+
+        <div class="booking-price">
+
+            <strong>
+                ${price}
+            </strong>
+
+            <span>
+                ${nights}
+                ${nights === 1 ? "night" : "nights"}
+            </span>
+
+            <span>
+                ${pricePerNight}/night
+            </span>
+
+        </div>
+
+
+        <div class="booking-status-wrapper">
+
+            <span class="status-pill ${statusClass}">
+                ${statusLabel}
+            </span>
+
+        </div>
+
+
+        <div class="booking-actions">
+
+            ${
+                status === "pending"
+                    ? `
+                        <button
+                            type="button"
+                            class="action-button approve-button"
+                            data-action="approve"
+                            data-booking-id="${bookingId}">
+
+                            Approve
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="action-button reject-button"
+                            data-action="reject"
+                            data-booking-id="${bookingId}">
+
+                            Reject
+
+                        </button>
+                      `
+                    : ""
+            }
+
+        </div>
+
+
+        ${
+            booking.guestMessage
+                ? `
+                    <div class="booking-message">
+
+                        <strong>
+                            Guest message:
+                        </strong>
+
+                        ${escapeHtml(booking.guestMessage)}
+
+                    </div>
+                  `
+                : ""
+        }
+
+        ${
+            booking.hostResponse
+                ? `
+                    <div class="booking-message">
+
+                        <strong>
+                            Host response:
+                        </strong>
+
+                        ${escapeHtml(booking.hostResponse)}
+
+                    </div>
+                  `
+                : ""
+        }
+
+    `;
+
+
+    const actionButtons =
+        article.querySelectorAll(
+            "[data-action]"
+        );
+
+
+    actionButtons.forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const action =
+                    button.dataset.action;
+
+
+                const id =
+                    Number(
+                        button.dataset.bookingId
+                    );
+
+
+                handleBookingAction(
+                    id,
+                    action,
+                    button
+                );
+
+            }
+        );
+
+    });
+
+
+    return article;
+
+}
+
+
+/* =========================================================
+   BOOKING ACTION
+========================================================= */
+
+async function handleBookingAction(
+    bookingId,
+    action,
+    clickedButton
+) {
+
+    if (!bookingId) {
+
+        showToast(
+            "Invalid booking ID.",
+            true
+        );
+
+        return;
+
+    }
+
+
+    let confirmationMessage;
+
+
+    if (action === "approve") {
+
+        confirmationMessage =
+            "Approve this booking?";
+
+    } else if (action === "reject") {
+
+        confirmationMessage =
+            "Reject this booking?";
+
+    } else {
+
+        return;
+
+    }
+
+
+    if (!window.confirm(
+        confirmationMessage
+    )) {
+
+        return;
+
+    }
+
+
+    const originalText =
+        clickedButton.textContent;
+
+
+    clickedButton.disabled = true;
+
+    clickedButton.textContent =
+        action === "approve"
+            ? "Approving..."
+            : "Rejecting...";
+
+
+    try {
+
+        const endpoint =
+            action === "approve"
+                ? `/api/StayBookings/host/${bookingId}/approve`
+                : `/api/StayBookings/host/${bookingId}/reject`;
+
+
+        const requestOptions = {
+               method: "POST"
+                  };
+
+if (action === "reject") {
+    requestOptions.body = JSON.stringify({
+        hostResponse: "Booking declined by host."
+    });
+}
+
+const response =
+          await apiRequest(
+          endpoint,
+          requestOptions
+    );
+
+
+        if (!response) {
+            return;
+        }
+
+
+        const rawText =
+            await response.text();
+
+
+        let data = {};
+
+
+        if (rawText) {
+
+            try {
+
+                data = JSON.parse(rawText);
+
+            } catch {
+
+                data = {};
+
+            }
+
+        }
+
+
+        if (!response.ok) {
+
+            const message =
+                data?.message ||
+                data?.title ||
+                "The booking action could not be completed.";
+
+            throw new Error(message);
+
+        }
+
+
+        showToast(
+            data?.message ||
+            (
+                action === "approve"
+                    ? "Booking approved successfully."
+                    : "Booking rejected successfully."
+            )
+        );
+
+
+        await loadBookings();
+
+
+    } catch (error) {
+
+        console.error(
+            "Booking action error:",
+            error
+        );
+
+
+        clickedButton.disabled = false;
+
+        clickedButton.textContent =
+            originalText;
+
+
+        showToast(
+            error.message ||
+            "Unable to update booking.",
+            true
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   FILTER BOOKINGS
+========================================================= */
+
+function filterBookings() {
+
+    renderBookings();
+
+}
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStatistics() {
+
+    let pending = 0;
+    let approved = 0;
+    let rejected = 0;
+
+
+    allBookings.forEach(function (booking) {
+
+        const status =
+            String(
+                booking.status || ""
+            ).toLowerCase();
+
+
+        switch (status) {
+
+            case "pending":
+                pending++;
+                break;
+
+
+            case "approved":
+                approved++;
+                break;
+
+
+            case "rejected":
+                rejected++;
+                break;
+
+        }
+
+    });
+
+
+    document
+        .getElementById("pendingCount")
+        .textContent = pending;
+
+
+    document
+        .getElementById("confirmedCount")
+        .textContent = approved;
+
+
+    document
+        .getElementById("declinedCount")
+        .textContent = rejected;
+
+
+    document
+        .getElementById("totalCount")
+        .textContent =
+            allBookings.length;
+
+}
+
+
+/* =========================================================
+   STATUS LABEL
+========================================================= */
+
+function getStatusLabel(status) {
+
+    switch (status) {
+
+        case "pending":
+            return "Pending";
+
+        case "approved":
+            return "Confirmed";
+
+        case "rejected":
+            return "Declined";
+
+        case "cancelled":
+            return "Cancelled";
+
+        case "completed":
+            return "Completed";
+
+        default:
+            return capitalize(status);
+
+    }
+
+}
+
+
+/* =========================================================
+   STATUS CSS CLASS
+========================================================= */
+
+function getStatusClass(status) {
+
+    switch (status) {
+
+        case "pending":
+            return "status-pending";
+
+        case "approved":
+            return "status-approved";
+
+        case "rejected":
+            return "status-rejected";
+
+        case "cancelled":
+            return "status-cancelled";
+
+        case "completed":
+            return "status-completed";
+
+        default:
+            return "status-cancelled";
+
+    }
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "—";
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if (Number.isNaN(
+        date.getTime()
+    )) {
+
+        return "—";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT CURRENCY
+========================================================= */
+
+function formatCurrency(value) {
+
+    const amount =
+        Number(value || 0);
+
+
+    return "GH₵" +
+        amount.toLocaleString(
+            "en-GH",
+            {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+/* =========================================================
+   GET STAY IMAGE
+========================================================= */
+
+function getStayImage(stay) {
+
+    if (
+        stay &&
+        Array.isArray(stay.images) &&
+        stay.images.length > 0
+    ) {
+
+        const primaryImage =
+            stay.images.find(
+                image => image.isPrimary
+            );
+
+
+        const image =
+            primaryImage ||
+            stay.images[0];
+
+
+        if (image && image.imageUrl) {
+
+            const rawUrl =
+                image.imageUrl;
+
+
+            if (
+                rawUrl.startsWith("http://") ||
+                rawUrl.startsWith("https://")
+            ) {
+
+                return rawUrl;
+
+            }
+
+
+            return `${API_BASE_URL}${rawUrl}`;
+
+        }
+
+    }
+
+
+    return "havengh logo.jpeg";
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   CAPITALIZE
+========================================================= */
+
+function capitalize(value) {
+
+    if (!value) {
+        return "";
+    }
+
+
+    return value.charAt(0).toUpperCase() +
+        value.slice(1);
+
+}
+
+
+/* =========================================================
+   LOADING STATE
+========================================================= */
+
+function showLoading() {
+
+    document
+        .getElementById("loadingState")
+        .style.display = "block";
+
+
+    document
+        .getElementById("bookingList")
+        .innerHTML = "";
+
+
+    document
+        .getElementById("emptyState")
+        .style.display = "none";
+
+
+    document
+        .getElementById("errorState")
+        .style.display = "none";
+
+}
+
+
+/* =========================================================
+   ERROR STATE
+========================================================= */
+
+function showError(message) {
+
+    document
+        .getElementById("loadingState")
+        .style.display = "none";
+
+
+    document
+        .getElementById("bookingList")
+        .innerHTML = "";
+
+
+    document
+        .getElementById("emptyState")
+        .style.display = "none";
+
+
+    document
+        .getElementById("errorState")
+        .style.display = "block";
+
+
+    document
+        .getElementById("errorMessage")
+        .textContent =
+            message ||
+            "Unable to load bookings.";
+
+}
+
+
+/* =========================================================
+   HIDE LOADING
+========================================================= */
+
+function hideLoading() {
+
+    document
+        .getElementById("loadingState")
+        .style.display = "none";
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(
+    message,
+    isError = false
+) {
+
+    const toast =
+        document.getElementById(
+            "bookingToast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.toggle(
+        "error",
+        isError
+    );
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            function () {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3500
+        );
+
+}
+
+
+/* =========================================================
+   PATCH LOADING AFTER RENDER
+========================================================= */
+
+const originalRenderBookings =
+    renderBookings;
+
+
+renderBookings = function () {
+
+    hideLoading();
+
+    originalRenderBookings();
+
+};
+
+</script>
+
+</body>
+</html>

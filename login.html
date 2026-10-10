@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Log in to your HavenGH account.">
+
+    <title>Log In | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <div class="container nav-container">
+
+            <a href="havengh logo.jpeg" class="logo">
+                <span class="logo-madin">Haven</span><span class="logo-accent">GH</span>
+            </a>
+
+            <nav class="navbar">
+
+                <a href="index.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="properties.html" class="nav-link">
+                    Find a Home
+                </a>
+
+                <a href="index.html#how-it-works" class="nav-link">
+                    How It Works
+                </a>
+
+                <a href="index.html#about" class="nav-link">
+                    About
+                </a>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <a href="register.html" class="btn-dark">
+                    Create Account
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         LOGIN
+    ========================== -->
+
+    <main>
+
+        <section class="auth-page">
+
+            <div class="container auth-container login-layout">
+
+
+                <!-- LEFT SIDE -->
+
+                <div class="auth-intro">
+
+                    <span class="section-label">
+                        WELCOME BACK
+                    </span>
+
+                    <h1>
+                        Your properties.<br>
+                        Your enquiries.<br>
+                        <span>All in one place.</span>
+                    </h1>
+
+                    <p>
+                        Log in to manage your properties, respond to
+                        enquiries and keep track of your rental activity.
+                    </p>
+
+
+                    <div class="login-highlight">
+
+                        <div class="highlight-number">
+                            01
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Manage your listings
+                            </h3>
+
+                            <p>
+                                Update prices, photos and availability
+                                whenever you need.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-highlight">
+
+                        <div class="highlight-number">
+                            02
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Stay connected
+                            </h3>
+
+                            <p>
+                                Keep track of potential tenants and
+                                property enquiries.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOGIN CARD -->
+
+                <div class="auth-card">
+
+                    <div class="auth-card-heading">
+
+                        <h2>
+                            Log in
+                        </h2>
+
+                        <p>
+                            Welcome back to HavenGH.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                       id="login-form"
+                        action="#"
+                        method="POST"
+                        class="auth-form"
+                    >
+
+
+                        <!-- EMAIL / PHONE -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email "
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="form-group">
+
+                            <div class="password-label">
+
+                                <label for="password">
+                                    Password
+                                </label>
+
+                                <a href="forget-password.html?type=owner">
+                                        Forgot password?
+                                   </a>
+
+                            </div>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- REMEMBER -->
+
+                        <div class="remember-me">
+
+                            <label>
+
+                                <input
+                                    type="checkbox"
+                                    name="remember"
+                                >
+
+                                <span>
+                                    Keep me logged in
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- LOGIN BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="auth-submit"
+                        >
+                            Log In
+                        </button>
+
+                    </form>
+
+
+                    <!-- REGISTER -->
+
+                    <div class="auth-footer">
+
+                        <p>
+                            Don't have an account?
+                            <a href="register.html">
+                                Create an account
+                            </a>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 HavenGH. All rights reserved.
+            </p>
+
+            <p>
+                Built for Ghana 🇬🇭
+            </p>
+
+        </div>
+
+    </footer>
+<script src="login.js"></script>
+
+</body>
+</html>

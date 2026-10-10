@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="HavenGH central administrator dashboard for managing users, properties, Stay in Ghana accommodations and platform activity.">
+
+<title>Admin Dashboard | HavenGH</title>
+
+<link rel="stylesheet" href="admin.css">
+
+
+
+
+   
+</head>
+
+<body class="admin-dashboard-page">
+
+<div class="dashboard-layout">
+
+<!-- ============================================================
+     ADMIN SIDEBAR
+============================================================ -->
+
+<aside
+    class="dashboard-sidebar"
+    id="adminDashboardSidebar">
+
+
+<div class="dashboard-logo">
+
+    <a href="index.html"
+       class="logo">
+
+        <span class="logo-main">
+            Haven
+        </span><span class="logo-accent">
+            GH
+        </span>
+
+    </a>
+
+</div>
+
+
+<div class="dashboard-user">
+
+    <img
+        src="havengh logo.jpeg" alt="HavenGH Admin">
+    
+    
+
+    <div>
+
+        <strong>
+            HavenGH Admin
+        </strong>
+
+        <span>
+            Administrator
+        </span>
+
+    </div>
+
+</div>
+
+
+<nav class="dashboard-nav">
+
+
+    <a href="admin-dashboard.html"
+       class="dashboard-link active">
+
+        <span>⌂</span>
+        Dashboard
+
+    </a>
+
+
+    <a href="admin-users.html"
+       class="dashboard-link">
+
+        <span>♙</span>
+        Users
+
+    </a>
+
+
+    <a href="admin-properties.html"
+       class="dashboard-link">
+
+        <span>▣</span>
+        Properties
+
+    </a>
+
+
+    <a href="#stay-management"
+       class="dashboard-link">
+
+        <span>🏠</span>
+        Stay in Ghana
+
+    </a>
+
+
+    <a href="admin-rental-requests.html"
+       class="dashboard-link">
+
+        <span>◉</span>
+        Rental Requests
+
+    </a>
+
+
+    <a href="admin-messages.html">
+    Messages
+</a>
+
+<a href="admin-contact-messages.html">
+    Contact Inbox
+</a>
+
+
+    <a href="admin-payments.html"
+       class="dashboard-link">
+
+        <span>GH₵</span>
+        Payments
+
+    </a>
+
+
+    <a href="admin-subscriptions.html"
+       class="dashboard-link">
+
+        <span>◆</span>
+        Subscriptions
+
+    </a>
+
+
+    <a href="admin-audit-logs.html"
+       class="dashboard-link">
+
+        <span>▤</span>
+        Audit Logs
+
+    </a>
+
+
+    <a href="admin-settings.html"
+       class="dashboard-link">
+
+        <span>⚙</span>
+        Settings
+
+    </a>
+
+
+</nav>
+
+
+<div class="dashboard-sidebar-bottom">
+
+
+    <a href="index.html"
+       class="dashboard-link">
+
+        <span>←</span>
+        Back to Website
+
+    </a>
+
+
+   <button
+    type="button"
+    id="adminLogoutButton"
+    class="dashboard-link logout">
+
+    <span>↪</span>
+
+    <span>Log Out</span>
+
+</button> 
+
+
+</div>
+
+
+</aside>
+
+<!-- ============================================================
+     MAIN CONTENT
+============================================================ -->
+
+<main class="dashboard-main">
+
+
+<!-- ========================================================
+     TOP BAR
+========================================================= -->
+
+<header class="dashboard-topbar">
+
+
+   <button
+    class="dashboard-menu-button"
+    type="button"
+    aria-label="Open administrator menu"
+    aria-expanded="false"
+    aria-controls="adminDashboardSidebar">
+
+    ☰
+
+</button>
+
+    <div>
+
+        <p class="dashboard-date"
+           id="adminDashboardDate">
+
+            Loading date...
+
+        </p>
+
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+    </div>
+
+
+    <div class="dashboard-top-actions">
+
+        <button
+            type="button"
+            class="notification-button"
+            aria-label="Administrator notifications">
+
+            ♧
+
+            <span id="adminNotificationCount">
+                0
+            </span>
+
+        </button>
+
+    </div>
+
+
+</header>
+
+
+
+<!-- ========================================================
+     DASHBOARD CONTENT
+========================================================= -->
+
+<div class="dashboard-content">
+
+
+    <!-- ====================================================
+         WELCOME
+    ===================================================== -->
+
+    <section class="dashboard-welcome">
+
+        <div>
+
+            <span class="section-label">
+                ADMINISTRATION
+            </span>
+
+
+            <h2>
+                Welcome back, Administrator.
+            </h2>
+
+
+            <p>
+                Manage the HavenGH platform from one central
+                control center, including rental properties,
+                users and Stay in Ghana accommodations.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ====================================================
+         PLATFORM STATISTICS
+    ===================================================== -->
+
+    <section class="dashboard-stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ♙
+            </div>
+
+            <div>
+
+                <span>
+                    Total Users
+                </span>
+
+                <strong id="totalUsersCount">
+                    —
+                </strong>
+
+                <small>
+                    Platform users
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ▣
+            </div>
+
+            <div>
+
+                <span>
+                    Properties
+                </span>
+
+                <strong id="propertyCount">
+                    —
+                </strong>
+
+                <small>
+                    Rental listings
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏠
+            </div>
+
+            <div>
+
+                <span>
+                    Stay in Ghana
+                </span>
+
+                <strong id="stayCount">
+                    —
+                </strong>
+
+                <small>
+                    Accommodation stays
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ◉
+            </div>
+
+            <div>
+
+                <span>
+                    Rental Requests
+                </span>
+
+                <strong id="rentalRequestCount">
+                    —
+                </strong>
+
+                <small>
+                    All rental requests
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                !
+            </div>
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <strong id="pendingCount">
+                    —
+                </strong>
+
+                <small>
+                    Stay reviews requiring attention
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ====================================================
+         MAIN GRID
+    ===================================================== -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- USERS -->
+
+        <section class="dashboard-panel">
+
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        USERS
+                    </span>
+
+                    <h2>
+                        Recent users
+                    </h2>
+
+                </div>
+
+
+                <a href="admin-users.html">
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="request-item">
+
+                <div>
+
+                    <h3>
+                        User management
+                    </h3>
+
+                    <p>
+                        Review registered HavenGH users,
+                        account status and user roles.
+                    </p>
+
+                    <small>
+                        Open Users to manage platform accounts.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- PROPERTIES -->
+
+        <section class="dashboard-panel">
+
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        PROPERTIES
+                    </span>
+
+                    <h2>
+                        Rental properties
+                    </h2>
+
+                </div>
+
+
+                <a href="admin-properties.html">
+                    View all →
+                </a>
+
+            </div>
+
+
+            <div class="request-item">
+
+                <div>
+
+                    <h3>
+                        Property management
+                    </h3>
+
+                    <p>
+                        Review rental properties submitted
+                        by landlords and agents.
+                    </p>
+
+                    <small>
+                        Open Properties to manage rental listings.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+        <!-- ============================================================
+     RENTAL PROPERTY MANAGEMENT
+     ============================================================ -->
+
+<section class="admin-panel property-management-panel">
+
+    <div class="panel-header">
+        <div>
+            <span class="panel-eyebrow">PROPERTY CONTROL</span>
+            <h2>Rental Property Review</h2>
+            <p>
+                Review properties submitted by landlords and agents
+                before they become publicly visible.
+            </p>
+        </div>
+
+        <a href="admin-properties.html" class="panel-action">
+            Manage Properties
+        </a>
+    </div>
+
+    <!-- PROPERTY FILTERS -->
+
+    <div class="property-filter-bar">
+
+        <button
+            type="button"
+            class="property-filter active"
+            data-property-filter="pending">
+            Pending Review
+            <span id="pendingPropertyBadge">0</span>
+        </button>
+
+        <button
+            type="button"
+            class="property-filter"
+            data-property-filter="draft">
+            Draft
+            <span id="draftPropertyBadge">0</span>
+        </button>
+
+        <button
+            type="button"
+            class="property-filter"
+            data-property-filter="published">
+            Published
+            <span id="publishedPropertyBadge">0</span>
+        </button>
+
+    </div>
+
+    <!-- PROPERTY LIST -->
+
+    <div
+        id="adminPropertyList"
+        class="admin-property-list">
+
+        <div class="property-empty-state">
+            <div class="empty-icon">⌂</div>
+            <h3>Loading properties...</h3>
+            <p>
+                Please wait while rental properties are loaded.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     PROPERTY REVIEW MODAL
+     ============================================================ -->
+
+<div
+    id="propertyReviewModal"
+    class="admin-modal"
+    aria-hidden="true">
+
+    <div class="admin-modal-overlay"
+         data-close-property-modal></div>
+
+    <div class="admin-modal-content">
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            id="closePropertyReviewModal">
+            &times;
+        </button>
+
+        <div class="property-review-header">
+            <span class="panel-eyebrow">
+                ADMIN PROPERTY REVIEW
+            </span>
+
+            <h2 id="propertyReviewTitle">
+                Property Review
+            </h2>
+
+            <span
+                id="propertyReviewStatus"
+                class="property-status">
+                Pending
+            </span>
+        </div>
+
+        <div
+            id="propertyReviewBody"
+            class="property-review-body">
+
+            <!-- JavaScript fills this -->
+
+        </div>
+
+        <div
+            id="propertyReviewActions"
+            class="property-review-actions">
+
+            <!-- JavaScript fills this -->
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- ====================================================
+         STAY IN GHANA
+    ===================================================== -->
+
+    <section id="stay-management"
+             class="dashboard-panel"
+             style="margin-top:24px;">
+
+
+        <div class="panel-heading">
+
+            <div>
+
+                <span class="section-label">
+                    STAY IN GHANA
+                </span>
+
+                <h2>
+                    Recent stay submissions
+                </h2>
+
+            </div>
+
+
+            <a href="#stay-management">
+                Stay management
+            </a>
+
+        </div>
+
+
+        <div id="recentStaySubmissions"
+             class="admin-stay-list">
+
+
+            <div class="admin-empty-state">
+
+                <strong>
+                    Loading Stay submissions...
+                </strong>
+
+                <span>
+                    Connecting securely to the HavenGH API.
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ====================================================
+         STAY QUICK MANAGEMENT
+    ===================================================== -->
+
+    <section class="dashboard-grid"
+             style="margin-top:24px;">
+
+
+        <!-- PENDING -->
+
+        <section class="dashboard-panel">
+
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        APPROVALS
+                    </span>
+
+                    <h2>
+                        Pending Stay Approvals
+                    </h2>
+
+                </div>
+
+
+                <a href="#stay-management">
+                    Review →
+                </a>
+
+            </div>
+
+
+            <div id="pendingStayApprovals"
+                 class="admin-stay-list">
+
+
+                <div class="admin-empty-state">
+
+                    <strong>
+                        Loading pending stays...
+                    </strong>
+
+                    <span>
+                        Checking accommodation submissions.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- HOSTS -->
+
+        <section class="dashboard-panel">
+
+
+            <div class="panel-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        HOSTS
+                    </span>
+
+                    <h2>
+                        Stay Hosts
+                    </h2>
+
+                </div>
+
+
+                <a href="#stay-management">
+                    Manage →
+                </a>
+
+            </div>
+
+
+            <div class="request-item">
+
+
+                <div class="admin-host-summary">
+
+
+                    <div class="admin-host-icon">
+                        ♙
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="admin-summary-number"
+                            id="stayHostCount">
+
+                            —
+
+                        </span>
+
+
+                        <span class="admin-summary-label">
+                            Stay hosts currently associated
+                            with accommodation listings.
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </section>
+
+
+
+    <!-- ====================================================
+         RENTAL REQUESTS
+    ===================================================== -->
+
+    <section class="dashboard-panel"
+             style="margin-top:24px;">
+
+
+        <div class="panel-heading">
+
+            <div>
+
+                <span class="section-label">
+                    RENTAL ACTIVITY
+                </span>
+
+                <h2>
+                    Recent rental requests
+                </h2>
+
+            </div>
+
+
+            <a href="admin-rental-requests.html">
+                View all →
+            </a>
+
+        </div>
+
+
+        <div class="request-item">
+
+            <div>
+
+                <h3>
+                    Rental request monitoring
+                </h3>
+
+                <p>
+                    Administrators can monitor rental requests
+                    across the HavenGH rental platform.
+                </p>
+
+                <small>
+                    Open Rental Requests for detailed management.
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ====================================================
+         PLATFORM CONTROL
+    ===================================================== -->
+
+    <section class="dashboard-plan"
+             style="margin-top:24px;">
+
+
+        <div>
+
+            <span class="section-label">
+                PLATFORM CONTROL
+            </span>
+
+
+            <h2>
+                HavenGH Administration
+            </h2>
+
+
+            <p>
+                Manage users, rental properties,
+                Stay in Ghana accommodations, hosts,
+                requests, payments and platform activity
+                from the central Admin Portal.
+            </p>
+
+        </div>
+
+
+        <div class="plan-progress">
+
+
+            <div class="progress-text">
+
+                <span>
+                    Stay in Ghana Control
+                </span>
+
+                <strong>
+                    Admin Managed
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <span style="width:100%;"></span>
+
+            </div>
+
+
+            <small>
+                Stay submissions are controlled by administrator
+                review before public availability.
+            </small>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ====================================================
+         SECURITY
+    ===================================================== -->
+
+    <section class="dashboard-plan"
+             style="margin-top:24px;">
+
+
+        <div>
+
+            <span class="section-label">
+                SECURITY
+            </span>
+
+
+            <h2>
+                HavenGH API Security
+            </h2>
+
+
+            <p>
+                Administrator authentication and role-based
+                authorization are active.
+            </p>
+
+        </div>
+
+
+        <div class="plan-progress">
+
+
+            <div class="progress-text">
+
+                <span>
+                    Authentication
+                </span>
+
+
+                <strong id="adminSecurityStatus">
+                    Checking...
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <span id="adminSecurityProgress"
+                      style="width:0%;"></span>
+
+            </div>
+
+
+            <small id="adminSecurityMessage">
+                Verifying administrator access...
+            </small>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+</main>
+
+</div>
+      <!-- ============================================================
+     STAY REVIEW MODAL
+============================================================ -->
+
+<div id="stayReviewModal"
+     class="stay-review-modal"
+     aria-hidden="true">
+
+    <div class="stay-review-backdrop"
+         data-close-review></div>
+
+    <div class="stay-review-dialog"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="stayReviewTitle">
+
+        <button type="button"
+                class="stay-review-close"
+                id="closeStayReview"
+                aria-label="Close Stay review">
+
+            ×
+
+        </button>
+
+        <div class="stay-review-header">
+
+            <span class="section-label">
+                ADMIN REVIEW
+            </span>
+
+            <h2 id="stayReviewTitle">
+                Stay Review
+            </h2>
+
+            <p id="stayReviewSubtitle">
+                Review accommodation details before making a decision.
+            </p>
+
+        </div>
+
+
+        <div id="stayReviewContent"
+             class="stay-review-content">
+
+            <div class="admin-empty-state">
+
+                <strong>
+                    Loading Stay...
+                </strong>
+
+                <span>
+                    Preparing accommodation details for review.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div id="stayReviewActions"
+             class="stay-review-actions">
+
+            <button type="button"
+                    class="stay-review-reject"
+                    id="rejectStayButton">
+
+                Reject Stay
+
+            </button>
+
+
+            <button type="button"
+                    class="stay-review-approve"
+                    id="approveStayButton">
+
+                Approve & Publish
+
+            </button>
+
+        </div>
+
+
+        <div id="stayReviewMessage"
+             class="stay-review-message"
+             aria-live="polite">
+        </div>
+
+    </div>
+
+</div>
+<!-- ============================================================
+     EXISTING SHARED HAVENGH SCRIPT
+     DO NOT REMOVE
+============================================================ -->
+
+<script src="admin-dashboard.js"></script>
+<Script src="script.js"></Script>
+</body>
+</html>

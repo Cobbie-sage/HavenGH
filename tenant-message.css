@@ -1,0 +1,1442 @@
+/* ============================================================
+   HAVENGH — MESSAGES / PREMIUM DASHBOARD
+   Full navigation + mobile + chat styling
+   ============================================================ */
+
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view) {
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(201, 162, 39, 0.18),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #ead05b 0%,
+            #e4c449 48%,
+            #d8b52e 100%
+        );
+
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view) .dashboard-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 270px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px 18px 22px;
+
+    box-sizing: border-box;
+
+    background:
+        linear-gradient(
+            180deg,
+            #09271c 0%,
+            #0c3324 48%,
+            #08251b 100%
+        );
+
+    border-right: 1px solid rgba(201, 162, 39, 0.28);
+
+    box-shadow:
+        12px 0 35px rgba(0, 0, 0, 0.14);
+
+    z-index: 1000;
+}
+
+
+/* ============================================================
+   SIDEBAR LOGO
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-sidebar .logo {
+
+    display: block;
+
+    padding: 8px 15px 30px;
+
+    margin-bottom: 18px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    text-decoration: none;
+
+    font-size: 30px;
+    font-weight: 900;
+
+    letter-spacing: -0.04em;
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-sidebar .logo-main {
+
+    color: #ffffff;
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-sidebar .logo-accent {
+
+    color: #e3c24d;
+}
+
+
+/* ============================================================
+   SIDEBAR NAV
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    flex: 1;
+}
+
+
+/* ============================================================
+   NAV LINKS
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav a {
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 48px;
+
+    padding: 0 16px;
+
+    border-radius: 12px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.01em;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* left indicator */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav a::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    width: 3px;
+    height: 0;
+
+    border-radius: 0 5px 5px 0;
+
+    background: #e3c24d;
+
+    transition:
+        height 0.25s ease;
+}
+
+
+/* hover */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav a:hover {
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.075);
+
+    transform: translateX(4px);
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav a:hover::before {
+
+    height: 22px;
+}
+
+
+/* ============================================================
+   ACTIVE NAVIGATION
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav a.active {
+
+    color: #f5dc73;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(201, 162, 39, 0.20),
+            rgba(201, 162, 39, 0.06)
+        );
+
+    border: 1px solid rgba(201, 162, 39, 0.22);
+
+    box-shadow:
+        inset 0 0 20px rgba(201, 162, 39, 0.04),
+        0 5px 15px rgba(0, 0, 0, 0.10);
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-nav a.active::before {
+
+    height: 28px;
+}
+
+
+/* ============================================================
+   LOGOUT
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-logout {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+
+    margin-top: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 12px;
+
+    color: rgba(255, 255, 255, 0.70);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-logout:hover {
+
+    color: #f4d96b;
+
+    background: rgba(201, 162, 39, 0.12);
+
+    border-color: rgba(201, 162, 39, 0.35);
+
+    transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-main {
+
+    margin-left: 270px;
+
+    min-height: 100vh;
+
+    padding: 45px 50px 60px;
+
+    box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-header {
+
+    margin-bottom: 28px;
+
+    padding: 30px 32px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.78),
+            rgba(255, 250, 235, 0.68)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+        0 14px 35px rgba(25, 33, 20, 0.12);
+
+    backdrop-filter: blur(14px);
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-header h1 {
+
+    margin: 5px 0 8px;
+
+    color: #0a2c1e;
+
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-header p:not(.dashboard-label) {
+
+    color: #536158;
+
+    font-size: 14px;
+}
+
+
+/* ============================================================
+   LABEL
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-label {
+
+    color: #a98512;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================================================
+   MAIN CHAT CARD
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-section {
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 252, 242, 0.94);
+
+    border: 1px solid rgba(255, 255, 255, 0.75);
+
+    box-shadow:
+        0 20px 50px rgba(25, 33, 20, 0.15);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .section-heading {
+
+    margin-bottom: 20px;
+}
+
+body.dashboard-page:has(#conversation-view)
+    .section-heading h2 {
+
+    color: #0c3525;
+
+    font-size: 23px;
+
+    letter-spacing: -0.025em;
+}
+
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.message-search-container {
+    margin: 22px 0;
+}
+
+#message-search {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    height: 50px;
+
+    padding: 0 18px;
+
+    border: 1px solid rgba(12, 53, 37, 0.12);
+
+    border-radius: 13px;
+
+    background: #ffffff;
+
+    color: #18251f;
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+#message-search:hover {
+
+    border-color:
+        rgba(201, 162, 39, 0.55);
+
+    transform: translateY(-1px);
+}
+
+#message-search:focus {
+
+    border-color: #c9a227;
+
+    box-shadow:
+        0 0 0 4px rgba(201, 162, 39, 0.12),
+        0 8px 20px rgba(12, 53, 37, 0.07);
+}
+
+
+/* ============================================================
+   CONVERSATION CARDS
+   ============================================================ */
+
+#conversations-list {
+
+    display: grid;
+
+    gap: 10px;
+}
+
+.conversation-card {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 50px 1fr auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(12, 53, 37, 0.07);
+
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.conversation-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(201, 162, 39, 0.50);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fffdf5
+        );
+
+    box-shadow:
+        0 12px 28px rgba(12, 53, 37, 0.10);
+}
+
+
+/* ============================================================
+   AVATAR
+   ============================================================ */
+
+.conversation-avatar {
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0e432e,
+            #09291e
+        );
+
+    color: #e7c954;
+
+    font-size: 17px;
+    font-weight: 900;
+
+    border: 2px solid rgba(201, 162, 39, 0.30);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.conversation-card:hover .conversation-avatar {
+
+    transform:
+        scale(1.08)
+        rotate(-3deg);
+
+    border-color: #c9a227;
+}
+
+
+/* ============================================================
+   CHAT AREA
+   ============================================================ */
+
+.conversation-messages {
+
+    min-height: 430px;
+
+    max-height: 570px;
+
+    margin: 20px 0;
+
+    padding: 25px;
+
+    overflow-y: auto;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(12, 53, 37, 0.08);
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(201, 162, 39, 0.13),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #f8f2dc,
+            #fffdf7
+        );
+}
+
+
+/* ============================================================
+   MESSAGE BUBBLES
+   ============================================================ */
+
+.chat-message {
+
+    max-width: 72%;
+
+    padding: 13px 16px;
+
+    margin-bottom: 13px;
+
+    border-radius: 17px;
+
+    animation: havenMessageIn 0.25s ease;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.chat-message:hover {
+
+    transform: translateY(-1px);
+}
+
+
+@keyframes havenMessageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* mine */
+
+.message-mine {
+
+    margin-left: auto;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0e432e,
+            #08291e
+        );
+
+    color: #ffffff;
+
+    border-bottom-right-radius: 5px;
+
+    box-shadow:
+        0 8px 20px rgba(8, 41, 30, 0.18);
+}
+
+
+/* theirs */
+
+.message-theirs {
+
+    margin-right: auto;
+
+    background: #ffffff;
+
+    color: #19251f;
+
+    border: 1px solid rgba(12, 53, 37, 0.08);
+
+    border-bottom-left-radius: 5px;
+
+    box-shadow:
+        0 6px 18px rgba(12, 53, 37, 0.06);
+}
+
+
+/* ============================================================
+   MESSAGE COMPOSER
+   ============================================================ */
+
+.message-compose {
+
+    display: grid;
+
+    grid-template-columns: 1fr 110px;
+
+    gap: 12px;
+
+    align-items: end;
+}
+
+#message-input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    min-height: 58px;
+
+    padding: 15px 17px;
+
+    resize: vertical;
+
+    border: 1px solid rgba(12, 53, 37, 0.12);
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    color: #18251f;
+
+    outline: none;
+
+    font-family: inherit;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#message-input:hover {
+
+    border-color:
+        rgba(201, 162, 39, 0.50);
+}
+
+#message-input:focus {
+
+    border-color: #c9a227;
+
+    box-shadow:
+        0 0 0 4px rgba(201, 162, 39, 0.12);
+}
+
+
+/* ============================================================
+   SEND BUTTON
+   ============================================================ */
+
+#send-message-button {
+
+    min-height: 58px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0e432e,
+            #08291e
+        );
+
+    color: #e7c954;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(8, 41, 30, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        color 0.25s ease;
+}
+
+#send-message-button:hover {
+
+    transform: translateY(-3px);
+
+    color: #fff1a7;
+
+    box-shadow:
+        0 14px 28px rgba(8, 41, 30, 0.26);
+}
+
+
+/* ============================================================
+   BACK BUTTON
+   ============================================================ */
+
+#back-to-conversations {
+
+    border: 1px solid rgba(201, 162, 39, 0.45);
+
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: #0c3525;
+
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+#back-to-conversations:hover {
+
+    background: #0c3525;
+
+    color: #e7c954;
+
+    transform: translateX(-3px);
+}
+
+
+/* ============================================================
+   MOBILE MENU BUTTON
+   ============================================================ */
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-menu-button {
+
+    display: none;
+
+    position: fixed;
+
+    top: 16px;
+    left: 16px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(201, 162, 39, 0.40);
+
+    border-radius: 12px;
+
+    background: #09271c;
+
+    color: #e7c954;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.20);
+
+    z-index: 1200;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+body.dashboard-page:has(#conversation-view)
+    .dashboard-menu-button:hover {
+
+    transform: scale(1.06);
+
+    background: #0e432e;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-main {
+
+        padding: 35px 25px 50px;
+    }
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-sidebar {
+
+        width: 235px;
+    }
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-main {
+
+        margin-left: 235px;
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-sidebar {
+
+        left: -285px;
+
+        width: 270px;
+
+        transition:
+            left 0.30s ease;
+
+        box-shadow:
+            10px 0 35px rgba(0, 0, 0, 0.25);
+    }
+
+
+    /*
+       When your existing mobile-menu JS adds
+       the common open class, this will slide it in.
+    */
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-sidebar.active,
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-sidebar.open,
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-sidebar.show {
+
+        left: 0;
+    }
+
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-menu-button {
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-main {
+
+        margin-left: 0;
+
+        padding:
+            78px 15px 35px;
+    }
+
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-header {
+
+        padding: 25px 20px;
+
+        border-radius: 19px;
+    }
+
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-section {
+
+        padding: 18px;
+
+        border-radius: 19px;
+    }
+
+
+    .conversation-card {
+
+        grid-template-columns:
+            44px
+            1fr
+            auto;
+
+        gap: 11px;
+
+        padding: 13px;
+    }
+
+
+    .conversation-avatar {
+
+        width: 44px;
+        height: 44px;
+
+        font-size: 15px;
+    }
+
+
+    .conversation-top {
+
+        display: block;
+    }
+
+
+    .conversation-top span {
+
+        display: block;
+
+        margin-top: 3px;
+    }
+
+
+    .conversation-messages {
+
+        min-height: 360px;
+
+        max-height: 480px;
+
+        padding: 15px;
+    }
+
+
+    .chat-message {
+
+        max-width: 88%;
+    }
+
+
+    .message-compose {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    #send-message-button {
+
+        width: 100%;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-main {
+
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    body.dashboard-page:has(#conversation-view)
+        .dashboard-section {
+
+        padding: 14px;
+    }
+
+
+    .conversation-card {
+
+        grid-template-columns: 40px 1fr;
+    }
+
+
+    .conversation-avatar {
+
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .conversation-unread {
+
+        display: none;
+    }
+
+
+    .chat-message {
+
+        max-width: 94%;
+    }
+
+}
+
+/* ============================================================
+   PREMIUM HAVENGH CONVERSATION CARDS
+   ============================================================ */
+
+#conversations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+
+/* ============================================================
+   CONVERSATION CARD
+   ============================================================ */
+
+.conversation-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 17px 18px;
+
+    border: 1px solid rgba(18, 72, 48, 0.12);
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.conversation-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(190, 151, 53, 0.45);
+
+    box-shadow:
+        0 12px 30px rgba(20, 60, 42, 0.12);
+
+    background: #fffef9;
+}
+
+
+.conversation-card:focus-visible {
+    outline: 3px solid rgba(190, 151, 53, 0.35);
+    outline-offset: 2px;
+}
+
+
+/* ============================================================
+   PROFILE AVATAR
+   ============================================================ */
+
+.conversation-avatar {
+    width: 54px;
+    height: 54px;
+
+    min-width: 54px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #164f38,
+            #0c3022
+        );
+
+    color: #f3d477;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    border: 2px solid rgba(190, 151, 53, 0.45);
+
+    box-shadow:
+        0 4px 12px rgba(15, 65, 43, 0.16);
+
+    position: relative;
+}
+
+
+.conversation-avatar-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+.conversation-avatar-fallback {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f3d477;
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.conversation-content {
+    min-width: 0;
+    flex: 1;
+}
+
+
+.conversation-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 3px;
+}
+
+
+.conversation-top strong {
+    color: #123d2b;
+
+    font-size: 15px;
+    font-weight: 750;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.conversation-top > span {
+    flex-shrink: 0;
+
+    color: #8a948f;
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   PARTICIPANT ROLE
+   ============================================================ */
+
+.conversation-role {
+    color: #b28a2e;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    margin-bottom: 4px;
+}
+
+
+/* ============================================================
+   PROPERTY / STAY
+   ============================================================ */
+
+.conversation-property {
+    color: #315b49;
+
+    font-size: 12px;
+    font-weight: 650;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    margin-bottom: 3px;
+}
+
+
+.conversation-preview {
+    margin: 0;
+
+    color: #69766f;
+
+    font-size: 13px;
+    line-height: 1.45;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ============================================================
+   UNREAD BADGE
+   ============================================================ */
+
+.conversation-unread {
+    min-width: 24px;
+    height: 24px;
+
+    padding: 0 7px;
+
+    border-radius: 999px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #b89432;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    box-shadow:
+        0 4px 10px rgba(145, 111, 30, 0.22);
+
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.message-search-container {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+
+#message-search {
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border: 1px solid rgba(18, 72, 48, 0.15);
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #183c2d;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#message-search::placeholder {
+    color: #9aa39e;
+}
+
+
+#message-search:focus {
+    border-color: #b89432;
+
+    box-shadow:
+        0 0 0 3px rgba(184, 148, 50, 0.12);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .conversation-card {
+        padding: 14px;
+
+        gap: 12px;
+
+        border-radius: 14px;
+    }
+
+
+    .conversation-avatar {
+        width: 46px;
+        height: 46px;
+
+        min-width: 46px;
+
+        font-size: 14px;
+    }
+
+
+    .conversation-top strong {
+        font-size: 14px;
+    }
+
+
+    .conversation-preview {
+        font-size: 12px;
+    }
+
+
+    .conversation-property {
+        font-size: 11px;
+    }
+
+
+    .conversation-top > span {
+        font-size: 10px;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .conversation-card {
+        gap: 10px;
+        padding: 12px;
+    }
+
+
+    .conversation-avatar {
+        width: 42px;
+        height: 42px;
+
+        min-width: 42px;
+    }
+
+
+    .conversation-unread {
+        min-width: 21px;
+        height: 21px;
+
+        padding: 0 5px;
+    }
+
+}

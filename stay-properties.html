@@ -1,0 +1,3777 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+   content="Find hotels, short-stay apartments, guest houses and villas across Ghana with HavenGH.">
+
+<title>Find a Stay | HavenGH</title>
+
+<style>
+
+
+/* ============================================================
+   HAVENGH — FIND A STAY
+   PREMIUM GLASS / ACCRA BACKGROUND DESIGN
+   CSS ONLY — JAVASCRIPT UNCHANGED
+============================================================ */
+
+:root {
+    --green-950: #031f18;
+    --green-900: #062d22;
+    --green-800: #064e3b;
+    --green-700: #0b6650;
+    --green-600: #0f766e;
+
+    --gold: #d4af37;
+    --gold-light: #f0cf68;
+    --gold-dark: #a88318;
+
+    --cream: #f7f2e7;
+    --white: #ffffff;
+    --text: #18322b;
+    --muted: #687873;
+
+    --glass-white: rgba(255,255,255,0.78);
+    --glass-light: rgba(255,255,255,0.66);
+    --glass-dark: rgba(3,31,24,0.84);
+
+    --border-light: rgba(255,255,255,0.48);
+
+    --shadow-soft:
+        0 18px 50px rgba(0,0,0,0.16);
+
+    --shadow-card:
+        0 18px 45px rgba(0,0,0,0.14);
+}
+
+
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.stay-results-page {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            rgba(3,31,24,0.58),
+            rgba(3,31,24,0.62)
+        ),
+        url("Accra.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.stay-results-page a {
+    text-decoration: none;
+}
+
+.container {
+    width: min(1200px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(3,31,24,0.86);
+
+    border-bottom:
+        1px solid rgba(212,175,55,0.25);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(135%);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.16);
+}
+
+.nav-container {
+
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* ============================================================
+   LOGO
+============================================================ */
+
+.logo {
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 12px;
+
+    min-height: 58px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.13);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.18);
+
+    font-size: 28px;
+    font-weight: 900;
+
+    letter-spacing: -1.2px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.logo:hover {
+
+    transform:
+        translateY(-1px);
+
+    background:
+        rgba(255,255,255,0.11);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.24);
+}
+
+.logo-main {
+    color: #ffffff;
+}
+
+.logo-accent {
+    color: var(--gold-light);
+}
+
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+
+.navbar {
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.nav-link,
+.login-link {
+
+    color:
+        rgba(255,255,255,0.88);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    padding:
+        10px 13px;
+
+    border-radius: 9px;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-link:hover,
+.login-link:hover {
+
+    color: var(--gold-light);
+
+    background:
+        rgba(255,255,255,0.07);
+
+    transform:
+        translateY(-1px);
+}
+
+.nav-link.active {
+
+    color: var(--gold-light);
+
+    background:
+        rgba(212,175,55,0.12);
+
+    box-shadow:
+        inset 0 -2px 0 var(--gold);
+}
+
+
+/* ============================================================
+   NAV BUTTON
+============================================================ */
+
+.navbar .btn {
+
+    display: inline-block;
+
+    padding:
+        11px 17px;
+
+    border-radius: 9px;
+
+    font-weight: 800;
+}
+
+.btn-dark {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-800),
+            var(--green-600)
+        );
+
+    color: #ffffff !important;
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.16);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.btn-dark:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-dark),
+            var(--gold)
+        );
+
+    color:
+        var(--green-950) !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.22);
+}
+
+
+/* ============================================================
+   MOBILE MENU BUTTON
+============================================================ */
+
+.mobile-menu-button {
+
+    display: none;
+
+    position: absolute;
+
+    top: 50%;
+    right: 18px;
+
+    transform:
+        translateY(-50%);
+
+    width: 46px;
+    height: 46px;
+
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color:
+        #ffffff;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 1100;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+
+    background:
+        rgba(212,175,55,0.18);
+
+    color:
+        var(--gold-light);
+}
+
+
+/* ============================================================
+   PAGE HEADER / HERO
+============================================================ */
+
+.stay-results-header {
+
+    position: relative;
+
+    padding:
+        78px 0 48px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3,31,24,0.22),
+            rgba(3,31,24,0.52)
+        );
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.stay-results-header .container {
+
+    position: relative;
+}
+
+.stay-results-header .section-label {
+
+    display: inline-block;
+
+    color:
+        var(--gold-light);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing:
+        2.8px;
+
+    margin-bottom: 6px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.3);
+}
+
+.stay-results-header h1 {
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(38px, 5vw, 58px);
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -2px;
+
+    line-height:
+        1.05;
+
+    margin:
+        10px 0 14px;
+
+    max-width:
+        800px;
+
+    text-shadow:
+        0 6px 25px rgba(0,0,0,0.35);
+}
+
+.stay-results-header p {
+
+    color:
+        rgba(255,255,255,0.88);
+
+    max-width:
+        720px;
+
+    line-height:
+        1.7;
+
+    font-size:
+        16px;
+
+    margin:
+        0;
+
+    text-shadow:
+        0 2px 12px rgba(0,0,0,0.25);
+}
+
+
+/* ============================================================
+   SEARCH BAR — GLASS
+============================================================ */
+
+.stay-results-search {
+
+    margin-top:
+        32px;
+
+    padding:
+        20px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.4fr 1fr 1fr 1fr 1fr auto;
+
+    gap:
+        12px;
+
+    border-radius:
+        20px;
+
+    background:
+        rgba(255,255,255,0.86);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.65);
+
+    box-shadow:
+        0 24px 60px rgba(0,0,0,0.25);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(130%);
+}
+
+.results-field label {
+
+    display: block;
+
+    color:
+        var(--green-900);
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.7px;
+
+    margin-bottom:
+        7px;
+}
+
+.results-field input,
+.results-field select {
+
+    width: 100%;
+
+    min-height:
+        48px;
+
+    padding:
+        10px 13px;
+
+    border:
+        1px solid
+        rgba(6,78,59,0.15);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(255,255,255,0.72);
+
+    color:
+        var(--green-950);
+
+    font-size:
+        14px;
+
+    outline:
+        none;
+
+    box-shadow:
+        inset 0 1px 2px rgba(0,0,0,0.04);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.results-field input::placeholder {
+
+    color:
+        #8a9792;
+}
+
+.results-field input:focus,
+.results-field select:focus {
+
+    border-color:
+        var(--gold);
+
+    background:
+        rgba(255,255,255,0.94);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(212,175,55,0.16);
+}
+
+
+/* ============================================================
+   SEARCH BUTTON
+============================================================ */
+
+.results-search-button {
+
+    align-self:
+        end;
+
+    min-height:
+        48px;
+
+    padding:
+        0 23px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-dark),
+            var(--gold-light)
+        );
+
+    color:
+        var(--green-950);
+
+    font-weight:
+        900;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 10px 25px rgba(111,81,7,0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.results-search-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.04);
+
+    box-shadow:
+        0 15px 30px rgba(111,81,7,0.28);
+}
+
+.results-search-button:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* ============================================================
+   RESULTS AREA
+============================================================ */
+
+.stay-results-section {
+
+    position: relative;
+
+    padding:
+        62px 0 95px;
+
+    background:
+        rgba(247,242,231,0.90);
+
+    backdrop-filter:
+        blur(3px);
+
+    -webkit-backdrop-filter:
+        blur(3px);
+}
+
+.results-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        30px;
+}
+
+.results-top h2 {
+
+    color:
+        var(--green-900);
+
+    margin:
+        0 0 6px;
+
+    font-size:
+        30px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -0.7px;
+}
+
+.results-count {
+
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+}
+
+
+/* ============================================================
+   RESULTS LAYOUT
+============================================================ */
+
+.stay-results-layout {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        235px 1fr;
+
+    gap:
+        30px;
+
+    align-items:
+        start;
+}
+
+
+/* ============================================================
+   FILTER PANEL
+============================================================ */
+
+.stay-filters {
+
+    position:
+        sticky;
+
+    top:
+        98px;
+
+    background:
+        rgba(255,255,255,0.76);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.68);
+
+    border-radius:
+        20px;
+
+    padding:
+        24px;
+
+    box-shadow:
+        var(--shadow-soft);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(125%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(125%);
+}
+
+.stay-filters h3 {
+
+    color:
+        var(--green-900);
+
+    font-size:
+        18px;
+
+    margin:
+        0 0 22px;
+
+    font-weight:
+        900;
+}
+
+.filter-group {
+
+    margin-bottom:
+        24px;
+}
+
+.filter-group:last-child {
+
+    margin-bottom:
+        0;
+}
+
+.filter-group label {
+
+    display:
+        block;
+
+    color:
+        var(--green-900);
+
+    font-size:
+        12px;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.5px;
+
+    margin-bottom:
+        9px;
+}
+
+.filter-group select {
+
+    width:
+        100%;
+
+    min-height:
+        45px;
+
+    padding:
+        10px 12px;
+
+    border:
+        1px solid
+        rgba(6,78,59,0.15);
+
+    border-radius:
+        9px;
+
+    color:
+        var(--green-900);
+
+    background:
+        rgba(255,255,255,0.76);
+
+    outline:
+        none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.filter-group select:focus {
+
+    border-color:
+        var(--gold);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(212,175,55,0.14);
+}
+
+
+/* ============================================================
+   STAY GRID
+============================================================ */
+
+.stay-results-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap:
+        25px;
+}
+
+
+/* ============================================================
+   STAY CARD
+============================================================ */
+
+.stay-result-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    background:
+        rgba(255,255,255,0.91);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.70);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+        var(--shadow-card);
+
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.stay-result-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,0.20);
+}
+
+
+/* ============================================================
+   CARD IMAGE
+============================================================ */
+
+.stay-result-image {
+
+    position:
+        relative;
+
+    display:
+        block;
+
+    height:
+        265px;
+
+    overflow:
+        hidden;
+
+    background:
+        var(--green-900);
+}
+
+.stay-result-image a {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    height:
+        100%;
+}
+
+.stay-result-image img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    display:
+        block;
+
+    transition:
+        transform 0.55s ease,
+        filter 0.35s ease;
+}
+
+.stay-result-card:hover
+.stay-result-image img {
+
+    transform:
+        scale(1.055);
+
+    filter:
+        saturate(1.06);
+}
+
+
+/* ============================================================
+   IMAGE FAILED STATE
+============================================================ */
+
+.stay-result-image.image-failed {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-900),
+            var(--green-700)
+        );
+}
+
+.stay-result-image.image-failed::after {
+
+    content:
+        "HavenGH";
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        20px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* ============================================================
+   IMAGE BADGE
+============================================================ */
+
+.stay-result-badge {
+
+    position:
+        absolute;
+
+    top:
+        15px;
+
+    left:
+        15px;
+
+    padding:
+        7px 11px;
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(212,175,55,0.94);
+
+    color:
+        var(--green-950);
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    text-transform:
+        uppercase;
+
+    letter-spacing:
+        0.5px;
+
+    z-index:
+        2;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.18);
+}
+
+
+/* ============================================================
+   SAVE / HEART
+============================================================ */
+
+.stay-result-heart {
+
+    position:
+        absolute;
+
+    top:
+        13px;
+
+    right:
+        14px;
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.75);
+
+    background:
+        rgba(255,255,255,0.88);
+
+    color:
+        var(--green-800);
+
+    font-size:
+        22px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    cursor:
+        pointer;
+
+    z-index:
+        5;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,0.16);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.stay-result-heart:hover {
+
+    transform:
+        scale(1.08);
+
+    background:
+        #ffffff;
+
+    color:
+        var(--gold-dark);
+}
+
+
+/* ============================================================
+   CARD CONTENT
+============================================================ */
+
+.stay-result-info {
+
+    padding:
+        22px;
+}
+
+.stay-result-price {
+
+    color:
+        var(--green-800);
+
+    font-size:
+        22px;
+
+    font-weight:
+        900;
+
+    margin-bottom:
+        8px;
+
+    letter-spacing:
+        -0.4px;
+}
+
+.stay-result-price span {
+
+    color:
+        #7b8782;
+
+    font-size:
+        13px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0;
+}
+
+.stay-result-info h3 {
+
+    color:
+        var(--green-950);
+
+    font-size:
+        20px;
+
+    line-height:
+        1.25;
+
+    margin:
+        0 0 9px;
+
+    font-weight:
+        850;
+}
+
+.stay-result-location {
+
+    color:
+        #687873;
+
+    font-size:
+        14px;
+
+    margin:
+        0 0 17px;
+
+    line-height:
+        1.5;
+}
+
+
+/* ============================================================
+   DETAILS TAGS
+============================================================ */
+
+.stay-result-details {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        7px;
+
+    margin-bottom:
+        20px;
+}
+
+.stay-result-details span {
+
+    background:
+        rgba(6,78,59,0.07);
+
+    color:
+        var(--green-800);
+
+    padding:
+        7px 10px;
+
+    border:
+        1px solid
+        rgba(6,78,59,0.08);
+
+    border-radius:
+        8px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+}
+
+
+/* ============================================================
+   VIEW STAY BUTTON
+============================================================ */
+
+.stay-view-button {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    text-align:
+        center;
+
+    padding:
+        12px;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-900),
+            var(--green-700)
+        );
+
+    color:
+        #ffffff;
+
+    font-weight:
+        800;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 8px 20px rgba(3,31,24,0.16);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.stay-view-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-dark),
+            var(--gold)
+        );
+
+    color:
+        var(--green-950);
+
+    box-shadow:
+        0 12px 25px rgba(111,81,7,0.22);
+}
+
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.stays-loading {
+
+    grid-column:
+        1 / -1;
+
+    min-height:
+        260px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        3px;
+
+    background:
+        rgba(255,255,255,0.76);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.60);
+
+    border-radius:
+        20px;
+
+    padding:
+        55px 25px;
+
+    text-align:
+        center;
+
+    color:
+        var(--green-800);
+
+    box-shadow:
+        var(--shadow-soft);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.loading-spinner {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    margin:
+        0 auto 16px;
+
+    border:
+        4px solid
+        rgba(6,78,59,0.10);
+
+    border-top-color:
+        var(--gold);
+
+    border-right-color:
+        var(--green-700);
+
+    border-radius:
+        50%;
+
+    animation:
+        staySpin 0.8s linear infinite;
+}
+
+@keyframes staySpin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* ============================================================
+   NO RESULTS
+============================================================ */
+
+.no-stays {
+
+    display:
+        none;
+
+    background:
+        rgba(255,255,255,0.80);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.62);
+
+    border-radius:
+        20px;
+
+    padding:
+        65px 25px;
+
+    text-align:
+        center;
+
+    box-shadow:
+        var(--shadow-soft);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.no-stays h3 {
+
+    color:
+        var(--green-900);
+
+    margin:
+        0 0 10px;
+
+    font-size:
+        23px;
+}
+
+.no-stays p {
+
+    color:
+        #687873;
+
+    max-width:
+        540px;
+
+    margin:
+        0 auto 22px;
+
+    line-height:
+        1.6;
+}
+
+.no-stays .btn {
+
+    display:
+        inline-block;
+
+    border:
+        none;
+
+    cursor:
+        pointer;
+
+    padding:
+        12px 20px;
+
+    border-radius:
+        9px;
+
+    font-weight:
+        800;
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.footer {
+
+    background:
+        rgba(3,31,24,0.94);
+
+    color:
+        rgba(255,255,255,0.82);
+
+    border-top:
+        1px solid
+        rgba(212,175,55,0.20);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+}
+
+.footer-bottom {
+
+    min-height:
+        82px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+}
+
+.footer-bottom p {
+
+    margin:
+        0;
+
+    font-size:
+        13px;
+
+    color:
+        rgba(255,255,255,0.72);
+}
+
+.footer-bottom p:last-child {
+
+    color:
+        var(--gold-light);
+
+    font-weight:
+        700;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1100px) {
+
+    .stay-results-search {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .results-search-button {
+
+        width:
+            100%;
+    }
+
+    .stay-results-layout {
+
+        grid-template-columns:
+            205px 1fr;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE NAVIGATION
+============================================================ */
+
+@media (max-width: 800px) {
+
+    .header {
+
+        position:
+            sticky;
+
+        top:
+            0;
+    }
+
+    .nav-container {
+
+        min-height:
+            72px;
+
+        padding-right:
+            60px;
+    }
+
+    .logo {
+
+        font-size:
+            25px;
+
+        min-height:
+            51px;
+
+        padding:
+            5px 10px;
+    }
+
+    .mobile-menu-button {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+    .navbar {
+
+        position:
+            absolute;
+
+        top:
+            100%;
+
+        left:
+            0;
+
+        right:
+            0;
+
+        width:
+            100%;
+
+        display:
+            none;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            4px;
+
+        padding:
+            12px 18px 20px;
+
+        background:
+            rgba(3,31,24,0.97);
+
+        border-top:
+            1px solid
+            rgba(212,175,55,0.28);
+
+        box-shadow:
+            0 18px 35px rgba(0,0,0,0.30);
+
+        backdrop-filter:
+            blur(20px);
+
+        -webkit-backdrop-filter:
+            blur(20px);
+
+        z-index:
+            1000;
+    }
+
+    .navbar.mobile-menu-open {
+
+        display:
+            flex;
+    }
+
+    .navbar .nav-link,
+    .navbar .login-link,
+    .navbar .btn {
+
+        display:
+            block;
+
+        width:
+            100%;
+
+        padding:
+            14px 12px;
+
+        text-align:
+            left;
+
+        margin:
+            0;
+
+        border-radius:
+            9px;
+    }
+
+    .navbar .nav-link {
+
+        color:
+            rgba(255,255,255,0.92);
+    }
+
+    .navbar .nav-link:hover {
+
+        background:
+            rgba(255,255,255,0.07);
+
+        color:
+            var(--gold-light);
+    }
+
+    .navbar .nav-link.active {
+
+        color:
+            var(--gold-light);
+
+        background:
+            rgba(212,175,55,0.10);
+    }
+
+    .navbar .login-link {
+
+        color:
+            rgba(255,255,255,0.92);
+    }
+
+    .navbar .login-link:hover {
+
+        background:
+            rgba(255,255,255,0.07);
+
+        color:
+            var(--gold-light);
+    }
+
+    .navbar .btn {
+
+        margin-top:
+            7px;
+
+        text-align:
+            center;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--gold-dark),
+                var(--gold-light)
+            );
+
+        color:
+            var(--green-950) !important;
+    }
+
+    .navbar .btn:hover {
+
+        background:
+            #ffffff;
+
+        color:
+            var(--green-900) !important;
+    }
+
+    .stay-results-layout {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .stay-filters {
+
+        display:
+            none;
+    }
+
+    .stay-results-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0,1fr));
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+
+    body.stay-results-page {
+
+        background-attachment:
+            scroll;
+    }
+
+    .container {
+
+        width:
+            min(100% - 28px, 1200px);
+    }
+
+    .stay-results-header {
+
+        padding:
+            55px 0 35px;
+    }
+
+    .stay-results-header h1 {
+
+        font-size:
+            clamp(35px, 11vw, 46px);
+
+        letter-spacing:
+            -1.5px;
+    }
+
+    .stay-results-header p {
+
+        font-size:
+            14px;
+
+        line-height:
+            1.65;
+    }
+
+    .stay-results-search {
+
+        grid-template-columns:
+            1fr;
+
+        padding:
+            16px;
+
+        border-radius:
+            17px;
+
+        margin-top:
+            25px;
+    }
+
+    .results-search-button {
+
+        min-height:
+            50px;
+    }
+
+    .stay-results-section {
+
+        padding:
+            45px 0 70px;
+    }
+
+    .results-top {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        margin-bottom:
+            22px;
+    }
+
+    .results-top h2 {
+
+        font-size:
+            26px;
+    }
+
+    .stay-results-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            20px;
+    }
+
+    .stay-result-image {
+
+        height:
+            235px;
+    }
+
+    .stay-result-info {
+
+        padding:
+            19px;
+    }
+
+    .stay-result-info h3 {
+
+        font-size:
+            19px;
+    }
+
+    .footer-bottom {
+
+        min-height:
+            100px;
+
+        flex-direction:
+            column;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+
+        gap:
+            6px;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 380px) {
+
+    .container {
+
+        width:
+            calc(100% - 22px);
+    }
+
+    .logo {
+
+        font-size:
+            23px;
+
+        padding:
+            5px 8px;
+    }
+
+    .mobile-menu-button {
+
+        right:
+            10px;
+
+        width:
+            43px;
+
+        height:
+            43px;
+    }
+
+    .stay-results-header h1 {
+
+        font-size:
+            34px;
+    }
+
+    .stay-result-image {
+
+        height:
+            215px;
+    }
+
+}
+
+
+/* ============================================================
+   ACCESSIBILITY / REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior:
+            auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+
+</style>
+
+
+</head>
+
+<body class="stay-results-page">
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    
+<div class="container nav-container">
+
+    <a href="index.html" class="logo">
+        <span class="logo-main">Haven</span>
+        <span class="logo-accent">GH</span>
+    </a>
+
+    <nav class="navbar" id="main-navigation">
+
+        <a href="index.html" class="nav-link">
+            Home
+        </a>
+
+        <a href="stay-properties.html"
+           class="nav-link active">
+            Find a stay
+        </a>
+
+        <a href="stays.html"
+           class="nav-link">
+            Stay in Ghana
+        </a>
+
+        <a href="agent-login.html"
+           class="login-link">
+            Agent/Landlord
+        </a>
+
+        <a href="tenant-login.html"
+           class="btn btn-dark">
+            Tenant Login
+        </a>
+
+    </nav>
+
+</div>
+
+<button
+    class="mobile-menu-button"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="main-navigation">
+
+    ☰
+
+</button>
+
+
+</header>
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="stay-results-header">
+
+
+<div class="container">
+
+    <span class="section-label">
+        STAY IN GHANA
+    </span>
+
+    <h1>
+        Find a place to stay.
+    </h1>
+
+    <p>
+        Discover hotels, furnished apartments, guest houses
+        and villas across Ghana. Perfect for holidays,
+        business trips and visits from abroad.
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <form
+        class="stay-results-search"
+        id="stayResultsSearchForm">
+
+        <div class="results-field">
+
+            <label for="resultsDestination">
+                Destination
+            </label>
+
+            <input
+                type="text"
+                id="resultsDestination"
+                placeholder="Accra, Kumasi...">
+
+        </div>
+
+
+        <div class="results-field">
+
+            <label for="resultsCheckIn">
+                Check-in
+            </label>
+
+            <input
+                type="date"
+                id="resultsCheckIn">
+
+        </div>
+
+
+        <div class="results-field">
+
+            <label for="resultsCheckOut">
+                Check-out
+            </label>
+
+            <input
+                type="date"
+                id="resultsCheckOut">
+
+        </div>
+
+
+        <div class="results-field">
+
+            <label for="resultsGuests">
+                Guests
+            </label>
+
+            <select id="resultsGuests">
+
+                <option value="1">
+                    1 Guest
+                </option>
+
+                <option value="2" selected>
+                    2 Guests
+                </option>
+
+                <option value="3">
+                    3 Guests
+                </option>
+
+                <option value="4">
+                    4 Guests
+                </option>
+
+                <option value="5">
+                    5 Guests
+                </option>
+
+                <option value="6">
+                    6 Guests
+                </option>
+
+                <option value="7">
+                    7 Guests
+                </option>
+
+                <option value="8">
+                    8+ Guests
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="results-field">
+
+            <label for="resultsType">
+                Stay Type
+            </label>
+
+            <select id="resultsType">
+
+                <option value="">
+                    Any
+                </option>
+
+                <option value="hotel">
+                    Hotel
+                </option>
+
+                <option value="apartment">
+                    Short-Stay Apartment
+                </option>
+
+                <option value="guest-house">
+                    Guest House
+                </option>
+
+                <option value="villa">
+                    Villa
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="results-search-button">
+
+            Search
+
+        </button>
+
+    </form>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
+
+<main>
+
+<section class="stay-results-section">
+
+
+<div class="container">
+
+    <div class="results-top">
+
+        <div>
+
+            <h2>
+                Available stays
+            </h2>
+
+            <span
+                class="results-count"
+                id="resultsCount">
+
+                Loading stays...
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="stay-results-layout">
+
+
+        <!-- FILTERS -->
+
+        <aside class="stay-filters">
+
+            <h3>
+                Filter Stays
+            </h3>
+
+
+            <div class="filter-group">
+
+                <label for="filterType">
+                    Stay Type
+                </label>
+
+                <select id="filterType">
+
+                    <option value="">
+                        All
+                    </option>
+
+                    <option value="hotel">
+                        Hotels
+                    </option>
+
+                    <option value="serviced-apartment">
+                        Serviced-Apartment
+                    </option>
+
+                    <option value="guest-house">
+                        Guest Houses
+                    </option>
+
+                    <option value="villa">
+                        Villas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="filterLocation">
+                    Location
+                </label>
+
+                <select id="filterLocation">
+
+                    <option value="">
+                        All locations
+                    </option>
+
+                    <option value="Accra">
+                        Accra
+                    </option>
+
+                    <option value="Kumasi">
+                        Kumasi
+                    </option>
+
+                    <option value="Cape-Coast">
+                        Cape Coast
+                    </option>
+
+                    <option value="Takoradi">
+                        Takoradi
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label for="filterPrice">
+                    Maximum Price
+                </label>
+
+                <select id="filterPrice">
+
+                    <option value="">
+                        Any price
+                    </option>
+
+                    <option value="500">
+                        GH₵500
+                    </option>
+
+                    <option value="800">
+                        GH₵800
+                    </option>
+
+                    <option value="1200">
+                        GH₵1,200
+                    </option>
+
+                    <option value="2000">
+                        GH₵2,000
+                    </option>
+
+                </select>
+
+            </div>
+
+        </aside>
+
+
+        <!-- STAYS -->
+
+        <div>
+
+            <div
+                class="stay-results-grid"
+                id="stayResultsGrid">
+
+                <div class="stays-loading">
+
+                    <div class="loading-spinner"></div>
+
+                    <strong>
+                        Finding available stays...
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- NO RESULTS -->
+
+            <div
+                class="no-stays"
+                id="noStays">
+
+                <h3>
+                    No stays found
+                </h3>
+
+                <p id="noStaysMessage">
+                    Try changing your destination,
+                    stay type, guest count or price range.
+                </p>
+
+                <button
+                    type="button"
+                    class="btn btn-dark"
+                    id="clearFilters">
+
+                    Clear Filters
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+<div class="container footer-bottom">
+
+    <p>
+        © 2026 HavenGH. All rights reserved.
+    </p>
+
+    <p>
+        Built for Ghana 🇬🇭
+    </p>
+
+</div>
+
+
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   API
+===================================================== */
+
+const API_BASE_URL =
+    "http://localhost:5073";
+
+
+/* =====================================================
+   DOM READY
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =================================================
+           MOBILE MENU
+        ================================================= */
+
+        const mobileMenuButton =
+            document.querySelector(
+                ".mobile-menu-button"
+            );
+
+        const navbar =
+            document.querySelector(
+                ".navbar"
+            );
+
+
+        function closeMobileMenu() {
+
+            if (
+                !navbar ||
+                !mobileMenuButton
+            ) {
+                return;
+            }
+
+            navbar.classList.remove(
+                "mobile-menu-open"
+            );
+
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            mobileMenuButton.setAttribute(
+                "aria-label",
+                "Open navigation menu"
+            );
+
+            mobileMenuButton.textContent =
+                "☰";
+        }
+
+
+        if (
+            mobileMenuButton &&
+            navbar
+        ) {
+
+            mobileMenuButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.stopPropagation();
+
+                    const isOpen =
+                        navbar.classList.toggle(
+                            "mobile-menu-open"
+                        );
+
+                    mobileMenuButton.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                            ? "true"
+                            : "false"
+                    );
+
+                    mobileMenuButton.setAttribute(
+                        "aria-label",
+                        isOpen
+                            ? "Close navigation menu"
+                            : "Open navigation menu"
+                    );
+
+                    mobileMenuButton.textContent =
+                        isOpen
+                            ? "✕"
+                            : "☰";
+
+                }
+            );
+
+
+            navbar
+                .querySelectorAll("a")
+                .forEach(
+                    function (link) {
+
+                        link.addEventListener(
+                            "click",
+                            closeMobileMenu
+                        );
+
+                    }
+                );
+
+
+            document.addEventListener(
+                "click",
+                function (event) {
+
+                    if (
+                        !navbar.contains(
+                            event.target
+                        ) &&
+                        !mobileMenuButton.contains(
+                            event.target
+                        )
+                    ) {
+
+                        closeMobileMenu();
+
+                    }
+
+                }
+            );
+
+
+            window.addEventListener(
+                "resize",
+                function () {
+
+                    if (
+                        window.innerWidth > 800
+                    ) {
+
+                        closeMobileMenu();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           SEARCH ELEMENTS
+        ================================================= */
+
+        const searchForm =
+            document.getElementById(
+                "stayResultsSearchForm"
+            );
+
+        const destinationInput =
+            document.getElementById(
+                "resultsDestination"
+            );
+
+        const typeInput =
+            document.getElementById(
+                "resultsType"
+            );
+
+        const checkInInput =
+            document.getElementById(
+                "resultsCheckIn"
+            );
+
+        const checkOutInput =
+            document.getElementById(
+                "resultsCheckOut"
+            );
+
+        const guestsInput =
+            document.getElementById(
+                "resultsGuests"
+            );
+
+        const filterType =
+            document.getElementById(
+                "filterType"
+            );
+
+        const filterLocation =
+            document.getElementById(
+                "filterLocation"
+            );
+
+        const filterPrice =
+            document.getElementById(
+                "filterPrice"
+            );
+
+        const resultsGrid =
+            document.getElementById(
+                "stayResultsGrid"
+            );
+
+        const noStays =
+            document.getElementById(
+                "noStays"
+            );
+
+        const noStaysMessage =
+            document.getElementById(
+                "noStaysMessage"
+            );
+
+        const resultsCount =
+            document.getElementById(
+                "resultsCount"
+            );
+
+        const clearFilters =
+            document.getElementById(
+                "clearFilters"
+            );
+
+
+        /* =================================================
+           URL PARAMETERS
+        ================================================= */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        /*
+           Support the names used by stays.html.
+        */
+
+        const destination =
+            params.get("location") ||
+            params.get("destination") ||
+            "";
+
+
+        const type =
+            params.get("type") ||
+            "";
+
+
+        const checkIn =
+            params.get("checkin") ||
+            params.get("checkIn") ||
+            "";
+
+
+        const checkOut =
+            params.get("checkout") ||
+            params.get("checkOut") ||
+            "";
+
+
+        const guests =
+            params.get("guests") ||
+            "";
+
+
+        /* =================================================
+           APPLY URL VALUES
+        ================================================= */
+
+        if (destination) {
+
+            destinationInput.value =
+                destination;
+
+        }
+
+
+        if (type) {
+
+            typeInput.value =
+                type;
+
+            filterType.value =
+                type;
+
+        }
+
+
+        if (checkIn) {
+
+            checkInInput.value =
+                checkIn;
+
+        }
+
+
+        if (checkOut) {
+
+            checkOutInput.value =
+                checkOut;
+
+        }
+
+
+        if (guests) {
+
+            const guestNumber =
+                Number(guests);
+
+            if (
+                guestNumber >= 1 &&
+                guestNumber <= 8
+            ) {
+
+                guestsInput.value =
+                    guestNumber >= 8
+                        ? "8"
+                        : String(guestNumber);
+
+            }
+
+        }
+
+
+        /* =================================================
+           HELPERS
+        ================================================= */
+
+        function escapeHtml(value) {
+
+            return String(value ?? "")
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        function formatMoney(value) {
+
+            const amount =
+                Number(value || 0);
+
+            return amount.toLocaleString(
+                "en-GH",
+                {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }
+            );
+
+        }
+
+
+        function formatStayType(typeValue) {
+
+            const value =
+                String(
+                    typeValue || ""
+                ).toLowerCase();
+
+
+            switch (value) {
+
+                case "hotel":
+                    return "Hotel";
+
+                case "apartment":
+                    return "Short-Stay Apartment";
+
+                case "guest-house":
+                    return "Guest House";
+
+                case "villa":
+                    return "Villa";
+
+                default:
+                    return typeValue || "Stay";
+
+            }
+
+        }
+
+
+        function getImageUrl(rawUrl) {
+
+            if (!rawUrl) {
+
+                return "";
+
+            }
+
+
+            const value =
+                String(rawUrl).trim();
+
+
+            if (
+                value.startsWith(
+                    "http://"
+                ) ||
+                value.startsWith(
+                    "https://"
+                )
+            ) {
+
+                return value;
+
+            }
+
+
+            if (
+                value.startsWith("/")
+            ) {
+
+                return (
+                    API_BASE_URL +
+                    value
+                );
+
+            }
+
+
+            return (
+                API_BASE_URL +
+                "/" +
+                value
+            );
+
+        }
+
+
+        function getPrimaryImage(stay) {
+
+            const images =
+                Array.isArray(
+                    stay.images
+                )
+                    ? stay.images
+                    : [];
+
+
+            if (!images.length) {
+
+                return "";
+
+            }
+
+
+            const primary =
+                images.find(
+                    function (image) {
+
+                        return image &&
+                            image.isPrimary === true;
+
+                    }
+                );
+
+
+            if (primary) {
+
+                return getImageUrl(
+                    primary.imageUrl
+                );
+
+            }
+
+
+            const firstImage =
+                images[0];
+
+
+            return getImageUrl(
+                firstImage.imageUrl
+            );
+
+        }
+
+
+        function getLocationText(stay) {
+
+            const parts = [];
+
+
+            if (stay.area) {
+
+                parts.push(
+                    stay.area
+                );
+
+            }
+
+
+            if (stay.city) {
+
+                parts.push(
+                    stay.city
+                );
+
+            }
+
+
+            return parts.length
+                ? parts.join(", ")
+                : "Ghana";
+
+        }
+
+
+        function getStayDetails(stay) {
+
+            const details = [];
+
+
+            if (
+                stay.bedrooms !== null &&
+                stay.bedrooms !== undefined
+            ) {
+
+                details.push(
+                    `${stay.bedrooms} ${
+                        Number(stay.bedrooms) === 1
+                            ? "Bedroom"
+                            : "Bedrooms"
+                    }`
+                );
+
+            }
+
+
+            if (
+                stay.bathrooms !== null &&
+                stay.bathrooms !== undefined
+            ) {
+
+                details.push(
+                    `${stay.bathrooms} ${
+                        Number(stay.bathrooms) === 1
+                            ? "Bath"
+                            : "Baths"
+                    }`
+                );
+
+            }
+
+
+            if (
+                stay.rooms !== null &&
+                stay.rooms !== undefined
+            ) {
+
+                details.push(
+                    `${stay.rooms} ${
+                        Number(stay.rooms) === 1
+                            ? "Room"
+                            : "Rooms"
+                    }`
+                );
+
+            }
+
+
+            if (
+                stay.maxGuests !== null &&
+                stay.maxGuests !== undefined
+            ) {
+
+                details.push(
+                    `${stay.maxGuests} ${
+                        Number(stay.maxGuests) === 1
+                            ? "Guest"
+                            : "Guests"
+                    }`
+                );
+
+            }
+
+
+            return details;
+
+        }
+
+
+        /* =================================================
+           RENDER STAY CARD
+        ================================================= */
+
+        function renderStayCard(stay) {
+
+            const imageUrl =
+                getPrimaryImage(
+                    stay
+                );
+
+
+            const title =
+                escapeHtml(
+                    stay.title ||
+                    "HavenGH Stay"
+                );
+
+
+            const stayType =
+                formatStayType(
+                    stay.stayType
+                );
+
+
+            const location =
+                escapeHtml(
+                    getLocationText(
+                        stay
+                    )
+                );
+
+
+            const price =
+                formatMoney(
+                    stay.pricePerNight
+                );
+
+
+            const details =
+                getStayDetails(
+                    stay
+                );
+
+
+            const stayId =
+                Number(
+                    stay.stayId
+                );
+
+
+            const imageMarkup =
+                imageUrl
+
+                    ? `
+                        <img
+                            src="${escapeHtml(imageUrl)}"
+                            alt="${title}"
+                            loading="lazy"
+                            onerror="this.onerror=null;this.src='';this.parentElement.classList.add('image-failed');">
+                      `
+
+                    : `
+                        <div
+                            style="
+                                width:100%;
+                                height:100%;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                color:#064e3b;
+                                font-weight:700;
+                                background:#e8efeb;
+                            ">
+
+                            HavenGH
+
+                        </div>
+                      `;
+
+
+            const detailsMarkup =
+                details.length
+
+                    ? details
+                        .map(
+                            function (detail) {
+
+                                return `
+                                    <span>
+                                        ${escapeHtml(detail)}
+                                    </span>
+                                `;
+
+                            }
+                        )
+                        .join("")
+
+                    : `
+                        <span>
+                            ${escapeHtml(stayType)}
+                        </span>
+                      `;
+
+
+            const badge =
+                stay.isFeatured
+                    ? "Featured"
+                    : stayType;
+
+
+            return `
+
+                <article
+                    class="stay-result-card"
+                    data-stay-id="${stayId}">
+
+                    <div class="stay-result-image">
+
+                        <a
+                            href="stay-details.html?id=${encodeURIComponent(stayId)}">
+
+                            ${imageMarkup}
+
+                        </a>
+
+
+                        <span class="stay-result-badge">
+                            ${escapeHtml(badge)}
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="stay-result-heart"
+                            aria-label="Save stay"
+                            data-stay-id="${stayId}">
+
+                            ♡
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="stay-result-info">
+
+                        <div class="stay-result-price">
+
+                            GH₵${price}
+
+                            <span>
+                                / night
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            ${title}
+                        </h3>
+
+
+                        <p class="stay-result-location">
+
+                            📍 ${location}
+
+                        </p>
+
+
+                        <div class="stay-result-details">
+
+                            ${detailsMarkup}
+
+                        </div>
+
+
+                        <a
+                            href="stay-details.html?id=${encodeURIComponent(stayId)}"
+                            class="stay-view-button">
+
+                            View Stay
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+
+
+        /* =================================================
+           SAVE BUTTON
+        ================================================= */
+
+        function attachSaveButtons() {
+
+            resultsGrid
+                .querySelectorAll(
+                    ".stay-result-heart"
+                )
+                .forEach(
+                    function (button) {
+
+                        button.addEventListener(
+                            "click",
+                            function (event) {
+
+                                event.preventDefault();
+                                event.stopPropagation();
+
+
+                                const isSaved =
+                                    button.textContent.trim()
+                                    === "♥";
+
+
+                                if (!isSaved) {
+
+                                    button.textContent =
+                                        "♥";
+
+                                    button.setAttribute(
+                                        "aria-label",
+                                        "Remove saved stay"
+                                    );
+
+                                } else {
+
+                                    button.textContent =
+                                        "♡";
+
+                                    button.setAttribute(
+                                        "aria-label",
+                                        "Save stay"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* =================================================
+           BUILD API URL
+        ================================================= */
+
+        function buildApiUrl() {
+
+            const url =
+                new URL(
+                    `${API_BASE_URL}/api/Stays`
+                );
+
+
+            const destinationValue =
+                destinationInput.value.trim();
+
+
+            const typeValue =
+                typeInput.value ||
+                filterType.value;
+
+
+            const priceValue =
+                filterPrice.value;
+
+
+            const guestsValue =
+                guestsInput.value;
+
+
+            if (destinationValue) {
+
+                url.searchParams.set(
+                    "location",
+                    destinationValue
+                );
+
+            }
+
+
+            if (typeValue) {
+
+                url.searchParams.set(
+                    "type",
+                    typeValue
+                );
+
+            }
+
+
+            if (priceValue) {
+
+                url.searchParams.set(
+                    "maxPrice",
+                    priceValue
+                );
+
+            }
+
+
+            if (guestsValue) {
+
+                url.searchParams.set(
+                    "guests",
+                    guestsValue
+                );
+
+            }
+
+
+            return url.toString();
+
+        }
+
+
+        /* =================================================
+           LOAD STAYS
+        ================================================= */
+
+        async function loadStays() {
+
+            resultsGrid.innerHTML = `
+
+                <div class="stays-loading">
+
+                    <div class="loading-spinner"></div>
+
+                    <strong>
+                        Finding available stays...
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            noStays.style.display =
+                "none";
+
+
+            resultsCount.textContent =
+                "Loading stays...";
+
+
+            try {
+
+                const apiUrl =
+                    buildApiUrl();
+
+
+                const response =
+                    await fetch(
+                        apiUrl,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                const rawText =
+                    await response.text();
+
+
+                let data = [];
+
+
+                if (rawText) {
+
+                    try {
+
+                        data =
+                            JSON.parse(
+                                rawText
+                            );
+
+                    } catch {
+
+                        throw new Error(
+                            "The server returned an invalid response."
+                        );
+
+                    }
+
+                }
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data?.message ||
+                        data?.title ||
+                        "Unable to load stays."
+                    );
+
+                }
+
+
+                const stays =
+                    Array.isArray(data)
+                        ? data
+                        : [];
+
+
+                /*
+                   API already handles:
+                   - published status
+                   - location
+                   - type
+                   - maximum price
+                   - guests
+                */
+
+
+                if (!stays.length) {
+
+                    resultsGrid.innerHTML =
+                        "";
+
+                    resultsCount.textContent =
+                        "0 stays found";
+
+                    noStaysMessage.textContent =
+                        "No published stays match your current search. Try changing your destination, stay type, guest count or price range.";
+
+                    noStays.style.display =
+                        "block";
+
+                    return;
+
+                }
+
+
+                resultsGrid.innerHTML =
+                    stays
+                        .map(
+                            renderStayCard
+                        )
+                        .join("");
+
+
+                resultsCount.textContent =
+                    stays.length +
+                    (
+                        stays.length === 1
+                            ? " stay found"
+                            : " stays found"
+                    );
+
+
+                noStays.style.display =
+                    "none";
+
+
+                attachSaveButtons();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Stay search error:",
+                    error
+                );
+
+
+                resultsGrid.innerHTML =
+                    "";
+
+
+                resultsCount.textContent =
+                    "Unable to load stays";
+
+
+                noStaysMessage.textContent =
+                    error.message ||
+                    "We could not load stays right now. Please make sure the HavenGH API is running and try again.";
+
+
+                noStays.style.display =
+                    "block";
+
+            }
+
+        }
+
+
+        /* =================================================
+           SEARCH
+        ================================================= */
+
+        if (searchForm) {
+
+            searchForm.addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    /*
+                       Keep the selected dates in the
+                       page because the booking system
+                       will use them later.
+
+                       The current GET /api/Stays endpoint
+                       does not perform date availability
+                       filtering yet.
+                    */
+
+
+                    loadStays();
+
+
+                    const resultsSection =
+                        document.querySelector(
+                            ".stay-results-section"
+                        );
+
+
+                    if (resultsSection) {
+
+                        resultsSection.scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           TYPE FILTER
+        ================================================= */
+
+        if (filterType) {
+
+            filterType.addEventListener(
+                "change",
+                function () {
+
+                    typeInput.value =
+                        filterType.value;
+
+
+                    loadStays();
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           LOCATION FILTER
+        ================================================= */
+
+        if (filterLocation) {
+
+            filterLocation.addEventListener(
+                "change",
+                function () {
+
+                    destinationInput.value =
+                        filterLocation.value;
+
+
+                    loadStays();
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           PRICE FILTER
+        ================================================= */
+
+        if (filterPrice) {
+
+            filterPrice.addEventListener(
+                "change",
+                function () {
+
+                    loadStays();
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           CLEAR FILTERS
+        ================================================= */
+
+        if (clearFilters) {
+
+            clearFilters.addEventListener(
+                "click",
+                function () {
+
+                    destinationInput.value =
+                        "";
+
+                    typeInput.value =
+                        "";
+
+                    filterType.value =
+                        "";
+
+                    filterLocation.value =
+                        "";
+
+                    filterPrice.value =
+                        "";
+
+                    checkInInput.value =
+                        "";
+
+                    checkOutInput.value =
+                        "";
+
+                    guestsInput.value =
+                        "2";
+
+
+                    loadStays();
+
+                }
+            );
+
+        }
+
+
+        /* =================================================
+           INITIAL LOAD
+        ================================================= */
+
+        loadStays();
+
+    }
+
+);
+
+</script>
+
+</body>
+</html>

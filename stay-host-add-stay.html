@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+      content="Create and publish a premium stay listing on HavenGH.">
+
+<title>Add New Stay | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+    /* =========================================================
+       HAVENGH — PREMIUM ADD STAY
+    ========================================================= */
+
+    :root {
+        --hg-green: #064e3b;
+        --hg-green-dark: #043c2e;
+        --hg-teal: #0f766e;
+        --hg-gold: #d4af37;
+        --hg-gold-light: #f4e7b0;
+        --hg-bg: #f5f8f6;
+        --hg-card: #ffffff;
+        --hg-text: #17231f;
+        --hg-muted: #6b7280;
+        --hg-border: #dfe8e3;
+        --hg-danger: #b91c1c;
+        --hg-success: #047857;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: var(--hg-bg);
+        color: var(--hg-text);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font: inherit;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    .add-stay-page {
+        min-height: 100vh;
+    }
+
+    .add-stay-container {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .add-stay-header {
+        background: #fff;
+        border-bottom: 1px solid var(--hg-border);
+        padding: 16px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .add-stay-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .hg-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+
+    .hg-brand img {
+        width: 46px;
+        height: 46px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .hg-brand-name {
+        font-size: 24px;
+        font-weight: 900;
+        color: var(--hg-green);
+    }
+
+    .hg-brand-name span {
+        color: var(--hg-gold);
+    }
+
+    .host-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #eef7f3;
+        color: var(--hg-green);
+        border: 1px solid #d5e8df;
+        padding: 9px 14px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .host-badge::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #16a34a;
+    }
+
+    /* =========================================================
+       MAIN
+    ========================================================= */
+
+    .add-stay-main {
+        padding: 42px 0 80px;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--hg-green);
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .back-link:hover {
+        color: var(--hg-gold);
+    }
+
+    .page-heading {
+        margin-bottom: 30px;
+    }
+
+    .eyebrow {
+        display: block;
+        color: var(--hg-gold);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .page-heading h1 {
+        margin: 0 0 10px;
+        color: var(--hg-green);
+        font-size: clamp(30px, 4vw, 42px);
+    }
+
+    .page-heading p {
+        margin: 0;
+        color: var(--hg-muted);
+        max-width: 720px;
+        line-height: 1.7;
+    }
+
+    /* =========================================================
+       LAYOUT
+    ========================================================= */
+
+    .add-stay-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 25px;
+        align-items: start;
+    }
+
+    /* =========================================================
+       CARDS
+    ========================================================= */
+
+    .stay-form-card,
+    .side-card {
+        background: var(--hg-card);
+        border: 1px solid var(--hg-border);
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(6, 78, 59, 0.06);
+        overflow: hidden;
+    }
+
+    .form-section {
+        padding: 28px;
+        border-bottom: 1px solid var(--hg-border);
+    }
+
+    .form-section:last-child {
+        border-bottom: none;
+    }
+
+    .form-section-heading {
+        margin-bottom: 22px;
+    }
+
+    .form-section-heading h2 {
+        margin: 0 0 6px;
+        color: var(--hg-green);
+        font-size: 20px;
+    }
+
+    .form-section-heading p {
+        margin: 0;
+        color: var(--hg-muted);
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* =========================================================
+       FORM GRID
+    ========================================================= */
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .form-group.full {
+        grid-column: 1 / -1;
+    }
+
+    .form-group label {
+        color: var(--hg-text);
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .required {
+        color: var(--hg-danger);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        border: 1px solid var(--hg-border);
+        border-radius: 11px;
+        background: #fbfdfc;
+        color: var(--hg-text);
+        padding: 13px 14px;
+        outline: none;
+        transition: .2s ease;
+    }
+
+    .form-group textarea {
+        min-height: 140px;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: var(--hg-teal);
+        box-shadow: 0 0 0 3px rgba(15, 118, 110, .10);
+        background: #fff;
+    }
+
+    .field-help {
+        color: var(--hg-muted);
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .field-error {
+        display: none;
+        color: var(--hg-danger);
+        font-size: 11px;
+        font-weight: 700;
+    }
+
+    .form-group.invalid input,
+    .form-group.invalid select,
+    .form-group.invalid textarea {
+        border-color: #ef4444;
+    }
+
+    .form-group.invalid .field-error {
+        display: block;
+    }
+
+    /* =========================================================
+       PRICE INPUT
+    ========================================================= */
+
+    .price-input-wrapper {
+        position: relative;
+    }
+
+    .price-prefix {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--hg-green);
+        font-weight: 900;
+        pointer-events: none;
+    }
+
+    .price-input-wrapper input {
+        padding-left: 55px;
+    }
+
+    /* =========================================================
+       COUNTERS
+    ========================================================= */
+
+    .field-counter {
+        display: flex;
+        justify-content: space-between;
+        color: var(--hg-muted);
+        font-size: 11px;
+    }
+
+    /* =========================================================
+       AMENITIES
+    ========================================================= */
+
+    .amenities-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .amenity-option {
+        position: relative;
+    }
+
+    .amenity-option input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .amenity-option label {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 48px;
+        padding: 11px 12px;
+        border: 1px solid var(--hg-border);
+        border-radius: 11px;
+        background: #fbfdfc;
+        color: var(--hg-text);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: .2s ease;
+    }
+
+    .amenity-option label:hover {
+        border-color: var(--hg-teal);
+    }
+
+    .amenity-option input:checked + label {
+        background: #eef7f3;
+        border-color: var(--hg-teal);
+        color: var(--hg-green);
+    }
+
+    .amenity-icon {
+        font-size: 17px;
+    }
+
+    /* =========================================================
+       PHOTOS
+    ========================================================= */
+
+    .photo-upload {
+        border: 2px dashed #cbd9d3;
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        background: #fbfdfc;
+        transition: .2s ease;
+    }
+
+    .photo-upload:hover {
+        border-color: var(--hg-teal);
+        background: #f6fbf9;
+    }
+
+    .photo-upload-icon {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    .photo-upload h3 {
+        margin: 0 0 6px;
+        color: var(--hg-green);
+        font-size: 16px;
+    }
+
+    .photo-upload p {
+        margin: 0 0 15px;
+        color: var(--hg-muted);
+        font-size: 12px;
+    }
+
+    .upload-button {
+        display: inline-block;
+        background: var(--hg-green);
+        color: #fff;
+        padding: 11px 17px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    .upload-button:hover {
+        background: var(--hg-teal);
+    }
+
+    #stayPhotos {
+        display: none;
+    }
+
+    .photo-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .photo-preview {
+        position: relative;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border-radius: 11px;
+        background: #edf3f0;
+    }
+
+    .photo-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .photo-number {
+        position: absolute;
+        left: 7px;
+        bottom: 7px;
+        background: rgba(0, 0, 0, .65);
+        color: #fff;
+        padding: 4px 7px;
+        border-radius: 6px;
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+    /* =========================================================
+       ACTIONS
+    ========================================================= */
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 22px 28px;
+        background: #fbfdfc;
+        border-top: 1px solid var(--hg-border);
+    }
+
+    .action-left,
+    .action-right {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .action-button {
+        border: none;
+        border-radius: 10px;
+        padding: 13px 18px;
+        font-size: 13px;
+        font-weight: 800;
+        transition: .2s ease;
+    }
+
+    .action-button:hover {
+        transform: translateY(-1px);
+    }
+
+    .button-primary {
+        background: var(--hg-green);
+        color: #fff;
+    }
+
+    .button-primary:hover {
+        background: var(--hg-teal);
+    }
+
+    .button-gold {
+        background: var(--hg-gold);
+        color: #17231f;
+    }
+
+    .button-gold:hover {
+        background: #c9a52d;
+    }
+
+    .button-secondary {
+        background: #fff;
+        color: var(--hg-green);
+        border: 1px solid var(--hg-border);
+    }
+
+    .button-secondary:hover {
+        background: #eef7f3;
+    }
+
+    .button-danger {
+        background: #fff;
+        color: var(--hg-danger);
+        border: 1px solid #fecaca;
+    }
+
+    .button-danger:hover {
+        background: #fef2f2;
+    }
+
+    .action-button:disabled {
+        opacity: .65;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* =========================================================
+       SIDE PANEL
+    ========================================================= */
+
+    .side-card {
+        position: sticky;
+        top: 90px;
+        margin-bottom: 20px;
+    }
+
+    .side-card-header {
+        padding: 20px;
+        border-bottom: 1px solid var(--hg-border);
+    }
+
+    .side-card-header h3 {
+        margin: 0;
+        color: var(--hg-green);
+        font-size: 17px;
+    }
+
+    .side-card-body {
+        padding: 20px;
+    }
+
+    .check-list {
+        display: grid;
+        gap: 14px;
+    }
+
+    .check-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .check-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #eef7f3;
+        color: var(--hg-green);
+        font-size: 12px;
+        font-weight: 900;
+    }
+
+    .check-item strong {
+        display: block;
+        color: var(--hg-text);
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+
+    .check-item span {
+        color: var(--hg-muted);
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .premium-note {
+        background: linear-gradient(
+            135deg,
+            var(--hg-green),
+            var(--hg-teal)
+        );
+        color: #fff;
+        border-radius: 16px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .premium-note strong {
+        display: block;
+        color: var(--hg-gold-light);
+        margin-bottom: 7px;
+        font-size: 13px;
+    }
+
+    .premium-note p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.7;
+        opacity: .92;
+    }
+
+    /* =========================================================
+       STATUS MESSAGE
+    ========================================================= */
+
+    .form-message {
+        display: none;
+        margin: 0 28px 20px;
+        padding: 13px 15px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .form-message.success {
+        display: block;
+        background: #ecfdf5;
+        color: #065f46;
+        border: 1px solid #a7f3d0;
+    }
+
+    .form-message.error {
+        display: block;
+        background: #fef2f2;
+        color: #991b1b;
+        border: 1px solid #fecaca;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .add-stay-footer {
+        background: #fff;
+        border-top: 1px solid var(--hg-border);
+        padding: 25px 0;
+    }
+
+    .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--hg-muted);
+        font-size: 12px;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 950px) {
+
+        .add-stay-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .side-card {
+            position: static;
+        }
+    }
+
+    @media (max-width: 700px) {
+
+        .add-stay-container {
+            width: min(100% - 24px, 1180px);
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+            grid-column: auto;
+        }
+
+        .amenities-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .photo-preview-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .action-left,
+        .action-right {
+            width: 100%;
+        }
+
+        .action-button {
+            flex: 1;
+        }
+
+        .footer-inner {
+            flex-direction: column;
+        }
+
+        .host-badge {
+            display: none;
+        }
+    }
+</style>
+
+
+</head>
+
+<body class="add-stay-page">
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="add-stay-header">
+
+
+<div class="add-stay-container add-stay-header-inner">
+
+    <a href="stay-host-dashboard.html" class="hg-brand">
+
+        <img
+            src="havengh logo.jpeg"
+            alt="HavenGH Logo">
+
+        <div class="hg-brand-name">
+            Haven<span>GH</span>
+        </div>
+
+    </a>
+
+    <div class="host-badge">
+        Host Portal
+    </div>
+
+</div>
+
+
+</header>
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="add-stay-main">
+
+
+<div class="add-stay-container">
+
+    <a
+        href="stay-properties.html"
+        class="back-link">
+
+        ← Back to My Stays
+
+    </a>
+
+
+    <div class="page-heading">
+
+        <span class="eyebrow">
+            HOST YOUR SPACE
+        </span>
+
+        <h1>
+            Add a new stay
+        </h1>
+
+        <p>
+            Create a polished listing for travellers discovering
+            Ghana. Give guests the information they need to book
+            with confidence.
+        </p>
+
+    </div>
+
+
+    <div class="add-stay-layout">
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <form
+            id="addStayForm"
+            class="stay-form-card"
+            novalidate>
+
+
+            <!-- =============================================
+                 BASIC INFORMATION
+            ============================================== -->
+
+            <section class="form-section">
+
+                <div class="form-section-heading">
+
+                    <h2>
+                        Stay information
+                    </h2>
+
+                    <p>
+                        Start with the basic details guests will
+                        see on your listing.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label for="stayName">
+                            Stay name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="stayName"
+                            name="stayName"
+                            maxlength="100"
+                            placeholder="e.g. Luxury East Legon Serviced Apartment"
+                            required>
+
+                        <div class="field-counter">
+                            <span>
+                                Use a clear, attractive name.
+                            </span>
+
+                            <span>
+                                <strong id="stayNameCount">0</strong>/100
+                            </span>
+                        </div>
+
+                        <span class="field-error">
+                            Please enter the stay name.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="stayType">
+                            Stay type
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="stayType"
+                            name="stayType"
+                            required>
+
+                            <option value="">
+                                Select stay type
+                            </option>
+
+                            <option value="hotel">
+                                Hotel
+                            </option>
+
+                            <option value="serviced-apartment">
+                                Serviced Apartment
+                            </option>
+
+                            <option value="short-stay">
+                                Short-Stay Apartment
+                            </option>
+
+                            <option value="villa">
+                                Villa
+                            </option>
+
+                            <option value="guest-house">
+                                Guest House
+                            </option>
+
+                            <option value="other">
+                                Resort / Other
+                            </option>
+
+                        </select>
+
+                        <span class="field-error">
+                            Select a stay type.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="stayLocation">
+                            City / destination
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="stayLocation"
+                            name="stayLocation"
+                            maxlength="100"
+                            placeholder="e.g. Accra"
+                            required>
+
+                        <span class="field-error">
+                            Enter the destination.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="stayAddress">
+                            Address / neighbourhood
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="stayAddress"
+                            name="stayAddress"
+                            maxlength="300"
+                            placeholder="e.g. East Legon Hills, Accra"
+                            required>
+
+                        <span class="field-help">
+                            Give guests enough information to understand
+                            where the stay is located.
+                        </span>
+
+                        <span class="field-error">
+                            Enter the stay location.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 PRICING & CAPACITY
+            ============================================== -->
+
+            <section class="form-section">
+
+                <div class="form-section-heading">
+
+                    <h2>
+                        Pricing & capacity
+                    </h2>
+
+                    <p>
+                        Tell guests what the stay costs and how many
+                        people it can accommodate.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="pricePerNight">
+                            Price per night
+                            <span class="required">*</span>
+                        </label>
+
+                        <div class="price-input-wrapper">
+
+                            <span class="price-prefix">
+                                GH₵
+                            </span>
+
+                            <input
+                                type="number"
+                                id="pricePerNight"
+                                name="pricePerNight"
+                                min="1"
+                                step="1"
+                                placeholder="1200"
+                                required>
+
+                        </div>
+
+                        <span class="field-error">
+                            Enter a valid nightly price.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="maxGuests">
+                            Maximum guests
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="maxGuests"
+                            name="maxGuests"
+                            min="1"
+                            max="50"
+                            step="1"
+                            placeholder="4"
+                            required>
+
+                        <span class="field-error">
+                            Enter the maximum number of guests.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="bedrooms">
+                            Bedrooms
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bedrooms"
+                            name="bedrooms"
+                            min="0"
+                            max="50"
+                            step="1"
+                            placeholder="2"
+                            required>
+
+                        <span class="field-error">
+                            Enter the number of bedrooms.
+                        </span>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="bathrooms">
+                            Bathrooms
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bathrooms"
+                            name="bathrooms"
+                            min="0"
+                            max="50"
+                            step="0.5"
+                            placeholder="2"
+                            required>
+
+                        <span class="field-error">
+                            Enter the number of bathrooms.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 AMENITIES
+            ============================================== -->
+
+            <section class="form-section">
+
+                <div class="form-section-heading">
+
+                    <h2>
+                        Amenities
+                    </h2>
+
+                    <p>
+                        Select the facilities available at this stay.
+                    </p>
+
+                </div>
+
+
+                <div class="amenities-grid">
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="wifi"
+                            name="amenities"
+                            value="Wi-Fi">
+
+                        <label for="wifi">
+                            <span class="amenity-icon">📶</span>
+                            Wi-Fi
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="ac"
+                            name="amenities"
+                            value="Air Conditioning">
+
+                        <label for="ac">
+                            <span class="amenity-icon">❄</span>
+                            Air Conditioning
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="parking"
+                            name="amenities"
+                            value="Parking">
+
+                        <label for="parking">
+                            <span class="amenity-icon">🚗</span>
+                            Parking
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="pool"
+                            name="amenities"
+                            value="Swimming Pool">
+
+                        <label for="pool">
+                            <span class="amenity-icon">🏊</span>
+                            Swimming Pool
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="kitchen"
+                            name="amenities"
+                            value="Kitchen">
+
+                        <label for="kitchen">
+                            <span class="amenity-icon">🍳</span>
+                            Kitchen
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="breakfast"
+                            name="amenities"
+                            value="Breakfast">
+
+                        <label for="breakfast">
+                            <span class="amenity-icon">🥐</span>
+                            Breakfast
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="security"
+                            name="amenities"
+                            value="24/7 Security">
+
+                        <label for="security">
+                            <span class="amenity-icon">🛡</span>
+                            24/7 Security
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="workspace"
+                            name="amenities"
+                            value="Workspace">
+
+                        <label for="workspace">
+                            <span class="amenity-icon">💼</span>
+                            Workspace
+                        </label>
+
+                    </div>
+
+
+                    <div class="amenity-option">
+
+                        <input
+                            type="checkbox"
+                            id="tv"
+                            name="amenities"
+                            value="Smart TV">
+
+                        <label for="tv">
+                            <span class="amenity-icon">📺</span>
+                            Smart TV
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 PHOTOS
+            ============================================== -->
+
+            <section class="form-section">
+
+                <div class="form-section-heading">
+
+                    <h2>
+                        Stay photos
+                    </h2>
+
+                    <p>
+                        High-quality photos help international
+                        travellers understand what they are booking.
+                    </p>
+
+                </div>
+
+
+                <div class="photo-upload">
+
+                    <div class="photo-upload-icon">
+                        📸
+                    </div>
+
+                    <h3>
+                        Add photos of your stay
+                    </h3>
+
+                    <p>
+                        Upload up to 12 JPG, JPEG, PNG or WEBP images.
+                    </p>
+
+                    <label
+                        for="stayPhotos"
+                        class="upload-button">
+
+                        Choose Photos
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="stayPhotos"
+                        name="stayPhotos"
+                        accept="image/jpeg,image/png,image/webp"
+                        multiple>
+
+                </div>
+
+
+                <div
+                    id="photoPreviewGrid"
+                    class="photo-preview-grid">
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 DESCRIPTION
+            ============================================== -->
+
+            <section class="form-section">
+
+                <div class="form-section-heading">
+
+                    <h2>
+                        About the stay
+                    </h2>
+
+                    <p>
+                        Write a welcoming and accurate description.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="stayDescription">
+
+                        Description
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <textarea
+                        id="stayDescription"
+                        name="stayDescription"
+                        maxlength="1500"
+                        placeholder="Describe the accommodation, nearby attractions, atmosphere, facilities and anything important guests should know..."
+                        required></textarea>
+
+                    <div class="field-counter">
+
+                        <span>
+                            Aim for clear and useful information.
+                        </span>
+
+                        <span>
+                            <strong id="descriptionCount">0</strong>/1500
+                        </span>
+
+                    </div>
+
+                    <span class="field-error">
+                        Please provide a description.
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 HOUSE RULES
+            ============================================== -->
+
+            <section class="form-section">
+
+                <div class="form-section-heading">
+
+                    <h2>
+                        Guest rules
+                    </h2>
+
+                    <p>
+                        Set expectations before a guest requests a booking.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label for="houseRules">
+                            House rules
+                        </label>
+
+                        <textarea
+                            id="houseRules"
+                            name="houseRules"
+                            maxlength="1000"
+                            placeholder="Example: No smoking indoors. Quiet hours after 10 PM. Guests must provide valid identification at check-in."></textarea>
+
+                        <div class="field-counter">
+
+                            <span>
+                                Optional
+                            </span>
+
+                            <span>
+                                <strong id="rulesCount">0</strong>/1000
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="checkInTime">
+                            Check-in time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="checkInTime"
+                            name="checkInTime"
+                            value="14:00">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="checkOutTime">
+                            Check-out time
+                        </label>
+
+                        <input
+                            type="time"
+                            id="checkOutTime"
+                            name="checkOutTime"
+                            value="11:00">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =============================================
+                 MESSAGE
+            ============================================== -->
+
+            <div
+                id="formMessage"
+                class="form-message">
+            </div>
+
+
+            <!-- =============================================
+                 ACTIONS
+            ============================================== -->
+
+            <div class="form-actions">
+
+                <div class="action-left">
+
+                    <button
+                        type="button"
+                        class="action-button button-secondary"
+                        id="resetBtn">
+
+                        Reset
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="action-button button-secondary"
+                        id="previewBtn">
+
+                        Preview
+
+                    </button>
+
+                </div>
+
+
+                <div class="action-right">
+
+                    <button
+                        type="button"
+                        class="action-button button-secondary"
+                        id="saveDraftBtn">
+
+                        Save Draft
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="action-button button-gold"
+                        id="publishBtn">
+
+                        Create Stay →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside>
+
+            <section class="side-card">
+
+                <div class="side-card-header">
+
+                    <h3>
+                        Listing checklist
+                    </h3>
+
+                </div>
+
+
+                <div class="side-card-body">
+
+                    <div class="check-list">
+
+
+                        <div class="check-item">
+
+                            <div class="check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Accurate information
+                                </strong>
+
+                                <span>
+                                    Make sure your price, location
+                                    and facilities are correct.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="check-item">
+
+                            <div class="check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Quality photos
+                                </strong>
+
+                                <span>
+                                    Show bedrooms, bathrooms,
+                                    living areas and exterior spaces.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="check-item">
+
+                            <div class="check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Clear description
+                                </strong>
+
+                                <span>
+                                    Help travellers understand
+                                    exactly what they are booking.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="check-item">
+
+                            <div class="check-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Guest expectations
+                                </strong>
+
+                                <span>
+                                    Add house rules and check-in
+                                    information where necessary.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="premium-note">
+
+                        <strong>
+                            ✦ HavenGH Premium Standard
+                        </strong>
+
+                        <p>
+                            Published stays may be reviewed before
+                            appearing publicly. This helps maintain
+                            trust and a high-quality experience for
+                            guests visiting Ghana.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+</div>
+```
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="add-stay-footer">
+
+
+<div class="add-stay-container footer-inner">
+
+    <span>
+        © 2026 HavenGH. All rights reserved.
+    </span>
+
+    <span>
+        Built for Ghana 🇬🇭
+    </span>
+
+</div>
+
+
+</footer>
+
+<!-- =========================================================
+     PAGE SCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =========================================================
+       API
+    ========================================================= */
+
+    const API_BASE_URL =
+        "http://localhost:5073";
+
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const form =
+        document.getElementById("addStayForm");
+
+    const message =
+        document.getElementById("formMessage");
+
+    const photoInput =
+        document.getElementById("stayPhotos");
+
+    const previewGrid =
+        document.getElementById("photoPreviewGrid");
+
+    const stayName =
+        document.getElementById("stayName");
+
+    const description =
+        document.getElementById("stayDescription");
+
+    const houseRules =
+        document.getElementById("houseRules");
+
+    const stayNameCount =
+        document.getElementById("stayNameCount");
+
+    const descriptionCount =
+        document.getElementById("descriptionCount");
+
+    const rulesCount =
+        document.getElementById("rulesCount");
+
+    const saveDraftBtn =
+        document.getElementById("saveDraftBtn");
+
+    const previewBtn =
+        document.getElementById("previewBtn");
+
+    const resetBtn =
+        document.getElementById("resetBtn");
+
+    const publishBtn =
+        document.getElementById("publishBtn");
+
+
+    let isSubmitting = false;
+
+
+    /* =========================================================
+       CHARACTER COUNTERS
+    ========================================================= */
+
+    function updateCounter(input, counter) {
+
+        counter.textContent =
+            input.value.length;
+
+    }
+
+
+    stayName.addEventListener("input", function () {
+
+        updateCounter(
+            stayName,
+            stayNameCount
+        );
+
+    });
+
+
+    description.addEventListener("input", function () {
+
+        updateCounter(
+            description,
+            descriptionCount
+        );
+
+    });
+
+
+    houseRules.addEventListener("input", function () {
+
+        updateCounter(
+            houseRules,
+            rulesCount
+        );
+
+    });
+
+
+    /* =========================================================
+       PHOTO PREVIEW
+    ========================================================= */
+
+    photoInput.addEventListener("change", function () {
+
+        previewGrid.innerHTML = "";
+
+        const files =
+            Array.from(photoInput.files);
+
+
+        if (files.length > 12) {
+
+            showMessage(
+                "Please select a maximum of 12 photos.",
+                "error"
+            );
+
+            photoInput.value = "";
+
+            return;
+        }
+
+
+        files.forEach(function (file, index) {
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+
+            if (!allowedTypes.includes(file.type)) {
+
+                return;
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload = function (event) {
+
+                const preview =
+                    document.createElement("div");
+
+                preview.className =
+                    "photo-preview";
+
+
+                preview.innerHTML = `
+
+                    <img
+                        src="${event.target.result}"
+                        alt="Stay photo ${index + 1}">
+
+                    <span class="photo-number">
+                        Photo ${index + 1}
+                    </span>
+
+                `;
+
+
+                previewGrid.appendChild(preview);
+
+            };
+
+
+            reader.readAsDataURL(file);
+
+        });
+
+    });
+
+
+    /* =========================================================
+       VALIDATION
+    ========================================================= */
+
+    function validateField(id) {
+
+        const field =
+            document.getElementById(id);
+
+        const group =
+            field.closest(".form-group");
+
+
+        if (!field.checkValidity()) {
+
+            group.classList.add("invalid");
+
+            return false;
+        }
+
+
+        group.classList.remove("invalid");
+
+        return true;
+
+    }
+
+
+    function validateForm() {
+
+        const requiredFields = [
+
+            "stayName",
+            "stayType",
+            "stayLocation",
+            "stayAddress",
+            "pricePerNight",
+            "maxGuests",
+            "bedrooms",
+            "bathrooms",
+            "stayDescription"
+
+        ];
+
+
+        let valid = true;
+
+
+        requiredFields.forEach(function (id) {
+
+            if (!validateField(id)) {
+
+                valid = false;
+
+            }
+
+        });
+
+
+        return valid;
+
+    }
+
+
+    /* =========================================================
+       MESSAGE
+    ========================================================= */
+
+    function showMessage(text, type) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "form-message " + type;
+
+
+        message.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+
+    /* =========================================================
+       COLLECT FORM DATA
+    ========================================================= */
+
+    function collectFormData() {
+
+        const amenities =
+            Array.from(
+                document.querySelectorAll(
+                    'input[name="amenities"]:checked'
+                )
+            ).map(function (checkbox) {
+
+                return checkbox.value;
+
+            });
+
+
+        return {
+
+            stayName:
+                document
+                    .getElementById("stayName")
+                    .value
+                    .trim(),
+
+            stayType:
+                document
+                    .getElementById("stayType")
+                    .value,
+
+            location:
+                document
+                    .getElementById("stayLocation")
+                    .value
+                    .trim(),
+
+            address:
+                document
+                    .getElementById("stayAddress")
+                    .value
+                    .trim(),
+
+            pricePerNight:
+                Number(
+                    document
+                        .getElementById("pricePerNight")
+                        .value
+                ),
+
+            maxGuests:
+                Number(
+                    document
+                        .getElementById("maxGuests")
+                        .value
+                ),
+
+            bedrooms:
+                Number(
+                    document
+                        .getElementById("bedrooms")
+                        .value
+                ),
+
+            bathrooms:
+                Number(
+                    document
+                        .getElementById("bathrooms")
+                        .value
+                ),
+
+            amenities:
+                amenities,
+
+            description:
+                document
+                    .getElementById("stayDescription")
+                    .value
+                    .trim(),
+
+            houseRules:
+                document
+                    .getElementById("houseRules")
+                    .value
+                    .trim(),
+
+            checkIn:
+                document
+                    .getElementById("checkInTime")
+                    .value,
+
+            checkOut:
+                document
+                    .getElementById("checkOutTime")
+                    .value
+
+        };
+
+    }
+
+
+    /* =========================================================
+       SAVE LOCAL DRAFT
+    ========================================================= */
+
+    saveDraftBtn.addEventListener(
+        "click",
+        function () {
+
+            const data =
+                collectFormData();
+
+
+            localStorage.setItem(
+                "havenGH_host_stay_draft",
+                JSON.stringify(data)
+            );
+
+
+            showMessage(
+                "Draft saved successfully on this device.",
+                "success"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       LOAD LOCAL DRAFT
+    ========================================================= */
+
+    function loadDraft() {
+
+        const saved =
+            localStorage.getItem(
+                "havenGH_host_stay_draft"
+            );
+
+
+        if (!saved) {
+            return;
+        }
+
+
+        try {
+
+            const data =
+                JSON.parse(saved);
+
+
+            document.getElementById("stayName").value =
+                data.stayName || "";
+
+
+            document.getElementById("stayType").value =
+                data.stayType || "";
+
+
+            document.getElementById("stayLocation").value =
+                data.location || "";
+
+
+            document.getElementById("stayAddress").value =
+                data.address || "";
+
+
+            document.getElementById("pricePerNight").value =
+                data.pricePerNight ?? "";
+
+
+            document.getElementById("maxGuests").value =
+                data.maxGuests ?? "";
+
+
+            document.getElementById("bedrooms").value =
+                data.bedrooms ?? "";
+
+
+            document.getElementById("bathrooms").value =
+                data.bathrooms ?? "";
+
+
+            document.getElementById("stayDescription").value =
+                data.description || "";
+
+
+            document.getElementById("houseRules").value =
+                data.houseRules || "";
+
+
+            document.getElementById("checkInTime").value =
+                data.checkIn || "14:00";
+
+
+            document.getElementById("checkOutTime").value =
+                data.checkOut || "11:00";
+
+
+            if (Array.isArray(data.amenities)) {
+
+                data.amenities.forEach(
+                    function (amenity) {
+
+                        const checkbox =
+                            Array.from(
+                                document.querySelectorAll(
+                                    'input[name="amenities"]'
+                                )
+                            ).find(
+                                function (input) {
+                                    return input.value === amenity;
+                                }
+                            );
+
+
+                        if (checkbox) {
+                            checkbox.checked = true;
+                        }
+
+                    }
+                );
+
+            }
+
+
+            updateCounter(
+                stayName,
+                stayNameCount
+            );
+
+
+            updateCounter(
+                description,
+                descriptionCount
+            );
+
+
+            updateCounter(
+                houseRules,
+                rulesCount
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Could not load stay draft.",
+                error
+            );
+
+        }
+
+    }
+
+
+    loadDraft();
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    resetBtn.addEventListener(
+        "click",
+        function () {
+
+            const confirmed =
+                window.confirm(
+                    "Reset this form? Unsaved information will be removed."
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            form.reset();
+
+            previewGrid.innerHTML = "";
+
+
+            document
+                .querySelectorAll(
+                    ".form-group.invalid"
+                )
+                .forEach(
+                    function (group) {
+
+                        group.classList.remove(
+                            "invalid"
+                        );
+
+                    }
+                );
+
+
+            stayNameCount.textContent =
+                "0";
+
+            descriptionCount.textContent =
+                "0";
+
+            rulesCount.textContent =
+                "0";
+
+
+            localStorage.removeItem(
+                "havenGH_host_stay_draft"
+            );
+
+
+            showMessage(
+                "Form has been reset.",
+                "success"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       PREVIEW
+    ========================================================= */
+
+    previewBtn.addEventListener(
+        "click",
+        function () {
+
+            if (!validateForm()) {
+
+                showMessage(
+                    "Please complete the required fields before previewing your stay.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const data =
+                collectFormData();
+
+
+            sessionStorage.setItem(
+                "havenGH_stay_preview",
+                JSON.stringify(data)
+            );
+
+
+            window.location.href =
+                "stay-preview.html";
+
+        }
+    );
+
+
+    /* =========================================================
+       CREATE STAY THROUGH API
+    ========================================================= */
+
+    async function createStay() {
+
+        if (isSubmitting) {
+            return;
+        }
+
+
+        if (!validateForm()) {
+
+            showMessage(
+                "Please complete all required fields before creating your stay.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const token =
+            localStorage.getItem(
+                "havenGH_token"
+            );
+
+
+        if (!token) {
+
+            showMessage(
+                "Your session has expired. Please sign in again.",
+                "error"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1500
+            );
+
+
+            return;
+        }
+
+
+        const data =
+            collectFormData();
+
+
+        /*
+         * IMPORTANT
+         *
+         * OwnerUserId is NOT sent from the browser.
+         *
+         * The API obtains the authenticated user
+         * from the JWT token.
+         */
+
+
+        const payload = {
+
+            title:
+                data.stayName,
+
+            description:
+                data.description,
+
+            stayType:
+                data.stayType,
+
+            city:
+                data.location,
+
+            address:
+                data.address,
+
+            pricePerNight:
+                data.pricePerNight,
+
+            bedrooms:
+                data.bedrooms,
+
+            bathrooms:
+                data.bathrooms,
+
+            maxGuests:
+                data.maxGuests,
+
+            amenities:
+                data.amenities.join(", ")
+
+        };
+
+
+        try {
+
+            isSubmitting = true;
+
+
+            publishBtn.disabled = true;
+
+            saveDraftBtn.disabled = true;
+
+            previewBtn.disabled = true;
+
+
+            publishBtn.textContent =
+                "Creating Stay...";
+
+
+            showMessage(
+                "Creating your stay...",
+                "success"
+            );
+
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/Stays`,
+                    {
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+
+                        },
+
+                        body:
+                            JSON.stringify(payload)
+
+                    }
+                );
+
+
+            const result =
+                await response
+                    .json()
+                    .catch(
+                        function () {
+                            return {};
+                        }
+                    );
+
+
+            /* =================================================
+               UNAUTHORIZED
+            ================================================= */
+
+            if (response.status === 401) {
+
+                localStorage.removeItem(
+                    "havenGH_token"
+                );
+
+                localStorage.removeItem(
+                    "havenGH_role"
+                );
+
+                localStorage.removeItem(
+                    "havenGH_userId"
+                );
+
+
+                showMessage(
+                    "Your session has expired. Please sign in again.",
+                    "error"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "login.html";
+
+                    },
+                    1500
+                );
+
+
+                return;
+            }
+
+
+            /* =================================================
+               API ERROR
+            ================================================= */
+
+            if (!response.ok) {
+
+                console.error(
+                    "Create stay failed:",
+                    result
+                );
+
+
+                showMessage(
+                    result.message ||
+                    "Unable to create your stay. Please try again.",
+                    "error"
+                );
+
+
+                return;
+            }
+
+
+            /* =================================================
+               SUCCESS
+            ================================================= */
+
+           /* =================================================
+   SUCCESS
+================================================= */
+
+const stayId =
+    result.stayId;
+
+
+if (!stayId) {
+
+    showMessage(
+        "Stay was created, but the API did not return a Stay ID. Images could not be uploaded.",
+        "error"
+    );
+
+    return;
+}
+
+
+/* =================================================
+   UPLOAD STAY IMAGES
+================================================= */
+
+const selectedFiles =
+    Array.from(photoInput.files);
+
+
+if (selectedFiles.length > 0) {
+
+    showMessage(
+        `Stay created. Uploading ${selectedFiles.length} photo(s)...`,
+        "success"
+    );
+
+
+    const imageFormData =
+        new FormData();
+
+
+    selectedFiles.forEach(
+        function (file) {
+
+            imageFormData.append(
+                "files",
+                file
+            );
+
+        }
+    );
+
+
+    const imageResponse =
+        await fetch(
+            `${API_BASE_URL}/api/Stays/${encodeURIComponent(stayId)}/images`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Authorization":
+                        `Bearer ${token}`
+                },
+
+                body:
+                    imageFormData
+            }
+        );
+
+
+    const imageResult =
+        await imageResponse
+            .json()
+            .catch(
+                function () {
+                    return {};
+                }
+            );
+
+
+    if (!imageResponse.ok) {
+
+        console.error(
+            "Stay image upload failed:",
+            imageResult
+        );
+
+
+        showMessage(
+            imageResult.message ||
+            "The Stay was created, but the photos could not be uploaded.",
+            "error"
+        );
+
+
+        return;
+    }
+
+
+    console.log(
+        "Stay images uploaded successfully:",
+        imageResult
+    );
+
+}
+
+
+/* =================================================
+   FINAL SUCCESS
+================================================= */
+
+localStorage.removeItem(
+    "havenGH_host_stay_draft"
+);
+
+
+sessionStorage.setItem(
+    "havenGH_last_created_stay_id",
+    String(stayId)
+);
+
+
+showMessage(
+    `Stay created successfully with ${selectedFiles.length} photo(s). Your listing is currently a draft.`,
+    "success"
+);
+
+
+setTimeout(
+    function () {
+
+        window.location.href =
+            "stay-properties.html";
+
+    },
+    1800
+);
+
+
+        } catch (error) {
+
+            console.error(
+                "HavenGH API connection error:",
+                error
+            );
+
+
+            showMessage(
+                "Could not connect to the HavenGH API. Make sure the API is running at http://localhost:5073.",
+                "error"
+            );
+
+
+        } finally {
+
+            isSubmitting = false;
+
+
+            publishBtn.disabled = false;
+
+            saveDraftBtn.disabled = false;
+
+            previewBtn.disabled = false;
+
+
+            publishBtn.textContent =
+                "Create Stay →";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       FORM SUBMIT
+    ========================================================= */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            createStay();
+
+        }
+    );
+
+});
+
+</script>
+
+</body>
+</html>

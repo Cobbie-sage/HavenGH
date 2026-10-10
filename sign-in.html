@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+      content="Sign in securely to your HavenGH account.">
+
+<title>Sign In | HavenGH</title>
+
+<!--link rel="stylesheet" href="style.cs"-->
+
+<style>
+  
+:root {
+    --haven-green: #064e3b;
+    --haven-green-dark: #032d22;
+    --haven-green-deep: #021f18;
+    --haven-teal: #0f766e;
+
+    --haven-gold: #d4af37;
+    --haven-gold-light: #f8efc8;
+
+    --haven-white: #ffffff;
+    --haven-text: #17211d;
+    --haven-muted: #66736c;
+    --haven-danger: #b42318;
+
+    --glass-white: rgba(255, 255, 255, 0.76);
+    --glass-white-strong: rgba(255, 255, 255, 0.88);
+    --glass-dark: rgba(3, 45, 34, 0.76);
+
+    --glass-border: rgba(255, 255, 255, 0.42);
+
+    --gold-border: rgba(212, 175, 55, 0.55);
+
+    --shadow:
+        0 25px 70px rgba(0, 0, 0, 0.30);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--haven-text);
+
+    /*
+       ACCRA BACKGROUND
+       Fixed while the page scrolls.
+    */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2, 31, 24, 0.82),
+            rgba(4, 78, 59, 0.58),
+            rgba(1, 31, 24, 0.78)
+        ),
+        url("Accra.jpg") center center / cover fixed no-repeat;
+
+    background-color: #032d22;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+.signin-page {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.signin-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background:
+        rgba(2, 31, 24, 0.78);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.18);
+}
+
+.signin-header-inner {
+    width: min(1180px, calc(100% - 40px));
+    min-height: 78px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: white;
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.brand img.logo {
+    width: 54px !important;
+    height: 54px !important;
+
+    display: block;
+
+    object-fit: contain;
+    object-position: center;
+
+    padding: 4px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.95),
+            rgba(255,255,255,0.72)
+        );
+
+    border:
+        1px solid rgba(212, 175, 55, 0.75);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.35),
+        0 0 0 3px rgba(212, 175, 55, 0.08);
+
+    /*
+       Keeps the JPEG clean rather than artificially
+       blurring or pixelating it.
+    */
+    image-rendering: auto;
+
+    filter:
+        contrast(1.08)
+        saturate(1.08)
+        drop-shadow(0 3px 7px rgba(0,0,0,0.25));
+
+    transform: translateZ(0);
+
+    backface-visibility: hidden;
+}
+
+.brand:hover img.logo {
+    transform:
+        translateY(-1px)
+        translateZ(0);
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.40),
+        0 0 0 3px rgba(212, 175, 55, 0.13);
+
+    transition: .25s ease;
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+
+    color: white;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,0.25);
+}
+
+.brand-name span {
+    color: var(--haven-gold);
+}
+
+.home-link {
+    color: rgba(255,255,255,0.88);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    padding: 10px 15px;
+
+    border:
+        1px solid rgba(255,255,255,0.20);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: .25s ease;
+}
+
+.home-link:hover {
+    color: var(--haven-gold-light);
+
+    background:
+        rgba(212,175,55,0.14);
+
+    border-color:
+        rgba(212,175,55,0.45);
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+.signin-main {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    padding: 65px 20px;
+}
+
+
+/*
+   Soft atmospheric glow behind the login card.
+*/
+.signin-main::before {
+    content: "";
+
+    position: absolute;
+
+    width: 520px;
+    height: 520px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,0.16),
+            transparent 68%
+        );
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.signin-wrapper {
+    width: 100%;
+    max-width: 490px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ============================================================
+   HEADING
+   ============================================================ */
+
+.signin-heading {
+    text-align: center;
+
+    margin-bottom: 28px;
+
+    padding: 24px 25px;
+
+    border:
+        1px solid rgba(255,255,255,0.24);
+
+    border-radius: 22px;
+
+    background:
+        rgba(3, 45, 34, 0.48);
+
+    backdrop-filter: blur(16px) saturate(120%);
+    -webkit-backdrop-filter: blur(16px) saturate(120%);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.18);
+}
+
+.signin-heading small {
+    display: block;
+
+    color: var(--haven-gold-light);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 2.5px;
+
+    margin-bottom: 9px;
+}
+
+.signin-heading h1 {
+    margin: 0 0 10px;
+
+    color: white;
+
+    font-size: 40px;
+    line-height: 1.1;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 3px 14px rgba(0,0,0,0.28);
+}
+
+.signin-heading p {
+    margin: 0;
+
+    color: rgba(255,255,255,0.82);
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+
+/* ============================================================
+   MAIN GLASS CARD
+   ============================================================ */
+
+.signin-card {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.82),
+            rgba(255,255,255,0.64)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.55);
+
+    border-radius: 26px;
+
+    padding: 34px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.75);
+
+    backdrop-filter:
+        blur(24px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(140%);
+
+    overflow: hidden;
+}
+
+
+/*
+   Gold glass highlight.
+*/
+.signin-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--haven-gold),
+            #f5df88,
+            var(--haven-gold),
+            transparent
+        );
+
+    opacity: .9;
+}
+
+
+/* ============================================================
+   MESSAGE
+   ============================================================ */
+
+.signin-message {
+    display: none;
+
+    padding: 13px 15px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.5;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.signin-message.success {
+    display: block;
+
+    background:
+        rgba(236,253,245,0.82);
+
+    border:
+        1px solid rgba(167,243,208,0.85);
+
+    color: #065f46;
+}
+
+.signin-message.error {
+    display: block;
+
+    background:
+        rgba(254,242,242,0.86);
+
+    border:
+        1px solid rgba(254,202,202,0.90);
+
+    color: var(--haven-danger);
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--haven-green-dark);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: .15px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border:
+        1px solid rgba(6,78,59,0.17);
+
+    border-radius: 13px;
+
+    background:
+        rgba(255,255,255,0.70);
+
+    color: var(--haven-text);
+
+    outline: none;
+
+    font-size: 14px;
+
+    box-shadow:
+        inset 0 1px 3px rgba(0,0,0,0.04);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.form-group input::placeholder {
+    color: #87938d;
+}
+
+.form-group input:hover {
+    background:
+        rgba(255,255,255,0.82);
+}
+
+.form-group input:focus {
+    background:
+        rgba(255,255,255,0.92);
+
+    border-color:
+        var(--haven-teal);
+
+    box-shadow:
+        0 0 0 4px rgba(15,118,110,0.10),
+        0 8px 22px rgba(6,78,59,0.08);
+
+    transform: translateY(-1px);
+}
+
+.password-input {
+    padding-right: 75px !important;
+}
+
+.show-password {
+    position: absolute;
+
+    right: 10px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    padding: 7px 9px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(6,78,59,0.07);
+
+    color: var(--haven-green);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.show-password:hover {
+    background:
+        rgba(212,175,55,0.15);
+
+    color:
+        #8c6d00;
+}
+
+
+/* ============================================================
+   OPTIONS
+   ============================================================ */
+
+.signin-options {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin: 5px 0 24px;
+}
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--haven-muted);
+
+    font-size: 12px;
+}
+
+.remember input {
+    accent-color: var(--haven-green);
+
+    width: 15px;
+    height: 15px;
+}
+
+.forgot-link {
+    color: var(--haven-green);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    transition: .2s ease;
+}
+
+.forgot-link:hover {
+    color: #8c6d00;
+}
+
+
+/* ============================================================
+   SIGN IN BUTTON
+   ============================================================ */
+
+.signin-button {
+    width: 100%;
+
+    border: none;
+
+    border-radius: 13px;
+
+    padding: 15px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b99120,
+            #d4af37,
+            #e5ca63
+        );
+
+    color: #13261f;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    letter-spacing: .2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(155,121,23,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.45);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.signin-button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #edda7d,
+            #d4af37
+        );
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 30px rgba(155,121,23,0.34);
+
+    filter: brightness(1.03);
+}
+
+.signin-button:active {
+    transform:
+        translateY(0);
+}
+
+.signin-button:disabled {
+    opacity: .65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow:
+        none;
+}
+
+
+/* ============================================================
+   REGISTER
+   ============================================================ */
+
+.register-area {
+    text-align: center;
+
+    margin-top: 24px;
+
+    padding-top: 22px;
+
+    border-top:
+        1px solid rgba(6,78,59,0.12);
+
+    color: var(--haven-muted);
+
+    font-size: 13px;
+}
+
+.register-area a {
+    color: var(--haven-green);
+
+    font-weight: 900;
+
+    transition: .2s ease;
+}
+
+.register-area a:hover {
+    color: #8c6d00;
+}
+
+
+/* ============================================================
+   SECURITY NOTE
+   ============================================================ */
+
+.security-note {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 20px;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(6,78,59,0.055);
+
+    color: var(--haven-muted);
+
+    font-size: 11px;
+}
+
+.security-icon {
+    color: var(--haven-green);
+}
+
+
+/* ============================================================
+   2FA PANEL
+   ============================================================ */
+
+#twoFactorPanel {
+    position: relative;
+
+    animation:
+        twoFactorAppear .3s ease;
+}
+
+@keyframes twoFactorAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/*
+   The 2FA heading is generated by JavaScript,
+   so style its h2 here without changing JS.
+*/
+
+#twoFactorPanel h2 {
+    color: var(--haven-green) !important;
+}
+
+#twoFactorPanel input {
+    background:
+        rgba(255,255,255,0.86);
+}
+
+#twoFactorBackButton {
+    border-radius: 10px !important;
+
+    transition: .2s ease;
+}
+
+#twoFactorBackButton:hover {
+    background:
+        rgba(6,78,59,0.07) !important;
+
+    color:
+        #8c6d00 !important;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.signin-footer {
+    padding: 24px 20px;
+
+    background:
+        rgba(2,31,24,0.82);
+
+    border-top:
+        1px solid rgba(255,255,255,0.15);
+
+    text-align: center;
+
+    color:
+        rgba(255,255,255,0.68);
+
+    font-size: 11px;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.footer-links {
+    margin-top: 9px;
+}
+
+.footer-links a {
+    color:
+        rgba(255,255,255,0.82);
+
+    margin: 0 7px;
+
+    font-weight: 700;
+
+    transition: .2s ease;
+}
+
+.footer-links a:hover {
+    color:
+        var(--haven-gold-light);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .signin-header-inner {
+        width:
+            min(100% - 25px, 1180px);
+
+        min-height: 70px;
+    }
+
+    .brand img.logo {
+        width: 47px !important;
+        height: 47px !important;
+
+        padding: 3px;
+
+        border-radius: 12px;
+    }
+
+    .brand-name {
+        font-size: 21px;
+    }
+
+    .home-link {
+        display: none;
+    }
+
+    .signin-main {
+        padding:
+            35px 14px;
+    }
+
+    .signin-heading {
+        padding:
+            21px 17px;
+
+        margin-bottom: 18px;
+
+        border-radius: 19px;
+    }
+
+    .signin-heading h1 {
+        font-size: 31px;
+    }
+
+    .signin-heading p {
+        font-size: 13px;
+    }
+
+    .signin-card {
+        padding:
+            27px 19px;
+
+        border-radius: 21px;
+    }
+
+    .signin-options {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .signin-button {
+        padding:
+            14px 16px;
+    }
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .signin-main {
+        padding:
+            25px 10px;
+    }
+
+    .signin-card {
+        padding:
+            23px 15px;
+    }
+
+    .signin-heading h1 {
+        font-size: 28px;
+    }
+
+    .brand-name {
+        font-size: 19px;
+    }
+}
+
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="signin-page">
+
+<!-- HEADER -->
+
+<header class="signin-header">
+
+    <div class="signin-header-inner">
+
+        <a href="index.html" class="brand">
+
+            <img class="logo"
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <div class="brand-name">
+                Haven<span>GH</span>
+            </div>
+
+        </a>
+
+        <a href="index.html" class="home-link">
+            ← Back to HavenGH
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="signin-main">
+
+    <div class="signin-wrapper">
+
+        <div class="signin-heading">
+
+            <small>WELCOME BACK</small>
+
+            <h1>
+                Sign In
+            </h1>
+
+            <p>
+                Sign in to manage your HavenGH account,
+                stays, bookings and messages.
+            </p>
+
+        </div>
+
+
+        <div class="signin-card">
+
+            <div
+                id="signinMessage"
+                class="signin-message">
+            </div>
+
+
+            <form id="signinForm" novalidate>
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="Enter your email address"
+                        required>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="password-input"
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            id="showPasswordBtn">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="signin-options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe">
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="forget-password.html"
+                        class="forgot-link">
+
+                        Forgot password?
+
+                    </a>
+
+                </div>
+
+
+                <!-- SIGN IN -->
+
+                <button
+                    type="submit"
+                    class="signin-button"
+                    id="signinButton">
+
+                    Sign In
+
+                </button>
+
+            </form>
+
+
+            <!-- REGISTER -->
+
+            <div class="register-area">
+
+                Don't have a HavenGH account?
+
+                <a href="stay-host-register.html">
+                    Create an account
+                </a>
+
+            </div>
+
+
+            <div class="security-note">
+
+                <span class="security-icon">
+                    🔒
+                </span>
+
+                Secure HavenGH authentication
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="signin-footer">
+
+    © 2026 HavenGH. All rights reserved.
+
+    <div class="footer-links">
+
+        <a href="terms.html">
+            Terms &amp; Service
+        </a>
+
+        <a href="privacy-policy.html">
+            Privacy
+        </a>
+
+    </div>
+
+</footer>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const API_BASE_URL =
+        "http://localhost:5073";
+
+    const form =
+        document.getElementById("signinForm");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const signinButton =
+        document.getElementById("signinButton");
+
+    const message =
+        document.getElementById("signinMessage");
+
+    const showPasswordBtn =
+        document.getElementById("showPasswordBtn");
+
+
+    /* =========================================
+       2FA VERIFICATION UI
+    ========================================= */
+
+    let twoFactorPanel = null;
+    let twoFactorInput = null;
+    let twoFactorButton = null;
+    let twoFactorBackButton = null;
+
+    let twoFactorChallenge = null;
+
+
+    function createTwoFactorPanel() {
+
+        if (twoFactorPanel) {
+            return;
+        }
+
+        twoFactorPanel =
+            document.createElement("div");
+
+        twoFactorPanel.id =
+            "twoFactorPanel";
+
+        twoFactorPanel.style.display =
+            "none";
+
+        twoFactorPanel.innerHTML = `
+
+            <div style="
+                text-align:center;
+                margin-bottom:24px;
+            ">
+
+                <div style="
+                    font-size:34px;
+                    margin-bottom:12px;
+                ">
+                    🔐
+                </div>
+
+                <h2 style="
+                    margin:0 0 8px;
+                    color:var(--haven-green);
+                    font-size:24px;
+                ">
+                    Two-Step Verification
+                </h2>
+
+                <p style="
+                    margin:0;
+                    color:var(--haven-muted);
+                    font-size:13px;
+                    line-height:1.6;
+                ">
+                    Enter the 6-digit verification code
+                    from your authenticator app.
+                </p>
+
+            </div>
+
+            <div
+                id="twoFactorMessage"
+                class="signin-message">
+            </div>
+
+            <div class="form-group">
+
+                <label for="twoFactorCode">
+                    Authentication Code
+                </label>
+
+                <input
+                    type="text"
+                    id="twoFactorCode"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                    placeholder="Enter 6-digit code"
+                    style="
+                        text-align:center;
+                        font-size:22px;
+                        font-weight:800;
+                        letter-spacing:6px;
+                    "
+                >
+
+            </div>
+
+            <button
+                type="button"
+                class="signin-button"
+                id="twoFactorVerifyButton">
+
+                Verify &amp; Sign In
+
+            </button>
+
+            <button
+                type="button"
+                id="twoFactorBackButton"
+                style="
+                    width:100%;
+                    margin-top:12px;
+                    padding:12px;
+                    border:none;
+                    background:transparent;
+                    color:var(--haven-green);
+                    font-size:12px;
+                    font-weight:800;
+                    cursor:pointer;
+                ">
+
+                ← Back to Sign In
+
+            </button>
+
+            <div style="
+                margin-top:20px;
+                text-align:center;
+                color:var(--haven-muted);
+                font-size:11px;
+                line-height:1.5;
+            ">
+
+                Your verification code is generated by
+                your authenticator app.
+
+            </div>
+        `;
+
+
+        /*
+         * Put the 2FA panel inside the existing
+         * signin card, immediately after the form.
+         */
+
+        form.parentNode.insertBefore(
+            twoFactorPanel,
+            form.nextSibling
+        );
+
+
+        twoFactorInput =
+            document.getElementById(
+                "twoFactorCode"
+            );
+
+        twoFactorButton =
+            document.getElementById(
+                "twoFactorVerifyButton"
+            );
+
+        twoFactorBackButton =
+            document.getElementById(
+                "twoFactorBackButton"
+            );
+
+
+        twoFactorButton.addEventListener(
+            "click",
+            verifyTwoFactor
+        );
+
+
+        twoFactorBackButton.addEventListener(
+            "click",
+            returnToLogin
+        );
+
+
+        twoFactorInput.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
+
+            }
+        );
+
+
+        twoFactorInput.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Enter" &&
+                    this.value.length === 6
+                ) {
+
+                    event.preventDefault();
+
+                    verifyTwoFactor();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    createTwoFactorPanel();
+
+
+    /* =========================================
+       SHOW / HIDE PASSWORD
+    ========================================= */
+
+    showPasswordBtn.addEventListener(
+        "click",
+        function () {
+
+            const isPassword =
+                passwordInput.type === "password";
+
+            passwordInput.type =
+                isPassword ? "text" : "password";
+
+            showPasswordBtn.textContent =
+                isPassword ? "Hide" : "Show";
+
+        }
+    );
+
+
+    /* =========================================
+       MESSAGE
+    ========================================= */
+
+    function showMessage(text, type) {
+
+        message.textContent = text;
+
+        message.className =
+            "signin-message " + type;
+
+    }
+
+
+    function showTwoFactorMessage(text, type) {
+
+        const twoFactorMessage =
+            document.getElementById(
+                "twoFactorMessage"
+            );
+
+        if (!twoFactorMessage) {
+            return;
+        }
+
+        twoFactorMessage.textContent =
+            text;
+
+        twoFactorMessage.className =
+            "signin-message " + type;
+
+    }
+
+
+    /* =========================================
+       REDIRECT
+    ========================================= */
+
+    function redirectUser(role) {
+
+        if (role === "StayGuest") {
+
+            window.location.href =
+                "stay-my-bookings.html";
+
+        }
+        else if (role === "StayHost") {
+
+            window.location.href =
+                "stay-host-dashboard.html";
+
+        }
+        else {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+
+    }
+
+
+    /* =========================================
+       STORE TOKEN
+    ========================================= */
+
+    function storeToken(token) {
+
+        if (!token) {
+            return;
+        }
+
+
+        /*
+         * Your HavenGH frontend currently uses
+         * havenGH_token.
+         */
+
+        sessionStorage.setItem(
+            "havenGH_token",
+            token
+        );
+
+
+        /*
+         * Also keep the generic key available
+         * if another HavenGH page still uses it.
+         */
+
+        sessionStorage.setItem(
+            "token",
+            token
+        );
+
+    }
+
+
+    /* =========================================
+       SHOW 2FA SCREEN
+    ========================================= */
+
+    function showTwoFactorScreen(challenge) {
+
+        twoFactorChallenge =
+            challenge;
+
+
+        form.style.display =
+            "none";
+
+        message.style.display =
+            "none";
+
+        twoFactorPanel.style.display =
+            "block";
+
+
+        twoFactorInput.value =
+            "";
+
+        showTwoFactorMessage(
+            "",
+            ""
+        );
+
+
+        setTimeout(function () {
+
+            twoFactorInput.focus();
+
+        }, 100);
+
+    }
+
+
+    /* =========================================
+       RETURN TO LOGIN
+    ========================================= */
+
+    function returnToLogin() {
+
+        twoFactorChallenge =
+            null;
+
+        twoFactorPanel.style.display =
+            "none";
+
+        form.style.display =
+            "block";
+
+        message.style.display =
+            "none";
+
+        passwordInput.value =
+            "";
+
+        passwordInput.focus();
+
+    }
+
+
+    /* =========================================
+       VERIFY 2FA
+    ========================================= */
+
+    async function verifyTwoFactor() {
+
+        if (!twoFactorChallenge) {
+
+            showTwoFactorMessage(
+                "Your verification session has expired. Please sign in again.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const code =
+            twoFactorInput.value.trim();
+
+
+        if (!/^\d{6}$/.test(code)) {
+
+            showTwoFactorMessage(
+                "Please enter the 6-digit verification code.",
+                "error"
+            );
+
+            twoFactorInput.focus();
+
+            return;
+        }
+
+
+        twoFactorButton.disabled =
+            true;
+
+        twoFactorButton.textContent =
+            "Verifying...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/Auth/verify-2fa`,
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            challenge:
+                                twoFactorChallenge,
+
+                            code:
+                                code
+
+                        })
+
+                    }
+                );
+
+
+            let data = null;
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            }
+            catch {
+
+                data = null;
+
+            }
+
+
+            if (!response.ok) {
+
+                showTwoFactorMessage(
+
+                    data?.message ||
+                    data?.error ||
+                    "Invalid verification code.",
+
+                    "error"
+
+                );
+
+                twoFactorInput.select();
+
+                return;
+
+            }
+
+
+            /*
+             * 2FA verification succeeded.
+             *
+             * AuthController now creates the
+             * JWT + UserSession here.
+             */
+
+            if (!data?.token) {
+
+                showTwoFactorMessage(
+                    "Authentication succeeded but no login token was returned.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            storeToken(
+                data.token
+            );
+
+
+            twoFactorChallenge =
+                null;
+
+
+            showTwoFactorMessage(
+                "Verification successful. Redirecting...",
+                "success"
+            );
+
+
+            setTimeout(function () {
+
+                redirectUser(
+                    data.role
+                );
+
+            }, 500);
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "HavenGH 2FA verification error:",
+                error
+            );
+
+
+            showTwoFactorMessage(
+                "Unable to connect to HavenGH. Please make sure the API is running.",
+                "error"
+            );
+
+        }
+        finally {
+
+            twoFactorButton.disabled =
+                false;
+
+            twoFactorButton.textContent =
+                "Verify & Sign In";
+
+        }
+
+    }
+
+
+    /* =========================================
+       SIGN IN
+    ========================================= */
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email || !password) {
+
+                showMessage(
+                    "Please enter your email address and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (!emailInput.checkValidity()) {
+
+                showMessage(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            signinButton.disabled =
+                true;
+
+            signinButton.textContent =
+                "Signing In...";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/api/Auth/login`,
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            })
+
+                        }
+                    );
+
+
+                let data = null;
+
+
+                try {
+
+                    data =
+                        await response.json();
+
+                }
+                catch {
+
+                    data = null;
+
+                }
+
+
+                /* =================================
+                   LOGIN FAILED
+                ================================= */
+
+                if (!response.ok) {
+
+                    showMessage(
+
+                        data?.message ||
+                        data?.error ||
+                        "Invalid email or password.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+
+                /* =================================
+                   2FA REQUIRED
+                ================================= */
+
+                if (
+                    data?.requiresTwoFactor === true
+                ) {
+
+                    /*
+                     * IMPORTANT:
+                     *
+                     * The API does NOT return a JWT
+                     * at this stage.
+                     *
+                     * It returns a temporary challenge.
+                     */
+
+                    if (!data.challenge) {
+
+                        showMessage(
+                            "Two-step verification is required, but no verification challenge was returned.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+                    showTwoFactorScreen(
+                        data.challenge
+                    );
+
+
+                    return;
+
+                }
+
+
+                /* =================================
+                   NORMAL LOGIN
+                   ================================= */
+
+                if (!data?.token) {
+
+                    showMessage(
+                        "Login succeeded but no authentication token was returned.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * Store JWT.
+                 */
+
+                storeToken(
+                    data.token
+                );
+
+
+                showMessage(
+                    "Sign in successful. Redirecting...",
+                    "success"
+                );
+
+
+                setTimeout(function () {
+
+                    redirectUser(
+                        data.role
+                    );
+
+                }, 700);
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "HavenGH sign-in error:",
+                    error
+                );
+
+
+                showMessage(
+                    "Unable to connect to HavenGH. Please make sure the API is running.",
+                    "error"
+                );
+
+            }
+            finally {
+
+                signinButton.disabled =
+                    false;
+
+                signinButton.textContent =
+                    "Sign In";
+
+            }
+
+        }
+    );
+
+});
+
+</script>
+
+
+
+</body>
+</html>

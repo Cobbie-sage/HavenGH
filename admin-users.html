@@ -1,0 +1,1108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="HavenGH administrator user management dashboard.">
+
+    <title>Users | HavenGH Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ============================================================
+           HAVENGH ADMIN USERS
+        ============================================================ */
+
+        .admin-users-page {
+            background: #f4f7f5;
+            color: #173b2e;
+        }
+
+        .admin-users-page * {
+            box-sizing: border-box;
+        }
+
+
+        /* ============================================================
+           MAIN CONTENT
+        ============================================================ */
+
+        .admin-users-content {
+            padding: 30px;
+        }
+
+
+        /* ============================================================
+           PAGE HEADER
+        ============================================================ */
+
+        .admin-users-hero {
+            position: relative;
+            overflow: hidden;
+
+            margin-bottom: 24px;
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0a3025 0%,
+                    #104735 55%,
+                    #185440 100%
+                );
+
+            color: #fff;
+
+            box-shadow:
+                0 20px 45px rgba(8, 45, 35, .14);
+        }
+
+        .admin-users-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            right: -120px;
+            top: -140px;
+
+            border: 1px solid rgba(221, 190, 101, .25);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 35px rgba(221, 190, 101, .04),
+                0 0 0 70px rgba(221, 190, 101, .025);
+        }
+
+        .admin-users-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .admin-users-eyebrow {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #d8b85f;
+
+            font-size: .70rem;
+            font-weight: 800;
+
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        .admin-users-hero h2 {
+            margin: 0 0 8px;
+
+            color: #fff;
+
+            font-size: 1.7rem;
+            font-weight: 850;
+        }
+
+        .admin-users-hero p {
+            max-width: 700px;
+
+            margin: 0;
+
+            color: rgba(255,255,255,.76);
+
+            line-height: 1.65;
+        }
+
+
+        /* ============================================================
+           STAT CARDS
+        ============================================================ */
+
+        .admin-users-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 15px;
+
+            margin-bottom: 24px;
+        }
+
+        .admin-user-stat {
+            padding: 20px;
+
+            background: #fff;
+
+            border:
+                1px solid rgba(16,61,46,.08);
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 10px 28px rgba(16,61,46,.05);
+        }
+
+        .admin-user-stat-label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #77837d;
+
+            font-size: .70rem;
+            font-weight: 800;
+
+            letter-spacing: .07em;
+            text-transform: uppercase;
+        }
+
+        .admin-user-stat-value {
+            color: #123e30;
+
+            font-size: 1.55rem;
+            font-weight: 850;
+        }
+
+
+        /* ============================================================
+           USERS PANEL
+        ============================================================ */
+
+        .admin-users-panel {
+            overflow: hidden;
+
+            background: #fff;
+
+            border:
+                1px solid rgba(16,61,46,.08);
+
+            border-radius: 21px;
+
+            box-shadow:
+                0 10px 32px rgba(16,61,46,.055);
+        }
+
+        .admin-users-panel-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 23px 25px;
+
+            border-bottom:
+                1px solid rgba(16,61,46,.08);
+        }
+
+        .admin-users-panel-header h2 {
+            margin: 4px 0 0;
+
+            color: #123e30;
+
+            font-size: 1.15rem;
+            font-weight: 850;
+        }
+
+        .admin-users-panel-label {
+            color: #a17d29;
+
+            font-size: .70rem;
+            font-weight: 800;
+
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+
+        /* ============================================================
+           FILTERS
+        ============================================================ */
+
+        .admin-users-filters {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 18px 25px;
+
+            background: #f8faf9;
+
+            border-bottom:
+                1px solid rgba(16,61,46,.07);
+        }
+
+        .admin-users-search {
+            flex: 1;
+
+            min-width: 220px;
+
+            height: 44px;
+
+            padding: 0 14px;
+
+            border:
+                1px solid #d8e0db;
+
+            border-radius: 10px;
+
+            background: #fff;
+
+            color: #173b2e;
+
+            font: inherit;
+
+            outline: none;
+        }
+
+        .admin-users-search:focus {
+            border-color: #b8943f;
+
+            box-shadow:
+                0 0 0 3px rgba(184,148,63,.10);
+        }
+
+        .admin-users-filter {
+            height: 44px;
+
+            padding: 0 13px;
+
+            border:
+                1px solid #d8e0db;
+
+            border-radius: 10px;
+
+            background: #fff;
+
+            color: #173b2e;
+
+            font: inherit;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+        .admin-users-filter:focus {
+            border-color: #b8943f;
+        }
+
+
+        /* ============================================================
+           TABLE
+        ============================================================ */
+
+        .admin-users-table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+        .admin-users-table {
+            width: 100%;
+
+            min-width: 980px;
+
+            border-collapse: collapse;
+        }
+
+        .admin-users-table th {
+            padding: 14px 18px;
+
+            background: #fbfcfb;
+
+            border-bottom:
+                1px solid rgba(16,61,46,.08);
+
+            color: #78847e;
+
+            text-align: left;
+
+            font-size: .68rem;
+            font-weight: 850;
+
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .admin-users-table td {
+            padding: 16px 18px;
+
+            border-bottom:
+                1px solid rgba(16,61,46,.065);
+
+            color: #42534b;
+
+            font-size: .81rem;
+
+            vertical-align: middle;
+        }
+
+        .admin-users-table tbody tr {
+            transition: background .18s ease;
+        }
+
+        .admin-users-table tbody tr:hover {
+            background: #f8fbf9;
+        }
+
+
+        /* ============================================================
+           USER
+        ============================================================ */
+
+        .admin-user-cell {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .admin-user-avatar {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            border-radius: 12px;
+
+            background: #eaf2ed;
+
+            color: #174b39;
+
+            font-size: .82rem;
+            font-weight: 850;
+        }
+
+        .admin-user-name {
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: #173e31;
+
+            font-weight: 800;
+        }
+
+        .admin-user-email {
+            display: block;
+
+            color: #88928d;
+
+            font-size: .71rem;
+        }
+
+
+        /* ============================================================
+           BADGES
+        ============================================================ */
+
+        .admin-user-badge {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 5px 9px;
+
+            border-radius: 999px;
+
+            font-size: .63rem;
+            font-weight: 800;
+
+            letter-spacing: .04em;
+
+            text-transform: uppercase;
+
+            white-space: nowrap;
+        }
+
+        .role-tenant {
+            background: #edf2f8;
+            color: #49647d;
+        }
+
+        .role-landlord {
+            background: #e7f3eb;
+            color: #216342;
+        }
+
+        .role-agent {
+            background: #f7efd4;
+            color: #806522;
+        }
+
+        .role-admin {
+            background: #ece7f7;
+            color: #614b8c;
+        }
+
+        .status-active {
+            background: #e4f2e9;
+            color: #155c40;
+        }
+
+        .status-locked {
+            background: #f8e8e8;
+            color: #8a3a3a;
+        }
+
+        .verified {
+            background: #e4f2e9;
+            color: #155c40;
+        }
+
+        .unverified {
+            background: #f4f0e7;
+            color: #75633c;
+        }
+
+
+        /* ============================================================
+           MESSAGE
+        ============================================================ */
+
+        .admin-users-message {
+            padding: 60px 25px;
+
+            text-align: center;
+        }
+
+        .admin-users-message strong {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #123e30;
+
+            font-size: .98rem;
+            font-weight: 800;
+        }
+
+        .admin-users-message span {
+            color: #77837d;
+
+            font-size: .82rem;
+
+            line-height: 1.6;
+        }
+
+
+        /* ============================================================
+           ERROR
+        ============================================================ */
+
+        .admin-users-error {
+            padding: 45px 25px;
+
+            text-align: center;
+        }
+
+        .admin-users-error strong {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #8a3a3a;
+        }
+
+        .admin-users-error span {
+            display: block;
+
+            margin-bottom: 18px;
+
+            color: #78847e;
+        }
+
+        .admin-users-retry {
+            padding: 10px 17px;
+
+            border: 0;
+
+            border-radius: 9px;
+
+            background: #123e30;
+
+            color: #fff;
+
+            font-weight: 750;
+
+            cursor: pointer;
+        }
+
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+
+        @media (max-width: 1100px) {
+
+            .admin-users-stats {
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .admin-users-content {
+                padding: 18px;
+            }
+
+            .admin-users-stats {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .admin-users-panel-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+            .admin-users-filters {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+            .admin-users-search,
+            .admin-users-filter {
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .admin-users-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-users-hero {
+                padding: 23px;
+            }
+
+            .admin-users-hero h2 {
+                font-size: 1.4rem;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="admin-users-page">
+
+
+<div class="dashboard-layout">
+
+
+    <!-- ============================================================
+         SIDEBAR
+    ============================================================= -->
+
+    <aside class="dashboard-sidebar">
+
+
+        <div class="dashboard-logo">
+
+            <a href="index.html"
+               class="logo">
+
+                <span class="logo-main">
+                    Haven
+                </span>
+
+                <span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-user">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Admin">
+
+            <div>
+
+                <strong>
+                    HavenGH Admin
+                </strong>
+
+                <span>
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="dashboard-nav">
+
+
+            <a href="admin-dashboard.html"
+               class="dashboard-link">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a href="admin-users.html"
+               class="dashboard-link active">
+
+                <span>♙</span>
+                Users
+
+            </a>
+
+
+            <a href="admin-properties.html"
+               class="dashboard-link">
+
+                <span>▣</span>
+                Properties
+
+            </a>
+
+
+            <a href="admin-dashboard.html#stay-management"
+               class="dashboard-link">
+
+                <span>🏠</span>
+                Stay in Ghana
+
+            </a>
+
+
+            <a href="admin-rental-requests.html"
+               class="dashboard-link">
+
+                <span>◉</span>
+                Rental Requests
+
+            </a>
+
+
+            <a href="admin-messages.html"
+               class="dashboard-link">
+
+                <span>✉</span>
+                Messages
+
+            </a>
+
+
+            <a href="admin-payments.html"
+               class="dashboard-link">
+
+                <span>GH₵</span>
+                Payments
+
+            </a>
+
+
+            <a href="admin-subscriptions.html"
+               class="dashboard-link">
+
+                <span>◆</span>
+                Subscriptions
+
+            </a>
+
+
+            <a href="admin-audit-logs.html"
+               class="dashboard-link">
+
+                <span>▤</span>
+                Audit Logs
+
+            </a>
+
+
+            <a href="admin-settings.html"
+               class="dashboard-link">
+
+                <span>⚙</span>
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="dashboard-sidebar-bottom">
+
+
+            <a href="index.html"
+               class="dashboard-link">
+
+                <span>←</span>
+                Back to Website
+
+            </a>
+
+
+            <a href="login.html"
+               class="dashboard-link logout">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- ============================================================
+         MAIN
+    ============================================================= -->
+
+    <main class="dashboard-main">
+
+
+        <header class="dashboard-topbar">
+
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open administrator menu">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p
+                    class="dashboard-date"
+                    id="adminUsersDate">
+
+                    Loading date...
+
+                </p>
+
+
+                <h1>
+                    User Management
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    aria-label="Administrator notifications">
+
+                    ♧
+
+                    <span id="adminUsersNotificationCount">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+
+        </header>
+
+
+        <div class="admin-users-content">
+
+
+            <!-- ========================================================
+                 HERO
+            ========================================================= -->
+
+            <section class="admin-users-hero">
+
+                <div class="admin-users-hero-content">
+
+                    <span class="admin-users-eyebrow">
+                        USER ADMINISTRATION
+                    </span>
+
+                    <h2>
+                        Manage HavenGH users.
+                    </h2>
+
+                    <p>
+                        Review and manage tenants, landlords, agents,
+                        Stay Hosts, Stay Guests and administrators
+                        registered on the HavenGH platform.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================================
+                 STATISTICS
+            ========================================================= -->
+
+            <section class="admin-users-stats">
+
+
+                <div class="admin-user-stat">
+
+                    <span class="admin-user-stat-label">
+                        Total Users
+                    </span>
+
+                    <strong
+                        id="usersTotalCount"
+                        class="admin-user-stat-value">
+
+                        —
+
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-user-stat">
+
+                    <span class="admin-user-stat-label">
+                        Tenants
+                    </span>
+
+                    <strong
+                        id="usersTenantCount"
+                        class="admin-user-stat-value">
+
+                        —
+
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-user-stat">
+
+                    <span class="admin-user-stat-label">
+                        Landlords
+                    </span>
+
+                    <strong
+                        id="usersLandlordCount"
+                        class="admin-user-stat-value">
+
+                        —
+
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-user-stat">
+
+                    <span class="admin-user-stat-label">
+                        Agents
+                    </span>
+
+                    <strong
+                        id="usersAgentCount"
+                        class="admin-user-stat-value">
+
+                        —
+
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-user-stat">
+
+                    <span class="admin-user-stat-label">
+                        Active
+                    </span>
+
+                    <strong
+                        id="usersActiveCount"
+                        class="admin-user-stat-value">
+
+                        —
+
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- ========================================================
+                 USERS
+            ========================================================= -->
+
+            <section class="admin-users-panel">
+
+
+                <div class="admin-users-panel-header">
+
+                    <div>
+
+                        <span class="admin-users-panel-label">
+                            PLATFORM USERS
+                        </span>
+
+                        <h2>
+                            Registered accounts
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-users-filters">
+
+
+                    <input
+                        type="search"
+                        id="userSearchInput"
+                        class="admin-users-search"
+                        placeholder="Search by email or phone..."
+                        autocomplete="off">
+
+
+                   <select
+                      id="userRoleFilter"
+                     class="admin-users-filter">
+
+                    <option value="all">
+                   All roles
+                       </option>
+
+               <option value="tenant">
+                     Tenants
+                   </option>
+
+                <option value="landlord">
+                  Landlords
+               </option>
+
+             <option value="agent">
+                 Agents
+                </option>
+
+              <option value="stayhost">
+                 Stay Hosts
+            </option>
+
+            <option value="stayguest">
+             Stay Guests
+             </option>
+
+              <option value="admin">
+                 Administrators
+               </option>
+
+                 </select>
+
+                    <select
+                        id="userStatusFilter"
+                        class="admin-users-filter">
+
+                        <option value="all">
+                            All statuses
+                        </option>
+
+                        <option value="active">
+                            Active
+                        </option>
+
+                        <option value="locked">
+                            Locked
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+                <div
+                    id="usersTableContainer"
+                    class="admin-users-table-wrapper">
+
+                    <div class="admin-users-message">
+
+                        <strong>
+                            Loading users...
+                        </strong>
+
+                        <span>
+                            Connecting securely to the HavenGH API.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="script.js"></script>
+<script src="admin-users.js"></script>
+
+</body>
+
+</html>
+

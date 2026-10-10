@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Manage your HavenGH profile, verification and account security."
+    >
+
+    <title>My Profile | HavenGH</title>
+
+    <link rel="stylesheet" href="profile.css">
+
+    <!--
+        QRCode.js
+        Used only to generate the authenticator-app QR code
+        from the provisioning URI returned by HavenGH API.
+    -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        defer>
+    </script>
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================================================
+         SIDEBAR
+         ========================================================= -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-logo">
+
+            <a href="index.html" class="logo">
+                <span class="logo-main">Haven</span>
+                <span class="logo-accent">GH</span>
+            </a>
+
+        </div>
+
+
+        <!-- LOGGED-IN USER -->
+
+        <div class="dashboard-user">
+
+            <img
+                src="images/agent-1.jpg"
+                alt="Profile picture"
+                id="sidebar-profile-image">
+
+            <div>
+
+                <strong id="sidebar-business-name">
+                    My HavenGH Profile
+                </strong>
+
+                <span id="sidebar-role">
+                    Account
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+            <a href="dashboard.html" class="dashboard-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="my-properties.html" class="dashboard-link">
+                <span>▣</span>
+                My Properties
+            </a>
+
+            <a href="add-property.html" class="dashboard-link">
+                <span>＋</span>
+                Add Property
+            </a>
+
+            <a href="request.html" class="dashboard-link">
+                <span>◉</span>
+                Rental Requests
+                <b id="rental-request-count">0</b>
+            </a>
+
+            <a href="message.html" class="dashboard-link">
+                <span>✉</span>
+                Messages
+                <b id="message-count">0</b>
+            </a>
+
+            <a
+                href="profile.html"
+                class="dashboard-link active">
+
+                <span>♙</span>
+                My Profile
+
+            </a>
+
+            <a href="my-plan.html" class="dashboard-link">
+                <span>◆</span>
+                My Plan
+            </a>
+
+            <a href="settings.html" class="dashboard-link">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+            <a href="index.html" class="dashboard-link">
+                <span>←</span>
+                Back to Website
+            </a>
+
+            <a
+                href="login.html"
+                class="dashboard-link"
+                id="logout-link">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="dashboard-topbar">
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open navigation menu">
+
+                ☰
+
+            </button>
+
+            <div>
+
+                <p class="dashboard-date">
+                    Account information
+                </p>
+
+                <h1>
+                    My Profile
+                </h1>
+
+            </div>
+
+        </header>
+
+
+        <div class="dashboard-content">
+
+
+            <!-- =================================================
+                 PROFILE HEADER
+                 ================================================= -->
+
+            <section class="profile-header-card">
+
+                <div class="profile-cover"></div>
+
+
+                <div class="profile-main">
+
+
+                    <!-- PROFILE PHOTO -->
+
+                    <div class="profile-photo-wrapper">
+
+                        <img
+                            src="images/agent-1.jpg"
+                            alt="Profile picture"
+                            id="profile-image">
+
+                        <label
+                            for="profile-photo"
+                            class="change-photo"
+                            title="Change profile photo"
+                            aria-label="Change profile photo">
+
+                            ✎
+
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profile-photo"
+                            accept="image/*"
+                            hidden>
+
+                    </div>
+
+
+                    <!-- PROFILE NAME -->
+
+                    <div class="profile-heading">
+
+                        <div>
+
+                            <h2 id="profile-business-name">
+                                My HavenGH Profile
+                            </h2>
+
+                            <p id="profile-role">
+                                HavenGH User
+                            </p>
+
+                            <span
+                                class="verified-badge"
+                                id="profile-verification-badge">
+
+                                ✓ Verified
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PUBLIC PROFILE -->
+
+                    <div class="profile-actions">
+
+                        <a
+                            href="index.html"
+                            class="profile-view-button">
+
+                            View Public Profile
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PROFILE GRID
+                 ================================================= -->
+
+            <div class="profile-grid">
+
+
+                <!-- =================================================
+                     PERSONAL INFORMATION
+                     ================================================= -->
+
+                <section class="profile-card">
+
+                    <div class="profile-card-heading">
+
+                        <div>
+
+                            <span class="section-label">
+                                PERSONAL
+                            </span>
+
+                            <h3>
+                                Personal Information
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <form
+                        class="profile-form"
+                        id="profile-form">
+
+
+                        <div class="profile-form-row">
+
+                            <div class="profile-field">
+
+                                <label for="profile-full-name">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="profile-full-name"
+                                    name="fullName"
+                                    placeholder="Full name"
+                                    autocomplete="name">
+
+                            </div>
+
+
+                            <div class="profile-field">
+
+                                <label for="profile-business-name-input">
+                                    Business Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="profile-business-name-input"
+                                    name="businessName"
+                                    placeholder="Business name"
+                                    autocomplete="organization">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-form-row">
+
+                            <div class="profile-field">
+
+                                <label for="profile-email">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="profile-email"
+                                    name="email"
+                                    placeholder="Email address"
+                                    autocomplete="email"
+                                    readonly>
+
+                            </div>
+
+
+                            <div class="profile-field">
+
+                                <label for="profile-phone">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="profile-phone"
+                                    name="phone"
+                                    placeholder="Phone number"
+                                    autocomplete="tel">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label for="profile-about">
+                                About You
+                            </label>
+
+                            <textarea
+                                id="profile-about"
+                                name="about"
+                                rows="5"
+                                placeholder="Tell potential tenants about yourself..."></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="save-profile-button"
+                            id="save-profile-button">
+
+                            Save Changes
+
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <!-- =================================================
+                     CONTACT INFORMATION
+                     ================================================= -->
+
+                <section class="profile-card">
+
+                    <div class="profile-card-heading">
+
+                        <span class="section-label">
+                            CONTACT
+                        </span>
+
+                        <h3>
+                            Contact Information
+                        </h3>
+
+                    </div>
+
+
+                    <div class="contact-list">
+
+
+                        <div class="contact-item">
+
+                            <span class="contact-icon">
+                                ☎
+                            </span>
+
+                            <div>
+
+                                <small>
+                                    Phone
+                                </small>
+
+                                <strong id="contact-phone">
+                                    Not provided
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <span class="contact-icon">
+                                W
+                            </span>
+
+                            <div>
+
+                                <small>
+                                    WhatsApp
+                                </small>
+
+                                <a
+                                    href="#"
+                                    id="contact-whatsapp"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="whatsapp-link">
+
+                                    <strong id="contact-whatsapp-number">
+                                        Not provided
+                                    </strong>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <span class="contact-icon">
+                                @
+                            </span>
+
+                            <div>
+
+                                <small>
+                                    Email
+                                </small>
+
+                                <strong id="contact-email">
+                                    Not provided
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-tip">
+
+                        <strong>
+                            💡 Tip
+                        </strong>
+
+                        <p>
+                            Adding a WhatsApp number makes it easier
+                            for potential tenants to contact you.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     LOCATION
+                     ================================================= -->
+
+                <section class="profile-card">
+
+                    <div class="profile-card-heading">
+
+                        <span class="section-label">
+                            LOCATION
+                        </span>
+
+                        <h3>
+                            Areas You Cover
+                        </h3>
+
+                    </div>
+
+
+                    <div
+                        class="location-tags"
+                        id="location-tags">
+
+                        <span class="location-empty">
+                            No areas added yet
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="outline-profile-button"
+                        id="add-area-button">
+
+                        + Add Area
+
+                    </button>
+
+                </section>
+
+
+                <!-- =================================================
+                     VERIFICATION
+                     ================================================= -->
+
+                <section class="profile-card">
+
+                    <div class="profile-card-heading">
+
+                        <span class="section-label">
+                            TRUST & SAFETY
+                        </span>
+
+                        <h3>
+                            Verification
+                        </h3>
+
+                    </div>
+
+
+                    <div class="verification-status">
+
+                        <div
+                            class="verification-icon"
+                            id="identity-verification-icon">
+
+                            ✓
+
+                        </div>
+
+                        <div>
+
+                            <strong id="identity-verification-title">
+                                Identity Verification
+                            </strong>
+
+                            <p id="identity-verification-text">
+                                Verification status unavailable.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="verification-status">
+
+                        <div
+                            class="verification-icon"
+                            id="phone-verification-icon">
+
+                            ✓
+
+                        </div>
+
+                        <div>
+
+                            <strong id="phone-verification-title">
+                                Phone Verification
+                            </strong>
+
+                            <p id="phone-verification-text">
+                                Verification status unavailable.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="verification-note">
+
+                        Verified profiles help tenants feel more
+                        confident when contacting an agent.
+
+                    </p>
+
+                </section>
+
+
+                <!-- =================================================
+                     SECURITY & ACCOUNT PROTECTION
+                     ================================================= -->
+
+                <section class="profile-card security-card">
+
+                    <div class="profile-card-heading">
+
+                        <span class="section-label">
+                            SECURITY
+                        </span>
+
+                        <h3>
+                            Account Protection
+                        </h3>
+
+                    </div>
+
+
+                    <!-- SECURITY STATUS -->
+
+                    <div class="security-feature">
+
+                        <div class="security-feature-icon">
+                            🔐
+                        </div>
+
+                        <div class="security-feature-content">
+
+                            <strong>
+                                Two-Factor Authentication
+                            </strong>
+
+                            <p id="two-factor-status-text">
+                                Checking your 2FA status...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SECURITY MESSAGE -->
+
+                    <div
+                        id="two-factor-message"
+                        class="profile-api-message"
+                        role="status"
+                        aria-live="polite">
+                    </div>
+
+
+                    <!-- ENABLE / DISABLE ACTION -->
+
+                    <div
+                        id="two-factor-action-area"
+                        class="two-factor-action-area">
+
+                        <button
+                            type="button"
+                            id="enable-two-factor"
+                            class="save-profile-button">
+
+                            Enable 2FA
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         2FA SETUP
+                         ================================================= -->
+
+                    <div
+                        id="two-factor-setup-area"
+                        class="two-factor-setup-area"
+                        hidden>
+
+                        <div class="two-factor-info">
+
+                            <h4>
+                                Set Up Two-Factor Authentication
+                            </h4>
+
+                            <p>
+                                Open Google Authenticator,
+                                Microsoft Authenticator or another
+                                TOTP authenticator app and scan the
+                                QR code below.
+                            </p>
+
+                            <p>
+                                If you cannot scan the QR code,
+                                enter the setup key manually.
+                            </p>
+
+                        </div>
+
+
+                        <!-- QR CODE -->
+
+                        <div
+                            id="two-factor-qr"
+                            class="two-factor-qr"
+                            aria-label="Two-factor authentication QR code">
+                        </div>
+
+
+                        <!-- MANUAL KEY -->
+
+                        <div class="two-factor-secret">
+
+                            <label for="two-factor-secret-key">
+                                Setup Key
+                            </label>
+
+                            <div class="two-factor-secret-row">
+
+                                <input
+                                    type="text"
+                                    id="two-factor-secret-key"
+                                    readonly
+                                    autocomplete="off">
+
+                                <button
+                                    type="button"
+                                    id="copy-two-factor-key"
+                                    class="outline-profile-button">
+
+                                    Copy
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- VERIFICATION CODE -->
+
+                        <div class="profile-field">
+
+                            <label for="two-factor-setup-code">
+                                Authenticator Code
+                            </label>
+
+                            <input
+                                type="text"
+                                id="two-factor-setup-code"
+                                inputmode="numeric"
+                                autocomplete="one-time-code"
+                                maxlength="6"
+                                pattern="[0-9]{6}"
+                                placeholder="Enter 6-digit code">
+
+                        </div>
+
+
+                        <div class="two-factor-actions">
+
+                            <button
+                                type="button"
+                                id="verify-two-factor-setup"
+                                class="save-profile-button">
+
+                                Verify & Enable
+
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancel-two-factor-setup"
+                                class="outline-profile-button">
+
+                                Cancel
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         2FA DISABLE
+                         ================================================= -->
+
+                    <div
+                        id="two-factor-disable-area"
+                        class="two-factor-disable-area"
+                        hidden>
+
+                        <div class="two-factor-info">
+
+                            <h4>
+                                Disable Two-Factor Authentication
+                            </h4>
+
+                            <p>
+                                For your security, enter your current
+                                HavenGH password and the current
+                                6-digit code from your authenticator app.
+                            </p>
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label for="two-factor-disable-password">
+                                Current Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="two-factor-disable-password"
+                                autocomplete="current-password"
+                                placeholder="Enter your current password">
+
+                        </div>
+
+
+                        <div class="profile-field">
+
+                            <label for="two-factor-disable-code">
+                                Authenticator Code
+                            </label>
+
+                            <input
+                                type="text"
+                                id="two-factor-disable-code"
+                                inputmode="numeric"
+                                autocomplete="one-time-code"
+                                maxlength="6"
+                                pattern="[0-9]{6}"
+                                placeholder="Enter 6-digit code">
+
+                        </div>
+
+
+                        <div class="two-factor-actions">
+
+                            <button
+                                type="button"
+                                id="disable-two-factor"
+                                class="save-profile-button">
+
+                                Disable 2FA
+
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancel-two-factor-disable"
+                                class="outline-profile-button">
+
+                                Cancel
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <p class="verification-note">
+
+                        Two-factor authentication adds another
+                        security layer to your HavenGH account.
+                        It is optional and can be enabled or
+                        disabled from this page.
+
+                    </p>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =============================================================
+     JAVASCRIPT
+     ============================================================= -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Stay in Ghana | HavenGH Admin</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+<style>
+
+    /* ============================================================
+   HavenGH - Admin Stay in Ghana
+   Premium Light Dashboard
+   Deep Green + Gold
+   ============================================================ */
+
+:root {
+    --haven-green: #07553f;
+    --haven-green-dark: #04382a;
+    --haven-green-light: #0b6b4f;
+
+    --haven-gold: #c9a227;
+    --haven-gold-light: #e1bd45;
+
+    --page-bg: #f5f7f5;
+    --card-bg: #ffffff;
+
+    --text-dark: #16352c;
+    --text: #29463d;
+    --text-muted: #71817b;
+
+    --border: #e3e9e6;
+
+    --success: #21865f;
+    --warning: #b88616;
+    --danger: #c54b4b;
+    --info: #3579a8;
+
+    --shadow: 0 8px 28px rgba(7, 55, 42, 0.08);
+}
+
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+body {
+    background: var(--page-bg);
+    color: var(--text-dark);
+}
+
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.dashboard-main {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(201, 162, 39, 0.06),
+            transparent 28%
+        ),
+        var(--page-bg);
+
+    min-height: 100vh;
+    color: var(--text-dark);
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.dashboard-page-header {
+    margin-bottom: 28px;
+}
+
+.dashboard-page-header h1 {
+    color: var(--haven-green-dark);
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+    margin-bottom: 7px;
+}
+
+.dashboard-page-header p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   STATISTICS
+   ============================================================ */
+
+.admin-stats-grid,
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card,
+.stat-card {
+    position: relative;
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    padding: 21px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease;
+}
+
+.admin-stat-card::before,
+.stat-card::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background: var(--haven-green);
+}
+
+.admin-stat-card:hover,
+.stat-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(201, 162, 39, 0.35);
+
+    box-shadow:
+        0 14px 35px rgba(7, 55, 42, 0.12);
+}
+
+.admin-stat-card h3,
+.stat-card h3 {
+    color: var(--text-muted);
+
+    font-size: 12px;
+    font-weight: 650;
+
+    margin-bottom: 9px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+}
+
+.admin-stat-card strong,
+.stat-card strong,
+.admin-stat-card .stat-number,
+.stat-card .stat-number {
+    color: var(--haven-green-dark);
+
+    font-size: 29px;
+    font-weight: 750;
+}
+
+.admin-stat-card small,
+.stat-card small {
+    color: var(--text-muted);
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   MAIN CARDS
+   ============================================================ */
+
+.dashboard-card,
+.admin-card,
+.stays-card,
+.panel {
+    background: var(--card-bg);
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 25px;
+
+    overflow: hidden;
+
+    color: var(--text-dark);
+}
+
+.dashboard-card-header,
+.admin-card-header,
+.panel-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 22px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.dashboard-card-header h2,
+.dashboard-card-header h3,
+.admin-card-header h2,
+.admin-card-header h3,
+.panel-header h2,
+.panel-header h3 {
+    color: var(--haven-green-dark);
+
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.dashboard-card-header p,
+.admin-card-header p {
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+/* ============================================================
+   FILTER AREA
+   ============================================================ */
+
+.stay-filters,
+.admin-filters,
+.filters {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 11px;
+
+    padding: 17px 22px;
+
+    background: #fafcfb;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.stay-filters input,
+.stay-filters select,
+.admin-filters input,
+.admin-filters select,
+.filters input,
+.filters select {
+    min-height: 42px;
+
+    padding: 0 13px;
+
+    background: #ffffff;
+
+    color: var(--text-dark);
+
+    border: 1px solid #d9e2de;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.stay-filters input {
+    min-width: 230px;
+}
+
+.stay-filters select {
+    min-width: 140px;
+}
+
+.stay-filters input::placeholder {
+    color: #9aa8a3;
+}
+
+.stay-filters input:focus,
+.stay-filters select:focus,
+.admin-filters input:focus,
+.admin-filters select:focus {
+    border-color: var(--haven-green);
+
+    box-shadow:
+        0 0 0 3px rgba(7, 85, 63, 0.08);
+}
+
+.stay-filters select option,
+.admin-filters select option {
+    background: #ffffff;
+    color: var(--text-dark);
+}
+
+
+/* ============================================================
+   STATUS FILTER BUTTONS
+   ============================================================ */
+
+.stay-status-tabs {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.stay-status-tabs button,
+.status-filter button {
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    border: 1px solid #dce5e1;
+
+    background: #ffffff;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.stay-status-tabs button:hover,
+.status-filter button:hover {
+    color: var(--haven-green);
+
+    border-color: rgba(7, 85, 63, 0.30);
+
+    background: #f2f8f5;
+}
+
+.stay-status-tabs button.active,
+.status-filter button.active {
+    background: var(--haven-green);
+
+    border-color: var(--haven-green);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 5px 12px rgba(7, 85, 63, 0.15);
+}
+
+
+/* ============================================================
+   PENDING APPROVALS
+   ============================================================ */
+
+#pendingStaysList {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    padding: 20px 22px;
+}
+
+.pending-stay-card {
+    background: #ffffff;
+
+    border: 1px solid #e2e9e5;
+
+    border-left: 4px solid var(--haven-gold);
+
+    border-radius: 12px;
+
+    padding: 17px;
+
+    box-shadow:
+        0 5px 18px rgba(7, 55, 42, 0.06);
+
+    transition: all 0.22s ease;
+}
+
+.pending-stay-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(201, 162, 39, 0.45);
+
+    box-shadow:
+        0 12px 28px rgba(7, 55, 42, 0.10);
+}
+
+.pending-stay-card h4 {
+    color: var(--haven-green-dark);
+
+    margin: 0 0 7px;
+
+    font-size: 15px;
+}
+
+.pending-stay-card p {
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+.table-container,
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.stays-table,
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+.stays-table thead,
+.admin-table thead {
+    background: #f5f8f6;
+}
+
+.stays-table th,
+.admin-table th {
+    color: #64766e;
+
+    text-align: left;
+
+    padding: 13px 18px;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    border-bottom: 1px solid var(--border);
+
+    white-space: nowrap;
+}
+
+.stays-table td,
+.admin-table td {
+    padding: 15px 18px;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #edf1ef;
+
+    vertical-align: middle;
+}
+
+.stays-table tbody tr,
+.admin-table tbody tr {
+    transition: background 0.18s ease;
+}
+
+.stays-table tbody tr:hover,
+.admin-table tbody tr:hover {
+    background: #f8fbf9;
+}
+
+.stays-table tbody tr:last-child td,
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ============================================================
+   STAY IMAGE
+   ============================================================ */
+
+.admin-stay-thumb {
+    width: 58px;
+    height: 48px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 8px;
+
+    border: 1px solid #dfe7e3;
+}
+
+.admin-stay-thumb-placeholder {
+    width: 58px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #f1f5f3;
+
+    border: 1px solid #dfe7e3;
+
+    color: #91a19b;
+
+    font-size: 10px;
+}
+
+
+/* ============================================================
+   STAY INFORMATION
+   ============================================================ */
+
+.admin-stay-cell {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.admin-stay-cell strong {
+    display: block;
+
+    color: var(--haven-green-dark);
+
+    font-size: 13px;
+
+    margin-bottom: 3px;
+}
+
+.admin-stay-cell span {
+    display: block;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+}
+
+.admin-host-cell strong {
+    display: block;
+
+    color: var(--text-dark);
+
+    font-size: 12px;
+}
+
+.admin-host-cell span {
+    display: block;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    margin-top: 3px;
+}
+
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
+.status-badge,
+.stay-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    border: 1px solid transparent;
+}
+
+.status-badge::before,
+.stay-status::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    margin-right: 6px;
+
+    background: currentColor;
+}
+
+.status-published,
+.status-approved {
+    color: var(--success);
+
+    background: #edf8f3;
+
+    border-color: #cde9dc;
+}
+
+.status-pending {
+    color: var(--warning);
+
+    background: #fff8e7;
+
+    border-color: #f0dfae;
+}
+
+.status-rejected,
+.status-suspended {
+    color: var(--danger);
+
+    background: #fff0f0;
+
+    border-color: #f0d1d1;
+}
+
+.status-draft {
+    color: var(--info);
+
+    background: #edf6fc;
+
+    border-color: #d2e6f4;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+   ============================================================ */
+
+.admin-stay-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+.admin-stay-actions button,
+.stay-action,
+.action-button {
+    min-height: 34px;
+
+    padding: 7px 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid #d8e2de;
+
+    background: #ffffff;
+
+    color: var(--haven-green);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.admin-stay-actions button:hover,
+.stay-action:hover,
+.action-button:hover {
+    background: var(--haven-green);
+
+    border-color: var(--haven-green);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(7, 85, 63, 0.13);
+}
+
+.admin-stay-actions .approve,
+.approve-button,
+button[data-action="approve"] {
+    color: var(--success);
+
+    border-color: #cbe7d9;
+}
+
+.admin-stay-actions .approve:hover,
+.approve-button:hover,
+button[data-action="approve"]:hover {
+    background: var(--success);
+
+    color: #ffffff;
+
+    border-color: var(--success);
+}
+
+.admin-stay-actions .reject,
+.reject-button,
+button[data-action="reject"] {
+    color: var(--danger);
+
+    border-color: #efd0d0;
+}
+
+.admin-stay-actions .reject:hover,
+.reject-button:hover,
+button[data-action="reject"]:hover {
+    background: var(--danger);
+
+    color: #ffffff;
+
+    border-color: var(--danger);
+}
+
+
+/* ============================================================
+   REFRESH
+   ============================================================ */
+
+#refreshStaysButton {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 40px;
+
+    padding: 0 16px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--haven-green);
+
+    background: var(--haven-green);
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+#refreshStaysButton:hover {
+    background: var(--haven-green-dark);
+
+    border-color: var(--haven-green-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 16px rgba(7, 85, 63, 0.18);
+}
+
+
+/* ============================================================
+   NOTIFICATION BADGES
+   ============================================================ */
+
+#pendingApprovalBadge,
+#adminNotificationCount {
+    min-width: 19px;
+    height: 19px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 6px;
+
+    border-radius: 999px;
+
+    background: var(--haven-gold);
+
+    color: #173629;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 3px 9px rgba(201, 162, 39, 0.20);
+}
+
+
+/* ============================================================
+   HOST MANAGEMENT / PLATFORM CONTROL
+   ============================================================ */
+
+.host-management,
+.platform-control {
+    padding: 22px;
+}
+
+.host-management h3,
+.platform-control h3 {
+    color: var(--haven-green-dark);
+
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+.host-management p,
+.platform-control p {
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.empty-state,
+.no-results {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+}
+
+.empty-state strong {
+    display: block;
+
+    color: var(--haven-green-dark);
+
+    font-size: 15px;
+
+    margin-bottom: 7px;
+}
+
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+.table-container::-webkit-scrollbar,
+.admin-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track,
+.admin-table-wrapper::-webkit-scrollbar-track {
+    background: #edf1ef;
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.admin-table-wrapper::-webkit-scrollbar-thumb {
+    background: #b9c8c2;
+
+    border-radius: 20px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover,
+.admin-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--haven-green);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+    .admin-stats-grid,
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #pendingStaysList {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .dashboard-main {
+        padding: 20px 15px 40px;
+    }
+
+    .dashboard-page-header h1 {
+        font-size: 25px;
+    }
+
+    .admin-stats-grid,
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .admin-stat-card,
+    .stat-card {
+        padding: 17px;
+    }
+
+    .admin-stat-card strong,
+    .stat-card strong,
+    .admin-stat-card .stat-number,
+    .stat-card .stat-number {
+        font-size: 25px;
+    }
+
+    .stay-filters,
+    .admin-filters,
+    .filters {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .stay-filters input,
+    .stay-filters select,
+    .admin-filters input,
+    .admin-filters select {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .dashboard-card-header,
+    .admin-card-header,
+    .panel-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    #refreshStaysButton {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .admin-stats-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #pendingStaysList {
+        padding: 15px;
+    }
+
+    .dashboard-card-header,
+    .admin-card-header,
+    .panel-header {
+        padding: 17px;
+    }
+
+    .stays-table th,
+    .admin-table th {
+        padding: 12px 14px;
+    }
+
+    .stays-table td,
+    .admin-table td {
+        padding: 13px 14px;
+    }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+
+<!-- =================================================
+     ADMIN SIDEBAR
+================================================== -->
+
+<aside class="dashboard-sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="dashboard-logo">
+
+        <a
+            href="havengh logo.jpeg"
+            class="logo"
+        >
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- ADMIN PROFILE -->
+
+    <div class="dashboard-user">
+
+        <img
+            src="havengh logo.jpeg"
+            alt="Administrator profile picture"
+        >
+
+        <div>
+
+            <strong>
+                HavenGH Admin
+            </strong>
+
+            <span>
+                Administrator
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ADMIN NAVIGATION
+    ================================================== -->
+
+    <nav class="dashboard-nav">
+
+
+        <a
+            href="admin-dashboard.html"
+            class="dashboard-link"
+        >
+
+            <span>⌂</span>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="admin-users.html"
+            class="dashboard-link"
+        >
+
+            <span>♙</span>
+
+            Users
+
+        </a>
+
+
+        <a
+            href="admin-properties.html"
+            class="dashboard-link"
+        >
+
+            <span>▣</span>
+
+            Properties
+
+        </a>
+
+
+        <!-- ACTIVE PAGE -->
+
+        <a
+            href="admin-stays.html"
+            class="dashboard-link"
+        >
+
+            <span>🏠</span>
+
+            Stay in Ghana
+
+        </a>
+
+
+        <a
+            href="admin-rental-requests.html"
+            class="dashboard-link"
+        >
+
+            <span>◉</span>
+
+            Rental Requests
+
+        </a>
+
+
+        <a
+            href="admin-messages.html"
+            class="dashboard-link"
+        >
+
+            <span>✉</span>
+
+            Messages
+
+        </a>
+
+
+        <a
+            href="admin-payments.html"
+            class="dashboard-link"
+        >
+
+            <span>GH₵</span>
+
+            Payments
+
+        </a>
+
+
+        <a
+            href="admin-subscriptions.html"
+            class="dashboard-link"
+        >
+
+            <span>◆</span>
+
+            Subscriptions
+
+        </a>
+
+
+        <a
+            href="admin-audit-logs.html"
+            class="dashboard-link"
+        >
+
+            <span>▤</span>
+
+            Audit Logs
+
+        </a>
+
+
+        <a href="admin-settings.html"
+           class="dashboard-link active">
+              <span>⚙</span>
+                 Settings
+             </a>
+
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="dashboard-sidebar-bottom">
+
+
+        <a
+            href="index.html"
+            class="dashboard-link"
+        >
+
+            <span>←</span>
+
+            Back to Website
+
+        </a>
+
+
+        <a
+            href="login.html"
+            class="dashboard-link logout"
+        >
+
+            <span>↪</span>
+
+            Log Out
+
+        </a>
+
+
+    </div>
+
+
+</aside>
+
+
+<!-- =================================================
+     MAIN CONTENT
+================================================== -->
+
+<main class="dashboard-main">
+
+
+    <!-- =================================================
+         TOP BAR
+    ================================================== -->
+
+    <header class="dashboard-topbar">
+
+
+        <button
+            class="dashboard-menu-button"
+            type="button"
+            aria-label="Open admin menu"
+            aria-expanded="false"
+        >
+
+            ☰
+
+        </button>
+
+
+        <div>
+
+            <p class="dashboard-date">
+
+                Wednesday, August 26, 2026
+
+            </p>
+
+
+            <h1>
+
+                Stay in Ghana
+
+            </h1>
+
+        </div>
+
+
+        <div class="dashboard-top-actions">
+
+
+            <button
+                type="button"
+                class="notification-button"
+                aria-label="Notifications"
+            >
+
+                ♧
+
+                <span id="adminNotificationCount">
+                    0
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =================================================
+         DASHBOARD CONTENT
+    ================================================== -->
+
+    <div class="dashboard-content">
+
+
+        <!-- =================================================
+             PAGE INTRODUCTION
+        ================================================== -->
+
+        <section class="dashboard-welcome">
+
+
+            <div>
+
+                <span class="section-label">
+
+                    STAY IN GHANA MANAGEMENT
+
+                </span>
+
+
+                <h2>
+
+                    Manage Stay in Ghana
+
+                </h2>
+
+
+                <p>
+
+                    Review accommodation submissions,
+                    manage hosts and control which stays
+                    are published on HavenGH.
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             STAY STATISTICS
+        ================================================== -->
+
+        <section class="dashboard-stats">
+
+
+            <!-- TOTAL STAYS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏠
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Total Stays
+                    </span>
+
+
+                    <strong id="totalStays">
+                        —
+                    </strong>
+
+
+                    <small>
+                        All accommodation listings
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    !
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Pending
+                    </span>
+
+
+                    <strong id="pendingStays">
+                        —
+                    </strong>
+
+
+                    <small>
+                        Awaiting Admin review
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPROVED -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Approved
+                    </span>
+
+
+                    <strong id="approvedStays">
+                        —
+                    </strong>
+
+
+                    <small>
+                        Published accommodations
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUSPENDED -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⚠
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Suspended
+                    </span>
+
+
+                    <strong id="suspendedStays">
+                        —
+                    </strong>
+
+
+                    <small>
+                        Listings requiring attention
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             SEARCH AND FILTERS
+        ================================================== -->
+
+        <section class="dashboard-panel">
+
+
+            <div class="panel-heading">
+
+
+                <div>
+
+                    <span class="section-label">
+
+                        MANAGEMENT
+
+                    </span>
+
+
+                    <h2>
+
+                        Stay Listings
+
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="dashboard-form-grid">
+
+
+                <div class="form-field">
+
+
+                    <label for="staySearch">
+
+                        Search
+
+                    </label>
+
+
+                    <input
+                        type="search"
+                        id="staySearch"
+                        placeholder="Search by stay or host..."
+                    >
+
+
+                </div>
+
+
+                <div class="form-field">
+
+
+                    <label for="stayStatus">
+
+                        Status
+
+                    </label>
+
+
+                    <select id="stayStatus">
+
+
+                        <option value="all">
+                            All statuses
+                        </option>
+
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+
+                        <option value="suspended">
+                            Suspended
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-field">
+
+
+                    <label for="stayLocation">
+
+                        Location
+
+                    </label>
+
+
+                    <select id="stayLocation">
+
+
+                        <option value="all">
+                            All locations
+                        </option>
+
+
+                        <option value="accra">
+                            Accra
+                        </option>
+
+
+                        <option value="kumasi">
+                            Kumasi
+                        </option>
+
+
+                        <option value="cape-coast">
+                            Cape Coast
+                        </option>
+
+
+                        <option value="takoradi">
+                            Takoradi
+                        </option>
+
+
+                        <option value="other">
+                            Other
+                        </option>
+
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             PENDING APPROVALS
+        ================================================== -->
+
+        <section
+            class="dashboard-panel"
+            style="margin-top: 24px;"
+        >
+
+
+            <div class="panel-heading">
+
+
+                <div>
+
+                    <span class="section-label">
+
+                        APPROVAL QUEUE
+
+                    </span>
+
+
+                    <h2>
+
+                        Pending Stay Approvals
+
+                    </h2>
+
+                </div>
+
+
+                <span
+                    class="dashboard-status pending"
+                    id="pendingApprovalBadge"
+                >
+
+                    0 Pending
+
+                </span>
+
+
+            </div>
+
+
+            <!-- PENDING STAY CONTAINER -->
+
+            <div id="pendingStaysList">
+
+
+                <div class="request-item">
+
+
+                    <div>
+
+
+                        <h3>
+
+                            No pending submissions loaded
+
+                        </h3>
+
+
+                        <p>
+
+                            Stay submissions requiring
+                            administrator approval will
+                            appear here.
+
+                        </p>
+
+
+                        <small>
+
+                            Connected to HavenGH API
+
+                        </small>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             ALL STAYS
+        ================================================== -->
+
+        <section
+            class="dashboard-panel"
+            style="margin-top: 24px;"
+        >
+
+
+            <div class="panel-heading">
+
+
+                <div>
+
+                    <span class="section-label">
+
+                        ACCOMMODATIONS
+
+                    </span>
+
+
+                    <h2>
+
+                        Recent Stay Submissions
+
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-dark"
+                    id="refreshStaysButton"
+                >
+
+                    Refresh
+
+                </button>
+
+
+            </div>
+
+
+            <!-- STAYS TABLE -->
+
+            <div class="dashboard-table-wrapper">
+
+
+                <table class="dashboard-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Stay
+                            </th>
+
+                            <th>
+                                Host
+                            </th>
+
+                            <th>
+                                Location
+                            </th>
+
+                            <th>
+                                Price
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="staysTableBody">
+
+
+                        <tr>
+
+                            <td colspan="6">
+
+
+                                <div class="empty-state">
+
+
+                                    <h3>
+
+                                        No stay records loaded
+
+                                    </h3>
+
+
+                                    <p>
+
+                                        Stay in Ghana
+                                        accommodation
+                                        submissions will
+                                        appear here once
+                                        connected to the API.
+
+                                    </p>
+
+
+                                </div>
+
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             HOST MANAGEMENT
+        ================================================== -->
+
+        <section
+            class="dashboard-grid"
+            style="margin-top: 24px;"
+        >
+
+
+            <!-- HOSTS -->
+
+            <section class="dashboard-panel">
+
+
+                <div class="panel-heading">
+
+
+                    <div>
+
+                        <span class="section-label">
+
+                            HOSTS
+
+                        </span>
+
+
+                        <h2>
+
+                            Stay Hosts
+
+                        </h2>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="request-item">
+
+
+                    <div>
+
+
+                        <h3>
+
+                            Host Management
+
+                        </h3>
+
+
+                        <p>
+
+                            Monitor accommodation
+                            providers who submit
+                            Stay in Ghana listings.
+
+                        </p>
+
+
+                        <small>
+
+                            Host verification,
+                            suspension and activity
+                            monitoring will be managed
+                            here.
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+            <!-- MODERATION -->
+
+            <section class="dashboard-panel">
+
+
+                <div class="panel-heading">
+
+
+                    <div>
+
+                        <span class="section-label">
+
+                            MODERATION
+
+                        </span>
+
+
+                        <h2>
+
+                            Platform Control
+
+                        </h2>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="request-item">
+
+
+                    <div>
+
+
+                        <h3>
+
+                            Listing Moderation
+
+                        </h3>
+
+
+                        <p>
+
+                            Administrators can control
+                            publication status and
+                            remove listings that violate
+                            HavenGH policies.
+
+                        </p>
+
+
+                        <small>
+
+                            All moderation actions should
+                            be recorded in Audit Logs.
+
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+
+        <!-- =================================================
+             SECURITY / CONTROL
+        ================================================== -->
+
+        <section
+            class="dashboard-plan"
+            style="margin-top: 24px;"
+        >
+
+
+            <div>
+
+
+                <span class="section-label">
+
+                    ADMIN CONTROL
+
+                </span>
+
+
+                <h2>
+
+                    Stay in Ghana Administration
+
+                </h2>
+
+
+                <p>
+
+                    Only authorized HavenGH
+                    administrators should be able to
+                    approve, reject, suspend or modify
+                    Stay in Ghana listings.
+
+                </p>
+
+
+            </div>
+
+
+            <div class="plan-progress">
+
+
+                <div class="progress-text">
+
+
+                    <span>
+
+                        Admin Authorization
+
+                    </span>
+
+
+                    <strong>
+
+                        Protected
+
+                    </strong>
+
+
+                </div>
+
+
+                <div class="progress-bar">
+
+
+                    <span
+                        style="width: 100%;"
+                    ></span>
+
+
+                </div>
+
+
+                <small>
+
+                    Administrative actions will be
+                    protected by the HavenGH API and
+                    role-based authorization.
+
+                </small>
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+</div>
+
+<script src="script.js"></script>
+<script src="admin-stays.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+      content="Secure tenant login for HavenGH.">
+
+<title>Tenant Login | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+
+/* ============================================================
+   HAVENGH TENANT LOGIN — PREMIUM GLASS DESIGN
+   Background: flag.jpg
+   HTML + JAVASCRIPT: PRESERVED
+   ============================================================ */
+
+:root {
+    --green-deep: #06291f;
+    --green-main: #0b4935;
+    --green-light: #14684b;
+    --gold: #d4af37;
+    --gold-light: #f0d77b;
+    --cream: #fffaf0;
+    --white: #ffffff;
+    --text-dark: #17352b;
+    --muted: #708178;
+    --glass: rgba(255, 255, 255, 0.88);
+    --glass-border: rgba(255, 255, 255, 0.42);
+    --shadow: 0 25px 70px rgba(0, 25, 18, 0.35);
+}
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+body.auth-page {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text-dark);
+
+    background:
+        linear-gradient(
+            rgba(3, 31, 23, 0.70),
+            rgba(3, 31, 23, 0.78)
+        ),
+        url("flag.jpg") center center / cover fixed no-repeat;
+
+    background-color: var(--green-deep);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.auth-page .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(3, 35, 26, 0.76);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.auth-page .nav-container {
+    min-height: 78px;
+}
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.auth-page .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+
+    padding: 9px 16px;
+
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.09);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    transition: 0.3s ease;
+}
+
+.auth-page .logo:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(212, 175, 55, 0.65);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25),
+        0 0 25px rgba(212, 175, 55, 0.12);
+}
+
+.auth-page .logo-main {
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.auth-page .logo-accent {
+    color: var(--gold-light);
+    font-weight: 900;
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.auth-page .nav-link,
+.auth-page .login-link {
+    color: rgba(255, 255, 255, 0.86);
+    transition: 0.25s ease;
+}
+
+.auth-page .nav-link:hover,
+.auth-page .login-link:hover {
+    color: var(--gold-light);
+}
+
+.auth-page .nav-actions .btn-dark {
+    border: 1px solid rgba(212, 175, 55, 0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #b58d19
+        );
+
+    color: #18372c;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    font-weight: 800;
+}
+
+.auth-page .nav-actions .btn-dark:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0d77b,
+            #d4af37
+        );
+}
+
+/* ============================================================
+   LOGIN SECTION
+   ============================================================ */
+
+.auth-page .auth-section {
+    position: relative;
+
+    min-height: calc(100vh - 78px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 20px 80px;
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   BACKGROUND ORBS
+   ============================================================ */
+
+.auth-page .auth-orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(4px);
+
+    opacity: 0.65;
+}
+
+.auth-page .auth-orb-one {
+    width: 340px;
+    height: 340px;
+
+    top: 5%;
+    left: -120px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212, 175, 55, 0.30),
+            transparent 70%
+        );
+}
+
+.auth-page .auth-orb-two {
+    width: 420px;
+    height: 420px;
+
+    right: -150px;
+    bottom: -120px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(20, 104, 75, 0.42),
+            transparent 70%
+        );
+}
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.auth-page .auth-container {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+}
+
+/* ============================================================
+   MAIN GLASS CARD
+   ============================================================ */
+
+.auth-page .auth-card {
+    width: min(100%, 500px);
+
+    margin: 0 auto;
+
+    padding: 42px;
+
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.93),
+            rgba(246, 250, 246, 0.82)
+        );
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-page .auth-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            var(--gold-light),
+            var(--gold),
+            transparent
+        );
+}
+
+/* ============================================================
+   BRAND AREA
+   ============================================================ */
+
+.auth-page .auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 32px;
+}
+
+.auth-page .auth-brand-mark {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            var(--green-main),
+            var(--green-deep)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.60);
+
+    box-shadow:
+        0 10px 25px rgba(6, 41, 31, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.auth-page .auth-brand-mark span {
+    color: var(--gold-light);
+
+    font-size: 24px;
+    font-weight: 900;
+}
+
+/* HavenGH brand text */
+
+.auth-page .auth-brand strong {
+    display: block;
+
+    color: var(--green-deep);
+
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.auth-page .auth-brand strong span {
+    color: var(--gold);
+}
+
+.auth-page .auth-brand small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ============================================================
+   HEADER TEXT
+   ============================================================ */
+
+.auth-page .auth-header {
+    margin-bottom: 30px;
+}
+
+.auth-page .section-label {
+    display: inline-flex;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(20, 104, 75, 0.18);
+    border-radius: 999px;
+
+    background: rgba(20, 104, 75, 0.08);
+
+    color: var(--green-main);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+}
+
+.auth-page .auth-header h1 {
+    margin: 14px 0 9px;
+
+    color: var(--green-deep);
+
+    font-size: clamp(32px, 5vw, 43px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+}
+
+.auth-page .auth-header h1 span {
+    color: var(--gold);
+}
+
+.auth-page .auth-header p {
+    margin: 0;
+
+    color: #66776f;
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.auth-page .form-group {
+    margin-bottom: 21px;
+}
+
+.auth-page .form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--green-deep);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* ============================================================
+   INPUT GLASS
+   ============================================================ */
+
+.auth-page .auth-input-wrapper {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 54px;
+
+    border: 1px solid rgba(20, 72, 54, 0.15);
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.03);
+
+    transition: 0.25s ease;
+}
+
+.auth-page .auth-input-wrapper:focus-within {
+    border-color: rgba(20, 104, 75, 0.55);
+
+    background: rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        0 0 0 4px rgba(20, 104, 75, 0.08),
+        0 8px 25px rgba(6, 41, 31, 0.08);
+}
+
+.auth-page .auth-input-icon {
+    width: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--gold);
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.auth-page .auth-input-wrapper input {
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 15px 15px 15px 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--green-deep);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.auth-page .auth-input-wrapper input::placeholder {
+    color: #9aa8a2;
+    font-weight: 500;
+}
+
+.auth-page .auth-input-wrapper input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px rgba(255,255,255,0.9) inset;
+    -webkit-text-fill-color: var(--green-deep);
+}
+
+/* ============================================================
+   PASSWORD BUTTON
+   ============================================================ */
+
+.auth-page .password-toggle {
+    margin-right: 10px;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(20, 104, 75, 0.15);
+    border-radius: 9px;
+
+    background: rgba(20, 104, 75, 0.07);
+
+    color: var(--green-main);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.auth-page .password-toggle:hover {
+    background: var(--green-main);
+    color: white;
+}
+
+/* ============================================================
+   FORM OPTIONS
+   ============================================================ */
+
+.auth-page .form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin: 5px 0 23px;
+
+    font-size: 13px;
+}
+
+.auth-page .remember-me {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #61726b;
+
+    cursor: pointer;
+}
+
+.auth-page .remember-me input {
+    accent-color: var(--green-main);
+}
+
+.auth-page .form-options a {
+    color: var(--green-main);
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+.auth-page .form-options a:hover {
+    color: var(--gold);
+}
+
+/* ============================================================
+   LOGIN BUTTON
+   ============================================================ */
+
+.auth-page .auth-button {
+    width: 100%;
+
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b4d37,
+            #073123
+        );
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    letter-spacing: 0.2px;
+
+    box-shadow:
+        0 12px 30px rgba(5, 48, 35, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.auth-page .auth-button:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #14684b,
+            #0a3c2b
+        );
+
+    box-shadow:
+        0 16px 35px rgba(5, 48, 35, 0.32),
+        0 0 25px rgba(212, 175, 55, 0.12);
+}
+
+.auth-page .auth-button:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.auth-page .auth-button-loader {
+    display: none;
+
+    width: 18px;
+    height: 18px;
+
+    margin-left: 10px;
+
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: var(--gold-light);
+
+    border-radius: 50%;
+
+    animation: havenSpin 0.8s linear infinite;
+}
+
+.auth-page .auth-button.loading .auth-button-loader {
+    display: inline-block;
+}
+
+@keyframes havenSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================================
+   ERROR MESSAGE
+   ============================================================ */
+
+.auth-page .error-message {
+    margin-top: 15px;
+
+    padding: 12px 14px;
+
+    border: 1px solid rgba(180, 45, 45, 0.20);
+    border-radius: 12px;
+
+    background: rgba(180, 45, 45, 0.07);
+
+    color: #a12626;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   FOOTER / REGISTER
+   ============================================================ */
+
+.auth-page .auth-footer {
+    margin-top: 26px;
+
+    text-align: center;
+}
+
+.auth-page .auth-footer p,
+.auth-page .other-login p {
+    margin: 0 0 7px;
+
+    color: #7a8983;
+
+    font-size: 13px;
+}
+
+.auth-page .auth-footer a,
+.auth-page .other-login a {
+    color: var(--green-main);
+
+    font-size: 14px;
+    font-weight: 900;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.auth-page .auth-footer a:hover,
+.auth-page .other-login a:hover {
+    color: var(--gold);
+}
+
+.auth-page .auth-footer a span,
+.auth-page .other-login a span {
+    margin-left: 4px;
+
+    color: var(--gold);
+
+    transition: 0.2s ease;
+}
+
+.auth-page .auth-footer a:hover span,
+.auth-page .other-login a:hover span {
+    margin-left: 8px;
+}
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.auth-page .auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin: 27px 0;
+}
+
+.auth-page .auth-divider::before,
+.auth-page .auth-divider::after {
+    content: "";
+
+    height: 1px;
+    flex: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(20, 72, 54, 0.18)
+        );
+}
+
+.auth-page .auth-divider::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(20, 72, 54, 0.18),
+            transparent
+        );
+}
+
+.auth-page .auth-divider span {
+    color: #9aa59f;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+/* ============================================================
+   OTHER LOGIN
+   ============================================================ */
+
+.auth-page .other-login {
+    text-align: center;
+
+    padding: 18px;
+
+    border: 1px solid rgba(20, 104, 75, 0.10);
+    border-radius: 15px;
+
+    background: rgba(20, 104, 75, 0.045);
+}
+
+/* ============================================================
+   SECURITY
+   ============================================================ */
+
+.auth-page .auth-security {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin-top: 24px;
+    padding-top: 21px;
+
+    border-top: 1px solid rgba(20, 72, 54, 0.10);
+
+    color: #7a8983;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.auth-page .security-icon {
+    width: 22px;
+    height: 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(20, 104, 75, 0.10);
+
+    color: var(--green-main);
+
+    font-weight: 900;
+}
+
+/* ============================================================
+   PAGE FOOTER
+   ============================================================ */
+
+.auth-page .footer {
+    position: relative;
+    z-index: 5;
+
+    background: rgba(3, 31, 23, 0.76);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.auth-page .footer-bottom {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.auth-page .footer-bottom p {
+    font-size: 12px;
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+.auth-page .mobile-menu-button {
+    border-color: rgba(212, 175, 55, 0.35);
+
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.auth-page .mobile-menu-button span {
+    background: var(--gold-light);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    .auth-page .auth-section {
+        min-height: auto;
+        padding: 45px 15px 60px;
+    }
+
+    .auth-page .auth-card {
+        padding: 30px 22px;
+        border-radius: 23px;
+    }
+
+    .auth-page .auth-header h1 {
+        font-size: 34px;
+    }
+
+    .auth-page .form-options {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .auth-page .auth-card {
+        padding: 27px 18px;
+        border-radius: 20px;
+    }
+
+    .auth-page .auth-brand {
+        margin-bottom: 25px;
+    }
+
+    .auth-page .auth-brand-mark {
+        width: 47px;
+        height: 47px;
+    }
+
+    .auth-page .auth-header h1 {
+        font-size: 31px;
+    }
+
+    .auth-page .auth-header p {
+        font-size: 14px;
+    }
+
+    .auth-page .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 11px;
+    }
+
+    .auth-page .auth-security {
+        text-align: center;
+    }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .auth-page *,
+    .auth-page *::before,
+    .auth-page *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+</style>
+</style>
+</head>
+
+<body class="auth-page">
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <button
+            class="mobile-menu-button"
+            id="mobile-menu-button"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+
+        </a>
+
+
+        <nav class="navbar" id="main-navbar">
+
+            <a href="index.html" class="nav-link">
+                Home
+            </a>
+
+            <a href="properties.html" class="nav-link">
+                Find a Home
+            </a>
+
+            <a href="index.html#how-it-works" class="nav-link">
+                How It Works
+            </a>
+
+            <a href="index.html#about" class="nav-link">
+                About
+            </a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a href="register.html" class="btn btn-dark">
+                <strong>
+                Add property
+                </strong>
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     TENANT LOGIN
+====================================================== -->
+
+<main>
+
+    <section class="auth-section">
+
+        <!-- Decorative background elements -->
+
+        <div class="auth-orb auth-orb-one"></div>
+        <div class="auth-orb auth-orb-two"></div>
+
+
+        <div class="container auth-container">
+
+            <div class="auth-card">
+
+
+                <!-- =================================================
+                     BRAND
+                ================================================== -->
+
+                <div class="auth-brand">
+
+                    <div class="auth-brand-mark">
+                        <span>H</span>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Haven<span>GH</span>
+                        </strong>
+
+                        <small>
+                            Your home, your haven.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     HEADER
+                ================================================== -->
+
+                <div class="auth-header">
+
+                    <span class="section-label">
+                        TENANT ACCOUNT
+                    </span>
+
+                    <h1><menu type="toolbar"></menu>
+                        Welcome <span>back.</span>
+                    </h1>
+
+                    <p>
+                        Sign in to continue your search for a
+                        place you can truly call home.
+                    </p>
+
+                </div>
+
+
+                <!-- =================================================
+                     LOGIN FORM
+                ================================================== -->
+
+                <form id="tenant-login-form" novalidate>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="tenant-login-email">
+                            Email Address
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <span class="auth-input-icon">
+                                @
+                            </span>
+
+                            <input
+                                type="email"
+                                id="tenant-login-email"
+                                name="email"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="tenant-login-password">
+                            Password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+
+                            <span class="auth-input-icon">
+                                •
+                            </span>
+
+                            <input
+                                type="password"
+                                id="tenant-login-password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="password-toggle"
+                                aria-label="Show password">
+
+                                Show
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- REMEMBER / FORGOT -->
+
+                    <div class="form-options">
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                id="tenant-remember">
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+                     <a href="forget-password.html?type=tenant">
+                                   Forgot password?
+                    </a>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-dark auth-button">
+
+                        <span class="auth-button-text">
+                            Sign in to HavenGH
+                        </span>
+
+                        <span
+                            class="auth-button-loader"
+                            aria-hidden="true">
+                        </span>
+
+                    </button>
+
+
+                    <!-- ERROR MESSAGE -->
+
+                    <div
+                        id="tenant-login-error"
+                        class="form-message error-message"
+                        role="alert"
+                        aria-live="polite"
+                        style="display: none;">
+                    </div>
+
+                </form>
+
+
+                <!-- =================================================
+                     REGISTER
+                ================================================== -->
+
+                <div class="auth-footer">
+
+                    <p>
+                        New to HavenGH?
+                    </p>
+
+                    <a href="tenant-register.html">
+                        Create your tenant account
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <!-- =================================================
+                     DIVIDER
+                ================================================== -->
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+
+                <!-- =================================================
+                     OTHER LOGIN
+                ================================================== -->
+
+                <div class="other-login">
+
+                    <p>
+                        Are you a landlord or property agent?
+                    </p>
+
+                    <a href="register.html">
+                        Landlord / Agent 
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <!-- =================================================
+                     SECURITY NOTE
+                ================================================== -->
+
+                <div class="auth-security">
+
+                    <span class="security-icon">
+                        ✓
+                    </span>
+
+                    <span>
+                        Secure authentication powered by HavenGH
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 HavenGH. All rights reserved.
+        </p>
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     TENANT LOGIN SCRIPT
+     API CONNECTION PRESERVED
+====================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const loginForm =
+        document.getElementById("tenant-login-form");
+
+    const errorMessage =
+        document.getElementById("tenant-login-error");
+
+    const passwordInput =
+        document.getElementById("tenant-login-password");
+
+    const passwordToggle =
+        document.getElementById("password-toggle");
+
+    const submitButton =
+        loginForm?.querySelector(
+            'button[type="submit"]'
+        );
+
+    const buttonText =
+        submitButton?.querySelector(
+            ".auth-button-text"
+        );
+
+
+    /* =================================================
+       MOBILE NAVIGATION
+    ================================================== */
+
+    const mobileMenuButton =
+        document.getElementById("mobile-menu-button");
+
+    const navbar =
+        document.getElementById("main-navbar");
+
+
+    if (mobileMenuButton && navbar) {
+
+        mobileMenuButton.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    navbar.classList.toggle(
+                        "mobile-open"
+                    );
+
+                mobileMenuButton.classList.toggle(
+                    "menu-open",
+                    isOpen
+                );
+
+                mobileMenuButton.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       PASSWORD VISIBILITY
+    ================================================== */
+
+    if (passwordToggle && passwordInput) {
+
+        passwordToggle.addEventListener(
+            "click",
+            function () {
+
+                const isPassword =
+                    passwordInput.type === "password";
+
+                passwordInput.type =
+                    isPassword
+                        ? "text"
+                        : "password";
+
+                passwordToggle.textContent =
+                    isPassword
+                        ? "Hide"
+                        : "Show";
+
+                passwordToggle.setAttribute(
+                    "aria-label",
+                    isPassword
+                        ? "Hide password"
+                        : "Show password"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       LOGIN
+    ================================================== */
+
+    if (!loginForm) {
+        return;
+    }
+
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /* -----------------------------------------
+               CLEAR PREVIOUS ERROR
+            ------------------------------------------ */
+
+            if (errorMessage) {
+
+                errorMessage.textContent = "";
+
+                errorMessage.style.display =
+                    "none";
+
+            }
+
+
+            /* -----------------------------------------
+               GET FORM VALUES
+            ------------------------------------------ */
+
+            const email =
+                document
+                    .getElementById(
+                        "tenant-login-email"
+                    )
+                    ?.value
+                    .trim()
+                    .toLowerCase();
+
+            const password =
+                document
+                    .getElementById(
+                        "tenant-login-password"
+                    )
+                    ?.value;
+
+
+            /* -----------------------------------------
+               VALIDATION
+            ------------------------------------------ */
+
+            if (!email || !password) {
+
+                showError(
+                    "Please enter your email and password."
+                );
+
+                return;
+            }
+
+
+            /* -----------------------------------------
+               DISABLE BUTTON
+            ------------------------------------------ */
+
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                submitButton.classList.add(
+                    "loading"
+                );
+
+                if (buttonText) {
+
+                    buttonText.textContent =
+                        "Signing you in...";
+
+                }
+
+            }
+
+
+            try {
+
+
+                /* -------------------------------------
+                   HAVENGH API LOGIN
+                -------------------------------------- */
+
+                const response =
+                    await fetch(
+                        "http://localhost:5073/api/Auth/login",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json",
+
+                                "Accept":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    email: email,
+                                    password: password
+                                })
+                        }
+                    );
+
+
+                /* -------------------------------------
+                   INVALID LOGIN
+                -------------------------------------- */
+
+                if (response.status === 401) {
+
+                    showError(
+                        "Invalid email or password."
+                    );
+
+                    return;
+                }
+
+
+                /* -------------------------------------
+                   OTHER API ERRORS
+                -------------------------------------- */
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `Login failed: ${response.status}`
+                    );
+
+                }
+
+
+                /* -------------------------------------
+                   API RESPONSE
+                -------------------------------------- */
+
+                const data =
+                    await response.json();
+
+
+                /* -------------------------------------
+                   TOKEN CHECK
+                -------------------------------------- */
+
+                if (!data.token) {
+
+                    console.error(
+                        "No authentication token returned."
+                    );
+
+                    showError(
+                        "Login succeeded, but authentication could not be completed."
+                    );
+
+                    return;
+                }
+
+
+                /* -------------------------------------
+                   ROLE
+                -------------------------------------- */
+
+                const role =
+                    (data.role || "").trim();
+
+
+                /* -------------------------------------
+                   TENANT ONLY
+                -------------------------------------- */
+
+                if (
+                    role.toLowerCase() !==
+                    "tenant"
+                ) {
+
+                    localStorage.removeItem(
+                        "token"
+                    );
+
+                    showError(
+                        "This login is for tenant accounts only."
+                    );
+
+                    return;
+                }
+
+
+                /* -------------------------------------
+                   STORE JWT
+                -------------------------------------- */
+
+                localStorage.setItem(
+                    "token",
+                    data.token
+                );
+
+
+                /* -------------------------------------
+                   STORE ROLE
+                -------------------------------------- */
+                  localStorage.setItem(
+                      "havenGH_role",
+                       role
+                          );
+
+
+                console.log(
+                    "Tenant login successful."
+                );
+
+
+                /* -------------------------------------
+                   REDIRECT
+                -------------------------------------- */
+
+                window.location.href =
+                    "tenant-dashboard.html";
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Tenant login error:",
+                    error
+                );
+
+                showError(
+                    "Unable to connect to the HavenGH API. Please try again."
+                );
+
+            }
+            finally {
+
+
+                /* -------------------------------------
+                   RESTORE BUTTON
+                -------------------------------------- */
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.classList.remove(
+                        "loading"
+                    );
+
+                    if (buttonText) {
+
+                        buttonText.textContent =
+                            "Sign in to HavenGH";
+
+                    }
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /* =================================================
+       ERROR MESSAGE
+    ================================================== */
+
+    function showError(message) {
+
+        if (!errorMessage) {
+
+            alert(message);
+
+            return;
+
+        }
+
+        errorMessage.textContent =
+            message;
+
+        errorMessage.style.display =
+            "block";
+
+    }
+
+});
+
+</script>
+
+
+</body>
+</html>

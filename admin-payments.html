@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payments | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* ============================================================
+   ADMIN PAYMENTS
+   ============================================================ */
+
+.payment-record {
+    padding: 22px;
+}
+
+
+.payment-record-main {
+    width: 100%;
+}
+
+
+.payment-record-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.payment-record-header h3 {
+    margin: 0 0 6px;
+}
+
+
+.payment-record-header p {
+    margin: 0;
+}
+
+
+.payment-record-details {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.payment-record-details div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.payment-record-details small {
+    opacity: 0.65;
+    font-size: 0.75rem;
+}
+
+
+.payment-record-details strong {
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+
+.payment-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.status-success {
+    background: rgba(46, 160, 67, 0.15);
+    color: #7ee787;
+}
+
+
+.status-pending {
+    background: rgba(212, 175, 55, 0.15);
+    color: #e7c65c;
+}
+
+
+.status-failed {
+    background: rgba(220, 53, 69, 0.15);
+    color: #ff7b86;
+}
+
+
+.status-neutral {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ddd;
+}
+
+
+@media (max-width: 900px) {
+
+    .payment-record-details {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .payment-record-header {
+        flex-direction: column;
+    }
+
+
+    .payment-record-details {
+        grid-template-columns: 1fr;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- =========================
+         ADMIN SIDEBAR
+    ========================== -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-logo">
+
+            <a href="havengh logo.jpeg" class="logo">
+                <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+            </a>
+
+        </div>
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="dashboard-user">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="Administrator profile picture"
+            >
+
+            <div>
+
+                <strong>HavenGH Admin</strong>
+
+                <span>Administrator</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+            <a href="admin-dashboard.html"
+               class="dashboard-link">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a href="admin-users.html"
+               class="dashboard-link">
+
+                <span>♙</span>
+                Users
+
+            </a>
+
+
+            <a href="admin-properties.html"
+               class="dashboard-link">
+
+                <span>▣</span>
+                Properties
+
+            </a>
+
+
+            <a href="admin-stays.html"
+               class="dashboard-link">
+
+                <span>🏠</span>
+                Stay in Ghana
+
+            </a>
+
+
+            <a href="admin-rental-requests.html"
+               class="dashboard-link">
+
+                <span>◉</span>
+                Rental Requests
+
+            </a>
+
+
+            <a href="admin-messages.html"
+               class="dashboard-link">
+
+                <span>✉</span>
+                Messages
+
+            </a>
+
+
+            <!-- ACTIVE -->
+
+            <a href="admin-payments.html"
+               class="dashboard-link active">
+
+                <span>GH₵</span>
+                Payments
+
+            </a>
+
+
+            <a href="admin-subscriptions.html"
+               class="dashboard-link">
+
+                <span>◆</span>
+                Subscriptions
+
+            </a>
+
+
+            <a href="admin-audit-logs.html"
+               class="dashboard-link">
+
+                <span>▤</span>
+                Audit Logs
+
+            </a>
+
+
+            <a href="admin-settings.html"
+               class="dashboard-link">
+
+                <span>⚙</span>
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+            <a href="index.html"
+               class="dashboard-link">
+
+                <span>←</span>
+                Back to Website
+
+            </a>
+
+
+            <a href="login.html"
+               class="dashboard-link logout">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-topbar">
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open dashboard menu">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+                    Wednesday, August 26, 2026
+                </p>
+
+                <h1>
+                    Payments
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-expanded="false"
+                    aria-label="Notifications">
+
+                    ♧
+
+                    <span id="adminNotificationCount">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             DASHBOARD CONTENT
+        ========================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="dashboard-welcome">
+
+                <div>
+
+                    <span class="section-label">
+                        FINANCIAL MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Payment Management
+                    </h2>
+
+                    <p>
+                        Monitor HavenGH payment activity,
+                        transaction status and payment
+                        records across the platform.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PAYMENT STATISTICS
+            ========================== -->
+
+            <section class="dashboard-stats">
+
+
+                <!-- TOTAL PAYMENTS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        GH₵
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Payments
+                        </span>
+
+                        <strong id="totalPaymentsCount">
+                            —
+                        </strong>
+
+                        <small>
+                            Recorded transactions
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPLETED -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong id="completedPaymentsCount">
+                            —
+                        </strong>
+
+                        <small>
+                            Successful payments
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PENDING -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong id="pendingPaymentsCount">
+                            —
+                        </strong>
+
+                        <small>
+                            Awaiting confirmation
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FAILED -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ×
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Failed
+                        </span>
+
+                        <strong id="failedPaymentsCount">
+                            —
+                        </strong>
+
+                        <small>
+                            Failed transactions
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =========================
+                 PAYMENT RECORDS
+            ========================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            TRANSACTIONS
+                        </span>
+
+                        <h2>
+                            Recent Payments
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="form-group">
+
+                    <label for="payment-search">
+                        Search payments
+                    </label>
+
+                    <input
+                        type="search"
+                        id="payment-search"
+                        placeholder="Search by payment ID, user or status..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <!-- PAYMENT LIST -->
+
+                <div id="payment-list"
+                     style="margin-top: 20px;">
+
+
+                    <div class="request-item">
+
+                        <div>
+
+                            <h3>
+                                No payment records yet
+                            </h3>
+
+                            <p>
+                                Payment transactions will
+                                appear here when connected
+                                to the HavenGH API.
+                            </p>
+
+                            <small>
+                                Payment monitoring is ready
+                                for API integration.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 PAYMENT SECURITY
+            ========================== -->
+
+            <section class="dashboard-plan"
+                     style="margin-top: 24px;">
+
+                <div>
+
+                    <span class="section-label">
+                        SECURITY
+                    </span>
+
+                    <h2>
+                        Payment Security
+                    </h2>
+
+                    <p>
+                        Payment records should be processed
+                        and verified by the HavenGH API.
+                        Sensitive payment information must
+                        never be trusted from frontend data.
+                    </p>
+
+                </div>
+
+
+                <div class="plan-progress">
+
+                    <div class="progress-text">
+
+                        <span>
+                            Payment Control
+                        </span>
+
+                        <strong>
+                            Administrator Managed
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <span style="width: 100%;"></span>
+
+                    </div>
+
+
+                    <small>
+                        Payment authorization and transaction
+                        verification will be enforced by the
+                        backend API.
+                    </small>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     MAIN HAVENGH SCRIPT
+========================== -->
+
+<!--script src="script.js"></script-->
+<script src="admin-payments.js"></script>
+
+</body>
+
+</html>

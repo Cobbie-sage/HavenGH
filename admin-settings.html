@@ -1,0 +1,1558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ============================================================
+   HavenGH - ADMIN SETTINGS
+   Premium Administration Interface
+   ============================================================ */
+
+:root {
+    --admin-green: #0d3b2e;
+    --admin-green-dark: #082b21;
+    --admin-green-light: #155c46;
+    --admin-gold: #d4a72c;
+
+    --admin-bg: #f4f7f4;
+    --admin-card: #ffffff;
+    --admin-border: #e1e8e3;
+
+    --admin-text: #17352a;
+    --admin-muted: #6b7d74;
+
+    --admin-shadow:
+        0 10px 35px rgba(8, 43, 33, 0.07);
+
+    --admin-radius: 18px;
+}
+
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+body {
+    background: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.dashboard-sidebar {
+    background:
+        linear-gradient(
+            180deg,
+            var(--admin-green-dark) 0%,
+            var(--admin-green) 100%
+        );
+
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+/* LOGO */
+
+.dashboard-logo {
+    padding-bottom: 24px;
+}
+
+.dashboard-logo .logo {
+    color: #ffffff;
+}
+
+.dashboard-logo .logo-main {
+    color: #ffffff;
+}
+
+.dashboard-logo .logo-accent {
+    color: var(--admin-gold);
+}
+
+
+/* ADMIN PROFILE */
+
+.dashboard-user {
+    margin: 0 14px 24px;
+    padding: 14px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-user img {
+    width: 44px;
+    height: 44px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(212, 167, 44, 0.75);
+}
+
+.dashboard-user strong {
+    color: #ffffff;
+}
+
+.dashboard-user span {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.dashboard-nav {
+    gap: 5px;
+}
+
+.dashboard-link {
+    position: relative;
+
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.dashboard-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+
+    transform: translateX(2px);
+}
+
+.dashboard-link.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(212, 167, 44, 0.18),
+            rgba(255, 255, 255, 0.08)
+        );
+
+    color: #ffffff;
+
+    border-left: 3px solid var(--admin-gold);
+}
+
+.dashboard-link.active span {
+    color: var(--admin-gold);
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.dashboard-sidebar-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    padding-top: 14px;
+}
+
+.dashboard-sidebar-bottom .logout:hover {
+    color: #ffffff;
+    background: rgba(180, 50, 50, 0.18);
+}
+
+
+/* ============================================================
+   MAIN AREA
+   ============================================================ */
+
+.dashboard-main {
+    background: var(--admin-bg);
+}
+
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+
+.dashboard-topbar {
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid var(--admin-border);
+
+    box-shadow:
+        0 2px 12px rgba(8, 43, 33, 0.035);
+}
+
+.dashboard-date {
+    color: var(--admin-green-light);
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+.dashboard-topbar h1 {
+    color: var(--admin-green);
+
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   NOTIFICATION
+   ============================================================ */
+
+.notification-button {
+    position: relative;
+
+    background: #ffffff;
+
+    color: var(--admin-green);
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.notification-button:hover {
+    border-color: rgba(212, 167, 44, 0.65);
+
+    box-shadow:
+        0 6px 18px rgba(8, 43, 33, 0.08);
+
+    transform: translateY(-1px);
+}
+
+#adminNotificationCount {
+    background: var(--admin-gold);
+
+    color: #17251e;
+
+    font-weight: 800;
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.dashboard-content {
+    max-width: 1180px;
+
+    margin: 0 auto;
+
+    padding-bottom: 60px;
+}
+
+
+/* ============================================================
+   WELCOME / INTRO
+   ============================================================ */
+
+.dashboard-welcome {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b382b 0%,
+            #155740 100%
+        );
+
+    color: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 34px 38px;
+
+    box-shadow:
+        0 18px 45px rgba(8, 43, 33, 0.16);
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dashboard-welcome::after {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    right: -90px;
+    top: -110px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(212, 167, 44, 0.25);
+}
+
+.dashboard-welcome::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    right: 70px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(212, 167, 44, 0.07);
+}
+
+.dashboard-welcome .section-label {
+    color: #e3bd54;
+}
+
+.dashboard-welcome h2 {
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size: clamp(25px, 3vw, 34px);
+
+    font-weight: 800;
+}
+
+.dashboard-welcome p {
+    max-width: 700px;
+
+    color: rgba(255, 255, 255, 0.76);
+
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   PANELS
+   ============================================================ */
+
+.dashboard-panel,
+.dashboard-plan {
+    border: 1px solid var(--admin-border);
+
+    border-radius: var(--admin-radius);
+
+    background: var(--admin-card);
+
+    box-shadow: var(--admin-shadow);
+
+    transition:
+        box-shadow 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.dashboard-panel:hover,
+.dashboard-plan:hover {
+    border-color: rgba(13, 59, 46, 0.16);
+
+    box-shadow:
+        0 14px 40px rgba(8, 43, 33, 0.09);
+}
+
+
+/* ============================================================
+   PANEL HEADINGS
+   ============================================================ */
+
+.panel-heading {
+    border-bottom: 1px solid var(--admin-border);
+
+    padding-bottom: 18px;
+
+    margin-bottom: 0;
+}
+
+.panel-heading h2,
+.dashboard-plan h2 {
+    color: var(--admin-green);
+
+    font-weight: 800;
+}
+
+.section-label {
+    color: var(--admin-green-light);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================================================
+   REQUEST ITEMS / SETTINGS ROWS
+   ============================================================ */
+
+.request-item {
+    padding: 22px 0;
+
+    border-bottom: 1px solid #edf1ee;
+
+    transition:
+        background 0.2s ease,
+        padding-left 0.2s ease;
+}
+
+.request-item:last-child {
+    border-bottom: none;
+}
+
+.request-item:hover {
+    background: rgba(13, 59, 46, 0.018);
+}
+
+.request-item h3 {
+    color: var(--admin-text);
+
+    font-size: 16px;
+
+    font-weight: 750;
+}
+
+.request-item p {
+    color: var(--admin-muted);
+
+    line-height: 1.65;
+}
+
+.request-item small {
+    color: #829189;
+
+    font-weight: 600;
+}
+
+.request-item > strong {
+    color: var(--admin-green-light);
+}
+
+
+/* ============================================================
+   PASSWORD SECTION
+   ============================================================ */
+
+#change-password-form {
+    margin-top: 24px !important;
+
+    padding: 26px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbfdfb 0%,
+            #f6f9f7 100%
+        );
+
+    border: 1px solid #dfe8e2;
+
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+#password-change-form {
+    max-width: 650px;
+}
+
+#password-change-form .form-group {
+    margin-bottom: 18px;
+}
+
+#password-change-form label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--admin-green);
+
+    font-size: 13px;
+
+    font-weight: 750;
+}
+
+#password-change-form input {
+    width: 100%;
+
+    min-height: 49px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d4e0d9;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: var(--admin-text);
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#password-change-form input:hover {
+    border-color: #b8ccc1;
+}
+
+#password-change-form input:focus {
+    border-color: var(--admin-green-light);
+
+    box-shadow:
+        0 0 0 3px rgba(21, 92, 70, 0.12);
+}
+
+
+/* HIDDEN USERNAME FIELD */
+
+.password-username-field {
+    position: absolute !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    padding: 0 !important;
+    margin: -1px !important;
+
+    overflow: hidden !important;
+
+    clip: rect(0, 0, 0, 0) !important;
+
+    white-space: nowrap !important;
+
+    border: 0 !important;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+    border-radius: 10px;
+
+    font-weight: 750;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.btn-dark {
+    background: var(--admin-green);
+
+    color: #ffffff;
+
+    border: 1px solid var(--admin-green);
+}
+
+.btn-dark:hover {
+    background: var(--admin-green-light);
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(13, 59, 46, 0.18);
+}
+
+#cancel-password-change {
+    margin-left: 5px;
+
+    background: #ffffff;
+
+    color: var(--admin-green);
+
+    border: 1px solid #d3ded8;
+}
+
+#cancel-password-change:hover {
+    border-color: var(--admin-green);
+
+    background: #f4f8f5;
+}
+
+
+/* ============================================================
+   PASSWORD MESSAGE
+   ============================================================ */
+
+#password-change-message {
+    border-radius: 10px !important;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   AUTHENTICATION CARD
+   ============================================================ */
+
+.dashboard-plan {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.dashboard-plan::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(212, 167, 44, 0.15);
+
+    pointer-events: none;
+}
+
+.progress-text strong {
+    color: var(--admin-green-light);
+}
+
+.progress-bar {
+    background: #e4ebe6;
+
+    overflow: hidden;
+}
+
+.progress-bar span {
+    background:
+        linear-gradient(
+            90deg,
+            var(--admin-green),
+            var(--admin-gold)
+        );
+
+    display: block;
+}
+
+
+/* ============================================================
+   SESSION
+   ============================================================ */
+
+.dashboard-plan:last-child {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f8faf8 100%
+        );
+}
+
+.dashboard-plan:last-child h2 {
+    color: var(--admin-green);
+}
+
+
+/* ============================================================
+   ADMIN ACCESS STATUS
+   ============================================================ */
+
+.dashboard-panel .request-item > strong {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    background: #eaf5ee;
+
+    color: #17613f;
+
+    font-size: 12px;
+}
+
+.dashboard-panel .request-item > strong::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #24915c;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .dashboard-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .dashboard-welcome {
+        padding: 28px;
+    }
+
+    .request-item {
+        gap: 20px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .dashboard-content {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .dashboard-welcome {
+        padding: 24px 20px;
+
+        border-radius: 16px;
+    }
+
+    .dashboard-welcome h2 {
+        font-size: 25px;
+    }
+
+    .dashboard-panel,
+    .dashboard-plan {
+        border-radius: 14px;
+    }
+
+    .panel-heading {
+        padding-bottom: 15px;
+    }
+
+    .request-item {
+        padding: 18px 0;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    #change-password-form {
+        padding: 18px;
+    }
+
+    #password-change-form {
+        width: 100%;
+    }
+
+    #password-change-form .btn {
+        width: 100%;
+
+        margin: 5px 0 0;
+    }
+
+    #cancel-password-change {
+        margin-left: 0;
+    }
+}
+
+
+/* ============================================================
+   MOBILE SIDEBAR
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .dashboard-sidebar {
+        box-shadow:
+            8px 0 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .dashboard-menu-button {
+        color: var(--admin-green);
+    }
+}
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- =========================================
+         ADMIN SIDEBAR
+    ========================================== -->
+
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-logo">
+
+            <a href="havengh logo.jpeg" class="logo">
+                <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+            </a>
+
+        </div>
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="dashboard-user">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="Administrator profile picture"
+            >
+
+            <div>
+
+                <strong>
+                    HavenGH Admin
+                </strong>
+
+                <span>
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+            <a href="admin-dashboard.html"
+               class="dashboard-link">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a href="admin-users.html"
+               class="dashboard-link">
+
+                <span>♙</span>
+                Users
+
+            </a>
+
+
+            <a href="admin-properties.html"
+               class="dashboard-link">
+
+                <span>▣</span>
+                Properties
+
+            </a>
+
+
+            <a href="admin-stays.html"
+               class="dashboard-link">
+
+                <span>🏠</span>
+                Stay in Ghana
+
+            </a>
+
+
+            <a href="admin-rental-requests.html"
+               class="dashboard-link">
+
+                <span>◉</span>
+                Rental Requests
+
+            </a>
+
+
+            <a href="admin-messages.html"
+               class="dashboard-link">
+
+                <span>✉</span>
+                Messages
+
+            </a>
+
+
+            <a href="admin-payments.html"
+               class="dashboard-link">
+
+                <span>GH₵</span>
+                Payments
+
+            </a>
+
+
+            <a href="admin-subscriptions.html"
+               class="dashboard-link">
+
+                <span>◆</span>
+                Subscriptions
+
+            </a>
+
+
+            <a href="admin-audit-logs.html"
+               class="dashboard-link">
+
+                <span>▤</span>
+                Audit Logs
+
+            </a>
+
+
+            <a href="admin-settings.html"
+               class="dashboard-link active">
+
+                <span>⚙</span>
+                Settings
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+            <a href="index.html"
+               class="dashboard-link">
+
+                <span>←</span>
+                Back to Website
+
+            </a>
+
+
+            <a href="login.html"
+               class="dashboard-link logout">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-topbar">
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open dashboard menu">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+                    HavenGH Administration
+                </p>
+
+                <h1>
+                    Settings
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-expanded="false">
+
+                    ♧
+
+                    <span id="adminNotificationCount">
+                        0
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             SETTINGS CONTENT
+        ========================================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="dashboard-welcome">
+
+                <div>
+
+                    <span class="section-label">
+                        ADMINISTRATION
+                    </span>
+
+                    <h2>
+                        HavenGH Settings
+                    </h2>
+
+                    <p>
+                        Manage your administrator account,
+                        security preferences and platform
+                        configuration.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 ADMIN ACCOUNT
+            ====================================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACCOUNT
+                        </span>
+
+                        <h2>
+                            Administrator Account
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-item">
+
+                    <div>
+
+                        <h3>
+                            HavenGH Administrator
+                        </h3>
+
+                        <p>
+                            Administrator account with
+                            platform management privileges.
+                        </p>
+
+                        <small>
+                            Role: Administrator
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 SECURITY
+            ====================================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            SECURITY
+                        </span>
+
+                        <h2>
+                            Password & Security
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-item">
+
+                    <div>
+
+                        <h3>
+                            Change Administrator Password
+                        </h3>
+
+                        <p>
+                            Update the administrator password
+                            to keep the HavenGH account secure.
+                        </p>
+
+                        <small>
+                            Strong passwords are recommended.
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-dark"
+                        id="change-password-button">
+
+                        Change Password
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- CHANGE PASSWORD FORM -->
+
+                <div
+                    id="change-password-form"
+                    style="display: none; margin-top: 20px;">
+
+                    <form id="password-change-form">
+
+                        <div class="form-group" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                      <label for="admin-password-username">Username or Email</label>
+                            <input
+                        type="text"
+                         id="admin-password-username"
+                         name="username"
+                               autocomplete="username"
+                           tabindex="-1"
+                       aria-hidden="true">
+                         </div>
+
+                        <div class="form-group">
+
+                            <label for="current-password">
+                                Current Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="current-password"
+                                name="currentPassword"
+                                autocomplete="current-password"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="new-password">
+                                New Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="new-password"
+                                name="newPassword"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="confirm-password">
+                                Confirm New Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirm-password"
+                                name="confirmPassword"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required>
+
+                        </div>
+
+
+                        <div
+                            id="password-change-message"
+                            style="display: none; margin-bottom: 15px;">
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-dark">
+
+                            Update Password
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="btn"
+                            id="cancel-password-change">
+
+                            Cancel
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 AUTHENTICATION STATUS
+            ====================================== -->
+
+            <section class="dashboard-plan"
+                     style="margin-top: 24px;">
+
+                <div>
+
+                    <span class="section-label">
+                        AUTHENTICATION
+                    </span>
+
+                    <h2>
+                        JWT Authentication
+                    </h2>
+
+                    <p>
+                        HavenGH uses authenticated API
+                        requests for protected administrator
+                        operations.
+                    </p>
+
+                </div>
+
+
+                <div class="plan-progress">
+
+                    <div class="progress-text">
+
+                        <span>
+                            Authentication
+                        </span>
+
+                        <strong>
+                            Enabled
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <span style="width: 100%;"></span>
+
+                    </div>
+
+
+                    <small>
+                        Administrator access is protected
+                        by authentication and role-based
+                        authorization.
+                    </small>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 PLATFORM SETTINGS
+            ====================================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            PLATFORM
+                        </span>
+
+                        <h2>
+                            Platform Settings
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-item">
+
+                    <div>
+
+                        <h3>
+                            Property Management
+                        </h3>
+
+                        <p>
+                            Properties submitted by users
+                            can be reviewed and managed
+                            through the Admin Portal.
+                        </p>
+
+                        <small>
+                            Administrator controlled
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-item">
+
+                    <div>
+
+                        <h3>
+                            Stay in Ghana
+                        </h3>
+
+                        <p>
+                            Stay submissions require
+                            administrator review before
+                            public visibility.
+                        </p>
+
+                        <small>
+                            Approval required
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-item">
+
+                    <div>
+
+                        <h3>
+                            Rental Requests
+                        </h3>
+
+                        <p>
+                            Administrators can monitor
+                            rental requests across the
+                            HavenGH platform.
+                        </p>
+
+                        <small>
+                            Platform monitoring enabled
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 ADMIN ACCESS
+            ====================================== -->
+
+            <section class="dashboard-panel"
+                     style="margin-top: 24px;">
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACCESS CONTROL
+                        </span>
+
+                        <h2>
+                            Administrator Access
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="request-item">
+
+                    <div>
+
+                        <h3>
+                            Role-Based Authorization
+                        </h3>
+
+                        <p>
+                            Administrative endpoints are
+                            restricted to users with the
+                            appropriate administrator role.
+                        </p>
+
+                        <small>
+                            Protected API access
+                        </small>
+
+                    </div>
+
+                    <strong>
+                        Enabled
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 SESSION
+            ====================================== -->
+
+            <section class="dashboard-plan"
+                     style="margin-top: 24px;">
+
+                <div>
+
+                    <span class="section-label">
+                        SESSION
+                    </span>
+
+                    <h2>
+                        Administrator Session
+                    </h2>
+
+                    <p>
+                        When you finish using the Admin
+                        Portal, sign out to protect your
+                        administrator session.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <a
+                        href="login.html"
+                        class="btn btn-dark">
+
+                        Log Out
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================
+     MAIN HAVENGH JAVASCRIPT
+========================================== -->
+
+
+<script src="script.js"></script>
+<script src="admin-settings.js"></script>
+
+</body>
+
+</html>
+

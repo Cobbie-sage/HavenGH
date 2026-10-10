@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH account settings.">
+
+    <title>Settings | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="dashboard-sidebar">
+
+        <div class="dashboard-logo">
+
+            <a href="index.html" class="logo">
+                <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+            </a>
+
+        </div>
+
+
+        <!-- REAL LOGGED-IN USER -->
+
+        <div class="dashboard-user">
+
+            <img
+                id="dashboard-user-avatar"
+                src="images/agent-1.jpg"
+                alt="Profile picture">
+
+            <div>
+
+                <strong id="dashboard-user-name">
+                    Loading...
+                </strong>
+
+                <span id="dashboard-user-role">
+                    Loading...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="dashboard-nav">
+
+            <a href="dashboard.html" class="dashboard-link">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="my-properties.html" class="dashboard-link">
+                <span>▣</span>
+                My Properties
+            </a>
+
+            <a href="add-property.html" class="dashboard-link">
+                <span>＋</span>
+                Add Property
+            </a>
+
+            <a href="requests.html" class="dashboard-link">
+                <span>◉</span>
+                Rental Requests
+            </a>
+
+            <a href="messages.html" class="dashboard-link">
+                <span>✉</span>
+                Messages
+            </a>
+
+            <a href="profile.html" class="dashboard-link">
+                <span>♙</span>
+                My Profile
+            </a>
+
+            <a href="plan.html" class="dashboard-link">
+                <span>◆</span>
+                My Plan
+            </a>
+
+            <a href="settings.html"
+               class="dashboard-link active">
+                <span>⚙</span>
+                Settings
+            </a>
+
+        </nav>
+
+
+        <div class="dashboard-sidebar-bottom">
+
+            <a href="index.html"
+               class="dashboard-link">
+
+                <span>←</span>
+                Back to Website
+
+            </a>
+
+
+            <a href="login.html"
+               class="dashboard-link"
+               id="logout-link">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-topbar">
+
+            <button
+                class="dashboard-menu-button"
+                type="button">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+                    Account preferences
+                </p>
+
+                <h1>
+                    Settings
+                </h1>
+
+            </div>
+
+        </header>
+
+
+        <div class="dashboard-content settings-page">
+
+
+            <!-- API MESSAGE -->
+
+            <div
+                id="settings-message"
+                role="alert"
+                aria-live="polite"
+                hidden
+                style="
+                    padding:12px 16px;
+                    margin-bottom:20px;
+                    border-radius:8px;
+                ">
+            </div>
+
+
+            <!-- GENERAL -->
+
+            <section class="settings-card">
+
+                <div class="settings-heading">
+
+                    <span class="section-label">
+                        GENERAL
+                    </span>
+
+                    <h2>
+                        Account Preferences
+                    </h2>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Email Notifications
+                        </strong>
+
+                        <p>
+                            Receive important updates and account notifications.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="emailNotifications">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            New Rental Requests
+                        </strong>
+
+                        <p>
+                            Notify me when someone requests one of my properties.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="newRentalRequests">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            New Messages
+                        </strong>
+
+                        <p>
+                            Notify me when a tenant sends a message.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="newMessages">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Property Updates
+                        </strong>
+
+                        <p>
+                            Receive reminders about your property listings.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="propertyUpdates">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTACT -->
+
+            <section class="settings-card">
+
+                <div class="settings-heading">
+
+                    <span class="section-label">
+                        CONTACT
+                    </span>
+
+                    <h2>
+                        Contact Preferences
+                    </h2>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            WhatsApp Contact
+                        </strong>
+
+                        <p>
+                            Allow tenants to contact you through WhatsApp.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="whatsAppContact">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Phone Calls
+                        </strong>
+
+                        <p>
+                            Allow tenants to see your phone number.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="phoneCalls">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Email Contact
+                        </strong>
+
+                        <p>
+                            Allow potential tenants to contact you by email.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="emailContact">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- SECURITY -->
+
+            <section class="settings-card">
+
+                <div class="settings-heading">
+
+                    <span class="section-label">
+                        SECURITY
+                    </span>
+
+                    <h2>
+                        Password & Security
+                    </h2>
+
+                </div>
+
+
+                <div class="security-row">
+
+                    <div>
+
+                        <strong>
+                            Password
+                        </strong>
+
+                        <p>
+                            Manage your account password.
+                        </p>
+
+                    </div>
+                    <a href="Agent/Landlord-forget-password.html" style="color: brown;">
+                                   Change Password
+                    </a>
+
+                    <!--button
+                        type="button"
+                        class="settings-outline-button"
+                        id="change-password-button">
+
+                        Change Password
+
+                    </button-->
+
+                </div>
+
+
+                <div class="security-row">
+
+                    <div>
+
+                        <strong>
+                            Two-Step Verification
+                        </strong>
+
+                        <p>
+                            Add an extra layer of protection to your account.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="settings-outline-button"
+                        id="two-step-button">
+
+                        Coming Soon
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRIVACY -->
+
+            <section class="settings-card">
+
+                <div class="settings-heading">
+
+                    <span class="section-label">
+                        PRIVACY
+                    </span>
+
+                    <h2>
+                        Privacy
+                    </h2>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Show Profile Publicly
+                        </strong>
+
+                        <p>
+                            Allow tenants to view your agent profile.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="showProfilePublicly">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <strong>
+                            Show Online Status
+                        </strong>
+
+                        <p>
+                            Let people know when you are available.
+                        </p>
+
+                    </div>
+
+                    <label class="toggle">
+
+                        <input
+                            type="checkbox"
+                            id="showOnlineStatus">
+
+                        <span></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- DANGER ZONE -->
+
+            <section class="danger-zone">
+
+                <div>
+
+                    <span class="section-label">
+                        ACCOUNT
+                    </span>
+
+                    <h2>
+                        Delete Account
+                    </h2>
+
+                    <p>
+                        Permanently delete your HavenGH account and
+                        associated information.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="delete-account-button"
+                    id="delete-account-button">
+
+                    Delete Account
+
+                </button>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+    /*
+     * ============================================================
+     * HAVENGH SETTINGS API
+     * ============================================================
+     */
+
+
+    const SETTINGS_ENDPOINT =
+        `${API_BASE_URL}/api/Settings`;
+
+    const ME_ENDPOINT =
+        `${API_BASE_URL}/api/Auth/me`;
+
+
+    /*
+     * ============================================================
+     * AUTH TOKEN
+     * ============================================================
+     */
+
+    function getToken() {
+
+        return (
+            localStorage.getItem("havenGH_token") ||
+            localStorage.getItem("token") ||
+            localStorage.getItem("jwtToken") ||
+            localStorage.getItem("accessToken")
+        );
+
+    }
+
+
+    /*
+     * ============================================================
+     * AUTH CHECK
+     * ============================================================
+     */
+
+    function requireAuthentication() {
+
+        const token = getToken();
+
+        if (!token) {
+
+            window.location.href =
+                "login.html";
+
+            return false;
+
+        }
+
+        return true;
+
+    }
+
+
+    /*
+     * ============================================================
+     * MESSAGE
+     * ============================================================
+     */
+
+    const messageBox =
+        document.getElementById(
+            "settings-message"
+        );
+
+
+    function showMessage(
+        message,
+        success = true
+    ) {
+
+        messageBox.textContent =
+            message;
+
+        messageBox.hidden =
+            false;
+
+        messageBox.style.background =
+            success
+                ? "#e8f7ee"
+                : "#fdecec";
+
+        messageBox.style.color =
+            success
+                ? "#166534"
+                : "#991b1b";
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOAD USER
+     * ============================================================
+     */
+
+    async function loadCurrentUser() {
+
+        const token =
+            getToken();
+
+
+        const response =
+            await fetch(
+                ME_ENDPOINT,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (
+            response.status === 401
+        ) {
+
+            logout();
+
+            return;
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load account information."
+            );
+
+        }
+
+
+        const user =
+            await response.json();
+
+
+        /*
+         * Auth/me currently returns userId,
+         * email and role.
+         */
+
+        document.getElementById(
+            "dashboard-user-name"
+        ).textContent =
+            user.email || "HavenGH User";
+
+
+        document.getElementById(
+            "dashboard-user-role"
+        ).textContent =
+            user.role || "User";
+
+    }
+
+
+    /*
+     * ============================================================
+     * LOAD SETTINGS
+     * ============================================================
+     */
+
+    async function loadSettings() {
+
+        const token =
+            getToken();
+
+
+        const response =
+            await fetch(
+                SETTINGS_ENDPOINT,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (
+            response.status === 401
+        ) {
+
+            logout();
+
+            return;
+
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load your settings."
+            );
+
+        }
+
+
+        const settings =
+            await response.json();
+
+
+        /*
+         * Populate the switches from
+         * the actual database values.
+         */
+
+        setCheckbox(
+            "emailNotifications",
+            settings.emailNotifications
+        );
+
+        setCheckbox(
+            "newRentalRequests",
+            settings.newRentalRequests
+        );
+
+        setCheckbox(
+            "newMessages",
+            settings.newMessages
+        );
+
+        setCheckbox(
+            "propertyUpdates",
+            settings.propertyUpdates
+        );
+
+        setCheckbox(
+            "whatsAppContact",
+            settings.whatsAppContact
+        );
+
+        setCheckbox(
+            "phoneCalls",
+            settings.phoneCalls
+        );
+
+        setCheckbox(
+            "emailContact",
+            settings.emailContact
+        );
+
+        setCheckbox(
+            "showProfilePublicly",
+            settings.showProfilePublicly
+        );
+
+        setCheckbox(
+            "showOnlineStatus",
+            settings.showOnlineStatus
+        );
+
+    }
+
+
+    function setCheckbox(
+        id,
+        value
+    ) {
+
+        const checkbox =
+            document.getElementById(id);
+
+        if (checkbox) {
+
+            checkbox.checked =
+                Boolean(value);
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * COLLECT SETTINGS
+     * ============================================================
+     */
+
+    function getSettings() {
+
+        return {
+
+            emailNotifications:
+                document.getElementById(
+                    "emailNotifications"
+                ).checked,
+
+            newRentalRequests:
+                document.getElementById(
+                    "newRentalRequests"
+                ).checked,
+
+            newMessages:
+                document.getElementById(
+                    "newMessages"
+                ).checked,
+
+            propertyUpdates:
+                document.getElementById(
+                    "propertyUpdates"
+                ).checked,
+
+            whatsAppContact:
+                document.getElementById(
+                    "whatsAppContact"
+                ).checked,
+
+            phoneCalls:
+                document.getElementById(
+                    "phoneCalls"
+                ).checked,
+
+            emailContact:
+                document.getElementById(
+                    "emailContact"
+                ).checked,
+
+            showProfilePublicly:
+                document.getElementById(
+                    "showProfilePublicly"
+                ).checked,
+
+            showOnlineStatus:
+                document.getElementById(
+                    "showOnlineStatus"
+                ).checked
+
+        };
+
+    }
+
+
+    /*
+     * ============================================================
+     * SAVE SETTINGS
+     * ============================================================
+     */
+
+    let saveTimer = null;
+
+
+    async function saveSettings() {
+
+        const token =
+            getToken();
+
+
+        try {
+
+            const response =
+                await fetch(
+                    SETTINGS_ENDPOINT,
+                    {
+                        method: "PUT",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json",
+
+                            "Accept":
+                                "application/json",
+
+                            "Authorization":
+                                `Bearer ${token}`
+                        },
+
+                        body:
+                            JSON.stringify(
+                                getSettings()
+                            )
+                    }
+                );
+
+
+            if (
+                response.status === 401
+            ) {
+
+                logout();
+
+                return;
+
+            }
+
+
+            let data =
+                null;
+
+
+            try {
+
+                data =
+                    await response.json();
+
+            } catch {
+
+                data = null;
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data?.message ||
+                    "Unable to save settings."
+                );
+
+            }
+
+
+            showMessage(
+                "Settings saved successfully.",
+                true
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "HavenGH settings error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to save settings.",
+                false
+            );
+
+        }
+
+    }
+
+
+    /*
+     * ============================================================
+     * AUTO-SAVE
+     * ============================================================
+     */
+
+    document
+        .querySelectorAll(
+            '.toggle input[type="checkbox"]'
+        )
+        .forEach(
+            checkbox => {
+
+                checkbox.addEventListener(
+                    "change",
+                    function () {
+
+                        clearTimeout(
+                            saveTimer
+                        );
+
+                        saveTimer =
+                            setTimeout(
+                                saveSettings,
+                                250
+                            );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * LOGOUT
+     * ============================================================
+     */
+
+    function logout() {
+
+        localStorage.removeItem(
+            "havenGH_token"
+        );
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "jwtToken"
+        );
+
+        localStorage.removeItem(
+            "accessToken"
+        );
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+    document
+        .getElementById("logout-link")
+        .addEventListener(
+            "click",
+            function () {
+
+                logout();
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * PASSWORD
+     * ============================================================
+     *
+     * We do NOT pretend password changing exists
+     * until its secure backend endpoint is implemented.
+     */
+
+    document
+        .getElementById(
+            "change-password-button"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "change-password.html";
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * TWO-STEP VERIFICATION
+     * ============================================================
+     */
+
+    document
+        .getElementById(
+            "two-step-button"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                showMessage(
+                    "Two-Step Verification has not been enabled on the HavenGH API yet.",
+                    false
+                );
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * DELETE ACCOUNT
+     * ============================================================
+     *
+     * Deliberately disabled until the secure
+     * account-deletion endpoint exists.
+     */
+
+    document
+        .getElementById(
+            "delete-account-button"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                const confirmed =
+                    window.confirm(
+                        "Account deletion is permanent. Are you sure you want to continue?"
+                    );
+
+
+                if (!confirmed) {
+
+                    return;
+
+                }
+
+
+                showMessage(
+                    "Account deletion is not available yet. Your account has not been changed.",
+                    false
+                );
+
+            }
+        );
+
+
+    /*
+     * ============================================================
+     * START
+     * ============================================================
+     */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        async function () {
+
+            if (
+                !requireAuthentication()
+            ) {
+
+                return;
+
+            }
+
+
+            try {
+
+                await loadCurrentUser();
+
+                await loadSettings();
+
+            } catch (error) {
+
+                console.error(
+                    "HavenGH settings initialization error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "Unable to load your account settings.",
+                    false
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>

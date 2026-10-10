@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+      content="HavenGH tenant dashboard for managing properties, rental requests and messages.">
+
+<title>Tenant Dashboard | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+
+</style>
+
+
+
+</head>
+
+<body class="dashboard-page">
+
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="dashboard-sidebar">
+
+    <a href="index.html" class="logo">
+        <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+    </a>
+
+    <div class="sidebar-user">
+
+        <div class="sidebar-avatar">
+            T
+        </div>
+
+        <div>
+            <strong>Tenant Account</strong>
+            <span>HavenGH Member</span>
+        </div>
+
+    </div>
+
+
+    <nav class="dashboard-nav">
+
+        <a href="tenant-dashboard.html" class="active">
+            <span class="nav-icon">⌂</span>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="properties.html">
+            <span class="nav-icon">⌕</span>
+            <span>Find a Home</span>
+        </a>
+
+        <a href="saved-properties.html">
+            <span class="nav-icon">♡</span>
+            <span>Saved Properties</span>
+        </a>
+
+        <a href="tenant-request.html">
+            <span class="nav-icon">▣</span>
+            <span>My Requests</span>
+        </a>
+
+        <a href="tenant-messages.html">
+            <span class="nav-icon">✉</span>
+            <span>Messages</span>
+        </a>
+
+        <a href="tenant-profile.html">
+            <span class="nav-icon">◯</span>
+            <span>My Profile</span>
+        </a>
+
+        <a href="tenant-settings.html">
+            <span class="nav-icon">⚙</span>
+            <span>Settings</span>
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-help">
+
+            <span class="help-icon">?</span>
+
+            <div>
+                <strong>Need help?</strong>
+                <small>We're here for you.</small>
+            </div>
+
+        </div>
+
+
+        <a href="login.html"
+           class="dashboard-logout"
+           data-action="logout">
+
+            <span>↪</span>
+            <span>Log out</span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
+
+<main class="dashboard-main">
+
+    <button
+        class="dashboard-menu-button"
+        type="button"
+        aria-label="Open dashboard menu"
+        aria-expanded="false">
+
+        ☰
+
+    </button>
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-header-content">
+
+            <div>
+
+                <p class="dashboard-label">
+                    TENANT PORTAL
+                </p>
+
+                <h1>
+                    Welcome back <span>👋</span>
+                </h1>
+
+                <p class="dashboard-subtitle">
+                    Find your next home and manage everything
+                    from one place.
+                </p>
+
+            </div>
+
+
+            <a href="properties.html"
+               class="dashboard-primary-action">
+
+                <span>+</span>
+                Find a Home
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =================================================
+         QUICK STATS
+    ================================================== -->
+
+    <section class="dashboard-stats">
+
+        <a href="saved-properties.html"
+           class="dashboard-stat-card">
+
+            <div class="stat-icon stat-icon-heart">
+                ♡
+            </div>
+
+            <div class="stat-information">
+
+                <span class="stat-label">
+                    Saved Properties
+                </span>
+
+                <strong class="stat-number">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Properties saved
+                </span>
+
+            </div>
+
+            <span class="stat-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a href="tenant-request.html"
+           class="dashboard-stat-card">
+
+            <div class="stat-icon stat-icon-request">
+                ▣
+            </div>
+
+            <div class="stat-information">
+
+                <span class="stat-label">
+                    Active Requests
+                </span>
+
+                <strong class="stat-number">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Rental requests
+                </span>
+
+            </div>
+
+            <span class="stat-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a href="tenant-messages.html"
+           class="dashboard-stat-card">
+
+            <div class="stat-icon stat-icon-message">
+                ✉
+            </div>
+
+            <div class="stat-information">
+
+                <span class="stat-label">
+                    Messages
+                </span>
+
+                <strong class="stat-number">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Conversations
+                </span>
+
+            </div>
+
+            <span class="stat-arrow">
+                →
+            </span>
+
+        </a>
+
+    </section>
+
+
+    <!-- =================================================
+         FIND HOME SECTION
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="dashboard-label">
+                    EXPLORE
+                </p>
+
+                <h2>
+                    Find Your Next Home
+                </h2>
+
+                <p class="section-description">
+                    Discover properties that match your lifestyle
+                    and budget.
+                </p>
+
+            </div>
+
+            <a href="properties.html"
+               class="section-link">
+
+                View all properties
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+
+        <div class="dashboard-welcome-card">
+
+            <div class="welcome-card-content">
+
+                <div class="welcome-badge">
+                    HAVENGH
+                </div>
+
+                <h3>
+                    Your next home could be closer than you think.
+                </h3>
+
+                <p>
+                    Explore available homes, apartments and rooms
+                    across Ghana. Save the properties you love and
+                    contact landlords or agents directly.
+                </p>
+
+                <div class="welcome-actions">
+
+                    <a href="properties.html"
+                       class="btn btn-dark">
+
+                        Browse Properties
+
+                    </a>
+
+                    <a href="saved-properties.html"
+                       class="btn btn-outline">
+
+                        View Saved
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="welcome-card-decoration">
+
+                <div class="decoration-circle decoration-circle-one"></div>
+                <div class="decoration-circle decoration-circle-two"></div>
+
+                <div class="decoration-house">
+
+                    <span class="house-roof"></span>
+
+                    <span class="house-body">
+
+                        <span class="house-door"></span>
+
+                        <span class="house-window window-one"></span>
+                        <span class="house-window window-two"></span>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         RECENT REQUESTS
+    ================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="dashboard-label">
+                    YOUR ACTIVITY
+                </p>
+
+                <h2>
+                    Recent Rental Requests
+                </h2>
+
+                <p class="section-description">
+                    Keep track of the properties you've requested.
+                </p>
+
+            </div>
+
+            <a href="tenant-request.html"
+               class="section-link">
+
+                View all requests
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+
+        <div class="empty-state dashboard-empty-state">
+
+            <div class="empty-state-icon">
+                ▣
+            </div>
+
+            <h3>
+                No rental requests yet
+            </h3>
+
+            <p>
+                When you request a property, your requests
+                and their status will appear here.
+            </p>
+
+            <a href="properties.html"
+               class="btn btn-dark">
+
+                Find a Property
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         QUICK LINKS
+    ================================================== -->
+
+    <section class="dashboard-section quick-links-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p class="dashboard-label">
+                    QUICK ACCESS
+                </p>
+
+                <h2>
+                    Manage Your Account
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-links-grid">
+
+            <a href="tenant-profile.html"
+               class="quick-link-card">
+
+                <div class="quick-link-icon">
+                    ◯
+                </div>
+
+                <div>
+
+                    <strong>
+                        My Profile
+                    </strong>
+
+                    <span>
+                        Manage your personal information
+                    </span>
+
+                </div>
+
+                <span class="quick-link-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a href="tenant-messages.html"
+               class="quick-link-card">
+
+                <div class="quick-link-icon">
+                    ✉
+                </div>
+
+                <div>
+
+                    <strong>
+                        Messages
+                    </strong>
+
+                    <span>
+                        Contact landlords and agents
+                    </span>
+
+                </div>
+
+                <span class="quick-link-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <a href="tenant-settings.html"
+               class="quick-link-card">
+
+                <div class="quick-link-icon">
+                    ⚙
+                </div>
+
+                <div>
+
+                    <strong>
+                        Settings
+                    </strong>
+
+                    <span>
+                        Manage your account preferences
+                    </span>
+
+                </div>
+
+                <span class="quick-link-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="dashboard-footer">
+
+        <p>
+            © 2026 HavenGH. Find a place you'll love.
+        </p>
+
+        <a href="index.html">
+            Back to HavenGH
+        </a>
+
+    </footer>
+
+</main>
+
+
+<script src="tenant-dashboard.js"></script>
+
+
+</body>
+
+</html>

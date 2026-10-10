@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH stays, listings and accommodation properties.">
+
+    <title>My Stays | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================================
+           HAVENGH — PREMIUM HOST STAYS
+        ========================================================= */
+
+        :root {
+            --green: #064e3b;
+            --green-dark: #043c2e;
+            --teal: #0f766e;
+            --gold: #d4af37;
+            --gold-light: #f5e9b8;
+            --bg: #f5f8f6;
+            --white: #ffffff;
+            --text: #17231f;
+            --muted: #71807a;
+            --border: #e3ebe7;
+            --danger: #b42318;
+            --shadow: 0 12px 35px rgba(6, 78, 59, .07);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        /* =========================================================
+           LAYOUT
+        ========================================================= */
+
+        .host-page {
+            min-height: 100vh;
+        }
+
+        .host-container {
+            width: min(1250px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .host-header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .host-header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .host-brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .host-brand img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .host-brand-name {
+            font-size: 23px;
+            font-weight: 900;
+            color: var(--green);
+        }
+
+        .host-brand-name span {
+            color: var(--gold);
+        }
+
+        .host-account {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .host-account-name {
+            text-align: right;
+        }
+
+        .host-account-name strong {
+            display: block;
+            color: var(--green);
+            font-size: 14px;
+        }
+
+        .host-account-name small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .host-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green), var(--teal));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+        }
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        .host-main {
+            padding: 45px 0 80px;
+        }
+
+        .breadcrumb {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .page-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .heading-label {
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading h1 {
+            margin: 0;
+            color: var(--green);
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.1;
+        }
+
+        .page-heading p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn-premium {
+            border: none;
+            cursor: pointer;
+            border-radius: 11px;
+            padding: 13px 19px;
+            font-weight: 800;
+            transition: .2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+            box-shadow: 0 8px 20px rgba(6, 78, 59, .16);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal);
+            transform: translateY(-1px);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--green);
+            border: 1px solid var(--border);
+        }
+
+        .btn-light:hover {
+            border-color: var(--green);
+            background: #f1f8f5;
+        }
+
+        /* =========================================================
+           SUMMARY
+        ========================================================= */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 21px;
+            box-shadow: var(--shadow);
+        }
+
+        .summary-card span {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .summary-card strong {
+            display: block;
+            margin-top: 8px;
+            color: var(--green);
+            font-size: 28px;
+        }
+
+        /* =========================================================
+           TOOLBAR
+        ========================================================= */
+
+        .toolbar {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 17px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            color: var(--text);
+        }
+
+        .search-box input:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(15,118,110,.08);
+        }
+
+        .filter-select {
+            padding: 13px 15px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            color: var(--text);
+            outline: none;
+            min-width: 150px;
+        }
+
+        /* =========================================================
+           STAYS GRID
+        ========================================================= */
+
+        .stays-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .stay-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 19px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: .2s ease;
+        }
+
+        .stay-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(6,78,59,.11);
+        }
+
+        .stay-image {
+            height: 215px;
+            position: relative;
+            overflow: hidden;
+            background: #eaf0ed;
+        }
+
+        .stay-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            padding: 7px 11px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 900;
+            background: white;
+        }
+
+        .status-published {
+            color: #087443;
+        }
+
+        .status-draft {
+            color: #8a6800;
+        }
+
+        .status-archived {
+            color: #991b1b;
+        }
+
+        .stay-body {
+            padding: 20px;
+        }
+
+        .stay-body h2 {
+            margin: 0 0 7px;
+            color: var(--green);
+            font-size: 19px;
+        }
+
+        .stay-location {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .stay-price {
+            color: var(--green);
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .stay-price span {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .stay-meta {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+        }
+
+        .stay-meta span {
+            background: #f2f7f5;
+            color: var(--green);
+            padding: 6px 9px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .stay-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-button {
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--green);
+            border-radius: 9px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .card-button:hover {
+            background: #f0f7f4;
+            border-color: var(--green);
+        }
+
+        .card-button.publish {
+            background: var(--green);
+            color: white;
+            border-color: var(--green);
+        }
+
+        .card-button.publish:hover {
+            background: var(--teal);
+        }
+
+        .card-button.archive {
+            color: var(--danger);
+        }
+
+        /* =========================================================
+           EMPTY STATE
+        ========================================================= */
+
+        .empty-state {
+            display: none;
+            text-align: center;
+            padding: 70px 20px;
+            background: white;
+            border: 1px dashed #cbd8d2;
+            border-radius: 18px;
+        }
+
+        .empty-icon {
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #edf6f2;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+            font-weight: 900;
+        }
+
+        .empty-state h2 {
+            color: var(--green);
+            margin: 0 0 8px;
+        }
+
+        .empty-state p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 500;
+            background: var(--green);
+            color: white;
+            padding: 15px 19px;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,.18);
+            font-size: 13px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: .25s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .host-footer {
+            border-top: 1px solid var(--border);
+            background: white;
+            padding: 25px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stays-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .host-container {
+                width: min(100% - 25px, 1250px);
+            }
+
+            .page-heading {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-select {
+                width: 100%;
+            }
+
+            .stays-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .host-account-name {
+                display: none;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+            }
+
+        }
+
+        @media (max-width: 430px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="host-page">
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="host-header">
+
+        <div class="host-container host-header-inner">
+
+            <a href="host-dashboard.html" class="host-brand">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <div class="host-brand-name">
+                    Haven<span>GH</span>
+                </div>
+
+            </a>
+
+            <div class="host-account">
+
+                <div class="host-account-name">
+                    <strong id="hostName">Stay Host</strong>
+                    <small>Host Account</small>
+                </div>
+
+                <div class="host-avatar" id="hostAvatar">
+                    SH
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="host-main">
+
+        <div class="host-container">
+
+            <a
+                href="host-dashboard.html"
+                class="breadcrumb">
+
+                ← Back to Host Dashboard
+
+            </a>
+
+
+            <!-- PAGE HEADING -->
+
+            <div class="page-heading">
+
+                <div>
+
+                    <div class="heading-label">
+                        STAY MANAGEMENT
+                    </div>
+
+                    <h1>
+                        My Stays
+                    </h1>
+
+                    <p>
+                        Manage your hotels, apartments, villas and
+                        short-stay accommodation from one place.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="add-stay.html"
+                    class="btn-premium btn-primary">
+
+                    + Add New Stay
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 SUMMARY
+            ================================================== -->
+
+           
+
+
+            <!-- =================================================
+                 SEARCH / FILTER
+            ================================================== -->
+
+            <section class="toolbar">
+
+                <div class="search-box">
+
+                    <input
+                        type="search"
+                        id="staySearch"
+                        placeholder="Search your stays..."
+                        autocomplete="off">
+
+                </div>
+
+
+                <select
+                     id="statusFilter"
+                     class="filter-select">
+
+                    <option value="all">
+                   All statuses
+                     </option>
+
+                   <option value="published">
+                     Published
+                   </option>
+
+                <option value="pending">
+                    Pending Review
+                   </option>
+
+              <option value="draft">
+                    Draft
+                 </option>
+
+              <option value="rejected">
+                 Rejected
+                </option>
+
+               <option value="archived">
+                Archived
+                   </option>
+
+      </select>
+
+
+                <button
+                    type="button"
+                    class="btn-premium btn-light"
+                    id="resetFiltersBtn">
+
+                    Reset
+
+                </button>
+
+            </section>
+
+
+            <!-- =================================================
+                 STAYS
+            ================================================== -->
+ <!-- =================================================
+     SUMMARY
+================================================== -->
+
+<section class="summary-grid">
+
+    <div class="summary-card">
+        <span>Total Stays</span>
+        <strong id="totalStays">0</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Published</span>
+        <strong id="publishedStays">0</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Pending Review</span>
+        <strong id="pendingStays">0</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Drafts</span>
+        <strong id="draftStays">0</strong>
+    </div>
+
+</section>
+
+
+<!-- =================================================
+     STAYS
+================================================== -->
+
+<section
+    class="stays-grid"
+    id="staysGrid">
+</section>
+            <!-- EMPTY -->
+
+            <div
+                class="empty-state"
+                id="emptyState">
+
+                <div class="empty-icon">
+                    ⌕
+                </div>
+
+                <h2>
+                    No stays found
+                </h2>
+
+                <p>
+                    Try another search or change the status filter.
+                </p>
+
+                <button
+                    type="button"
+                    class="btn-premium btn-primary"
+                    id="emptyResetBtn">
+
+                    Clear Filters
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="host-footer">
+
+        <div class="host-container footer-inner">
+
+            <span>
+                © 2026 HavenGH. All rights reserved.
+            </span>
+
+            <span>
+                Secure Host Portal · Built for Ghana 🇬🇭
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =============================================================
+     TOAST
+============================================================== -->
+
+<div
+    class="toast"
+    id="toast">
+
+</div>
+
+
+<!-- =============================================================
+     JAVASCRIPT
+============================================================== -->
+
+
+
+<script>
+"use strict";
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    /* =========================================================
+       HAVENGH API CONFIGURATION
+    ========================================================= */
+
+    const API_BASE_URL = "http://localhost:5073";
+    const API_BASE = `${API_BASE_URL}/api`;
+
+    const TOKEN_KEY = "havenGH_token";
+
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const staysGrid =
+        document.getElementById("staysGrid");
+
+    const searchInput =
+        document.getElementById("staySearch");
+
+    const statusFilter =
+        document.getElementById("statusFilter");
+
+    const resetButton =
+        document.getElementById("resetFiltersBtn");
+
+    const emptyResetButton =
+        document.getElementById("emptyResetBtn");
+
+    const emptyState =
+        document.getElementById("emptyState");
+
+    const toast =
+        document.getElementById("toast");
+
+    const hostName =
+        document.getElementById("hostName");
+
+    const hostAvatar =
+        document.getElementById("hostAvatar");
+
+
+    /* =========================================================
+       TOKEN
+    ========================================================= */
+
+    const token =
+        localStorage.getItem(TOKEN_KEY);
+
+
+    if (!token) {
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(message, type = "success") {
+
+        toast.textContent = message;
+
+        toast.style.background =
+            type === "error"
+                ? "#b42318"
+                : "#064e3b";
+
+        toast.classList.add("show");
+
+        setTimeout(function () {
+            toast.classList.remove("show");
+        }, 3000);
+    }
+
+
+    /* =========================================================
+       API REQUEST HELPER
+    ========================================================= */
+
+    async function apiRequest(url, options = {}) {
+
+        const headers = {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/json",
+            ...(options.headers || {})
+        };
+
+
+        const response =
+            await fetch(url, {
+                ...options,
+                headers
+            });
+
+
+        let data = null;
+
+        const contentType =
+            response.headers.get("content-type") || "";
+
+
+        if (contentType.includes("application/json")) {
+
+            data = await response.json();
+
+        } else {
+
+            const text =
+                await response.text();
+
+            data = text || null;
+        }
+
+
+        if (!response.ok) {
+
+            const message =
+                data?.message ||
+                data?.title ||
+                data?.error ||
+                `Request failed (${response.status})`;
+
+            throw new Error(message);
+        }
+
+
+        return data;
+    }
+
+
+    /* =========================================================
+       ESCAPE HTML
+    ========================================================= */
+
+    function escapeHtml(value) {
+
+        if (value === null || value === undefined) {
+            return "";
+        }
+
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+
+    /* =========================================================
+       FORMAT PRICE
+    ========================================================= */
+
+    function formatPrice(price) {
+
+        if (
+            price === null ||
+            price === undefined ||
+            price === ""
+        ) {
+            return "Price not set";
+        }
+
+
+        const number =
+            Number(price);
+
+
+        if (Number.isNaN(number)) {
+            return escapeHtml(price);
+        }
+
+
+        return `GH₵${number.toLocaleString("en-GH", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+        })}`;
+    }
+
+
+    /* =========================================================
+       IMAGE URL
+    ========================================================= */
+
+    function getImageUrl(imageUrl) {
+
+        if (!imageUrl) {
+
+            return "";
+        }
+
+
+        if (
+            imageUrl.startsWith("http://") ||
+            imageUrl.startsWith("https://")
+        ) {
+
+            return imageUrl;
+        }
+
+
+        if (imageUrl.startsWith("/")) {
+
+            return `${API_BASE_URL}${imageUrl}`;
+        }
+
+
+        return `${API_BASE_URL}/${imageUrl}`;
+    }
+
+
+    /* =========================================================
+       HOST AVATAR
+    ========================================================= */
+
+    function updateHostAvatar(name) {
+
+        const value =
+            String(name || "").trim();
+
+
+        if (!value) {
+
+            hostAvatar.textContent = "SH";
+
+            return;
+        }
+
+
+        const parts =
+            value.split(/\s+/);
+
+
+        let initials =
+            parts[0].charAt(0);
+
+
+        if (parts.length > 1) {
+
+            initials +=
+                parts[parts.length - 1].charAt(0);
+        }
+
+
+        hostAvatar.textContent =
+            initials.toUpperCase();
+    }
+
+
+    /* =========================================================
+       LOAD CURRENT HOST
+    ========================================================= */
+
+    async function loadHostProfile() {
+
+        try {
+
+            const data =
+                await apiRequest(
+                    `${API_BASE}/Auth/me`
+                );
+
+
+            /*
+             * The exact property names may differ depending
+             * on the current Auth/me response. We safely check
+             * the common fields already used by HavenGH.
+             */
+
+            const name =
+                data?.fullName ||
+                data?.FullName ||
+                data?.name ||
+                data?.Name ||
+                data?.userProfile?.fullName ||
+                data?.userProfile?.FullName ||
+                "Stay Host";
+
+
+            hostName.textContent =
+                name;
+
+
+            updateHostAvatar(name);
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load host profile:",
+                error
+            );
+
+            hostName.textContent =
+                "Stay Host";
+
+            updateHostAvatar("Stay Host");
+        }
+    }
+
+
+    /* =========================================================
+       NORMALIZE API STAY
+    ========================================================= */
+
+    function normalizeStay(stay) {
+
+        return {
+            id:
+                stay.stayId ??
+                stay.StayId,
+
+            title:
+                stay.title ??
+                stay.Title ??
+                "Untitled Stay",
+
+            description:
+                stay.description ??
+                stay.Description ??
+                "",
+
+            stayType:
+                stay.stayType ??
+                stay.StayType ??
+                "",
+
+            city:
+                stay.city ??
+                stay.City ??
+                "",
+
+            area:
+                stay.area ??
+                stay.Area ??
+                "",
+
+            address:
+                stay.address ??
+                stay.Address ??
+                "",
+
+            pricePerNight:
+                stay.pricePerNight ??
+                stay.PricePerNight ??
+                0,
+
+            bedrooms:
+                stay.bedrooms ??
+                stay.Bedrooms,
+
+            bathrooms:
+                stay.bathrooms ??
+                stay.Bathrooms,
+
+            rooms:
+                stay.rooms ??
+                stay.Rooms,
+
+            maxGuests:
+                stay.maxGuests ??
+                stay.MaxGuests,
+
+            amenities:
+                stay.amenities ??
+                stay.Amenities ??
+                "",
+
+            status:
+                String(
+                    stay.status ??
+                    stay.Status ??
+                    "draft"
+                ).toLowerCase(),
+
+            isFeatured:
+                stay.isFeatured ??
+                stay.IsFeatured ??
+                false,
+
+            images:
+                stay.images ??
+                stay.Images ??
+                []
+        };
+    }
+
+
+    /* =========================================================
+       STATUS LABEL
+    ========================================================= */
+
+    function getStatusLabel(status) {
+
+        switch (status) {
+
+            case "published":
+                return "Published";
+
+            case "pending":
+                return "Pending Review";
+
+            case "draft":
+                return "Draft";
+
+            case "rejected":
+                return "Rejected";
+
+            case "archived":
+                return "Archived";
+
+            default:
+                return status
+                    ? status.charAt(0).toUpperCase() +
+                      status.slice(1)
+                    : "Unknown";
+        }
+    }
+
+
+    /* =========================================================
+       STATUS CLASS
+    ========================================================= */
+
+    function getStatusClass(status) {
+
+        switch (status) {
+
+            case "published":
+                return "status-published";
+
+            case "draft":
+                return "status-draft";
+
+            case "pending":
+                return "status-draft";
+
+            case "rejected":
+                return "status-archived";
+
+            case "archived":
+                return "status-archived";
+
+            default:
+                return "status-draft";
+        }
+    }
+
+
+    /* =========================================================
+       PRIMARY IMAGE
+    ========================================================= */
+
+    function getPrimaryImage(stay) {
+
+        const images =
+            Array.isArray(stay.images)
+                ? stay.images
+                : [];
+
+
+        if (!images.length) {
+
+            return "";
+        }
+
+
+        const primary =
+            images.find(function (image) {
+
+                return (
+                    image.isPrimary === true ||
+                    image.IsPrimary === true
+                );
+
+            });
+
+
+        const image =
+            primary ||
+            images.sort(function (a, b) {
+
+                return (
+                    (a.displayOrder ??
+                     a.DisplayOrder ??
+                     0) -
+
+                    (b.displayOrder ??
+                     b.DisplayOrder ??
+                     0)
+                );
+
+            })[0];
+
+
+        return getImageUrl(
+            image.imageUrl ??
+            image.ImageUrl
+        );
+    }
+
+
+    /* =========================================================
+       CREATE STAY CARD
+    ========================================================= */
+
+    function createStayCard(stay) {
+
+        const article =
+            document.createElement("article");
+
+
+        article.className =
+            "stay-card";
+
+
+        article.dataset.id =
+            stay.id;
+
+
+        article.dataset.status =
+            stay.status;
+
+
+        article.dataset.search = [
+            stay.title,
+            stay.description,
+            stay.stayType,
+            stay.city,
+            stay.area,
+            stay.address,
+            stay.amenities
+        ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+
+        const imageUrl =
+            getPrimaryImage(stay);
+
+
+        const imageHtml =
+            imageUrl
+                ? `
+                    <img
+                        src="${escapeHtml(imageUrl)}"
+                        alt="${escapeHtml(stay.title)}"
+                        loading="lazy"
+                        onerror="this.style.display='none';">
+                  `
+                : `
+                    <div
+                        style="
+                            width:100%;
+                            height:100%;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            color:#71807a;
+                            font-weight:800;
+                            font-size:13px;
+                        ">
+                        No Image
+                    </div>
+                  `;
+
+
+        const location =
+            [stay.area, stay.city]
+                .filter(Boolean)
+                .join(", ");
+
+
+        const meta = [];
+
+
+        if (
+            stay.bedrooms !== null &&
+            stay.bedrooms !== undefined
+        ) {
+
+            meta.push(
+                `${stay.bedrooms} Bedroom${Number(stay.bedrooms) === 1 ? "" : "s"}`
+            );
+        }
+
+
+        if (
+            stay.rooms !== null &&
+            stay.rooms !== undefined &&
+            stay.rooms !== 0
+        ) {
+
+            meta.push(
+                `${stay.rooms} Room${Number(stay.rooms) === 1 ? "" : "s"}`
+            );
+        }
+
+
+        if (
+            stay.bathrooms !== null &&
+            stay.bathrooms !== undefined
+        ) {
+
+            meta.push(
+                `${stay.bathrooms} Bathroom${Number(stay.bathrooms) === 1 ? "" : "s"}`
+            );
+        }
+
+
+        if (
+            stay.maxGuests !== null &&
+            stay.maxGuests !== undefined
+        ) {
+
+            meta.push(
+                `${stay.maxGuests} Guests`
+            );
+        }
+
+
+        if (stay.stayType) {
+
+            meta.push(
+                stay.stayType
+            );
+        }
+
+
+        const metaHtml =
+            meta
+                .slice(0, 4)
+                .map(function (item) {
+
+                    return `
+                        <span>
+                            ${escapeHtml(item)}
+                        </span>
+                    `;
+
+                })
+                .join("");
+
+
+        let actionHtml = `
+            <button
+                type="button"
+                class="card-button view-btn">
+                View
+            </button>
+
+            <button
+                type="button"
+                class="card-button edit-btn">
+                Edit
+            </button>
+        `;
+
+
+        /*
+         * IMPORTANT:
+         *
+         * StayHost does NOT directly publish a stay.
+         *
+         * draft -> pending
+         *
+         * Admin then reviews and approves/rejects it.
+         */
+
+
+        if (stay.status === "draft") {
+
+            actionHtml += `
+                <button
+                    type="button"
+                    class="card-button publish submit-review-btn">
+                    Submit for Review
+                </button>
+            `;
+
+        } else if (stay.status === "pending") {
+
+            actionHtml += `
+                <button
+                    type="button"
+                    class="card-button"
+                    disabled
+                    style="opacity:.6;cursor:not-allowed;">
+                    Pending Review
+                </button>
+            `;
+
+        } else if (stay.status === "published") {
+
+            /*
+             * There is currently no confirmed host-side
+             * unpublish endpoint in the API.
+             *
+             * Therefore we do not fake an unpublish action.
+             */
+
+            actionHtml += `
+                <button
+                    type="button"
+                    class="card-button"
+                    disabled
+                    style="opacity:.6;cursor:not-allowed;">
+                    Published
+                </button>
+            `;
+
+        } else if (stay.status === "rejected") {
+
+            actionHtml += `
+                <button
+                    type="button"
+                    class="card-button"
+                    disabled
+                    style="opacity:.6;cursor:not-allowed;">
+                    Rejected
+                </button>
+            `;
+
+        } else {
+
+            actionHtml += `
+                <button
+                    type="button"
+                    class="card-button"
+                    disabled
+                    style="opacity:.6;cursor:not-allowed;">
+                    ${escapeHtml(getStatusLabel(stay.status))}
+                </button>
+            `;
+        }
+
+
+        article.innerHTML = `
+
+            <div class="stay-image">
+
+                ${imageHtml}
+
+                <span
+                    class="status-badge ${getStatusClass(stay.status)}">
+
+                    ${escapeHtml(
+                        getStatusLabel(stay.status)
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="stay-body">
+
+                <h2>
+                    ${escapeHtml(stay.title)}
+                </h2>
+
+
+                <div class="stay-location">
+
+                    ${location
+                        ? `📍 ${escapeHtml(location)}`
+                        : "📍 Location not set"}
+
+                </div>
+
+
+                <div class="stay-price">
+
+                    ${formatPrice(stay.pricePerNight)}
+
+                    <span>
+                        / night
+                    </span>
+
+                </div>
+
+
+                <div class="stay-meta">
+
+                    ${metaHtml}
+
+                </div>
+
+
+                <div class="stay-actions">
+
+                    ${actionHtml}
+
+                </div>
+
+            </div>
+        `;
+
+
+        return article;
+    }
+
+
+    /* =========================================================
+       RENDER STAYS
+    ========================================================= */
+
+    let allStays = [];
+
+
+    function renderStays(stays) {
+
+        staysGrid.innerHTML = "";
+
+
+        if (!stays.length) {
+
+            emptyState.style.display =
+                "block";
+
+            return;
+        }
+
+
+        emptyState.style.display =
+            "none";
+
+
+        stays.forEach(function (stay) {
+
+            staysGrid.appendChild(
+                createStayCard(stay)
+            );
+
+        });
+
+
+        attachCardEvents();
+    }
+
+
+    /* =========================================================
+       UPDATE SUMMARY
+    ========================================================= */
+
+   function updateSummary() {
+
+    const total =
+        allStays.length;
+
+
+    const published =
+        allStays.filter(function (stay) {
+            return stay.status === "published";
+        }).length;
+
+
+    const pending =
+        allStays.filter(function (stay) {
+            return stay.status === "pending";
+        }).length;
+
+
+    const drafts =
+        allStays.filter(function (stay) {
+            return stay.status === "draft";
+        }).length;
+
+
+    document.getElementById("totalStays")
+        .textContent = total;
+
+
+    document.getElementById("publishedStays")
+        .textContent = published;
+
+
+    document.getElementById("pendingStays")
+        .textContent = pending;
+
+
+    document.getElementById("draftStays")
+        .textContent = drafts;
+}
+
+    /* =========================================================
+       FILTER
+    ========================================================= */
+
+    function filterStays() {
+
+        const search =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        const status =
+            statusFilter.value;
+
+
+        const filtered =
+            allStays.filter(function (stay) {
+
+                const searchText = [
+                    stay.title,
+                    stay.description,
+                    stay.stayType,
+                    stay.city,
+                    stay.area,
+                    stay.address,
+                    stay.amenities
+                ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+
+                const matchesSearch =
+                    searchText.includes(search);
+
+
+                const matchesStatus =
+                    status === "all" ||
+                    stay.status === status;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+            });
+
+
+        renderStays(filtered);
+    }
+
+
+    /* =========================================================
+       VIEW / EDIT / SUBMIT
+    ========================================================= */
+
+    function attachCardEvents() {
+
+        document
+            .querySelectorAll(".view-btn")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const card =
+                            button.closest(".stay-card");
+
+
+                        const id =
+                            card.dataset.id;
+
+
+                        window.location.href =
+                            "stay-details.html?id=" +
+                            encodeURIComponent(id);
+                    }
+                );
+            });
+
+
+        document
+            .querySelectorAll(".edit-btn")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const card =
+                            button.closest(".stay-card");
+
+
+                        const id =
+                            card.dataset.id;
+
+
+                        window.location.href =
+                            "add-stay.html?id=" +
+                            encodeURIComponent(id);
+                    }
+                );
+            });
+
+
+        document
+            .querySelectorAll(".submit-review-btn")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    async function () {
+
+                        const card =
+                            button.closest(".stay-card");
+
+
+                        const id =
+                            card.dataset.id;
+
+
+                        const stay =
+                            allStays.find(function (item) {
+
+                                return String(item.id) ===
+                                    String(id);
+
+                            });
+
+
+                        if (!stay) {
+                            return;
+                        }
+
+
+                        const confirmed =
+                            window.confirm(
+                                `Submit "${stay.title}" for admin review?\n\n` +
+                                "The stay will move from Draft to Pending Review."
+                            );
+
+
+                        if (!confirmed) {
+                            return;
+                        }
+
+
+                        button.disabled =
+                            true;
+
+
+                        button.textContent =
+                            "Submitting...";
+
+
+                        try {
+
+                            await apiRequest(
+                                `${API_BASE}/Stays/${encodeURIComponent(id)}/submit-review`,
+                                {
+                                    method: "POST"
+                                }
+                            );
+
+
+                            /*
+                             * Refresh from the API instead of
+                             * changing the card locally.
+                             */
+
+                            await loadMyStays();
+
+
+                            showToast(
+                                "Stay submitted for admin review."
+                            );
+
+                        } catch (error) {
+
+                            console.error(
+                                "Submit review error:",
+                                error
+                            );
+
+
+                            button.disabled =
+                                false;
+
+
+                            button.textContent =
+                                "Submit for Review";
+
+
+                            showToast(
+                                error.message ||
+                                "Unable to submit stay for review.",
+                                "error"
+                            );
+                        }
+                    }
+                );
+            });
+    }
+
+
+    /* =========================================================
+       LOAD MY STAYS
+    ========================================================= */
+
+    async function loadMyStays() {
+
+        try {
+
+            staysGrid.innerHTML = `
+                <div style="
+                    grid-column:1/-1;
+                    background:white;
+                    border:1px solid var(--border);
+                    border-radius:18px;
+                    padding:60px 20px;
+                    text-align:center;
+                    color:var(--muted);
+                    font-weight:700;">
+                    Loading your stays...
+                </div>
+            `;
+
+
+            const data =
+                await apiRequest(
+                    `${API_BASE}/Stays/my`
+                );
+
+
+            const rawStays =
+                Array.isArray(data)
+                    ? data
+                    : (
+                        data?.stays ||
+                        data?.Stays ||
+                        data?.items ||
+                        data?.Items ||
+                        []
+                    );
+
+
+            allStays =
+                rawStays.map(normalizeStay);
+
+
+            updateSummary();
+
+            filterStays();
+
+        } catch (error) {
+
+            console.error(
+                "Load stays error:",
+                error
+            );
+
+
+            staysGrid.innerHTML = `
+                <div style="
+                    grid-column:1/-1;
+                    background:white;
+                    border:1px solid #ead0cc;
+                    border-radius:18px;
+                    padding:60px 20px;
+                    text-align:center;">
+
+                    <h2 style="
+                        margin:0 0 10px;
+                        color:var(--green);">
+                        Unable to load your stays
+                    </h2>
+
+                    <p style="
+                        margin:0 0 20px;
+                        color:var(--muted);">
+                        ${escapeHtml(
+                            error.message ||
+                            "Please try again."
+                        )}
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn-premium btn-primary"
+                        id="retryStaysBtn">
+
+                        Try Again
+
+                    </button>
+
+                </div>
+            `;
+
+
+            emptyState.style.display =
+                "none";
+
+
+            const retryButton =
+                document.getElementById(
+                    "retryStaysBtn"
+                );
+
+
+            if (retryButton) {
+
+                retryButton.addEventListener(
+                    "click",
+                    loadMyStays
+                );
+            }
+        }
+    }
+
+
+    /* =========================================================
+       FILTER EVENTS
+    ========================================================= */
+
+    searchInput.addEventListener(
+        "input",
+        filterStays
+    );
+
+
+    statusFilter.addEventListener(
+        "change",
+        filterStays
+    );
+
+
+    function resetFilters() {
+
+        searchInput.value = "";
+
+        statusFilter.value = "all";
+
+        filterStays();
+    }
+
+
+    resetButton.addEventListener(
+        "click",
+        resetFilters
+    );
+
+
+    emptyResetButton.addEventListener(
+        "click",
+        resetFilters
+    );
+
+
+    /* =========================================================
+       INITIALIZE
+    ========================================================= */
+
+    await loadHostProfile();
+
+    await loadMyStays();
+
+});
+</script>
+
+</body>
+</html>

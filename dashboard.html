@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="HavenGH property management dashboard for landlords and agents.">
+
+<title>Dashboard | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+<style>
+    .property-submit-review {
+    padding: 7px 12px;
+    font-size: 12px;
+    min-height: 32px;
+    width: auto;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+</style>
+
+
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard-layout">
+
+
+<!-- =========================
+     SIDEBAR
+========================== -->
+
+<aside class="dashboard-sidebar">
+
+
+    <!-- LOGO -->
+
+    <div class="dashboard-logo">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- AUTHENTICATED USER -->
+
+   
+<div class="dashboard-user">
+
+    <div
+    id="dashboard-user-image"
+    class="dashboard-user-avatar"
+    aria-label="User profile picture">
+
+    <img
+        id="dashboard-user-avatar-img"
+        src=""
+        alt="Profile picture"
+        hidden>
+
+    <span id="dashboard-user-avatar-fallback">
+        H
+    </span>
+
+</div>
+    <div>
+
+        <strong id="dashboard-user-name">
+            Loading...
+        </strong>
+
+        <span
+           id="dashboard-user-verification"
+            class="dashboard-user-verification">
+          Checking verification...
+</span>
+
+    </div>
+
+</div>
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="dashboard-nav"
+         aria-label="Dashboard navigation">
+
+
+        <a href="dashboard.html"
+           class="dashboard-link active">
+
+            <span>⌂</span>
+
+            Dashboard
+
+        </a>
+
+
+
+        <a href="my-properties.html"
+           class="dashboard-link">
+
+            <span>▣</span>
+
+            My Properties
+
+        </a>
+
+
+
+        <a href="add-property.html"
+           class="dashboard-link">
+
+            <span>＋</span>
+
+            Add Property
+
+        </a>
+
+
+
+        <a href="request.html"
+           class="dashboard-link">
+
+            <span>◉</span>
+
+            Rental Requests
+
+            <b id="sidebar-request-count"
+               hidden>
+                0
+            </b>
+
+        </a>
+
+
+
+        <a href="message.html"
+           class="dashboard-link">
+
+            <span>✉</span>
+
+            Messages
+
+            <b id="sidebar-message-count"
+               hidden>
+                0
+            </b>
+
+        </a>
+
+
+
+        <a href="profile.html"
+           class="dashboard-link">
+
+            <span>♙</span>
+
+            My Profile
+
+        </a>
+
+
+
+        <a href="my-plan.html"
+           class="dashboard-link">
+
+            <span>◆</span>
+
+            My Plan
+
+        </a>
+
+
+
+        <a href="settings.html"
+           class="dashboard-link">
+
+            <span>⚙</span>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- =========================
+         SIDEBAR BOTTOM
+    ========================== -->
+
+    <div class="dashboard-sidebar-bottom">
+
+
+        <a href="index.html"
+           class="dashboard-link">
+
+            <span>←</span>
+
+            Back to Website
+
+        </a>
+
+
+
+        <a href="login.html"
+           class="dashboard-link logout"
+           id="logout-button">
+
+            <span>↪</span>
+
+            Log Out
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================== -->
+
+<main class="dashboard-main">
+
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+
+    <header class="dashboard-topbar">
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="dashboard-menu-button"
+            type="button"
+            aria-label="Open dashboard menu"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+
+        <!-- PAGE TITLE -->
+
+        <div>
+
+            <p class="dashboard-date"
+               id="dashboard-date">
+
+                Loading date...
+
+            </p>
+
+            <h1>
+                Dashboard
+            </h1>
+
+        </div>
+
+
+
+        <!-- =========================
+             TOP ACTIONS
+        ========================== -->
+
+        <div class="dashboard-top-actions">
+
+
+            <!-- =========================
+                 NOTIFICATIONS
+            ========================== -->
+
+            <div class="notification-wrapper">
+
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-label="Open notifications"
+                    aria-expanded="false"
+                    aria-controls="notification-panel">
+
+                    ♧
+
+                    <span id="notification-count"
+                          hidden>
+                        0
+                    </span>
+
+                </button>
+
+
+
+                <!-- NOTIFICATION PANEL -->
+
+                <div
+                    class="notification-panel"
+                    id="notification-panel"
+                    hidden>
+
+
+                    <!-- PANEL HEADER -->
+
+                    <div class="notification-panel-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                NOTIFICATIONS
+                            </span>
+
+                            <h3>
+                                Rental Requests
+                            </h3>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="mark-notifications-read">
+
+                            Mark all read
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- NOTIFICATION LIST -->
+
+                    <div
+                        class="notification-list"
+                        id="notification-list">
+
+
+                        <!-- API WILL LOAD NOTIFICATIONS HERE -->
+
+                        <div
+                            class="notification-empty"
+                            id="notification-empty">
+
+                            No new notifications.
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PANEL FOOTER -->
+
+                    <div class="notification-panel-footer">
+
+                        <a href="request.html">
+
+                            View all rental requests →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ADD PROPERTY -->
+
+            <a
+                href="add-property.html"
+                class="dashboard-add-button">
+
+                + Add Property
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         DASHBOARD CONTENT
+    ========================== -->
+
+    <div class="dashboard-content">
+
+
+        <!-- =========================
+             WELCOME
+        ========================== -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <span class="section-label">
+                    WELCOME BACK
+                </span>
+
+                <h2 id="dashboard-welcome-message">
+                    Welcome back.
+                </h2>
+
+                <p>
+                    Here's what's happening with your properties.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+
+        <section class="dashboard-stats">
+
+
+            <!-- TOTAL PROPERTIES -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ▣
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Properties
+                    </span>
+
+                    <strong id="total-properties">
+                        —
+                    </strong>
+
+                    <small id="total-properties-change">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RENTAL REQUESTS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ◉
+                </div>
+
+                <div>
+
+                    <span>
+                        Rental Requests
+                    </span>
+
+                    <strong id="total-requests">
+                        —
+                    </strong>
+
+                    <small id="pending-rental-requests">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PROPERTY VIEWS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ◇
+                </div>
+
+                <div>
+
+                    <span>
+                        Property Views
+                    </span>
+
+                    <strong id="property-views">
+                        —
+                    </strong>
+
+                    <small id="property-views-change">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MONTHLY LEADS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    GH₵
+                </div>
+
+                <div>
+
+                    <span>
+                        Monthly Leads
+                    </span>
+
+                    <strong id="monthly-leads">
+                        —
+                    </strong>
+
+                    <small id="monthly-leads-change">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             MAIN DASHBOARD GRID
+        ========================== -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- =========================
+                 YOUR PROPERTIES
+            ========================== -->
+
+            <section class="dashboard-panel properties-panel">
+
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            LISTINGS
+                        </span>
+
+                        <h2>
+                            Your properties
+                        </h2>
+
+                    </div>
+
+
+                    <a href="my-properties.html">
+                        View all →
+                    </a>
+
+                </div>
+
+
+
+                <!-- =========================
+                     API PROPERTY LIST
+                ========================== -->
+
+                <div id="dashboard-properties">
+
+
+                    <!-- LOADING STATE -->
+
+                    <div
+                        class="dashboard-property-loading"
+                        id="dashboard-properties-loading">
+
+                        Loading your properties...
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- NO PROPERTIES -->
+
+                <div
+                    id="dashboard-properties-empty"
+                    class="dashboard-property-empty"
+                    hidden>
+
+                    <p>
+                        You have not added any properties yet.
+                    </p>
+
+                    <a
+                        href="add-property.html"
+                        class="btn btn-dark">
+
+                        Add Your First Property
+
+                    </a>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 REQUESTS
+            ========================== -->
+
+            <section class="dashboard-panel requests-panel">
+
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            ENQUIRIES
+                        </span>
+
+                        <h2>
+                            Recent requests
+                        </h2>
+
+                    </div>
+
+
+                    <a href="request.html">
+                        View all →
+                    </a>
+
+                </div>
+
+
+
+                <!-- =========================
+                     API REQUEST LIST
+                ========================== -->
+
+                <div id="dashboard-requests">
+
+
+                    <!-- LOADING -->
+
+                    <div
+                        class="dashboard-request-loading"
+                        id="dashboard-requests-loading">
+
+                        Loading rental requests...
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- NO REQUESTS -->
+
+                <div
+                    id="dashboard-requests-empty"
+                    class="dashboard-request-empty"
+                    hidden>
+
+                    <p>
+                        No rental requests yet.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =========================
+             PLAN
+        ========================== -->
+
+        <section class="dashboard-plan">
+
+
+            <div>
+
+                <span class="section-label">
+                    YOUR PLAN
+                </span>
+
+                <h2 id="dashboard-plan-name">
+                    Loading...
+                </h2>
+
+                <p id="dashboard-plan-description">
+                    Loading your plan information...
+                </p>
+
+            </div>
+
+
+
+            <div class="plan-progress">
+
+
+                <div class="progress-text">
+
+                    <span>
+                        Listings
+                    </span>
+
+                    <strong id="dashboard-listing-count">
+                        —
+                    </strong>
+
+                </div>
+
+
+
+                <div class="progress-bar">
+
+                    <span
+                        id="dashboard-listing-progress">
+                    </span>
+
+                </div>
+
+
+
+                <small id="dashboard-plan-message">
+
+                    Loading plan limits...
+
+                </small>
+
+            </div>
+
+
+
+            <a
+                href="my-plan.html"
+                class="btn btn-light">
+
+                Upgrade Plan
+
+            </a>
+
+        </section>
+
+
+    </div>
+
+</main>
+```
+
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>

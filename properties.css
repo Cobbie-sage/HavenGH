@@ -1,0 +1,2220 @@
+
+/* ============================================================
+   HavenGH — PROPERTIES PAGE
+   Premium Real-Estate Theme
+   FIXED CLEAR BACKGROUND + GLASS SECTIONS
+   Background Image: properties.jpg
+   Responsive / Mobile First
+   ============================================================ */
+
+
+/* ============================================================
+   1. ROOT / DESIGN TOKENS
+   ============================================================ */
+
+:root {
+
+    --haven-deep-green: #071f17;
+    --haven-green: #0d3a2a;
+    --haven-green-light: #1b6047;
+    --haven-green-soft: #e8efe9;
+
+    --haven-cream: #f5f2e9;
+    --haven-soft: #ebe7dc;
+    --haven-white: #faf9f5;
+
+    --haven-text: #17352b;
+    --haven-text-soft: #68756f;
+    --haven-text-light: #87918c;
+
+    --haven-accent: #c09a3e;
+    --haven-accent-soft: #e0c56d;
+    --haven-accent-light: #f0d993;
+
+    --haven-border: rgba(18, 73, 54, 0.12);
+
+    --haven-shadow:
+        0 10px 30px rgba(11, 48, 37, 0.10);
+
+    --haven-shadow-hover:
+        0 20px 45px rgba(11, 48, 37, 0.17);
+
+    --haven-radius: 14px;
+    --haven-radius-small: 9px;
+
+    --haven-transition: 0.25s ease;
+}
+
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    /*
+       MAIN FIXED BACKGROUND
+
+       The image is intentionally placed directly on body
+       so it remains visible throughout the entire page.
+    */
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.18),
+            rgba(0, 0, 0, 0.24)
+        ),
+        url("properties.jpg")
+        center center /
+        cover
+        fixed
+        no-repeat;
+
+    background-color: #111;
+
+    color:
+        var(--haven-text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ============================================================
+   FIXED BACKGROUND LIGHT EFFECT
+   ============================================================ */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            circle at 18% 15%,
+            rgba(255, 255, 255, 0.07),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 82% 75%,
+            rgba(224, 197, 109, 0.05),
+            transparent 30%
+        );
+}
+
+
+/* ============================================================
+   REMOVE EXTRA GREEN VIGNETTE
+   ============================================================ */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.12)
+        );
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   3. CONTAINER
+   ============================================================ */
+
+.container {
+
+    width:
+        min(1180px, calc(100% - 40px));
+
+    margin:
+        0 auto;
+}
+
+
+/* ============================================================
+   4. HEADER
+   ============================================================ */
+
+.header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(7, 31, 23, 0.90);
+
+    border-bottom:
+        1px solid rgba(224, 197, 109, 0.14);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.16);
+}
+
+
+.nav-container {
+
+    min-height:
+        76px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        32px;
+}
+
+
+/* ============================================================
+   5. LOGO
+   ============================================================ */
+
+.logo {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    font-size:
+        25px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -0.7px;
+
+    white-space:
+        nowrap;
+}
+
+.logo-main {
+    color: #ffffff;
+}
+
+.logo-accent {
+
+    color:
+        var(--haven-accent-soft);
+
+    margin-left:
+        2px;
+}
+
+
+/* ============================================================
+   6. NAVIGATION
+   ============================================================ */
+
+.navbar {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        30px;
+}
+
+.nav-link {
+
+    position:
+        relative;
+
+    padding:
+        27px 0;
+
+    color:
+        rgba(255, 255, 255, 0.78);
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+    transition:
+        color var(--haven-transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+
+    color:
+        #ffffff;
+}
+
+.nav-link::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    bottom:
+        17px;
+
+    height:
+        2px;
+
+    background:
+        var(--haven-accent);
+
+    transform:
+        scaleX(0);
+
+    transform-origin:
+        center;
+
+    transition:
+        transform var(--haven-transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+
+    transform:
+        scaleX(1);
+}
+
+
+/* ============================================================
+   7. NAV ACTIONS
+   ============================================================ */
+
+.nav-actions {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        18px;
+}
+
+.login-link {
+
+    color:
+        rgba(255, 255, 255, 0.85);
+
+    font-size:
+        14px;
+
+    font-weight:
+        500;
+
+    transition:
+        color var(--haven-transition);
+}
+
+.login-link:hover {
+    color: #ffffff;
+}
+
+
+/* ============================================================
+   8. BUTTONS
+   ============================================================ */
+
+.btn {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        44px;
+
+    padding:
+        0 20px;
+
+    border-radius:
+        8px;
+
+    border:
+        1px solid transparent;
+
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+
+    transition:
+        background-color var(--haven-transition),
+        color var(--haven-transition),
+        border-color var(--haven-transition),
+        box-shadow var(--haven-transition),
+        transform var(--haven-transition);
+}
+
+
+.btn-dark {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-accent-light),
+            var(--haven-accent)
+        );
+
+    color:
+        var(--haven-deep-green);
+
+    border-color:
+        var(--haven-accent-light);
+
+    box-shadow:
+        0 5px 18px rgba(192, 154, 62, 0.18);
+}
+
+.btn-dark:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4dfa0,
+            var(--haven-accent-light)
+        );
+
+    border-color:
+        #f4dfa0;
+
+    box-shadow:
+        0 9px 24px rgba(192, 154, 62, 0.28);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ============================================================
+   9. PROPERTIES HERO
+   ============================================================ */
+
+.properties-hero {
+
+    position:
+        relative;
+
+    min-height:
+        490px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    padding:
+        95px 0 90px;
+
+    color:
+        #ffffff;
+
+    overflow:
+        hidden;
+
+    /*
+       MUCH LIGHTER HERO OVERLAY
+
+       The image is now visible instead of being
+       covered by dark green.
+    */
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.42) 0%,
+            rgba(0, 0, 0, 0.28) 35%,
+            rgba(0, 0, 0, 0.12) 65%,
+            rgba(0, 0, 0, 0.24) 100%
+        ),
+
+        url("properties.jpg");
+
+    background-size:
+        cover;
+
+    background-position:
+        center center;
+
+    background-repeat:
+        no-repeat;
+}
+
+
+/* ============================================================
+   HERO LIGHT EFFECT
+   ============================================================ */
+
+.properties-hero::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+
+        radial-gradient(
+            circle at 78% 45%,
+            rgba(224, 197, 109, 0.10),
+            transparent 30%
+        );
+}
+
+
+.properties-hero::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    width:
+        500px;
+
+    height:
+        500px;
+
+    right:
+        -210px;
+
+    top:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid rgba(224, 197, 109, 0.15);
+
+    box-shadow:
+        0 0 0 75px rgba(224, 197, 109, 0.025),
+        0 0 0 150px rgba(224, 197, 109, 0.018);
+
+    pointer-events:
+        none;
+}
+
+
+.properties-hero .container {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+}
+
+
+/* ============================================================
+   10. HERO LABEL
+   ============================================================ */
+
+.section-label {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        17px;
+
+    color:
+        var(--haven-accent-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2.5px;
+
+    text-transform:
+        uppercase;
+}
+
+.section-label::before {
+
+    content:
+        "";
+
+    width:
+        34px;
+
+    height:
+        1px;
+
+    background:
+        var(--haven-accent);
+}
+
+
+/* ============================================================
+   11. HERO TITLE
+   ============================================================ */
+
+.properties-hero h1 {
+
+    max-width:
+        760px;
+
+    margin-bottom:
+        18px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        clamp(42px, 5.5vw, 68px);
+
+    line-height:
+        1.04;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        -2.8px;
+
+    text-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ============================================================
+   12. HERO DESCRIPTION
+   ============================================================ */
+
+.properties-hero p {
+
+    max-width:
+        660px;
+
+    color:
+        rgba(255, 255, 255, 0.86);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.8;
+
+    text-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.30);
+}
+
+
+/* ============================================================
+   13. PROPERTY SEARCH SECTION
+   ============================================================ */
+
+.property-search {
+
+    /*
+       GLASS SECTION
+
+       Lets properties.jpg remain visible behind the page.
+    */
+
+    background:
+        rgba(245, 242, 233, 0.76);
+
+    backdrop-filter:
+        blur(7px);
+
+    -webkit-backdrop-filter:
+        blur(7px);
+}
+
+
+.property-search > .container {
+
+    padding-top:
+        30px;
+
+    padding-bottom:
+        30px;
+}
+
+
+/* ============================================================
+   SEARCH BOX
+   ============================================================ */
+
+.property-search > .container > .property-search {
+
+    position:
+        relative;
+
+    z-index:
+        5;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(180px, 1.4fr)
+        minmax(160px, 1fr)
+        minmax(130px, 0.8fr)
+        minmax(130px, 0.8fr)
+        auto;
+
+    gap:
+        12px;
+
+    padding:
+        18px;
+
+    margin-top:
+        -62px;
+
+    background:
+        rgba(255, 255, 255, 0.86);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.72);
+
+    border-radius:
+        16px;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.15);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+}
+
+
+/* ============================================================
+   14. SEARCH INPUTS
+   ============================================================ */
+
+.property-search input,
+.property-search select {
+
+    width:
+        100%;
+
+    height:
+        49px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid rgba(18, 73, 54, 0.14);
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    color:
+        var(--haven-text);
+
+    outline:
+        none;
+
+    font-size:
+        14px;
+
+    transition:
+        border-color var(--haven-transition),
+        box-shadow var(--haven-transition),
+        background-color var(--haven-transition);
+}
+
+.property-search input::placeholder {
+
+    color:
+        var(--haven-text-light);
+}
+
+.property-search input:hover,
+.property-search select:hover {
+
+    border-color:
+        rgba(18, 73, 54, 0.28);
+}
+
+.property-search input:focus,
+.property-search select:focus {
+
+    border-color:
+        var(--haven-green);
+
+    box-shadow:
+        0 0 0 3px rgba(18, 73, 54, 0.08);
+}
+
+
+/* ============================================================
+   15. SEARCH BUTTON
+   ============================================================ */
+
+.property-search button {
+
+    height:
+        49px;
+
+    padding:
+        0 25px;
+
+    border:
+        1px solid var(--haven-deep-green);
+
+    border-radius:
+        8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-green),
+            var(--haven-deep-green)
+        );
+
+    color:
+        #ffffff;
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    transition:
+        background-color var(--haven-transition),
+        border-color var(--haven-transition),
+        box-shadow var(--haven-transition),
+        transform var(--haven-transition);
+}
+
+.property-search button:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-green-light),
+            var(--haven-green)
+        );
+
+    border-color:
+        var(--haven-green-light);
+
+    box-shadow:
+        0 10px 22px rgba(11, 48, 37, 0.18);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ============================================================
+   16. PROPERTY RESULTS
+   ============================================================ */
+
+.property-results {
+
+    padding:
+        46px 0 90px;
+
+    /*
+       CLEAR GLASS BACKGROUND
+    */
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    backdrop-filter:
+        blur(6px);
+
+    -webkit-backdrop-filter:
+        blur(6px);
+}
+
+
+.results-top {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    margin-bottom:
+        28px;
+}
+
+#results-count {
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        15px;
+
+    font-weight:
+        650;
+}
+
+.results-top select {
+
+    min-width:
+        170px;
+
+    height:
+        42px;
+
+    padding:
+        0 12px;
+
+    border:
+        1px solid var(--haven-border);
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    color:
+        var(--haven-text);
+
+    outline:
+        none;
+
+    font-size:
+        13px;
+}
+
+.results-top select:focus {
+
+    border-color:
+        var(--haven-green);
+}
+
+
+/* ============================================================
+   17. PROPERTY GRID
+   ============================================================ */
+
+.property-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap:
+        28px;
+}
+
+
+/* ============================================================
+   18. PROPERTY CARD
+   ============================================================ */
+
+.property-card {
+
+    min-width:
+        0;
+
+    /*
+       GLASS CARD
+    */
+
+    background:
+        rgba(255, 255, 255, 0.87);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.70);
+
+    border-radius:
+        var(--haven-radius);
+
+    overflow:
+        hidden;
+
+    box-shadow:
+        var(--haven-shadow);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.property-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(224, 197, 109, 0.40);
+
+    box-shadow:
+        var(--haven-shadow-hover);
+}
+
+
+/* ============================================================
+   19. PROPERTY IMAGE
+   ============================================================ */
+
+.property-card-image {
+
+    position:
+        relative;
+
+    width:
+        100%;
+
+    aspect-ratio:
+        16 / 10;
+
+    overflow:
+        hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-green),
+            var(--haven-deep-green)
+        );
+}
+
+.property-card-image::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 55%,
+            rgba(0, 0, 0, 0.16)
+        );
+
+    pointer-events:
+        none;
+}
+
+.property-card-image-element {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    object-position:
+        center;
+
+    transition:
+        transform 0.45s ease;
+}
+
+.property-card:hover
+.property-card-image-element {
+
+    transform:
+        scale(1.035);
+}
+
+
+/* ============================================================
+   20. IMAGE PLACEHOLDER
+   ============================================================ */
+
+.property-image-placeholder {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-green),
+            var(--haven-deep-green)
+        );
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    font-size:
+        18px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        1px;
+}
+
+
+/* ============================================================
+   21. PROPERTY CARD CONTENT
+   ============================================================ */
+
+.property-card-content {
+
+    padding:
+        20px;
+}
+
+.property-card-content h3 {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        19px;
+
+    line-height:
+        1.3;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        -0.3px;
+}
+
+.property-card-content p {
+
+    color:
+        var(--haven-text-soft);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.6;
+}
+
+
+/* ============================================================
+   22. PROPERTY PRICE
+   ============================================================ */
+
+.property-price {
+
+    margin-top:
+        14px;
+
+    color:
+        var(--haven-green);
+
+    font-size:
+        19px;
+
+    font-weight:
+        750;
+}
+
+.property-price span {
+
+    color:
+        var(--haven-text-light);
+
+    font-size:
+        12px;
+
+    font-weight:
+        400;
+}
+
+
+/* ============================================================
+   23. PROPERTY META
+   ============================================================ */
+
+.property-meta {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        8px 16px;
+
+    margin-top:
+        15px;
+
+    padding-top:
+        14px;
+
+    border-top:
+        1px solid rgba(18, 73, 54, 0.08);
+
+    color:
+        var(--haven-text-soft);
+
+    font-size:
+        12px;
+}
+
+
+/* ============================================================
+   24. PROPERTY TYPE / STATUS
+   ============================================================ */
+
+.property-type,
+.property-status {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    min-height:
+        27px;
+
+    padding:
+        0 9px;
+
+    border-radius:
+        6px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        650;
+}
+
+.property-type {
+
+    background:
+        rgba(232, 239, 233, 0.88);
+
+    color:
+        var(--haven-green);
+}
+
+.property-status {
+
+    background:
+        rgba(245, 242, 233, 0.90);
+
+    color:
+        var(--haven-text-soft);
+}
+
+
+/* ============================================================
+   25. PROPERTY CARD LINKS
+   ============================================================ */
+
+.property-card a {
+
+    transition:
+        color var(--haven-transition);
+}
+
+.property-card a:hover {
+
+    color:
+        var(--haven-green-light);
+}
+
+
+/* ============================================================
+   26. LOADING STATE
+   ============================================================ */
+
+.properties-loading {
+
+    padding:
+        70px 20px;
+
+    text-align:
+        center;
+
+    color:
+        var(--haven-text-soft);
+
+    font-size:
+        14px;
+}
+
+.properties-loading::before {
+
+    content:
+        "";
+
+    display:
+        block;
+
+    width:
+        28px;
+
+    height:
+        28px;
+
+    margin:
+        0 auto 14px;
+
+    border:
+        2px solid rgba(18, 73, 54, 0.15);
+
+    border-top-color:
+        var(--haven-green);
+
+    border-radius:
+        50%;
+
+    animation:
+        havenSpin 0.8s linear infinite;
+}
+
+@keyframes havenSpin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* ============================================================
+   27. EMPTY STATE
+   ============================================================ */
+
+.properties-empty {
+
+    padding:
+        70px 25px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(245, 242, 233, 0.84);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.60);
+
+    border-radius:
+        var(--haven-radius);
+
+    color:
+        var(--haven-text-soft);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+}
+
+.properties-empty h3 {
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        20px;
+}
+
+.properties-empty p {
+
+    max-width:
+        500px;
+
+    margin:
+        0 auto;
+
+    font-size:
+        14px;
+}
+
+
+/* ============================================================
+   28. ERROR STATE
+   ============================================================ */
+
+.properties-error {
+
+    padding:
+        18px 20px;
+
+    margin-top:
+        20px;
+
+    border:
+        1px solid rgba(150, 50, 50, 0.15);
+
+    border-radius:
+        9px;
+
+    background:
+        rgba(250, 243, 241, 0.92);
+
+    color:
+        #7d4943;
+
+    font-size:
+        14px;
+}
+
+
+/* ============================================================
+   29. FOOTER
+   ============================================================ */
+
+.footer {
+
+    /*
+       Dark glass footer instead of a completely solid block.
+    */
+
+    background:
+        rgba(7, 31, 23, 0.91);
+
+    color:
+        rgba(255, 255, 255, 0.72);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+
+.footer-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+    gap:
+        50px;
+
+    padding-top:
+        65px;
+
+    padding-bottom:
+        55px;
+}
+
+.footer-brand {
+
+    max-width:
+        270px;
+}
+
+.footer-logo {
+
+    margin-bottom:
+        15px;
+}
+
+.footer-brand p {
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        13px;
+
+    line-height:
+        1.7;
+}
+
+.footer-column h4 {
+
+    margin-bottom:
+        18px;
+
+    color:
+        #ffffff;
+
+    font-size:
+        13px;
+
+    font-weight:
+        650;
+
+    letter-spacing:
+        0.3px;
+}
+
+.footer-column a {
+
+    display:
+        block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        rgba(255, 255, 255, 0.58);
+
+    font-size:
+        13px;
+
+    transition:
+        color var(--haven-transition),
+        transform var(--haven-transition);
+}
+
+.footer-column a:hover {
+
+    color:
+        #ffffff;
+
+    transform:
+        translateX(2px);
+}
+
+
+/* ============================================================
+   30. FOOTER BOTTOM
+   ============================================================ */
+
+.footer-bottom {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+    padding-top:
+        20px;
+
+    padding-bottom:
+        22px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    color:
+        rgba(255, 255, 255, 0.42);
+
+    font-size:
+        12px;
+}
+
+
+/* ============================================================
+   31. TABLET
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        gap:
+            22px;
+    }
+
+    .property-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            22px;
+    }
+
+    .property-search > .container > .property-search {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        margin-top:
+            -45px;
+    }
+
+    .property-search button {
+        width:
+            100%;
+    }
+
+    .footer-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap:
+            40px;
+    }
+}
+
+
+/* ============================================================
+   32. MOBILE NAVIGATION
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+    .container {
+
+        width:
+            min(100% - 28px, 700px);
+    }
+
+    .nav-container {
+
+        min-height:
+            68px;
+
+        gap:
+            15px;
+    }
+
+    .navbar {
+
+        display:
+            none;
+    }
+
+    .navbar.open {
+
+        position:
+            absolute;
+
+        left:
+            14px;
+
+        right:
+            14px;
+
+        top:
+            68px;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            0;
+
+        padding:
+            8px;
+
+        background:
+            rgba(7, 31, 23, 0.96);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.09);
+
+        border-radius:
+            10px;
+
+        box-shadow:
+            0 18px 35px rgba(0, 0, 0, 0.22);
+
+        backdrop-filter:
+            blur(16px);
+
+        -webkit-backdrop-filter:
+            blur(16px);
+    }
+
+    .navbar.open .nav-link {
+
+        padding:
+            13px 14px;
+
+        border-radius:
+            7px;
+    }
+
+    .navbar.open .nav-link:hover {
+
+        background:
+            rgba(255, 255, 255, 0.05);
+    }
+
+    .navbar.open .nav-link::after {
+        display:
+            none;
+    }
+
+    .nav-actions {
+        gap:
+            10px;
+    }
+
+    .login-link {
+        display:
+            none;
+    }
+
+    .nav-actions .btn {
+
+        min-height:
+            40px;
+
+        padding:
+            0 14px;
+
+        font-size:
+            12px;
+    }
+
+
+    /* HERO */
+
+    .properties-hero {
+
+        min-height:
+            430px;
+
+        padding:
+            72px 0 75px;
+
+        background-position:
+            center center;
+    }
+
+    .properties-hero h1 {
+
+        font-size:
+            46px;
+    }
+
+
+    /* SEARCH */
+
+    .property-search > .container > .property-search {
+
+        margin-top:
+            -42px;
+    }
+
+    .property-results {
+
+        padding-top:
+            35px;
+
+        padding-bottom:
+            65px;
+    }
+}
+
+
+/* ============================================================
+   33. SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width:
+            calc(100% - 24px);
+    }
+
+    .logo {
+
+        font-size:
+            22px;
+    }
+
+    .nav-actions .btn {
+
+        min-height:
+            38px;
+
+        padding:
+            0 11px;
+
+        font-size:
+            11px;
+    }
+
+
+    /* HERO */
+
+    .properties-hero {
+
+        min-height:
+            430px;
+
+        padding:
+            60px 0 70px;
+
+        background-position:
+            58% center;
+    }
+
+    .section-label {
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            1.5px;
+    }
+
+    .properties-hero h1 {
+
+        margin-bottom:
+            14px;
+
+        font-size:
+            36px;
+
+        letter-spacing:
+            -1.2px;
+    }
+
+    .properties-hero p {
+
+        font-size:
+            14px;
+
+        line-height:
+            1.7;
+    }
+
+
+    /* SEARCH */
+
+    .property-search > .container {
+
+        padding-top:
+            18px;
+
+        padding-bottom:
+            18px;
+    }
+
+    .property-search > .container > .property-search {
+
+        grid-template-columns:
+            1fr;
+
+        padding:
+            14px;
+
+        gap:
+            10px;
+
+        margin-top:
+            -38px;
+
+        border-radius:
+            12px;
+    }
+
+    .property-search input,
+    .property-search select,
+    .property-search button {
+
+        height:
+            46px;
+    }
+
+
+    /* RESULTS */
+
+    .results-top {
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        gap:
+            12px;
+
+        margin-bottom:
+            22px;
+    }
+
+    .results-top select {
+
+        width:
+            100%;
+    }
+
+
+    /* PROPERTY GRID */
+
+    .property-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            18px;
+    }
+
+    .property-card-image {
+
+        aspect-ratio:
+            16 / 10;
+    }
+
+    .property-card:hover {
+
+        transform:
+            none;
+
+        box-shadow:
+            var(--haven-shadow);
+    }
+
+    .property-card:hover
+    .property-card-image-element {
+
+        transform:
+            none;
+    }
+
+    .property-card-content {
+
+        padding:
+            17px;
+    }
+
+    .property-card-content h3 {
+
+        font-size:
+            18px;
+    }
+
+    .property-price {
+
+        font-size:
+            18px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            32px;
+
+        padding-top:
+            48px;
+
+        padding-bottom:
+            40px;
+    }
+
+    .footer-brand {
+
+        max-width:
+            100%;
+    }
+
+    .footer-bottom {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        padding-top:
+            18px;
+
+        padding-bottom:
+            20px;
+
+        gap:
+            7px;
+    }
+}
+
+
+/* ============================================================
+   34. VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .container {
+
+        width:
+            calc(100% - 20px);
+    }
+
+    .nav-container {
+
+        min-height:
+            64px;
+    }
+
+    .logo {
+
+        font-size:
+            20px;
+    }
+
+    .nav-actions .btn {
+
+        padding:
+            0 9px;
+
+        font-size:
+            10px;
+    }
+
+    .properties-hero {
+
+        min-height:
+            400px;
+    }
+
+    .properties-hero h1 {
+
+        font-size:
+            31px;
+    }
+
+    .properties-hero p {
+
+        font-size:
+            13px;
+    }
+
+    .property-card-image {
+
+        aspect-ratio:
+            4 / 3;
+    }
+
+    .property-card-content {
+
+        padding:
+            15px;
+    }
+}
+
+
+/* ============================================================
+   35. ACCESSIBILITY
+   ============================================================ */
+
+:focus-visible {
+
+    outline:
+        2px solid var(--haven-accent);
+
+    outline-offset:
+        3px;
+}
+
+
+/* ============================================================
+   36. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior:
+            auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+

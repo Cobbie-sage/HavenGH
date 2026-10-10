@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Find rooms, apartments and houses for rent in Ghana. Browse verified properties, view photos, locations and contact landlords or agents directly.">
+
+<title>HavenGH | Find Your Next Home</title>
+
+<link rel="stylesheet" href="index.css">
+
+
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     HEADER / NAVIGATION
+========================================================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <!-- LOGO -->
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navbar">
+
+            <a
+                href="index.html"
+                class="nav-link active">
+                Home
+            </a>
+
+            <a
+                href="properties.html"
+                class="nav-link">
+                Find a Home
+            </a>
+
+            <a
+                href="stays.html"
+                class="nav-link">
+                Stay In Ghana
+            </a>
+
+            <a
+                href="#how-it-works"
+                class="nav-link">
+                How It Works
+            </a>
+
+            <a
+                href="#about"
+                class="nav-link">
+                About
+            </a>
+
+           
+
+            <a
+                href="tenant-login.html"
+                class="btn btn-dark">
+                SignIn
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- MOBILE MENU BUTTON -->
+
+    <button
+        class="mobile-menu-button"
+        type="button"
+        aria-label="Open navigation menu">
+
+        ☰
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================== -->
+
+<main>
+
+
+    <!-- =====================================================
+         HERO SECTION
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
+            <span class="hero-label">
+                GHANA'S PROPERTY DISCOVERY PLATFORM
+            </span>
+
+
+            <h1>
+
+                Find a place<br>
+
+                <span>
+                    you'll love to call home.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Discover rooms, apartments and houses for rent
+                across Ghana. View real photos, explore locations
+                and connect directly with trusted landlords
+                and agents.
+
+            </p>
+
+
+
+            <!-- =================================================
+                 PROPERTY SEARCH
+            ================================================== -->
+
+            <div class="search-box">
+
+
+                <!-- LOCATION -->
+
+                <div class="search-field">
+
+                    <label for="location">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="e.g. East Legon, Accra">
+
+                </div>
+
+
+
+                <!-- PROPERTY TYPE -->
+
+                <div class="search-field">
+
+                    <label for="property-type">
+                        Property Type
+                    </label>
+
+                    <select
+                        id="property-type"
+                        name="property-type">
+
+                        <option value="">
+                            Any property
+                        </option>
+
+                        <option value="single-room">
+                            Single Room
+                        </option>
+
+                        <option value="single-room-porch">
+                            Single Room + Porch
+                        </option>
+
+                        <option value="chamber-hall">
+                            Chamber & Hall
+                        </option>
+
+                        <option value="apartment">
+                            Apartment
+                        </option>
+
+                        <option value="house">
+                            Full House
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- MAXIMUM PRICE -->
+
+                <div class="search-field">
+
+                    <label for="price">
+                        Maximum Rent
+                    </label>
+
+                    <select
+                        id="price"
+                        name="price">
+
+                        <option value="">
+                            Any price
+                        </option>
+
+                        <option value="500">
+                            GH₵500
+                        </option>
+
+                        <option value="1000">
+                            GH₵1,000
+                        </option>
+
+                        <option value="1500">
+                            GH₵1,500
+                        </option>
+
+                        <option value="2000">
+                            GH₵2,000
+                        </option>
+
+                        <option value="3000">
+                            GH₵3,000+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- SEARCH BUTTON -->
+
+                <button
+                    type="button"
+                    class="search-button"
+                    id="searchPropertiesBtn">
+
+                    Search Properties
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROPERTY TYPES
+    ====================================================== -->
+
+    <section class="property-types">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        EXPLORE
+                    </span>
+
+                    <h2>
+                        Find the right space
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="properties.html"
+                    class="view-all">
+
+                    View all properties →
+
+                </a>
+
+            </div>
+
+
+
+            <div class="type-grid">
+
+
+                <!-- SINGLE ROOM -->
+
+                <a
+                    href="properties.html?type=single-room"
+                    class="type-card">
+
+                    <div class="type-icon">
+                        01
+                    </div>
+
+                    <h3>
+                        Single Room
+                    </h3>
+
+                    <p>
+                        Simple and affordable spaces
+                    </p>
+
+                </a>
+
+
+
+                <!-- CHAMBER AND HALL -->
+
+                <a
+                    href="properties.html?type=chamber-hall"
+                    class="type-card">
+
+                    <div class="type-icon">
+                        02
+                    </div>
+
+                    <h3>
+                        Chamber & Hall
+                    </h3>
+
+                    <p>
+                        Comfortable spaces for living
+                    </p>
+
+                </a>
+
+
+
+                <!-- APARTMENTS -->
+
+                <a
+                    href="properties.html?type=apartment"
+                    class="type-card">
+
+                    <div class="type-icon">
+                        03
+                    </div>
+
+                    <h3>
+                        Apartments
+                    </h3>
+
+                    <p>
+                        Modern spaces for every lifestyle
+                    </p>
+
+                </a>
+
+
+
+                <!-- HOUSES -->
+
+                <a
+                    href="properties.html?type=house"
+                    class="type-card">
+
+                    <div class="type-icon">
+                        04
+                    </div>
+
+                    <h3>
+                        Houses
+                    </h3>
+
+                    <p>
+                        More space for the whole family
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FEATURED PROPERTIES
+         LOADED FROM HAVENGH API
+    ====================================================== -->
+
+    <section class="property-type">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        HANDPICKED FOR YOU
+                    </span>
+
+                    <h2>
+                        Featured properties
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="properties.html"
+                    class="view-all">
+
+                    Explore all →
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 API PROPERTY GRID
+
+                 script.js will populate this container.
+            ================================================== -->
+
+            <div
+                class="property-grid"
+                id="featuredPropertiesGrid">
+
+                <div class="featured-loading">
+
+                    Loading featured properties...
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         STAY IN GHANA
+    ====================================================== -->
+
+    <section class="stay-ghana">
+
+        <div class="container">
+
+            <div class="stay-ghana-content">
+
+                <span class="section-label">
+                    VISITING GHANA?
+                </span>
+
+
+                <h2>
+                    Stay in Ghana with confidence.
+                </h2>
+
+
+                <p>
+
+                    Coming to Ghana for a holiday, business trip
+                    or special visit? Discover hotels, serviced
+                    apartments and short-stay homes before you
+                    arrive.
+
+                </p>
+
+
+                <a
+                    href="stays.html"
+                    class="btn btn-light">
+
+                    Explore Stays →
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HOW IT WORKS
+    ====================================================== -->
+
+    <section
+        class="how-it-works"
+        id="how-it-works">
+
+        <div class="container">
+
+
+            <div class="center-heading">
+
+                <span class="section-label">
+                    SIMPLE & SECURE
+                </span>
+
+
+                <h2>
+                    Finding a home shouldn't be difficult.
+                </h2>
+
+
+                <p>
+
+                    We make it easier to discover available
+                    properties and connect with the people who
+                    manage them.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="steps">
+
+
+                <!-- STEP 1 -->
+
+                <div class="step">
+
+                    <span class="step-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Search
+                    </h3>
+
+                    <p>
+
+                        Search for rooms, apartments and houses
+                        based on your preferred location and budget.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 2 -->
+
+                <div class="step">
+
+                    <span class="step-number">
+                        02
+                    </span>
+
+                    <h3>
+                        Explore
+                    </h3>
+
+                    <p>
+
+                        View photos, property details, locations
+                        and information about the landlord or agent.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- STEP 3 -->
+
+                <div class="step">
+
+                    <span class="step-number">
+                        03
+                    </span>
+
+                    <h3>
+                        Connect
+                    </h3>
+
+                    <p>
+
+                        Call, WhatsApp or send a request directly
+                        to the landlord or agent.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         LANDLORD CTA
+    ====================================================== -->
+
+    <section class="landlord-cta">
+
+        <div class="container cta-container">
+
+
+            <div>
+
+                <span class="section-label">
+                    FOR LANDLORDS & AGENTS
+                </span>
+
+
+                <h2>
+                    Have a property to rent?
+                </h2>
+
+
+                <p>
+
+                    Put your property in front of people actively
+                    looking for a new home.
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="register.html"
+                class="btn btn-light">
+
+                List Your Property →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ABOUT
+    ====================================================== -->
+
+    <section
+        class="about-section"
+        id="about">
+
+        <div class="container about-grid">
+
+
+            <div>
+
+                <span class="section-label">
+                    ABOUT HAVENGH
+                </span>
+
+
+                <h2>
+                    A better way to find a place to live.
+                </h2>
+
+            </div>
+
+
+
+            <div>
+
+                <p>
+
+                    HavenGH connects people searching for homes
+                    with landlords and property agents who have
+                    available spaces.
+
+                </p>
+
+
+                <p>
+
+                    From a single room with a porch to a modern
+                    apartment or an entire house, our goal is to
+                    make property discovery simpler, clearer and
+                    more trustworthy.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <!-- FOOTER BRAND -->
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="logo footer-logo">
+
+                <span class="logo-main">
+                    Haven
+                </span>
+
+                <span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+
+            <p>
+                Find a place you'll love to call home.
+            </p>
+
+        </div>
+
+
+
+        <!-- DISCOVER -->
+
+        <div class="footer-column">
+
+            <h4>
+                Discover
+            </h4>
+
+
+            <a href="properties.html">
+                Find a Home
+            </a>
+
+
+            <a href="properties.html?type=single-room">
+                Single Rooms
+            </a>
+
+
+            <a href="properties.html?type=apartment">
+                Apartments
+            </a>
+
+
+            <a href="properties.html?type=house">
+                Houses
+            </a>
+
+        </div>
+
+
+
+        <!-- FOR AGENTS -->
+
+        <div class="footer-column">
+
+            <h4>
+                Local
+            </h4>
+
+
+            <a href="register.html">
+                List a Property
+            </a>
+
+
+            <a href="tenant-login.html">
+                Tenant Login
+            </a>
+
+
+            <a href="login.html">
+                Agent / Landlord Login
+            </a>
+
+
+            <a href="#how-it-works">
+                How It Works
+            </a>
+
+        </div>
+
+
+
+        <!-- STAY IN GHANA -->
+
+        <div class="footer-column">
+
+            <h4>
+                Stay in Ghana
+            </h4>
+
+
+            <a href="stays.html">
+                Find a Stay
+            </a>
+
+
+            <a href="stays.html">
+                Hotels
+            </a>
+
+
+            <a href="stays.html">
+                Short-Stay Apartments
+            </a>
+
+        </div>
+
+
+
+        <!-- COMPANY -->
+
+        <div class="footer-column">
+
+            <h4>
+                Company
+            </h4>
+
+
+            <a href="#about">
+                About Us
+            </a>
+
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+
+            <a href="privacy-policy.html">
+                Privacy Policy
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 HavenGH. All rights reserved.
+        </p>
+
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

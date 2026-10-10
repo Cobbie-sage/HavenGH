@@ -1,0 +1,2154 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Inbox | HavenGH Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ============================================================
+           HAVENGH ADMIN CONTACT INBOX
+           COMPLETE PAGE LAYOUT
+           ============================================================ */
+
+        :root {
+            --admin-green: #0d3024;
+            --admin-green-2: #123c2d;
+            --admin-green-3: #174a37;
+            --admin-green-soft: #eaf3ee;
+
+            --admin-gold: #b8944f;
+            --admin-gold-light: #d1b36f;
+            --admin-gold-dark: #947638;
+
+            --admin-cream: #f8f5ee;
+            --admin-white: #ffffff;
+
+            --admin-text: #24332c;
+            --admin-muted: #748078;
+            --admin-border: #e3e8e4;
+
+            --admin-danger: #b94a48;
+
+            --sidebar-width: 255px;
+        }
+
+
+        /* ============================================================
+           RESET / PAGE
+           ============================================================ */
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3f6f3 !important;
+            color: var(--admin-text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* ============================================================
+           ADMIN SIDEBAR
+           ============================================================ */
+
+        .dashboard-sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            bottom: 0 !important;
+
+            width: var(--sidebar-width) !important;
+            min-width: var(--sidebar-width) !important;
+            max-width: var(--sidebar-width) !important;
+
+            height: 100vh !important;
+            min-height: 100vh !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+
+            padding: 0 !important;
+            margin: 0 !important;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #0b2b20 0%,
+                    #0d3024 48%,
+                    #09251b 100%
+                ) !important;
+
+            border-right: 1px solid rgba(184, 148, 79, 0.28) !important;
+
+            box-shadow:
+                8px 0 28px rgba(7, 25, 18, 0.12) !important;
+
+            z-index: 1000 !important;
+
+            overflow: hidden !important;
+        }
+
+
+        /* ============================================================
+           LOGO AREA
+           ============================================================ */
+
+        .dashboard-sidebar .sidebar-logo {
+            width: 100% !important;
+            height: 112px !important;
+            min-height: 112px !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
+            padding: 18px 20px !important;
+            margin: 0 !important;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0)
+                ) !important;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+
+            overflow: hidden !important;
+        }
+
+        .dashboard-sidebar .sidebar-logo a {
+            width: 100% !important;
+            height: 100% !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
+            text-decoration: none !important;
+
+            overflow: hidden !important;
+        }
+
+        .dashboard-sidebar .sidebar-logo img {
+            display: block !important;
+
+            width: auto !important;
+            max-width: 175px !important;
+
+            height: auto !important;
+            max-height: 68px !important;
+
+            object-fit: contain !important;
+            object-position: center !important;
+
+            margin: 0 auto !important;
+            padding: 0 !important;
+
+            border: 0 !important;
+            outline: 0 !important;
+
+            transform: none !important;
+        }
+
+
+        /* ============================================================
+           SIDEBAR NAV
+           ============================================================ */
+
+        .dashboard-sidebar .sidebar-nav {
+            width: 100% !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+
+            flex: 1 1 auto !important;
+
+            padding: 18px 12px 12px !important;
+            margin: 0 !important;
+
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+
+            scrollbar-width: thin;
+            scrollbar-color: rgba(184,148,79,0.35) transparent;
+        }
+
+        .dashboard-sidebar .sidebar-nav::before {
+            content: "ADMINISTRATION";
+
+            display: block;
+
+            padding: 0 12px 10px;
+
+            color: rgba(255,255,255,0.42);
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+        }
+
+        .dashboard-sidebar .sidebar-nav a {
+            position: relative !important;
+
+            width: 100% !important;
+            min-height: 44px !important;
+
+            display: flex !important;
+            align-items: center !important;
+
+            margin: 2px 0 !important;
+            padding: 11px 14px !important;
+
+            border-radius: 10px !important;
+
+            color: rgba(255,255,255,0.73) !important;
+
+            background: transparent !important;
+
+            text-decoration: none !important;
+
+            font-size: 13px !important;
+            font-weight: 650 !important;
+
+            transition:
+                background 0.18s ease,
+                color 0.18s ease,
+                transform 0.18s ease !important;
+        }
+
+        .dashboard-sidebar .sidebar-nav a::before {
+            content: "";
+
+            width: 7px;
+            height: 7px;
+
+            flex: 0 0 7px;
+
+            margin-right: 12px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.25);
+
+            transition: 0.18s ease;
+        }
+
+        .dashboard-sidebar .sidebar-nav a:hover {
+            color: #ffffff !important;
+
+            background:
+                rgba(255,255,255,0.075) !important;
+
+            transform: translateX(2px);
+        }
+
+        .dashboard-sidebar .sidebar-nav a:hover::before {
+            background: var(--admin-gold-light);
+        }
+
+        .dashboard-sidebar .sidebar-nav a.active {
+            color: #ffffff !important;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(184,148,79,0.24),
+                    rgba(184,148,79,0.10)
+                ) !important;
+
+            border: 1px solid rgba(184,148,79,0.22) !important;
+
+            box-shadow:
+                inset 3px 0 0 var(--admin-gold) !important;
+        }
+
+        .dashboard-sidebar .sidebar-nav a.active::before {
+            width: 8px;
+            height: 8px;
+
+            flex-basis: 8px;
+
+            background: var(--admin-gold-light);
+
+            box-shadow:
+                0 0 0 3px rgba(184,148,79,0.12);
+        }
+
+
+        /* ============================================================
+           SIDEBAR BOTTOM
+           ============================================================ */
+
+        .dashboard-sidebar .sidebar-bottom {
+            width: 100% !important;
+
+            display: flex !important;
+            flex-direction: column !important;
+
+            gap: 7px !important;
+
+            padding: 13px 12px 16px !important;
+            margin: 0 !important;
+
+            border-top: 1px solid rgba(255,255,255,0.08) !important;
+
+            background:
+                rgba(0,0,0,0.10) !important;
+        }
+
+        .dashboard-sidebar .sidebar-bottom a,
+        .dashboard-sidebar .sidebar-bottom button {
+            width: 100% !important;
+
+            min-height: 42px !important;
+
+            display: flex !important;
+            align-items: center !important;
+
+            padding: 10px 14px !important;
+
+            border-radius: 9px !important;
+
+            background: transparent !important;
+
+            color: rgba(255,255,255,0.68) !important;
+
+            text-decoration: none !important;
+
+            font-family: inherit !important;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+
+            cursor: pointer !important;
+
+            border: 1px solid transparent !important;
+
+            transition: 0.18s ease !important;
+        }
+
+        .dashboard-sidebar .sidebar-bottom a::before {
+            content: "←";
+
+            margin-right: 10px;
+
+            color: var(--admin-gold-light);
+
+            font-size: 15px;
+        }
+
+        .dashboard-sidebar .sidebar-bottom button::before {
+            content: "↪";
+
+            margin-right: 10px;
+
+            color: #d9a5a3;
+
+            font-size: 15px;
+        }
+
+        .dashboard-sidebar .sidebar-bottom a:hover {
+            color: #ffffff !important;
+
+            background: rgba(255,255,255,0.06) !important;
+
+            border-color: rgba(255,255,255,0.08) !important;
+        }
+
+        .dashboard-sidebar .sidebar-bottom button:hover {
+            color: #ffffff !important;
+
+            background: rgba(185,74,72,0.12) !important;
+
+            border-color: rgba(185,74,72,0.20) !important;
+        }
+
+
+        /* ============================================================
+           MAIN ADMIN AREA
+           ============================================================ */
+
+        .dashboard-main.messages-main {
+            position: relative !important;
+
+            width: calc(100% - var(--sidebar-width)) !important;
+            min-width: 0 !important;
+
+            margin-left: var(--sidebar-width) !important;
+
+            min-height: 100vh !important;
+
+            padding: 34px 36px 50px !important;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f7f9f7 0%,
+                    #f3f6f3 100%
+                ) !important;
+        }
+
+
+        /* ============================================================
+           PAGE HEADER
+           ============================================================ */
+
+        .messages-header {
+            display: flex;
+
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .messages-header h1 {
+            margin: 0 0 7px;
+
+            color: var(--admin-green);
+
+            font-size: 30px;
+            line-height: 1.15;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+        }
+
+        .messages-header p {
+            margin: 0;
+
+            color: var(--admin-muted);
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .message-action-btn {
+            border: 1px solid var(--admin-border);
+
+            background: var(--admin-white);
+
+            color: var(--admin-green);
+
+            border-radius: 10px;
+
+            padding: 11px 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+
+            box-shadow: 0 3px 10px rgba(12,39,28,0.03);
+        }
+
+        .message-action-btn:hover {
+            border-color: var(--admin-gold);
+
+            color: var(--admin-gold-dark);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ============================================================
+           STATS
+           ============================================================ */
+
+        .message-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .message-stat {
+            position: relative;
+
+            background: var(--admin-white);
+
+            border: 1px solid var(--admin-border);
+
+            border-radius: 14px;
+
+            padding: 18px;
+
+            min-height: 100px;
+
+            box-shadow:
+                0 5px 18px rgba(12,39,28,0.045);
+
+            overflow: hidden;
+        }
+
+        .message-stat::after {
+            content: "";
+
+            position: absolute;
+
+            right: -20px;
+            bottom: -25px;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(184,148,79,0.055);
+        }
+
+        .message-stat-label {
+            color: var(--admin-muted);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+
+            margin-bottom: 8px;
+        }
+
+        .message-stat-number {
+            color: var(--admin-green);
+
+            font-size: 26px;
+            line-height: 1;
+
+            font-weight: 800;
+        }
+
+
+        /* ============================================================
+           NOTICE
+           ============================================================ */
+
+        .messages-notice {
+            margin-bottom: 16px;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            display: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .messages-notice.show {
+            display: block;
+        }
+
+        .messages-notice.success {
+            background: #e8f5ec;
+            color: #28744a;
+        }
+
+        .messages-notice.error {
+            background: #fdecec;
+            color: var(--admin-danger);
+        }
+
+
+        /* ============================================================
+           TOOLBAR
+           ============================================================ */
+
+        .message-toolbar {
+            background: var(--admin-white);
+
+            border: 1px solid var(--admin-border);
+
+            border-radius: 14px;
+
+            padding: 14px;
+
+            display: flex;
+
+            gap: 14px;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 4px 16px rgba(12,39,28,0.035);
+        }
+
+        .message-search {
+            flex: 1;
+
+            max-width: 520px;
+
+            position: relative;
+        }
+
+        .message-search input {
+            width: 100%;
+
+            border: 1px solid var(--admin-border);
+
+            border-radius: 10px;
+
+            padding: 12px 15px;
+
+            outline: none;
+
+            font-size: 13px;
+
+            color: var(--admin-text);
+
+            background: #fbfcfb;
+        }
+
+        .message-search input:focus {
+            border-color: var(--admin-gold);
+
+            box-shadow:
+                0 0 0 3px rgba(184,148,79,0.10);
+        }
+
+        .status-filters {
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+        }
+
+        .status-filter {
+            border: 1px solid var(--admin-border);
+
+            background: #fff;
+
+            color: var(--admin-muted);
+
+            padding: 9px 12px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            transition: 0.18s ease;
+        }
+
+        .status-filter:hover {
+            border-color: var(--admin-gold);
+
+            color: var(--admin-green);
+        }
+
+        .status-filter.active {
+            background: var(--admin-green);
+
+            color: #fff;
+
+            border-color: var(--admin-green);
+
+            box-shadow:
+                0 4px 10px rgba(13,48,36,0.14);
+        }
+
+
+        /* ============================================================
+           INBOX
+           ============================================================ */
+
+        .messages-layout {
+            display: grid;
+
+            grid-template-columns:
+                390px minmax(0, 1fr);
+
+            min-height: 650px;
+
+            background: var(--admin-white);
+
+            border: 1px solid var(--admin-border);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 30px rgba(12,39,28,0.055);
+        }
+
+
+        /* ============================================================
+           MESSAGE LIST
+           ============================================================ */
+
+        .message-list-panel {
+            border-right: 1px solid var(--admin-border);
+
+            display: flex;
+
+            flex-direction: column;
+
+            min-width: 0;
+
+            background: #fff;
+        }
+
+        .message-list-heading {
+            padding: 18px 20px;
+
+            border-bottom: 1px solid var(--admin-border);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: #fcfdfc;
+        }
+
+        .message-list-heading strong {
+            color: var(--admin-green);
+
+            font-size: 15px;
+        }
+
+        #message-result-count {
+            color: var(--admin-muted);
+
+            font-size: 12px;
+        }
+
+        #contact-message-list {
+            overflow-y: auto;
+
+            flex: 1;
+        }
+
+        .contact-message-item {
+            width: 100%;
+
+            text-align: left;
+
+            border: 0;
+
+            border-bottom: 1px solid #edf0ed;
+
+            background: #fff;
+
+            padding: 17px 19px;
+
+            cursor: pointer;
+
+            transition: 0.18s ease;
+        }
+
+        .contact-message-item:hover {
+            background: #f8faf8;
+        }
+
+        .contact-message-item.active {
+            background: var(--admin-green-soft);
+
+            border-left: 4px solid var(--admin-gold);
+
+            padding-left: 15px;
+        }
+
+        .contact-message-top {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 7px;
+        }
+
+        .contact-message-name {
+            color: var(--admin-green);
+
+            font-size: 14px;
+
+            font-weight: 800;
+        }
+
+        .contact-message-date {
+            color: var(--admin-muted);
+
+            font-size: 10px;
+
+            white-space: nowrap;
+        }
+
+        .contact-message-subject {
+            color: var(--admin-text);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+        }
+
+        .contact-message-preview {
+            color: var(--admin-muted);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            max-height: 36px;
+
+            overflow: hidden;
+        }
+
+        .contact-message-bottom {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 10px;
+        }
+
+
+        /* ============================================================
+           STATUS BADGES
+           ============================================================ */
+
+        .message-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 4px 8px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.3px;
+        }
+
+        .status-new {
+            background: #fff1d7;
+
+            color: #986d1d;
+        }
+
+        .status-open {
+            background: #e5f0ff;
+
+            color: #2865a8;
+        }
+
+        .status-resolved {
+            background: #e2f4e9;
+
+            color: #28744a;
+        }
+
+        .status-closed {
+            background: #eceeed;
+
+            color: #68716c;
+        }
+
+
+        /* ============================================================
+           DETAIL PANEL
+           ============================================================ */
+
+        .message-detail-panel {
+            min-width: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: #fff;
+        }
+
+        .message-detail-empty {
+            flex: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: var(--admin-muted);
+        }
+
+        .empty-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: var(--admin-green-soft);
+
+            color: var(--admin-green);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+
+            border: 1px solid rgba(18,60,45,0.08);
+        }
+
+        .message-detail-empty h3 {
+            color: var(--admin-green);
+
+            margin: 0 0 7px;
+
+            font-size: 18px;
+        }
+
+        .message-detail-empty p {
+            margin: 0;
+
+            font-size: 13px;
+        }
+
+        .message-detail-content {
+            display: none;
+
+            flex-direction: column;
+
+            height: 100%;
+        }
+
+        .message-detail-content.visible {
+            display: flex;
+        }
+
+
+        /* ============================================================
+           DETAIL HEADER
+           ============================================================ */
+
+        .detail-header {
+            padding: 22px 25px;
+
+            border-bottom: 1px solid var(--admin-border);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #fcfdfc
+                );
+        }
+
+        .detail-header-main {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .detail-subject {
+            margin: 0 0 7px;
+
+            color: var(--admin-green);
+
+            font-size: 21px;
+
+            font-weight: 800;
+        }
+
+        .detail-date {
+            color: var(--admin-muted);
+
+            font-size: 12px;
+        }
+
+
+        /* ============================================================
+           DETAIL BODY
+           ============================================================ */
+
+        .detail-body {
+            padding: 25px;
+
+            overflow-y: auto;
+
+            flex: 1;
+        }
+
+        .sender-card {
+            background: #f8faf8;
+
+            border: 1px solid var(--admin-border);
+
+            border-radius: 13px;
+
+            padding: 17px;
+
+            margin-bottom: 24px;
+        }
+
+        .sender-card-title {
+            color: var(--admin-muted);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            font-weight: 800;
+
+            margin-bottom: 12px;
+        }
+
+        .sender-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+        }
+
+        .sender-field label {
+            display: block;
+
+            color: var(--admin-muted);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+        .sender-field div {
+            color: var(--admin-text);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            word-break: break-word;
+        }
+
+        .sender-field a {
+            color: var(--admin-green);
+
+            text-decoration: none;
+        }
+
+        .sender-field a:hover {
+            color: var(--admin-gold-dark);
+        }
+
+        .message-content-label {
+            color: var(--admin-muted);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            font-weight: 800;
+
+            margin-bottom: 10px;
+        }
+
+        .message-content-box {
+            border: 1px solid var(--admin-border);
+
+            border-radius: 13px;
+
+            padding: 20px;
+
+            color: var(--admin-text);
+
+            background: #fff;
+
+            font-size: 14px;
+
+            line-height: 1.75;
+
+            white-space: pre-wrap;
+
+            word-break: break-word;
+        }
+
+
+        /* ============================================================
+           DETAIL FOOTER
+           ============================================================ */
+
+        .detail-footer {
+            border-top: 1px solid var(--admin-border);
+
+            padding: 17px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            background: #fbfcfb;
+        }
+
+        .status-control {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .status-control label {
+            color: var(--admin-muted);
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        #message-status-select {
+            border: 1px solid var(--admin-border);
+
+            background: #fff;
+
+            border-radius: 9px;
+
+            padding: 9px 12px;
+
+            color: var(--admin-text);
+
+            font-weight: 700;
+
+            outline: none;
+        }
+
+        #message-status-select:focus {
+            border-color: var(--admin-gold);
+        }
+
+        .detail-actions {
+            display: flex;
+
+            gap: 8px;
+        }
+
+        .detail-action {
+            border: 1px solid var(--admin-border);
+
+            background: #fff;
+
+            color: var(--admin-green);
+
+            border-radius: 9px;
+
+            padding: 9px 13px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition: 0.18s ease;
+        }
+
+        .detail-action:hover {
+            border-color: var(--admin-gold);
+
+            color: var(--admin-gold-dark);
+
+            background: #fffdf8;
+        }
+
+
+        /* ============================================================
+           LOADING / EMPTY / ERROR
+           ============================================================ */
+
+        .messages-loading,
+        .messages-empty,
+        .messages-error {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            color: var(--admin-muted);
+
+            font-size: 13px;
+        }
+
+        .messages-error {
+            color: var(--admin-danger);
+        }
+
+
+        /* ============================================================
+           SCROLLBARS
+           ============================================================ */
+
+        .dashboard-sidebar .sidebar-nav::-webkit-scrollbar,
+        #contact-message-list::-webkit-scrollbar,
+        .detail-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .dashboard-sidebar .sidebar-nav::-webkit-scrollbar-track,
+        #contact-message-list::-webkit-scrollbar-track,
+        .detail-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .dashboard-sidebar .sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(184,148,79,0.30);
+
+            border-radius: 10px;
+        }
+
+        #contact-message-list::-webkit-scrollbar-thumb,
+        .detail-body::-webkit-scrollbar-thumb {
+            background: #d9dfdb;
+
+            border-radius: 10px;
+        }
+
+
+        /* ============================================================
+           TABLET
+           ============================================================ */
+
+        @media (max-width: 1200px) {
+
+            :root {
+                --sidebar-width: 235px;
+            }
+
+            .dashboard-sidebar {
+                width: var(--sidebar-width) !important;
+                min-width: var(--sidebar-width) !important;
+            }
+
+            .dashboard-main.messages-main {
+                width: calc(100% - var(--sidebar-width)) !important;
+
+                margin-left: var(--sidebar-width) !important;
+
+                padding: 28px 25px 45px !important;
+            }
+
+            .message-stats {
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+            }
+
+            .messages-layout {
+                grid-template-columns:
+                    330px minmax(0, 1fr);
+            }
+
+            .sender-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+        /* ============================================================
+           MOBILE / SMALL TABLET
+           ============================================================ */
+
+        @media (max-width: 850px) {
+
+            .dashboard-sidebar {
+                position: relative !important;
+
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+
+                height: auto !important;
+                min-height: 0 !important;
+
+                overflow: visible !important;
+            }
+
+            .dashboard-sidebar .sidebar-logo {
+                height: 92px !important;
+                min-height: 92px !important;
+            }
+
+            .dashboard-sidebar .sidebar-nav {
+                max-height: none !important;
+
+                overflow: visible !important;
+
+                padding: 12px !important;
+            }
+
+            .dashboard-sidebar .sidebar-nav::before {
+                padding-top: 2px;
+            }
+
+            .dashboard-sidebar .sidebar-bottom {
+                padding: 12px !important;
+            }
+
+            .dashboard-main.messages-main {
+                width: 100% !important;
+
+                margin-left: 0 !important;
+
+                padding: 22px 15px 40px !important;
+            }
+
+            .messages-header {
+                flex-direction: column;
+
+                margin-bottom: 20px;
+            }
+
+            .message-toolbar {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .message-search {
+                max-width: none;
+            }
+
+            .messages-layout {
+                grid-template-columns: 1fr;
+
+                min-height: 750px;
+            }
+
+            .message-list-panel {
+                border-right: 0;
+
+                border-bottom: 1px solid var(--admin-border);
+
+                max-height: 380px;
+            }
+
+            .message-detail-panel {
+                min-height: 430px;
+            }
+        }
+
+
+        /* ============================================================
+           PHONE
+           ============================================================ */
+
+        @media (max-width: 600px) {
+
+            .dashboard-sidebar .sidebar-logo img {
+                max-width: 155px !important;
+
+                max-height: 58px !important;
+            }
+
+            .dashboard-sidebar .sidebar-nav a {
+                min-height: 42px !important;
+
+                padding: 10px 12px !important;
+            }
+
+            .message-stats {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .status-filters {
+                width: 100%;
+            }
+
+            .status-filter {
+                flex: 1;
+
+                min-width: 70px;
+            }
+
+            .sender-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-header-main {
+                flex-direction: column;
+            }
+
+            .detail-body {
+                padding: 18px;
+            }
+
+            .detail-header {
+                padding: 18px;
+            }
+
+            .detail-footer {
+                padding: 15px 18px;
+            }
+
+            .detail-actions {
+                width: 100%;
+            }
+
+            .detail-action {
+                flex: 1;
+
+                text-align: center;
+            }
+        }
+
+
+        /* ============================================================
+           VERY SMALL PHONES
+           ============================================================ */
+
+        @media (max-width: 420px) {
+
+            .message-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .messages-main {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+
+            .messages-header h1 {
+                font-size: 25px;
+            }
+
+            .messages-layout {
+                border-radius: 12px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================================================
+         HAVENGH ADMIN SIDEBAR
+         ============================================================ -->
+
+    <aside class="dashboard-sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="sidebar-logo">
+
+            <a href="index.html" aria-label="HavenGH Home">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH">
+
+            </a>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav"
+             aria-label="Admin navigation">
+
+
+            <a href="admin-dashboard.html">
+                Dashboard
+            </a>
+
+
+            <a href="admin-users.html">
+                Users
+            </a>
+
+
+            <a href="admin-properties.html">
+                Properties
+            </a>
+
+
+            <a href="admin-stays.html">
+                Stay in Ghana
+            </a>
+
+
+            <a href="admin-rental-requests.html">
+                Rental Requests
+            </a>
+
+
+            <a href="admin-messages.html">
+                Messages
+            </a>
+
+
+            <a
+                href="admin-contact-messages.html"
+                class="active"
+                aria-current="page">
+
+                Contact Inbox
+
+            </a>
+
+
+            <a href="admin-payments.html">
+                Payments
+            </a>
+
+
+            <a href="admin-subscriptions.html">
+                Subscriptions
+            </a>
+
+
+            <a href="admin-audit-logs.html">
+                Audit Logs
+            </a>
+
+
+            <a href="admin-settings.html">
+                Settings
+            </a>
+
+
+        </nav>
+
+
+        <!-- BOTTOM ACTIONS -->
+
+        <div class="sidebar-bottom">
+
+
+            <a href="index.html">
+                Back to Website
+            </a>
+
+
+            <button
+                type="button"
+                id="adminLogoutButton">
+
+                Logout
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+
+    <main class="dashboard-main messages-main">
+
+
+        <!-- PAGE HEADER -->
+
+        <header class="messages-header">
+
+
+            <div>
+
+                <h1>
+                    Contact Inbox
+                </h1>
+
+                <p>
+                    Messages submitted through the HavenGH Contact Us page.
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    class="message-action-btn"
+                    id="refresh-messages">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- ========================================================
+             NOTICE
+             ======================================================== -->
+
+        <div
+            id="messages-notice"
+            class="messages-notice">
+        </div>
+
+
+
+        <!-- ========================================================
+             STATISTICS
+             ======================================================== -->
+
+        <section class="message-stats">
+
+
+            <div class="message-stat">
+
+                <div class="message-stat-label">
+                    All Messages
+                </div>
+
+                <div
+                    class="message-stat-number"
+                    id="stat-all">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="message-stat">
+
+                <div class="message-stat-label">
+                    New
+                </div>
+
+                <div
+                    class="message-stat-number"
+                    id="stat-new">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="message-stat">
+
+                <div class="message-stat-label">
+                    Open
+                </div>
+
+                <div
+                    class="message-stat-number"
+                    id="stat-open">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="message-stat">
+
+                <div class="message-stat-label">
+                    Resolved
+                </div>
+
+                <div
+                    class="message-stat-number"
+                    id="stat-resolved">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="message-stat">
+
+                <div class="message-stat-label">
+                    Closed
+                </div>
+
+                <div
+                    class="message-stat-number"
+                    id="stat-closed">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ========================================================
+             SEARCH / FILTERS
+             ======================================================== -->
+
+        <section class="message-toolbar">
+
+
+            <div class="message-search">
+
+                <input
+                    type="search"
+                    id="message-search"
+                    placeholder="Search name, email, subject or message..."
+                    autocomplete="off">
+
+            </div>
+
+
+            <div class="status-filters">
+
+
+                <button
+                    type="button"
+                    class="status-filter active"
+                    data-status="all">
+
+                    All
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="status-filter"
+                    data-status="new">
+
+                    New
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="status-filter"
+                    data-status="open">
+
+                    Open
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="status-filter"
+                    data-status="resolved">
+
+                    Resolved
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="status-filter"
+                    data-status="closed">
+
+                    Closed
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ========================================================
+             CONTACT MESSAGE INBOX
+             ======================================================== -->
+
+        <section class="messages-layout">
+
+
+            <!-- MESSAGE LIST -->
+
+            <div class="message-list-panel">
+
+
+                <div class="message-list-heading">
+
+                    <strong>
+                        Inbox
+                    </strong>
+
+                    <span id="message-result-count">
+                        0 messages
+                    </span>
+
+                </div>
+
+
+                <div id="contact-message-list">
+
+                    <div class="messages-loading">
+                        Loading messages...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MESSAGE DETAILS -->
+
+            <div class="message-detail-panel">
+
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    id="message-detail-empty"
+                    class="message-detail-empty">
+
+                    <div>
+
+                        <div class="empty-icon">
+                            ✉
+                        </div>
+
+                        <h3>
+                            Select a message
+                        </h3>
+
+                        <p>
+                            Choose a message from the inbox to view its details.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DETAILS -->
+
+                <div
+                    id="message-detail-content"
+                    class="message-detail-content">
+
+
+                    <!-- DETAIL HEADER -->
+
+                    <div class="detail-header">
+
+
+                        <div class="detail-header-main">
+
+
+                            <div>
+
+                                <h2
+                                    id="detail-subject"
+                                    class="detail-subject">
+                                </h2>
+
+                                <div
+                                    id="detail-date"
+                                    class="detail-date">
+                                </div>
+
+                            </div>
+
+
+                            <span
+                                id="detail-status-badge"
+                                class="message-status">
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DETAIL BODY -->
+
+                    <div class="detail-body">
+
+
+                        <!-- SENDER INFORMATION -->
+
+                        <div class="sender-card">
+
+
+                            <div class="sender-card-title">
+                                Sender Information
+                            </div>
+
+
+                            <div class="sender-grid">
+
+
+                                <div class="sender-field">
+
+                                    <label>
+                                        Name
+                                    </label>
+
+                                    <div id="detail-name">
+                                    </div>
+
+                                </div>
+
+
+                                <div class="sender-field">
+
+                                    <label>
+                                        Email
+                                    </label>
+
+                                    <div>
+
+                                        <a
+                                            id="detail-email"
+                                            href="#">
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="sender-field">
+
+                                    <label>
+                                        Phone
+                                    </label>
+
+                                    <div>
+
+                                        <a
+                                            id="detail-phone"
+                                            href="#">
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- MESSAGE -->
+
+                        <div class="message-content-label">
+                            Message
+                        </div>
+
+
+                        <div
+                            id="detail-message"
+                            class="message-content-box">
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- DETAIL FOOTER -->
+
+                    <div class="detail-footer">
+
+
+                        <div class="status-control">
+
+                            <label for="message-status-select">
+                                Status
+                            </label>
+
+
+                            <select id="message-status-select">
+
+                                <option value="new">
+                                    New
+                                </option>
+
+                                <option value="open">
+                                    Open
+                                </option>
+
+                                <option value="resolved">
+                                    Resolved
+                                </option>
+
+                                <option value="closed">
+                                    Closed
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="detail-actions">
+
+
+                            <a
+                                href="#"
+                                id="email-sender-button"
+                                class="detail-action">
+
+                                Email Sender
+
+                            </a>
+
+
+                            <a
+                                href="#"
+                                id="call-sender-button"
+                                class="detail-action">
+
+                                Call Sender
+
+                            </a>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ============================================================
+         SHARED HAVENGH SCRIPT
+         ============================================================ -->
+
+    <script src="script.js"></script>
+
+
+    <!-- ============================================================
+         CONTACT INBOX SCRIPT
+         ============================================================ -->
+
+    <script src="admin-contact-messages.js"></script>
+
+
+</body>
+
+</html>
+   

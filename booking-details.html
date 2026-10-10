@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="HavenGH booking details for hosts and property managers.">
+
+    <title>Booking Details | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --haven-green: #064e3b;
+            --haven-green-dark: #043c2e;
+            --haven-teal: #0f766e;
+            --haven-gold: #d4af37;
+            --haven-bg: #f5f8f6;
+            --haven-border: #e5ebe8;
+            --haven-text: #1f2933;
+            --haven-muted: #6b7280;
+            --haven-white: #ffffff;
+            --success-bg: #ecfdf5;
+            --success-text: #065f46;
+            --danger-bg: #fef2f2;
+            --danger-text: #991b1b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--haven-bg);
+            color: var(--haven-text);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .booking-page {
+            min-height: 100vh;
+        }
+
+        .booking-container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        .booking-header {
+            background: #fff;
+            border-bottom: 1px solid var(--haven-border);
+            padding: 18px 0;
+        }
+
+        .booking-header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .booking-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .booking-brand img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .booking-brand-name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--haven-green);
+        }
+
+        .booking-brand-name span {
+            color: var(--haven-gold);
+        }
+
+        .host-label {
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: #f0f7f4;
+            color: var(--haven-green);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* MAIN */
+
+        .booking-main {
+            padding: 45px 0 80px;
+        }
+
+        .back-bookings {
+            display: inline-flex;
+            margin-bottom: 25px;
+            color: var(--haven-green);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .back-bookings:hover {
+            color: var(--haven-gold);
+        }
+
+        .booking-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .booking-heading small {
+            display: block;
+            color: var(--haven-gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            margin-bottom: 8px;
+        }
+
+        .booking-heading h1 {
+            margin: 0 0 8px;
+            color: var(--haven-green);
+            font-size: clamp(28px, 4vw, 40px);
+        }
+
+        .booking-reference {
+            color: var(--haven-muted);
+            font-size: 14px;
+        }
+
+        .booking-reference strong {
+            color: var(--haven-text);
+        }
+
+        /* STATUS */
+
+        .booking-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 17px;
+            border-radius: 30px;
+            background: #fff8df;
+            color: #8a6800;
+            border: 1px solid #ead58a;
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .booking-status::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--haven-gold);
+        }
+
+        .booking-status.confirmed {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border-color: #a7f3d0;
+        }
+
+        .booking-status.confirmed::before {
+            background: #16a34a;
+        }
+
+        .booking-status.declined {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            border-color: #fecaca;
+        }
+
+        .booking-status.declined::before {
+            background: #dc2626;
+        }
+
+        /* GRID */
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(300px, .8fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* CARDS */
+
+        .booking-card {
+            background: #fff;
+            border: 1px solid var(--haven-border);
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(6, 78, 59, .06);
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .card-header {
+            padding: 22px 25px;
+            border-bottom: 1px solid var(--haven-border);
+        }
+
+        .card-header h2 {
+            margin: 0;
+            color: var(--haven-green);
+            font-size: 19px;
+        }
+
+        .card-header p {
+            margin: 6px 0 0;
+            color: var(--haven-muted);
+            font-size: 13px;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        /* GUEST */
+
+        .guest-profile {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .guest-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(
+                135deg,
+                var(--haven-green),
+                var(--haven-teal)
+            );
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .guest-profile h3 {
+            margin: 0 0 5px;
+            color: var(--haven-green);
+        }
+
+        .guest-profile p {
+            margin: 0;
+            color: var(--haven-muted);
+            font-size: 13px;
+        }
+
+        .guest-contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .contact-item,
+        .info-box {
+            padding: 15px;
+            background: #f8faf9;
+            border: 1px solid var(--haven-border);
+            border-radius: 12px;
+        }
+
+        .contact-item span,
+        .info-box span {
+            display: block;
+            color: var(--haven-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .contact-item strong,
+        .info-box strong {
+            color: var(--haven-text);
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        /* STAY */
+
+        .stay-summary {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .stay-summary-image {
+            width: 180px;
+            height: 125px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .stay-summary h3 {
+            margin: 0 0 8px;
+            color: var(--haven-green);
+        }
+
+        .stay-summary-location {
+            color: var(--haven-muted);
+            margin-bottom: 12px;
+        }
+
+        .stay-type {
+            display: inline-block;
+            padding: 6px 10px;
+            background: #eef7f4;
+            color: var(--haven-green);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* RESERVATION */
+
+        .booking-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            padding: 18px;
+        }
+
+        .info-box strong {
+            color: var(--haven-green);
+            font-size: 16px;
+        }
+
+        /* REQUEST */
+
+        .special-request {
+            padding: 18px;
+            border-radius: 13px;
+            background: #fffaf0;
+            border: 1px solid #f0dfaa;
+            color: #665421;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* PRICE */
+
+        .price-card {
+            position: sticky;
+            top: 25px;
+        }
+
+        .price-summary {
+            padding: 25px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: var(--haven-muted);
+            font-size: 14px;
+        }
+
+        .price-row strong {
+            color: var(--haven-text);
+        }
+
+        .price-divider {
+            height: 1px;
+            background: var(--haven-border);
+            margin: 20px 0;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-row strong {
+            color: var(--haven-green);
+            font-size: 26px;
+        }
+
+        .payment-status {
+            margin-top: 20px;
+            padding: 13px;
+            text-align: center;
+            border-radius: 10px;
+            background: #fff8df;
+            color: #8a6800;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        /* BUTTONS */
+
+        .booking-actions {
+            display: grid;
+            gap: 11px;
+            padding: 0 25px 25px;
+        }
+
+        .action-button {
+            width: 100%;
+            min-height: 48px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+        }
+
+        .confirm-button {
+            background: var(--haven-green);
+            color: white;
+            border: 1px solid var(--haven-green);
+        }
+
+        .confirm-button:hover {
+            background: var(--haven-teal);
+            border-color: var(--haven-teal);
+        }
+
+        .contact-button {
+            background: white;
+            color: var(--haven-green);
+            border: 1px solid var(--haven-green);
+        }
+
+        .contact-button:hover {
+            background: #eef7f4;
+        }
+
+        .decline-button {
+            background: white;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .decline-button:hover {
+            background: #fef2f2;
+        }
+
+        .action-button:disabled {
+            cursor: not-allowed;
+            opacity: .55;
+            transform: none;
+        }
+
+        /* MESSAGE */
+
+        .action-message {
+            display: none;
+            margin: 0 25px 25px;
+            padding: 14px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .action-message.show {
+            display: block;
+        }
+
+        .action-message.success {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid #a7f3d0;
+        }
+
+        .action-message.error {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            border: 1px solid #fecaca;
+        }
+
+        /* SECURITY */
+
+        .security-note {
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+            background: #f0f7f4;
+            border: 1px solid #d5e9e2;
+            border-radius: 13px;
+            color: #365b50;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .security-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--haven-green);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* FOOTER */
+
+        .booking-footer {
+            padding: 25px 0;
+            border-top: 1px solid var(--haven-border);
+            background: white;
+        }
+
+        .booking-footer-inner {
+            display: flex;
+            justify-content: space-between;
+            color: var(--haven-muted);
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card {
+                position: static;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .booking-container {
+                width: min(100% - 25px, 1180px);
+            }
+
+            .booking-heading {
+                flex-direction: column;
+            }
+
+            .guest-contact,
+            .booking-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stay-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .stay-summary-image {
+                width: 100%;
+                height: 220px;
+            }
+
+            .booking-footer-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="booking-page">
+
+    <!-- HEADER -->
+
+    <header class="booking-header">
+
+        <div class="booking-container booking-header-inner">
+
+            <a href="stay-host-dashboard.html" class="booking-brand">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <div class="booking-brand-name">
+                    Haven<span>GH</span>
+                </div>
+
+            </a>
+
+            <div class="host-label">
+                Host Portal
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="booking-main">
+
+        <div class="booking-container">
+
+            <a
+                href="stay-host-bookings.html"
+                class="back-bookings">
+
+                ← Back to Bookings
+
+            </a>
+
+
+            <div class="booking-heading">
+
+                <div>
+
+                    <small>
+                        BOOKING DETAILS
+                    </small>
+
+                    <h1>
+                        Reservation Overview
+                    </h1>
+
+                    <div class="booking-reference">
+
+                        Booking Reference:
+                        <strong id="bookingReference">
+                            HG-STAY-000124
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="booking-status"
+                    id="bookingStatus">
+
+                    Pending Confirmation
+
+                </div>
+
+            </div>
+
+
+            <div class="booking-grid">
+
+
+                <!-- LEFT -->
+
+                <div>
+
+
+                    <!-- GUEST -->
+
+                    <section class="booking-card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Guest Information
+                            </h2>
+
+                            <p>
+                                Information provided by the guest
+                            </p>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <div class="guest-profile">
+
+                                <div
+                                    class="guest-avatar"
+                                    id="guestAvatar">
+
+                                    JS
+
+                                </div>
+
+                                <div>
+
+                                    <h3 id="guestName">
+                                        James Smith
+                                    </h3>
+
+                                    <p>
+                                        Guest / Traveller
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="guest-contact">
+
+                                <div class="contact-item">
+
+                                    <span>Email</span>
+
+                                    <strong id="guestEmail">
+                                        guest@example.com
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="contact-item">
+
+                                    <span>Phone</span>
+
+                                    <strong id="guestPhone">
+                                        +233 XX XXX XXXX
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- STAY -->
+
+                    <section class="booking-card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Stay Information
+                            </h2>
+
+                            <p>
+                                Property associated with this booking
+                            </p>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <div class="stay-summary">
+
+                                <img
+                                    id="stayImage"
+                                    class="stay-summary-image"
+                                    src="images/stay-1.jpg"
+                                    alt="Booked stay">
+
+                                <div>
+
+                                    <h3 id="stayName">
+                                        Luxury Short-Stay Apartment
+                                    </h3>
+
+                                    <div
+                                        class="stay-summary-location"
+                                        id="stayLocation">
+
+                                        📍 East Legon, Accra
+
+                                    </div>
+
+                                    <span class="stay-type">
+                                        Serviced Apartment
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- RESERVATION -->
+
+                    <section class="booking-card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Reservation Information
+                            </h2>
+
+                            <p>
+                                Dates and occupancy
+                            </p>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <div class="booking-info-grid">
+
+                                <div class="info-box">
+
+                                    <span>Check-in</span>
+
+                                    <strong id="checkIn">
+                                        15 September 2026
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-box">
+
+                                    <span>Check-out</span>
+
+                                    <strong id="checkOut">
+                                        20 September 2026
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-box">
+
+                                    <span>Number of Nights</span>
+
+                                    <strong id="numberOfNights">
+                                        5 Nights
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-box">
+
+                                    <span>Guests</span>
+
+                                    <strong id="numberOfGuests">
+                                        2 Guests
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- REQUEST -->
+
+                    <section class="booking-card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Guest Request
+                            </h2>
+
+                            <p>
+                                Additional information from the guest
+                            </p>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <div class="special-request">
+
+                                The guest has not provided any
+                                special requests for this reservation.
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- SECURITY -->
+
+                    <div class="security-note">
+
+                        <div class="security-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                HavenGH protected booking
+                            </strong>
+
+                            <br>
+
+                            Guest and payment information should only
+                            be accessed by authorized hosts.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT -->
+
+                <aside>
+
+
+                    <!-- PAYMENT -->
+
+                    <section class="booking-card price-card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Payment Summary
+                            </h2>
+
+                            <p>
+                                Current booking amount
+                            </p>
+
+                        </div>
+
+
+                        <div class="price-summary">
+
+                            <div class="price-row">
+
+                                <span>
+                                    GH₵1,200 × 5 nights
+                                </span>
+
+                                <strong>
+                                    GH₵6,000
+                                </strong>
+
+                            </div>
+
+
+                            <div class="price-row">
+
+                                <span>
+                                    Service fee
+                                </span>
+
+                                <strong>
+                                    GH₵0
+                                </strong>
+
+                            </div>
+
+
+                            <div class="price-divider"></div>
+
+
+                            <div class="total-row">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <strong>
+                                    GH₵6,000
+                                </strong>
+
+                            </div>
+
+
+                            <div
+                                class="payment-status"
+                                id="paymentStatus">
+
+                                Payment Pending
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ACTION BUTTONS -->
+
+                        <div class="booking-actions">
+
+                            <button
+                                type="button"
+                                class="action-button confirm-button"
+                                id="confirmBookingBtn">
+
+                                ✓ Confirm Booking
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="action-button contact-button"
+                                id="contactGuestBtn">
+
+                                💬 Contact Guest
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="action-button decline-button"
+                                id="declineBookingBtn">
+
+                                ✕ Decline Booking
+
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="actionMessage"
+                            class="action-message"
+                            role="alert">
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- TIMELINE -->
+
+                    <section class="booking-card">
+
+                        <div class="card-header">
+
+                            <h2>
+                                Booking Timeline
+                            </h2>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+                            <div class="price-row">
+
+                                <span>
+                                    Booking requested
+                                </span>
+
+                                <strong>
+                                    26 Aug 2026
+                                </strong>
+
+                            </div>
+
+
+                            <div class="price-row">
+
+                                <span>
+                                    Current status
+                                </span>
+
+                                <strong id="timelineStatus">
+                                    Pending
+                                </strong>
+
+                            </div>
+
+
+                            <div class="price-row">
+
+                                <span>
+                                    Check-in
+                                </span>
+
+                                <strong>
+                                    15 Sep 2026
+                                </strong>
+
+                            </div>
+
+
+                            <div class="price-row">
+
+                                <span>
+                                    Check-out
+                                </span>
+
+                                <strong>
+                                    20 Sep 2026
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </aside>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="booking-footer">
+
+        <div class="booking-container booking-footer-inner">
+
+            <span>
+                © 2026 HavenGH. All rights reserved.
+            </span>
+
+            <span>
+                Built for Ghana 🇬🇭
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- =========================================================
+     HAVENGH BOOKING SCRIPT
+========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    "use strict";
+
+
+    /* =====================================================
+       GET ELEMENTS
+    ===================================================== */
+
+    const confirmButton =
+        document.getElementById("confirmBookingBtn");
+
+    const contactButton =
+        document.getElementById("contactGuestBtn");
+
+    const declineButton =
+        document.getElementById("declineBookingBtn");
+
+    const actionMessage =
+        document.getElementById("actionMessage");
+
+    const bookingStatus =
+        document.getElementById("bookingStatus");
+
+    const timelineStatus =
+        document.getElementById("timelineStatus");
+
+    const paymentStatus =
+        document.getElementById("paymentStatus");
+
+
+    /* =====================================================
+       CHECK THAT BUTTONS EXIST
+    ===================================================== */
+
+    if (!confirmButton ||
+        !contactButton ||
+        !declineButton) {
+
+        console.error(
+            "HavenGH: One or more booking buttons could not be found."
+        );
+
+        return;
+    }
+
+
+    /* =====================================================
+       BOOKING DATA
+    ===================================================== */
+
+    const urlParams =
+        new URLSearchParams(window.location.search);
+
+    const bookingId =
+        urlParams.get("id") || "HG-STAY-000124";
+
+
+    /* =====================================================
+       DEMO BOOKING
+    ===================================================== */
+
+    const booking = {
+
+        id: bookingId,
+
+        guestName: "James Smith",
+
+        guestEmail: "guest@example.com",
+
+        guestPhone: "+233 XX XXX XXXX",
+
+        stayName:
+            "Luxury Short-Stay Apartment",
+
+        stayLocation:
+            "📍 East Legon, Accra",
+
+        stayImage:
+            "images/stay-1.jpg",
+
+        checkIn:
+            "15 September 2026",
+
+        checkOut:
+            "20 September 2026",
+
+        nights: 5,
+
+        guests: 2,
+
+        pricePerNight: 1200,
+
+        total: 6000
+
+    };
+
+
+    /* =====================================================
+       DISPLAY BOOKING
+    ===================================================== */
+
+    document
+        .getElementById("bookingReference")
+        .textContent = booking.id;
+
+    document
+        .getElementById("guestName")
+        .textContent = booking.guestName;
+
+    document
+        .getElementById("guestEmail")
+        .textContent = booking.guestEmail;
+
+    document
+        .getElementById("guestPhone")
+        .textContent = booking.guestPhone;
+
+    document
+        .getElementById("stayName")
+        .textContent = booking.stayName;
+
+    document
+        .getElementById("stayLocation")
+        .textContent = booking.stayLocation;
+
+    document
+        .getElementById("stayImage")
+        .src = booking.stayImage;
+
+    document
+        .getElementById("checkIn")
+        .textContent = booking.checkIn;
+
+    document
+        .getElementById("checkOut")
+        .textContent = booking.checkOut;
+
+    document
+        .getElementById("numberOfNights")
+        .textContent =
+        booking.nights + " Nights";
+
+    document
+        .getElementById("numberOfGuests")
+        .textContent =
+        booking.guests + " Guests";
+
+
+    /* =====================================================
+       CREATE GUEST INITIALS
+    ===================================================== */
+
+    const nameParts =
+        booking.guestName
+            .trim()
+            .split(/\s+/);
+
+    let initials = "";
+
+    if (nameParts.length >= 2) {
+
+        initials =
+            nameParts[0].charAt(0) +
+            nameParts[nameParts.length - 1].charAt(0);
+
+    } else {
+
+        initials =
+            nameParts[0]
+                .substring(0, 2);
+
+    }
+
+    document
+        .getElementById("guestAvatar")
+        .textContent =
+        initials.toUpperCase();
+
+
+    /* =====================================================
+       SHOW MESSAGE
+    ===================================================== */
+
+    function showMessage(text, type) {
+
+        actionMessage.textContent = text;
+
+        actionMessage.className =
+            "action-message show " + type;
+
+    }
+
+
+    /* =====================================================
+       UPDATE STATUS
+    ===================================================== */
+
+    function updateStatus(status) {
+
+        bookingStatus.classList.remove(
+            "confirmed",
+            "declined"
+        );
+
+        if (status === "confirmed") {
+
+            bookingStatus.textContent =
+                "Confirmed";
+
+            bookingStatus.classList.add(
+                "confirmed"
+            );
+
+            timelineStatus.textContent =
+                "Confirmed";
+
+            paymentStatus.textContent =
+                "Payment Pending";
+
+        }
+
+
+        if (status === "declined") {
+
+            bookingStatus.textContent =
+                "Declined";
+
+            bookingStatus.classList.add(
+                "declined"
+            );
+
+            timelineStatus.textContent =
+                "Declined";
+
+            paymentStatus.textContent =
+                "Booking Declined";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOCK FINAL ACTIONS
+    ===================================================== */
+
+    function lockFinalActions() {
+
+        confirmButton.disabled = true;
+
+        declineButton.disabled = true;
+
+    }
+
+
+    /* =====================================================
+       CONFIRM BOOKING
+    ===================================================== */
+
+    confirmButton.addEventListener(
+        "click",
+        function () {
+
+            if (confirmButton.disabled) {
+                return;
+            }
+
+
+            const confirmed =
+                window.confirm(
+                    "Confirm this booking?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            updateStatus("confirmed");
+
+            lockFinalActions();
+
+            showMessage(
+                "Booking confirmed successfully. The guest can now be notified.",
+                "success"
+            );
+
+
+            /*
+             * FUTURE API CONNECTION
+             *
+             * This is where we will send:
+             *
+             * PUT /api/RentalRequests/{id}/approve
+             *
+             * after the HavenGH backend is ready.
+             */
+
+        }
+    );
+
+
+    /* =====================================================
+       CONTACT GUEST
+    ===================================================== */
+
+    contactButton.addEventListener(
+        "click",
+        function () {
+
+            const email =
+                booking.guestEmail;
+
+            const phone =
+                booking.guestPhone;
+
+
+            /*
+             * For now we show the guest
+             * contact information.
+             *
+             * Later this button will open
+             * HavenGH internal messaging.
+             */
+
+            showMessage(
+                "Guest contact: " +
+                email +
+                " | " +
+                phone,
+                "success"
+            );
+
+
+            /*
+             * FUTURE API CONNECTION
+             *
+             * This will eventually open:
+             *
+             * tenant-messages.html
+             *
+             * or the HavenGH internal
+             * messaging system.
+             */
+
+        }
+    );
+
+
+    /* =====================================================
+       DECLINE BOOKING
+    ===================================================== */
+
+    declineButton.addEventListener(
+        "click",
+        function () {
+
+            if (declineButton.disabled) {
+                return;
+            }
+
+
+            const confirmed =
+                window.confirm(
+                    "Are you sure you want to decline this booking?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            updateStatus("declined");
+
+            lockFinalActions();
+
+            showMessage(
+                "Booking declined. The guest can be notified through HavenGH.",
+                "success"
+            );
+
+
+            /*
+             * FUTURE API CONNECTION
+             *
+             * This is where we will send:
+             *
+             * PUT /api/RentalRequests/{id}/reject
+             *
+             * after the HavenGH backend is ready.
+             */
+
+        }
+    );
+
+
+    /* =====================================================
+       LOG
+    ===================================================== */
+
+    console.log(
+        "HavenGH booking page loaded successfully."
+    );
+
+    console.log(
+        "Booking ID:",
+        booking.id
+    );
+
+});
+
+</script>
+
+</body>
+</html>

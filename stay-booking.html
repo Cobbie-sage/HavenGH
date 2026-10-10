@@ -1,0 +1,4091 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Request a stay through HavenGH.">
+
+    <title>Request a Stay | HavenGH</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      
+/* ============================================================
+   HAVENGH — REQUEST A STAY
+   PREMIUM GLASS / ACCRA EDITION
+   CSS ONLY — DO NOT CHANGE HTML OR JAVASCRIPT
+   ============================================================ */
+
+:root {
+    --green-950: #022c22;
+    --green-900: #064e3b;
+    --green-800: #065f46;
+    --green-700: #047857;
+    --green-600: #059669;
+
+    --gold: #d4a017;
+    --gold-light: #f1c75b;
+    --gold-bright: #f7d978;
+
+    --cream: #f8f5ec;
+
+    --text: #17231e;
+    --muted: #66756e;
+
+    --white: #ffffff;
+
+    --glass-white: rgba(255, 255, 255, 0.78);
+    --glass-white-soft: rgba(255, 255, 255, 0.62);
+    --glass-dark: rgba(3, 38, 29, 0.72);
+
+    --glass-border: rgba(255, 255, 255, 0.42);
+    --dark-border: rgba(255, 255, 255, 0.12);
+
+    --border: rgba(6, 78, 59, 0.16);
+
+    --danger: #9e2929;
+    --danger-bg: rgba(255, 242, 242, 0.88);
+
+    --success: #086b4b;
+    --success-bg: rgba(236, 253, 245, 0.88);
+
+    --shadow:
+        0 25px 70px rgba(0, 35, 26, 0.20);
+
+    --shadow-heavy:
+        0 30px 90px rgba(0, 28, 20, 0.28);
+
+    --radius: 22px;
+}
+
+
+/* ============================================================
+   RESET
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
+    /*
+       ACCRA BACKGROUND
+       Fixed while the page scrolls.
+    */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2, 44, 34, 0.78),
+            rgba(3, 32, 25, 0.52),
+            rgba(212, 160, 23, 0.12)
+        ),
+        url("Accra.jpg") center center / cover fixed no-repeat;
+
+    background-color: #123f32;
+}
+
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(241, 199, 91, 0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(4, 120, 87, 0.18),
+            transparent 35%
+        );
+}
+
+
+a {
+    color: inherit;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+.container {
+    width: min(
+        1160px,
+        calc(100% - 40px)
+    );
+
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   HEADER — PREMIUM GLASS
+   ============================================================ */
+
+.site-header {
+    width: 100%;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background:
+        rgba(3, 39, 29, 0.82);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.13);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.15);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(140%);
+}
+
+
+.header-inner {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 10px 24px;
+
+    min-height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* ============================================================
+   LOGO — CLEANER / SHARPER PRESENTATION
+   ============================================================ */
+
+.logo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-decoration: none;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    padding: 5px 10px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.logo:hover {
+    transform: translateY(-1px);
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+
+.logo img {
+    width: 150px !important;
+
+    height: 58px !important;
+
+    max-width: 150px;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    display: block;
+
+    /*
+       Improves how the existing JPEG is presented.
+       CSS cannot recreate lost image resolution,
+       but these settings give it a cleaner appearance.
+    */
+    image-rendering: auto;
+
+    filter:
+        contrast(1.12)
+        saturate(1.10)
+        brightness(1.04)
+        drop-shadow(
+            0 4px 9px
+            rgba(0, 0, 0, 0.28)
+        );
+
+    transform:
+        translateZ(0);
+
+    backface-visibility:
+        hidden;
+}
+
+
+/* ============================================================
+   DESKTOP NAV
+   ============================================================ */
+
+.main-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.nav-link,
+.login-link {
+    color:
+        rgba(255, 255, 255, 0.86);
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    white-space: nowrap;
+
+    padding: 10px 13px;
+
+    border-radius: 9px;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.nav-link:hover,
+.login-link:hover {
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   GOLD BUTTON
+   ============================================================ */
+
+.btn-dark {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color: var(--green-950);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 850;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.16);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+
+.btn-dark:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.06);
+
+    box-shadow:
+        0 11px 25px rgba(0, 0, 0, 0.22);
+}
+
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+.mobile-menu-toggle {
+    display: none;
+
+    width: 44px;
+
+    height: 44px;
+
+    padding: 9px;
+
+    border:
+        1px solid rgba(255,255,255,0.24);
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    cursor: pointer;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.mobile-menu-toggle span {
+    width: 23px;
+
+    height: 2px;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+
+    transition: .2s ease;
+}
+
+
+/* ============================================================
+   MAIN PAGE
+   ============================================================ */
+
+.booking-page {
+    position: relative;
+
+    padding: 45px 0 100px;
+}
+
+
+/*
+   Soft glass atmosphere behind content.
+*/
+.booking-page::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.04),
+            rgba(255,255,255,0.10)
+        );
+}
+
+
+/* ============================================================
+   BACK LINK
+   ============================================================ */
+
+.back-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    margin-bottom: 25px;
+
+    padding: 9px 14px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(3, 39, 29, 0.56);
+
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.back-link:hover {
+    background:
+        rgba(3, 39, 29, 0.76);
+
+    transform:
+        translateX(-2px);
+}
+
+
+/* ============================================================
+   PAGE HEADING
+   ============================================================ */
+
+.page-heading {
+    margin-bottom: 30px;
+
+    max-width: 760px;
+
+    padding: 27px 30px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(3, 39, 29, 0.62);
+
+    border:
+        1px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.17);
+
+    backdrop-filter:
+        blur(17px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(17px)
+        saturate(135%);
+}
+
+
+.page-heading .eyebrow {
+    color: var(--gold-light);
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.7px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+
+.page-heading h1 {
+    color: #ffffff;
+
+    font-size:
+        clamp(31px, 4vw, 46px);
+
+    line-height: 1.08;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 9px;
+}
+
+
+.page-heading p {
+    color:
+        rgba(255,255,255,0.78);
+
+    max-width: 650px;
+
+    font-size: 15px;
+}
+
+
+/* ============================================================
+   LOADING / ERROR
+   ============================================================ */
+
+.loading-state {
+    min-height: 450px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,0.72);
+
+    border:
+        1px solid rgba(255,255,255,0.55);
+
+    box-shadow:
+        var(--shadow);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+}
+
+
+.spinner {
+    width: 48px;
+
+    height: 48px;
+
+    border:
+        4px solid rgba(6,78,59,0.14);
+
+    border-top-color:
+        var(--gold);
+
+    border-right-color:
+        var(--green-700);
+
+    border-radius: 50%;
+
+    animation:
+        spin .8s linear infinite;
+
+    margin-bottom: 20px;
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.loading-state h2 {
+    color: var(--green-950);
+
+    font-size: 24px;
+
+    margin-bottom: 7px;
+}
+
+
+.loading-state p {
+    color: var(--muted);
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ============================================================
+   BOOKING LAYOUT
+   ============================================================ */
+
+.booking-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        390px;
+
+    gap: 30px;
+
+    align-items: start;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* ============================================================
+   FORM CARD — GLASS
+   ============================================================ */
+
+.booking-form-card {
+    background:
+        rgba(255,255,255,0.78);
+
+    border:
+        1px solid rgba(255,255,255,0.58);
+
+    border-radius:
+        var(--radius);
+
+    padding: 34px;
+
+    box-shadow:
+        var(--shadow-heavy);
+
+    backdrop-filter:
+        blur(24px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(135%);
+}
+
+
+.section-heading {
+    margin-bottom: 25px;
+
+    padding-bottom: 18px;
+
+    border-bottom:
+        1px solid rgba(6,78,59,0.10);
+}
+
+
+.section-heading h2 {
+    color: var(--green-950);
+
+    font-size: 23px;
+
+    margin-bottom: 5px;
+}
+
+
+.section-heading p {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 16px;
+
+    margin-bottom: 18px;
+}
+
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+
+label {
+    display: block;
+
+    color: var(--green-950);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+
+.required {
+    color: var(--gold);
+}
+
+
+/* ============================================================
+   INPUTS — GLASS
+   ============================================================ */
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    border:
+        1px solid rgba(6,78,59,0.16);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.68);
+
+    color: var(--text);
+
+    padding: 13px 14px;
+
+    outline: none;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.60);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+input {
+    min-height: 49px;
+}
+
+
+select {
+    min-height: 49px;
+
+    cursor: pointer;
+}
+
+
+textarea {
+    min-height: 125px;
+
+    resize: vertical;
+}
+
+
+input:hover,
+textarea:hover,
+select:hover {
+    background:
+        rgba(255,255,255,0.84);
+
+    border-color:
+        rgba(6,78,59,0.27);
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+    background:
+        rgba(255,255,255,0.94);
+
+    border-color:
+        var(--green-600);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(5,150,105,0.11),
+        0 7px 20px
+        rgba(2,44,34,0.07);
+
+    transform:
+        translateY(-1px);
+}
+
+
+input.invalid,
+textarea.invalid,
+select.invalid {
+    border-color: #d45c5c;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(212,92,92,0.10);
+}
+
+
+.field-help {
+    color: #718079;
+
+    font-size: 11px;
+
+    margin-top: 6px;
+}
+
+
+/* ============================================================
+   CALCULATION — GLASS GREEN
+   ============================================================ */
+
+.calculation {
+    margin-top: 24px;
+
+    padding: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2,44,34,0.08),
+            rgba(255,255,255,0.54)
+        );
+
+    border:
+        1px solid rgba(6,78,59,0.13);
+
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.55);
+}
+
+
+.calculation-title {
+    color: var(--green-900);
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    margin-bottom: 13px;
+}
+
+
+.calculation-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    padding: 7px 0;
+}
+
+
+.calculation-row strong {
+    color: var(--green-900);
+}
+
+
+.calculation-total {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    border-top:
+        1px solid rgba(6,78,59,0.14);
+
+    margin-top: 8px;
+
+    padding-top: 14px;
+
+    color: var(--green-950);
+
+    font-size: 17px;
+
+    font-weight: 900;
+}
+
+
+.calculation-total strong {
+    color: var(--green-900);
+
+    font-size: 22px;
+}
+
+
+/* ============================================================
+   SUBMIT BUTTON
+   ============================================================ */
+
+.submit-button {
+    width: 100%;
+
+    min-height: 56px;
+
+    margin-top: 23px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color: var(--green-950);
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 28px
+        rgba(150, 111, 12, 0.24);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease,
+        opacity .2s ease;
+}
+
+
+.submit-button:hover {
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.05);
+
+    box-shadow:
+        0 16px 34px
+        rgba(150,111,12,0.30);
+}
+
+
+.submit-button:active {
+    transform:
+        translateY(0);
+}
+
+
+.submit-button:disabled {
+    cursor: not-allowed;
+
+    opacity: .65;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ============================================================
+   FORM MESSAGE
+   ============================================================ */
+
+.form-message {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 13px 15px;
+
+    border-radius: 11px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.form-message.error {
+    display: block;
+
+    background:
+        var(--danger-bg);
+
+    border:
+        1px solid rgba(158,41,41,0.18);
+
+    color: var(--danger);
+}
+
+
+.form-message.success {
+    display: block;
+
+    background:
+        var(--success-bg);
+
+    border:
+        1px solid rgba(8,107,75,0.18);
+
+    color: var(--success);
+}
+
+
+/* ============================================================
+   LOGIN NOTICE
+   ============================================================ */
+
+.login-notice {
+    display: none;
+
+    margin-bottom: 20px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,249,232,0.86);
+
+    border:
+        1px solid rgba(234,216,154,0.75);
+
+    color: #735900;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.login-notice a {
+    color: var(--green-900);
+
+    font-weight: 850;
+}
+
+
+/* ============================================================
+   STAY SUMMARY — GLASS
+   ============================================================ */
+
+.summary-card {
+    position: sticky;
+
+    top: 105px;
+
+    background:
+        rgba(255,255,255,0.72);
+
+    border:
+        1px solid rgba(255,255,255,0.55);
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow:
+        var(--shadow-heavy);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(135%);
+}
+
+
+.summary-image {
+    width: 100%;
+
+    height: 245px;
+
+    object-fit: cover;
+
+    display: block;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-950),
+            var(--green-700)
+        );
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.28);
+
+    transition:
+        transform .5s ease;
+}
+
+
+.summary-card:hover .summary-image {
+    transform:
+        scale(1.025);
+}
+
+
+.summary-body {
+    padding: 25px;
+}
+
+
+.summary-type {
+    color: var(--green-700);
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.1px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    margin-bottom: 7px;
+}
+
+
+.summary-title {
+    color: var(--green-950);
+
+    font-size: 23px;
+
+    line-height: 1.2;
+
+    margin-bottom: 8px;
+}
+
+
+.summary-location {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+
+.summary-price {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+
+    margin-bottom: 20px;
+}
+
+
+.summary-price strong {
+    color: var(--green-900);
+
+    font-size: 28px;
+
+    font-weight: 950;
+}
+
+
+.summary-price span {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+.summary-divider {
+    height: 1px;
+
+    background:
+        rgba(6,78,59,0.13);
+
+    margin: 18px 0;
+}
+
+
+.summary-detail {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+.summary-detail strong {
+    color: var(--green-900);
+
+    font-weight: 850;
+}
+
+
+.summary-security {
+    display: flex;
+
+    gap: 9px;
+
+    padding: 13px;
+
+    margin-top: 17px;
+
+    background:
+        rgba(237,247,241,0.72);
+
+    border:
+        1px solid rgba(6,95,70,0.10);
+
+    border-radius: 11px;
+
+    color: var(--green-800);
+
+    font-size: 11px;
+
+    line-height: 1.45;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+/* ============================================================
+   SUCCESS SCREEN — GLASS
+   ============================================================ */
+
+.success-card {
+    max-width: 650px;
+
+    margin: 30px auto 80px;
+
+    background:
+        rgba(255,255,255,0.80);
+
+    border:
+        1px solid rgba(255,255,255,0.58);
+
+    border-radius: 24px;
+
+    padding: 48px 35px;
+
+    text-align: center;
+
+    box-shadow:
+        var(--shadow-heavy);
+
+    backdrop-filter:
+        blur(24px)
+        saturate(135%);
+
+    -webkit-backdrop-filter:
+        blur(24px)
+        saturate(135%);
+}
+
+
+.success-icon {
+    width: 76px;
+
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dff8eb,
+            #bcebd6
+        );
+
+    color: var(--green-800);
+
+    font-size: 33px;
+
+    font-weight: 950;
+
+    box-shadow:
+        0 12px 28px
+        rgba(6,95,70,0.15);
+}
+
+
+.success-card h2 {
+    color: var(--green-950);
+
+    font-size: 29px;
+
+    margin-bottom: 10px;
+}
+
+
+.success-card p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 500px;
+
+    margin:
+        0 auto 22px;
+}
+
+
+.success-booking-id {
+    display: inline-block;
+
+    padding: 10px 16px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(6,78,59,0.08);
+
+    border:
+        1px solid rgba(6,78,59,0.12);
+
+    color: var(--green-900);
+
+    font-size: 13px;
+
+    font-weight: 850;
+
+    margin-bottom: 25px;
+}
+
+
+.success-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+.success-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 19px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 850;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.success-button:hover {
+    transform:
+        translateY(-2px);
+}
+
+
+.success-button.primary {
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-900),
+            var(--green-700)
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 9px 22px
+        rgba(6,78,59,0.20);
+}
+
+
+.success-button.secondary {
+    background:
+        rgba(255,255,255,0.65);
+
+    color: var(--green-900);
+
+    border:
+        1px solid rgba(6,78,59,0.14);
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+    background:
+        rgba(2,44,34,0.90);
+
+    color:
+        rgba(255,255,255,0.72);
+
+    border-top:
+        1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+
+.footer-bottom {
+    min-height: 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    font-size: 13px;
+}
+
+
+.footer-bottom p:last-child {
+    color: var(--gold-light);
+}
+
+
+/* ============================================================
+   DESKTOP GLASS DEPTH
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+    .booking-form-card {
+        transform:
+            translateZ(0);
+    }
+
+    .summary-card {
+        transform:
+            translateZ(0);
+    }
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .booking-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+        position: static;
+
+        order: -1;
+    }
+
+    .summary-image {
+        height: 300px;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE NAVIGATION
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+    .header-inner {
+        padding:
+            10px 18px;
+
+        min-height: 70px;
+    }
+
+    .logo {
+        padding:
+            4px 7px;
+    }
+
+    .logo img {
+        width: 132px !important;
+
+        height: 52px !important;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .main-nav {
+        position: absolute;
+
+        top: 100%;
+
+        left: 0;
+
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        padding:
+            10px 18px 18px;
+
+        background:
+            rgba(3,39,29,0.94);
+
+        border-top:
+            1px solid rgba(255,255,255,0.10);
+
+        box-shadow:
+            0 15px 35px rgba(0,0,0,0.22);
+
+        backdrop-filter:
+            blur(20px);
+
+        -webkit-backdrop-filter:
+            blur(20px);
+    }
+
+    .main-nav.active {
+        display: flex;
+    }
+
+    .nav-link,
+    .login-link {
+        display: block;
+
+        padding:
+            14px 10px;
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.08);
+    }
+
+    .btn-dark {
+        margin-top: 14px;
+
+        width: 100%;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE PAGE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    body {
+        background-position:
+            center center;
+
+        background-attachment:
+            fixed;
+    }
+
+    .container {
+        width:
+            min(
+                calc(100% - 28px),
+                650px
+            );
+    }
+
+    .booking-page {
+        padding:
+            28px 0 65px;
+    }
+
+    .page-heading {
+        padding:
+            23px 21px;
+
+        border-radius:
+            18px;
+    }
+
+    .page-heading h1 {
+        font-size:
+            clamp(29px, 9vw, 37px);
+    }
+
+    .booking-form-card {
+        padding:
+            23px 19px;
+
+        border-radius:
+            19px;
+    }
+
+    .form-row {
+        grid-template-columns:
+            1fr;
+
+        gap: 0;
+    }
+
+    .form-row .form-group {
+        margin-bottom: 18px;
+    }
+
+    .summary-card {
+        border-radius:
+            19px;
+    }
+
+    .summary-body {
+        padding:
+            21px;
+    }
+
+    .success-card {
+        padding:
+            35px 22px;
+
+        border-radius:
+            20px;
+    }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    .logo img {
+        width: 120px !important;
+
+        height: 48px !important;
+    }
+
+    .back-link {
+        font-size: 13px;
+
+        padding:
+            8px 12px;
+    }
+
+    .page-heading {
+        padding:
+            21px 18px;
+    }
+
+    .page-heading h1 {
+        font-size: 30px;
+    }
+
+    .page-heading p {
+        font-size: 14px;
+    }
+
+    .booking-form-card {
+        padding:
+            20px 16px;
+    }
+
+    .summary-image {
+        height: 240px;
+    }
+
+    .summary-title {
+        font-size: 20px;
+    }
+
+    .summary-price strong {
+        font-size: 25px;
+    }
+
+    .submit-button {
+        min-height: 54px;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .success-button {
+        width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        justify-content: center;
+
+        text-align: center;
+
+        padding:
+            20px 0;
+    }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
+
+      
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+
+        <header class="site-header">
+    <div class="header-inner">
+
+        <!-- LOGO -->
+        <a href="stays.html" class="logo">
+            <img src="havengh logo.jpeg" alt="HavenGH">
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="main-nav" id="mainNav">
+
+            <a href="stays.html" class="nav-link">
+                Home
+            </a>
+
+            <a href="stay-my-bookings.html" class="nav-link">
+                My Bookings
+            </a>
+
+            <a href="stay-properties.html" class="nav-link">
+                Find a Stay
+            </a>
+
+            <a href="stays.html" class="nav-link">
+                Stay in Ghana
+            </a>
+
+            <a href="login.html" class="login-link">
+                Login
+            </a>
+
+            <a href="stay-properties.html" class="btn-dark">
+                Find a Stay
+            </a>
+
+        </nav>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            type="button"
+            class="mobile-menu-toggle"
+            id="mobileMenuToggle"
+            aria-label="Open menu"
+            aria-expanded="false">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+</header>
+<!-- ============================================================
+     MAIN
+     ============================================================ -->
+
+<main class="booking-page">
+
+    <div class="container">
+
+        <a href="javascript:history.back()"
+           class="back-link">
+
+            ← Back to Stay
+
+        </a>
+
+        <div class="page-heading">
+
+            <div class="eyebrow">
+                HavenGH Stay
+            </div>
+
+            <h1>
+                Request your stay
+            </h1>
+
+            <p>
+                Choose your dates, tell the host how many guests
+                are travelling, and send your booking request.
+            </p>
+
+        </div>
+
+        <!-- ========================================================
+             LOADING
+             ======================================================== -->
+
+        <section
+            id="loadingState"
+            class="loading-state">
+
+            <div class="spinner"></div>
+
+            <h2>
+                Loading stay
+            </h2>
+
+            <p>
+                Please wait while we prepare your booking request.
+            </p>
+
+        </section>
+
+        <!-- ========================================================
+             ERROR
+             ======================================================== -->
+
+        <section
+            id="errorState"
+            class="loading-state hidden">
+
+            <h2>
+                Unable to load this stay
+            </h2>
+
+            <p id="errorText">
+                The selected stay could not be loaded.
+            </p>
+
+            <a
+                href="stay-properties.html"
+                class="success-button primary"
+                style="margin-top:20px;">
+
+                Browse Stays
+
+            </a>
+
+        </section>
+
+        <!-- ========================================================
+             BOOKING CONTENT
+             ======================================================== -->
+
+        <section
+            id="bookingContent"
+            class="booking-layout hidden">
+
+            <!-- ====================================================
+                 FORM
+                 ==================================================== -->
+
+            <div class="booking-form-card">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Your booking request
+                    </h2>
+
+                    <p>
+                        Your request will be sent to the host
+                        for confirmation.
+                    </p>
+
+                </div>
+
+                <!-- LOGIN NOTICE -->
+
+                <div
+                    id="loginNotice"
+                    class="login-notice">
+
+                    You need to be logged in to request a stay.
+
+                    <a href="login.html">
+                        Log in here
+                    </a>
+
+                </div>
+
+                <form id="bookingForm">
+
+                    <!-- DATES -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="checkInDate">
+                                Check-in
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                id="checkInDate"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="checkOutDate">
+                                Check-out
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                id="checkOutDate"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <!-- GUESTS -->
+
+                    <div class="form-group">
+
+                        <label for="guests">
+                            Number of guests
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                          id="guests"
+                            required>
+                        <option value="">Select guests</option>
+                        </select>
+
+                        <div class="field-help">
+                            Maximum guests for this stay:
+                            <strong id="maxGuestsHelp">—</strong>
+                        </div>
+
+                    </div>
+
+                    <!-- MESSAGE -->
+
+                    <div class="form-group">
+
+                        <label for="guestMessage">
+                            Message to host
+                            <span style="font-weight:400;">
+                                (optional)
+                            </span>
+                        </label>
+
+                        <textarea
+                            id="guestMessage"
+                            maxlength="2000"
+                            placeholder="Tell the host anything important about your arrival or stay..."
+                        ></textarea>
+
+                        <div class="field-help">
+                            Maximum 2,000 characters.
+                        </div>
+
+                    </div>
+
+                    <!-- CALCULATION -->
+
+                    <div class="calculation">
+
+                        <div class="calculation-title">
+                            Booking summary
+                        </div>
+
+                        <div class="calculation-row">
+
+                            <span>
+                                Price per night
+                            </span>
+
+                            <strong id="calcPrice">
+                                GH₵0
+                            </strong>
+
+                        </div>
+
+                        <div class="calculation-row">
+
+                            <span>
+                                Nights
+                            </span>
+
+                            <strong id="calcNights">
+                                0
+                            </strong>
+
+                        </div>
+
+                        <div class="calculation-total">
+
+                            <span>
+                                Estimated total
+                            </span>
+
+                            <strong id="calcTotal">
+                                GH₵0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <!-- MESSAGE -->
+
+                    <div
+                        id="formMessage"
+                        class="form-message">
+                    </div>
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                        class="submit-button">
+
+                        Send Booking Request
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- ====================================================
+                 STAY SUMMARY
+                 ==================================================== -->
+
+            <aside class="summary-card">
+
+                <img
+                    id="summaryImage"
+                    class="summary-image"
+                    src=""
+                    alt="Stay"
+                >
+
+                <div class="summary-body">
+
+                    <div
+                        id="summaryType"
+                        class="summary-type">
+
+                        Stay
+
+                    </div>
+
+                    <h2
+                        id="summaryTitle"
+                        class="summary-title">
+
+                        HavenGH Stay
+
+                    </h2>
+
+                    <p
+                        id="summaryLocation"
+                        class="summary-location">
+
+                        Ghana
+
+                    </p>
+
+                    <div class="summary-price">
+
+                        <strong id="summaryPrice">
+                            GH₵0
+                        </strong>
+
+                        <span>
+                            / night
+                        </span>
+
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-detail">
+
+                        <span>
+                            Maximum guests
+                        </span>
+
+                        <strong id="summaryGuests">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-detail">
+
+                        <span>
+                            Bedrooms
+                        </span>
+
+                        <strong id="summaryBedrooms">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-detail">
+
+                        <span>
+                            Bathrooms
+                        </span>
+
+                        <strong id="summaryBathrooms">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="summary-security">
+
+                        <span>
+                            🔒
+                        </span>
+
+                        <span>
+                            Your request is sent securely to
+                            the host. Your booking remains
+                            <strong>pending</strong> until
+                            the host approves it.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+        <!-- ========================================================
+             SUCCESS
+             ======================================================== -->
+
+        <section
+            id="successState"
+            class="success-card hidden">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Booking request sent
+            </h2>
+
+            <p>
+                Your stay request has been sent to the host.
+                The host will review your request and can
+                approve or reject it.
+            </p>
+
+            <div
+                id="successBookingId"
+                class="success-booking-id">
+
+                Booking request submitted
+
+            </div>
+
+            <div class="success-actions">
+
+                <a
+                    href="stay-properties.html"
+                    class="success-button secondary">
+
+                    Browse More Stays
+
+                </a>
+
+                <a
+                    href="tenant-dashboard.html"
+                    class="success-button primary">
+
+                    Go to My Dashboard
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 HavenGH. All rights reserved.
+        </p>
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+<script>
+
+"use strict";
+
+/* ============================================================
+   HAVENGH — REQUEST A STAY
+   Direct ASP.NET Core API connection
+   ============================================================ */
+
+/* ============================================================
+   API
+   ============================================================ */
+
+const API_BASE_URL = "http://localhost:5073";
+
+const STAYS_API =
+    `${API_BASE_URL}/api/Stays`;
+
+const STAY_BOOKINGS_API =
+    `${API_BASE_URL}/api/StayBookings`;
+
+
+/* ============================================================
+   STATE
+   ============================================================ */
+
+let currentStay = null;
+let bookingSubmitting = false;
+
+
+/* ============================================================
+   AUTHENTICATION
+   ============================================================ */
+
+/*
+   HavenGH login may store the JWT in sessionStorage when
+   Remember Me is not selected, or localStorage when it is.
+
+   Support both so this page works with the current login flow.
+*/
+
+function getToken() {
+
+    return (
+        sessionStorage.getItem("havenGH_token") ||
+        localStorage.getItem("havenGH_token") ||
+        localStorage.getItem("token") ||
+        localStorage.getItem("accessToken")
+    );
+
+}
+
+
+function clearAuthentication() {
+
+    sessionStorage.removeItem(
+        "havenGH_token"
+    );
+
+    localStorage.removeItem(
+        "havenGH_token"
+    );
+
+    localStorage.removeItem(
+        "token"
+    );
+
+    localStorage.removeItem(
+        "accessToken"
+    );
+
+}
+
+
+/* ============================================================
+   GENERAL HELPERS
+   ============================================================ */
+
+function formatMoney(value) {
+
+    const number =
+        Number(value);
+
+    if (!Number.isFinite(number)) {
+
+        return "GH₵0";
+
+    }
+
+    return "GH₵" +
+        number.toLocaleString(
+            "en-GH",
+            {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+function formatStayType(type) {
+
+    if (!type) {
+
+        return "Stay";
+
+    }
+
+    return String(type)
+        .replace(/[-_]+/g, " ")
+        .replace(/\b\w/g, function (letter) {
+
+            return letter.toUpperCase();
+
+        });
+
+}
+
+
+function getImageUrl(rawUrl) {
+
+    if (!rawUrl) {
+
+        return "";
+
+    }
+
+    const url =
+        String(rawUrl).trim();
+
+    if (
+        url.startsWith("http://") ||
+        url.startsWith("https://")
+    ) {
+
+        return url;
+
+    }
+
+    return API_BASE_URL +
+        (
+            url.startsWith("/")
+                ? ""
+                : "/"
+        ) +
+        url;
+
+}
+
+
+function getPrimaryImage(stay) {
+
+    if (!stay) {
+
+        return "";
+
+    }
+
+    if (
+        !Array.isArray(stay.images) ||
+        !stay.images.length
+    ) {
+
+        return "";
+
+    }
+
+    const primary =
+        stay.images.find(
+            function (image) {
+
+                return image &&
+                    image.imageUrl &&
+                    (
+                        image.isPrimary === true ||
+                        image.IsPrimary === true
+                    );
+
+            }
+        );
+
+    if (primary) {
+
+        return getImageUrl(
+            primary.imageUrl
+        );
+
+    }
+
+    const first =
+        stay.images.find(
+            function (image) {
+
+                return image &&
+                    (
+                        image.imageUrl ||
+                        image.ImageUrl
+                    );
+
+            }
+        );
+
+    if (!first) {
+
+        return "";
+
+    }
+
+    return getImageUrl(
+        first.imageUrl ||
+        first.ImageUrl
+    );
+
+}
+
+/* ============================================================
+   MOBILE NAVIGATION
+============================================================ */
+
+function setupMobileNavigation() {
+
+    const toggle = document.getElementById("mobileMenuToggle");
+    const nav = document.getElementById("mainNav");
+
+    if (!toggle || !nav) {
+        return;
+    }
+
+    toggle.addEventListener("click", () => {
+
+        const isOpen = nav.classList.toggle("active");
+
+        toggle.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+    });
+
+    /* Close menu after selecting a link */
+
+    nav.querySelectorAll("a").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            nav.classList.remove("active");
+
+            toggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
+
+}
+/* ============================================================
+   API RESPONSE HELPER
+   ============================================================ */
+
+async function readApiResponse(response) {
+
+    const rawText =
+        await response.text();
+
+    if (!rawText) {
+
+        return null;
+
+    }
+
+    try {
+
+        return JSON.parse(rawText);
+
+    } catch {
+
+        return {
+            message: rawText
+        };
+
+    }
+
+}
+
+
+/* ============================================================
+   STATE FUNCTIONS
+   ============================================================ */
+
+function showBookingContent() {
+
+    document
+        .getElementById("loadingState")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("errorState")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("successState")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("bookingContent")
+        .classList
+        .remove("hidden");
+
+}
+
+
+function showError(message) {
+
+    document
+        .getElementById("loadingState")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("bookingContent")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("successState")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("errorState")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("errorText")
+        .textContent =
+            message ||
+            "Unable to load this stay.";
+
+}
+
+
+/* ============================================================
+   LOAD STAY
+   ============================================================ */
+
+async function loadStay() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const id =
+        params.get("id");
+
+    if (!id) {
+
+        showError(
+            "No stay was selected. Please return to the Stay listings and choose an accommodation."
+        );
+
+        return;
+
+    }
+
+    /*
+       Do not allow obviously invalid IDs to reach the API.
+    */
+
+    const stayId =
+        Number(id);
+
+    if (
+        !Number.isInteger(stayId) ||
+        stayId <= 0
+    ) {
+
+        showError(
+            "The selected stay ID is invalid. Please return to the Stay listings and choose a valid accommodation."
+        );
+
+        return;
+
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                `${STAYS_API}/${encodeURIComponent(stayId)}`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+        const data =
+            await readApiResponse(
+                response
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                data?.message ||
+                data?.title ||
+                "Unable to load this stay."
+            );
+
+        }
+
+        if (!data) {
+
+            throw new Error(
+                "No stay information was returned by the API."
+            );
+
+        }
+
+        /*
+           Keep the API object intact because the booking request
+           later uses stayId from this object.
+        */
+
+        currentStay = data;
+
+        /*
+           Make sure stayId is available even if the API returns
+           the ID using a different casing.
+        */
+
+        if (
+            currentStay.stayId == null &&
+            currentStay.StayId != null
+        ) {
+
+            currentStay.stayId =
+                currentStay.StayId;
+
+        }
+
+        renderStaySummary(
+            currentStay
+        );
+
+        setupDateLimits();
+
+        setupGuestLimit();
+
+        updateCalculation();
+
+        setupLoginNotice();
+
+        showBookingContent();
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH stay loading error:",
+            error
+        );
+
+        showError(
+            error.message ||
+            "Unable to load this stay."
+        );
+
+    }
+
+}
+
+
+/* ============================================================
+   RENDER STAY SUMMARY
+   ============================================================ */
+
+function renderStaySummary(stay) {
+
+    const title =
+        stay.title ||
+        stay.Title ||
+        "HavenGH Stay";
+
+    const stayType =
+        stay.stayType ||
+        stay.StayType ||
+        "Stay";
+
+    const area =
+        stay.area ||
+        stay.Area ||
+        "";
+
+    const city =
+        stay.city ||
+        stay.City ||
+        "";
+
+    const price =
+        stay.pricePerNight ??
+        stay.PricePerNight ??
+        0;
+
+    const maxGuests =
+        stay.maxGuests ??
+        stay.MaxGuests;
+
+    const bedrooms =
+        stay.bedrooms ??
+        stay.Bedrooms;
+
+    const bathrooms =
+        stay.bathrooms ??
+        stay.Bathrooms;
+
+    document.title =
+        "Request " +
+        title +
+        " | HavenGH";
+
+
+    document
+        .getElementById("summaryType")
+        .textContent =
+            formatStayType(
+                stayType
+            );
+
+
+    document
+        .getElementById("summaryTitle")
+        .textContent =
+            title;
+
+
+    const location =
+        [
+            area,
+            city
+        ]
+        .filter(function (value) {
+
+            return value &&
+                String(value).trim();
+
+        })
+        .join(", ");
+
+
+    document
+        .getElementById("summaryLocation")
+        .textContent =
+            location ||
+            "Ghana";
+
+
+    document
+        .getElementById("summaryPrice")
+        .textContent =
+            formatMoney(
+                price
+            );
+
+
+    document
+        .getElementById("summaryGuests")
+        .textContent =
+            maxGuests != null
+                ? maxGuests
+                : "—";
+
+
+    document
+        .getElementById("summaryBedrooms")
+        .textContent =
+            bedrooms != null
+                ? bedrooms
+                : "—";
+
+
+    document
+        .getElementById("summaryBathrooms")
+        .textContent =
+            bathrooms != null
+                ? bathrooms
+                : "—";
+
+
+    document
+        .getElementById("maxGuestsHelp")
+        .textContent =
+            maxGuests != null
+                ? maxGuests
+                : "—";
+
+
+    const image =
+        getPrimaryImage(
+            stay
+        );
+
+
+    const imageElement =
+        document.getElementById(
+            "summaryImage"
+        );
+
+
+    /*
+       Reset image state before rendering.
+       This prevents a previous image from remaining visible
+       if this function is called again.
+    */
+
+    imageElement.removeAttribute(
+        "src"
+    );
+
+    imageElement.style.display =
+        "block";
+
+
+    if (image) {
+
+        imageElement.src =
+            image;
+
+        imageElement.alt =
+            title;
+
+    } else {
+
+        /*
+           Keep the green background of the image container
+           when no image exists.
+        */
+
+        imageElement.style.display =
+            "block";
+
+        imageElement.alt =
+            "No image available for " +
+            title;
+
+    }
+
+}
+
+
+/* ============================================================
+   IMAGE FALLBACK
+   ============================================================ */
+
+function setupImageFallback() {
+
+    const imageElement =
+        document.getElementById(
+            "summaryImage"
+        );
+
+    if (!imageElement) {
+
+        return;
+
+    }
+
+    imageElement.addEventListener(
+        "error",
+        function () {
+
+            console.warn(
+                "Stay image could not be loaded:",
+                imageElement.src
+            );
+
+            imageElement.removeAttribute(
+                "src"
+            );
+
+            imageElement.alt =
+                "Stay image unavailable";
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   DATE HELPERS
+   ============================================================ */
+
+function getTodayString() {
+
+    const today =
+        new Date();
+
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(
+            today.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
+    const day =
+        String(
+            today.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+function setupDateLimits() {
+
+    const checkIn =
+        document.getElementById(
+            "checkInDate"
+        );
+
+    const checkOut =
+        document.getElementById(
+            "checkOutDate"
+        );
+
+    if (!checkIn || !checkOut) {
+
+        return;
+
+    }
+
+    const today =
+        getTodayString();
+
+    checkIn.min =
+        today;
+
+    checkOut.min =
+        today;
+
+
+    checkIn.addEventListener(
+        "change",
+        function () {
+
+            if (checkIn.value) {
+
+                checkOut.min =
+                    checkIn.value;
+
+                /*
+                   If an existing checkout is now invalid,
+                   clear it instead of allowing an invalid
+                   calculation.
+                */
+
+                if (
+                    checkOut.value &&
+                    checkOut.value <= checkIn.value
+                ) {
+
+                    checkOut.value =
+                        "";
+
+                }
+
+            } else {
+
+                checkOut.min =
+                    today;
+
+            }
+
+            updateCalculation();
+
+        }
+    );
+
+
+    checkOut.addEventListener(
+        "change",
+        function () {
+
+            updateCalculation();
+
+        }
+    );
+
+}
+
+
+/* ============================================================
+   GUEST LIMIT
+   ============================================================ */
+
+   function setupGuestLimit() {
+
+    const guests =
+        document.getElementById("guests");
+
+    if (!guests) {
+        return;
+    }
+
+    const maxGuests =
+        Number(
+            currentStay?.maxGuests ??
+            currentStay?.MaxGuests
+        );
+
+    guests.innerHTML =
+        '<option value="">Select guests</option>';
+
+    if (
+        !Number.isInteger(maxGuests) ||
+        maxGuests < 1
+    ) {
+
+        guests.disabled = true;
+
+        return;
+    }
+
+    guests.disabled = false;
+
+    for (
+        let count = 1;
+        count <= maxGuests;
+        count++
+    ) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = String(count);
+
+        option.textContent =
+            count === 1
+                ? "1 Guest"
+                : `${count} Guests`;
+
+        guests.appendChild(option);
+    }
+
+    guests.addEventListener(
+        "change",
+        function () {
+
+            guests.classList.remove(
+                "invalid"
+            );
+
+            updateCalculation();
+
+        }
+    );
+}
+
+/* ============================================================
+   CALCULATION
+   ============================================================ */
+
+function calculateNights() {
+
+    const checkIn =
+        document.getElementById(
+            "checkInDate"
+        ).value;
+
+    const checkOut =
+        document.getElementById(
+            "checkOutDate"
+        ).value;
+
+
+    if (
+        !checkIn ||
+        !checkOut
+    ) {
+
+        return 0;
+
+    }
+
+
+    const start =
+        new Date(
+            checkIn + "T00:00:00"
+        );
+
+    const end =
+        new Date(
+            checkOut + "T00:00:00"
+        );
+
+
+    const difference =
+        end.getTime() -
+        start.getTime();
+
+
+    if (difference <= 0) {
+
+        return 0;
+
+    }
+
+
+    return Math.round(
+        difference /
+        (1000 * 60 * 60 * 24)
+    );
+
+}
+
+
+function updateCalculation() {
+
+    if (!currentStay) {
+
+        return;
+
+    }
+
+
+    const nights =
+        calculateNights();
+
+
+    const price =
+        Number(
+            currentStay.pricePerNight ??
+            currentStay.PricePerNight ??
+            0
+        ) || 0;
+
+
+    const total =
+        nights *
+        price;
+
+
+    document
+        .getElementById("calcPrice")
+        .textContent =
+            formatMoney(
+                price
+            );
+
+
+    document
+        .getElementById("calcNights")
+        .textContent =
+            nights;
+
+
+    document
+        .getElementById("calcTotal")
+        .textContent =
+            formatMoney(
+                total
+            );
+
+}
+
+
+/* ============================================================
+   LOGIN NOTICE
+   ============================================================ */
+
+function setupLoginNotice() {
+
+    const notice =
+        document.getElementById(
+            "loginNotice"
+        );
+
+    const button =
+        document.getElementById(
+            "submitButton"
+        );
+
+
+    const token =
+        getToken();
+
+
+    if (!token) {
+
+        notice.style.display =
+            "block";
+
+        /*
+           Do not permanently disable the button.
+           A guest can log in in another tab/session and return.
+           submitBooking() performs the authoritative token check.
+        */
+
+        button.title =
+            "Please log in before requesting this stay.";
+
+    } else {
+
+        notice.style.display =
+            "none";
+
+        button.title =
+            "";
+
+    }
+
+}
+
+
+/* ============================================================
+   FORM MESSAGE
+   ============================================================ */
+
+function clearFormMessage() {
+
+    const element =
+        document.getElementById(
+            "formMessage"
+        );
+
+    element.className =
+        "form-message";
+
+    element.textContent =
+        "";
+
+}
+
+
+function showFormMessage(
+    message,
+    type
+) {
+
+    const element =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    if (!message) {
+
+        clearFormMessage();
+
+        return;
+
+    }
+
+
+    element.className =
+        "form-message " +
+        (
+            type === "success"
+                ? "success"
+                : "error"
+        );
+
+
+    element.textContent =
+        message;
+
+}
+
+
+/* ============================================================
+   VALIDATION
+   ============================================================ */
+
+function validateBookingForm() {
+
+    const checkIn =
+        document.getElementById(
+            "checkInDate"
+        );
+
+    const checkOut =
+        document.getElementById(
+            "checkOutDate"
+        );
+
+    const guestsInput =
+        document.getElementById(
+            "guests"
+        );
+
+    const guestMessage =
+        document.getElementById(
+            "guestMessage"
+        );
+
+
+    checkIn.classList.remove(
+        "invalid"
+    );
+
+    checkOut.classList.remove(
+        "invalid"
+    );
+
+    guestsInput.classList.remove(
+        "invalid"
+    );
+
+    guestMessage.classList.remove(
+        "invalid"
+    );
+
+
+    if (!checkIn.value) {
+
+        checkIn.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            "Please select a check-in date.",
+            "error"
+        );
+
+        checkIn.focus();
+
+        return false;
+
+    }
+
+
+    if (!checkOut.value) {
+
+        checkOut.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            "Please select a check-out date.",
+            "error"
+        );
+
+        checkOut.focus();
+
+        return false;
+
+    }
+
+
+    const today =
+        getTodayString();
+
+
+    if (checkIn.value < today) {
+
+        checkIn.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            "Check-in cannot be before today.",
+            "error"
+        );
+
+        checkIn.focus();
+
+        return false;
+
+    }
+
+
+    if (
+        checkOut.value <=
+        checkIn.value
+    ) {
+
+        checkOut.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            "Check-out must be after check-in.",
+            "error"
+        );
+
+        checkOut.focus();
+
+        return false;
+
+    }
+
+
+    const guests =
+        Number(
+            guestsInput.value
+        );
+
+
+    if (
+        !Number.isInteger(guests) ||
+        guests < 1
+    ) {
+
+        guestsInput.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            "Please enter a valid number of guests.",
+            "error"
+        );
+
+        guestsInput.focus();
+
+        return false;
+
+    }
+
+
+    const maxGuests =
+        currentStay?.maxGuests ??
+        currentStay?.MaxGuests;
+
+
+    if (
+        maxGuests != null &&
+        guests > Number(maxGuests)
+    ) {
+
+        guestsInput.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            `This stay allows a maximum of ${maxGuests} guest(s).`,
+            "error"
+        );
+
+        guestsInput.focus();
+
+        return false;
+
+    }
+
+
+    const message =
+        guestMessage.value.trim();
+
+
+    if (message.length > 2000) {
+
+        guestMessage.classList.add(
+            "invalid"
+        );
+
+        showFormMessage(
+            "Your message cannot exceed 2,000 characters.",
+            "error"
+        );
+
+        guestMessage.focus();
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* ============================================================
+   SUBMIT BOOKING
+   ============================================================ */
+
+async function submitBooking(event) {
+
+    event.preventDefault();
+
+
+    if (bookingSubmitting) {
+
+        return;
+
+    }
+
+
+    const token =
+        getToken();
+
+
+    if (!token) {
+
+        setupLoginNotice();
+
+        showFormMessage(
+            "Please log in before sending a booking request.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!currentStay) {
+
+        showFormMessage(
+            "Stay information is not available. Please reload the page.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const stayId =
+        Number(
+            currentStay.stayId ??
+            currentStay.StayId
+        );
+
+
+    if (
+        !Number.isInteger(stayId) ||
+        stayId <= 0
+    ) {
+
+        showFormMessage(
+            "This stay could not be identified. Please return to the Stay listings and try again.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!validateBookingForm()) {
+
+        return;
+
+    }
+
+
+    const checkIn =
+        document.getElementById(
+            "checkInDate"
+        ).value;
+
+
+    const checkOut =
+        document.getElementById(
+            "checkOutDate"
+        ).value;
+
+
+    const guests =
+        Number(
+            document.getElementById(
+                "guests"
+            ).value
+        );
+
+
+    const guestMessage =
+        document.getElementById(
+            "guestMessage"
+        ).value.trim();
+
+
+    const button =
+        document.getElementById(
+            "submitButton"
+        );
+
+
+    bookingSubmitting =
+        true;
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "Sending Request...";
+
+
+    clearFormMessage();
+
+
+    try {
+
+        /*
+           IMPORTANT:
+           We intentionally send only booking information.
+           The backend must retrieve the real stay price and
+           calculate the authoritative booking total itself.
+        */
+
+        const payload = {
+
+            stayId:
+                stayId,
+
+            checkInDate:
+                checkIn,
+
+            checkOutDate:
+                checkOut,
+
+            guests:
+                guests,
+
+            guestMessage:
+                guestMessage ||
+                null
+
+        };
+
+
+        const response =
+            await fetch(
+                STAY_BOOKINGS_API,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "Accept":
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    },
+
+                    body:
+                        JSON.stringify(
+                            payload
+                        )
+                }
+            );
+
+
+        const data =
+            await readApiResponse(
+                response
+            );
+
+
+        /* --------------------------------------------------------
+           UNAUTHORIZED
+           -------------------------------------------------------- */
+
+        if (
+            response.status === 401
+        ) {
+
+            clearAuthentication();
+
+            showFormMessage(
+                "Your session has expired. Please log in again before requesting this stay.",
+                "error"
+            );
+
+            setupLoginNotice();
+
+            return;
+
+        }
+
+
+        /* --------------------------------------------------------
+           FORBIDDEN
+           -------------------------------------------------------- */
+
+        if (
+            response.status === 403
+        ) {
+
+            /*
+               Do NOT call every 403 an expired session.
+
+               A 403 can mean that the authenticated user is not
+               permitted to create this booking or that a backend
+               business rule rejected the request.
+            */
+
+            showFormMessage(
+                data?.message ||
+                data?.title ||
+                "You are not permitted to request this stay. Please make sure you are logged in with the correct guest account.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* --------------------------------------------------------
+           OTHER API ERRORS
+           -------------------------------------------------------- */
+
+        if (!response.ok) {
+
+            const message =
+                data?.message ||
+                data?.title ||
+                data?.error ||
+                "Unable to send your booking request.";
+
+            throw new Error(
+                message
+            );
+
+        }
+
+
+        /* --------------------------------------------------------
+           SUCCESS
+           -------------------------------------------------------- */
+
+        showSuccess(
+            data
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH stay booking submission error:",
+            error
+        );
+
+
+        showFormMessage(
+            error.message ||
+            "Unable to send your booking request. Please try again.",
+            "error"
+        );
+
+
+    } finally {
+
+        bookingSubmitting =
+            false;
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "Send Booking Request";
+
+    }
+
+}
+
+
+/* ============================================================
+   SUCCESS
+   ============================================================ */
+
+function getBookingId(data) {
+
+    if (!data) {
+
+        return null;
+
+    }
+
+    return (
+        data.bookingId ??
+        data.BookingId ??
+        data.stayBookingId ??
+        data.StayBookingId ??
+        data.rentalRequestId ??
+        data.RentalRequestId ??
+        null
+    );
+
+}
+
+
+function showSuccess(data) {
+
+    document
+        .getElementById("bookingContent")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("errorState")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("loadingState")
+        .classList
+        .add("hidden");
+
+
+    document
+        .getElementById("successState")
+        .classList
+        .remove("hidden");
+
+
+    const bookingId =
+        getBookingId(
+            data
+        );
+
+
+    document
+        .getElementById(
+            "successBookingId"
+        )
+        .textContent =
+            bookingId
+                ? `Booking request #${bookingId} is now pending.`
+                : "Your booking request is now pending.";
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ============================================================
+   START
+   ============================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const bookingForm =
+            document.getElementById(
+                "bookingForm"
+            );
+
+
+        if (bookingForm) {
+
+            bookingForm.addEventListener(
+                "submit",
+                submitBooking
+            );
+
+        }
+
+
+        setupMobileNavigation();
+
+        setupImageFallback();
+
+        loadStay();
+
+    }
+);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<meta name="description"
+      content="Create a landlord or property agent account on HavenGH.">
+
+<title>Create Account | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+<style>
+:root {
+    --haven-green: #064e3b;
+    --haven-green-dark: #043c2e;
+    --haven-green-deep: #021f18;
+    --haven-teal: #0f766e;
+
+    --haven-gold: #d4af37;
+    --haven-gold-light: #f8efc8;
+    --haven-gold-dark: #9c7915;
+
+    --haven-white: #ffffff;
+    --haven-text: #17211d;
+    --haven-muted: #66736c;
+
+    --glass-white: rgba(255, 255, 255, 0.76);
+    --glass-white-strong: rgba(255, 255, 255, 0.88);
+    --glass-dark: rgba(3, 45, 34, 0.70);
+
+    --glass-border: rgba(255, 255, 255, 0.42);
+
+    --shadow:
+        0 25px 70px rgba(0, 0, 0, 0.30);
+}
+
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: var(--haven-text);
+
+    /*
+       FIXED ACCRA BACKGROUND
+    */
+    background:
+        linear-gradient(
+            135deg,
+            rgba(2, 31, 24, 0.84),
+            rgba(4, 78, 59, 0.60),
+            rgba(1, 31, 24, 0.82)
+        ),
+        url("Accra.jpg") center center / cover fixed no-repeat;
+
+    background-color: var(--haven-green-deep);
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background:
+        rgba(2, 31, 24, 0.80) !important;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(130%);
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.20);
+}
+
+.nav-container {
+    min-height: 78px;
+}
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.logo {
+    display: inline-flex !important;
+    align-items: center;
+
+    color: white !important;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+.logo-main {
+    color: white !important;
+
+    font-size: 25px;
+}
+
+.logo-accent {
+    color: var(--haven-gold) !important;
+
+    font-size: 25px;
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
+.navbar .nav-link {
+    color:
+        rgba(255,255,255,0.86) !important;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+.navbar .nav-link:hover {
+    color:
+        var(--haven-gold-light) !important;
+
+    transform:
+        translateY(-1px);
+}
+
+.navbar .nav-link.active {
+    color:
+        var(--haven-gold) !important;
+}
+
+.login-link {
+    color:
+        rgba(255,255,255,0.88) !important;
+
+    transition: .2s ease;
+}
+
+.login-link:hover {
+    color:
+        var(--haven-gold-light) !important;
+}
+
+
+/* ============================================================
+   CREATE ACCOUNT NAV BUTTON
+   ============================================================ */
+
+.nav-actions .btn-dark {
+    background:
+        linear-gradient(
+            135deg,
+            #b99120,
+            #d4af37,
+            #e5ca63
+        ) !important;
+
+    color:
+        #13261f !important;
+
+    border:
+        1px solid rgba(255,255,255,0.18) !important;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.20);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.nav-actions .btn-dark:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,0.30);
+}
+
+
+/* ============================================================
+   REGISTRATION BACKGROUND
+   ============================================================ */
+
+.auth-page {
+    position: relative;
+
+    min-height:
+        calc(100vh - 78px);
+
+    padding:
+        70px 20px;
+
+    background:
+        transparent !important;
+}
+
+
+/*
+   Soft gold atmospheric glow.
+*/
+
+.auth-page::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,0.15),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   MAIN CONTAINER
+   ============================================================ */
+
+.auth-container {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(430px, 510px);
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+
+/* ============================================================
+   LEFT GLASS INTRO
+   ============================================================ */
+
+.auth-intro {
+    padding:
+        38px;
+
+    border:
+        1px solid rgba(255,255,255,0.30);
+
+    border-radius:
+        28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(3,45,34,0.76),
+            rgba(3,45,34,0.54)
+        );
+
+    backdrop-filter:
+        blur(22px)
+        saturate(130%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(130%);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+.section-label {
+    display: inline-block;
+
+    padding:
+        8px 13px;
+
+    border:
+        1px solid rgba(212,175,55,0.45);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(212,175,55,0.12);
+
+    color:
+        var(--haven-gold-light);
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+}
+
+.auth-intro h1 {
+    margin:
+        20px 0 17px;
+
+    color:
+        white;
+
+    font-size:
+        clamp(32px, 4vw, 48px);
+
+    line-height:
+        1.10;
+
+    letter-spacing:
+        -1.5px;
+
+    font-weight:
+        900;
+
+    text-shadow:
+        0 4px 18px rgba(0,0,0,0.28);
+}
+
+.auth-intro > p {
+    margin:
+        0 0 30px;
+
+    max-width:
+        600px;
+
+    color:
+        rgba(255,255,255,0.78);
+
+    font-size:
+        15px;
+
+    line-height:
+        1.75;
+}
+
+
+/* ============================================================
+   BENEFITS
+   ============================================================ */
+
+.auth-benefits {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        13px;
+}
+
+.auth-benefit {
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        14px;
+
+    padding:
+        17px;
+
+    border:
+        1px solid rgba(255,255,255,0.16);
+
+    border-radius:
+        16px;
+
+    background:
+        rgba(255,255,255,0.075);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.auth-benefit:hover {
+    transform:
+        translateX(4px);
+
+    background:
+        rgba(255,255,255,0.11);
+
+    border-color:
+        rgba(212,175,55,0.30);
+}
+
+.benefit-icon {
+    flex:
+        0 0 34px;
+
+    width:
+        34px;
+
+    height:
+        34px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--haven-gold),
+            #eedb81
+        );
+
+    color:
+        var(--haven-green-deep);
+
+    font-size:
+        14px;
+
+    font-weight:
+        900;
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,0.20);
+}
+
+.auth-benefit h3 {
+    margin:
+        0 0 5px;
+
+    color:
+        white;
+
+    font-size:
+        14px;
+
+    font-weight:
+        900;
+}
+
+.auth-benefit p {
+    margin:
+        0;
+
+    color:
+        rgba(255,255,255,0.68);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+}
+
+
+/* ============================================================
+   RIGHT GLASS CARD
+   ============================================================ */
+
+.auth-card {
+    position:
+        relative;
+
+    padding:
+        34px;
+
+    border:
+        1px solid rgba(255,255,255,0.58);
+
+    border-radius:
+        27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.86),
+            rgba(255,255,255,0.64)
+        );
+
+    backdrop-filter:
+        blur(25px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(25px)
+        saturate(140%);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.85);
+
+    overflow:
+        hidden;
+}
+
+
+/*
+   Gold glass line across the top.
+*/
+
+.auth-card::before {
+    content: "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    top:
+        0;
+
+    height:
+        4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--haven-gold),
+            #f3df86,
+            var(--haven-gold),
+            transparent
+        );
+}
+
+
+/* ============================================================
+   CARD HEADING
+   ============================================================ */
+
+.auth-card-heading {
+    margin-bottom:
+        25px;
+
+    text-align:
+        center;
+}
+
+.auth-card-heading h2 {
+    margin:
+        0 0 8px;
+
+    color:
+        var(--haven-green-dark);
+
+    font-size:
+        27px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -0.5px;
+}
+
+.auth-card-heading p {
+    margin:
+        0;
+
+    color:
+        var(--haven-muted);
+
+    font-size:
+        13px;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.auth-form {
+    width:
+        100%;
+}
+
+.form-group {
+    margin-bottom:
+        18px;
+}
+
+.form-group > label {
+    display:
+        block;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--haven-green-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        900;
+}
+
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width:
+        100%;
+
+    padding:
+        14px 15px;
+
+    border:
+        1px solid rgba(6,78,59,0.18);
+
+    border-radius:
+        13px;
+
+    outline:
+        none;
+
+    background:
+        rgba(255,255,255,0.68);
+
+    color:
+        var(--haven-text);
+
+    font-size:
+        14px;
+
+    box-shadow:
+        inset 0 1px 3px rgba(0,0,0,0.04);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.form-group input::placeholder {
+    color:
+        #89958f;
+}
+
+.form-group input:hover {
+    background:
+        rgba(255,255,255,0.82);
+}
+
+.form-group input:focus {
+    background:
+        rgba(255,255,255,0.94);
+
+    border-color:
+        var(--haven-teal);
+
+    box-shadow:
+        0 0 0 4px rgba(15,118,110,0.10),
+        0 8px 22px rgba(6,78,59,0.08);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* ============================================================
+   ACCOUNT TYPE
+   ============================================================ */
+
+.account-type {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        10px;
+}
+
+.account-option {
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    min-height:
+        52px;
+
+    padding:
+        12px;
+
+    border:
+        1px solid rgba(6,78,59,0.15);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255,255,255,0.55);
+
+    color:
+        var(--haven-green-dark);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+    transition:
+        .2s ease;
+}
+
+.account-option:hover {
+    background:
+        rgba(255,255,255,0.82);
+
+    border-color:
+        rgba(212,175,55,0.50);
+
+    transform:
+        translateY(-1px);
+}
+
+.account-option input {
+    margin:
+        0 7px 0 0;
+
+    accent-color:
+        var(--haven-green);
+
+    cursor:
+        pointer;
+}
+
+.account-option:has(input:checked) {
+    border-color:
+        rgba(212,175,55,0.80);
+
+    background:
+        rgba(212,175,55,0.13);
+
+    box-shadow:
+        0 5px 18px rgba(155,121,23,0.10);
+}
+
+
+/* ============================================================
+   TERMS
+   ============================================================ */
+
+.terms {
+    margin:
+        6px 0 20px;
+
+    padding:
+        13px;
+
+    border:
+        1px solid rgba(6,78,59,0.10);
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(6,78,59,0.045);
+
+    color:
+        var(--haven-muted);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.55;
+}
+
+.terms label {
+    display:
+        flex;
+
+    align-items:
+        flex-start;
+
+    gap:
+        9px;
+
+    cursor:
+        pointer;
+}
+
+.terms input {
+    flex:
+        0 0 auto;
+
+    margin-top:
+        2px;
+
+    accent-color:
+        var(--haven-green);
+
+    width:
+        15px;
+
+    height:
+        15px;
+}
+
+.terms a {
+    color:
+        var(--haven-green);
+
+    font-weight:
+        900;
+}
+
+.terms a:hover {
+    color:
+        var(--haven-gold-dark);
+}
+
+
+/* ============================================================
+   API MESSAGE
+   ============================================================ */
+
+#registerMessage {
+    border:
+        1px solid rgba(6,78,59,0.12) !important;
+
+    border-radius:
+        12px !important;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.5;
+
+    font-weight:
+        700;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+}
+
+
+/* ============================================================
+   SUBMIT BUTTON
+   ============================================================ */
+
+.auth-submit {
+    width:
+        100%;
+
+    border:
+        none;
+
+    border-radius:
+        13px;
+
+    padding:
+        15px 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b99120,
+            #d4af37,
+            #e5ca63
+        );
+
+    color:
+        #13261f;
+
+    font-size:
+        14px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        .2px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 10px 26px rgba(155,121,23,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.48);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.auth-submit:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4af37,
+            #edda7d,
+            #d4af37
+        );
+
+    box-shadow:
+        0 15px 32px rgba(155,121,23,0.35);
+
+    filter:
+        brightness(1.03);
+}
+
+.auth-submit:active {
+    transform:
+        translateY(0);
+}
+
+.auth-submit:disabled {
+    opacity:
+        .65;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* ============================================================
+   CARD FOOTER
+   ============================================================ */
+
+.auth-footer {
+    margin-top:
+        23px;
+
+    padding-top:
+        20px;
+
+    border-top:
+        1px solid rgba(6,78,59,0.12);
+
+    text-align:
+        center;
+}
+
+.auth-footer p {
+    margin:
+        0;
+
+    color:
+        var(--haven-muted);
+
+    font-size:
+        13px;
+}
+
+.auth-footer a {
+    color:
+        var(--haven-green);
+
+    font-weight:
+        900;
+
+    transition:
+        .2s ease;
+}
+
+.auth-footer a:hover {
+    color:
+        var(--haven-gold-dark);
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.footer {
+    position:
+        relative;
+
+    z-index:
+        3;
+
+    background:
+        rgba(2,31,24,0.84) !important;
+
+    border-top:
+        1px solid rgba(255,255,255,0.14);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    color:
+        rgba(255,255,255,0.70);
+}
+
+.footer-bottom {
+    padding:
+        22px 20px;
+}
+
+.footer p {
+    color:
+        rgba(255,255,255,0.68);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 950px) {
+
+    .auth-container {
+        grid-template-columns:
+            1fr;
+
+        max-width:
+            650px;
+
+        gap:
+            25px;
+    }
+
+    .auth-intro {
+        padding:
+            30px;
+    }
+
+    .auth-intro h1 {
+        font-size:
+            38px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar {
+        /*
+           Keep your existing mobile menu behaviour
+           from script.js/style.css.
+        */
+    }
+
+    .auth-page {
+        padding:
+            40px 15px;
+    }
+
+    .auth-container {
+        width:
+            100%;
+
+        gap:
+            20px;
+    }
+
+    .auth-intro {
+        padding:
+            25px 21px;
+
+        border-radius:
+            22px;
+    }
+
+    .auth-intro h1 {
+        margin-top:
+            17px;
+
+        font-size:
+            32px;
+
+        letter-spacing:
+            -1px;
+    }
+
+    .auth-intro > p {
+        font-size:
+            14px;
+    }
+
+    .auth-card {
+        padding:
+            27px 20px;
+
+        border-radius:
+            22px;
+    }
+
+    .auth-card-heading h2 {
+        font-size:
+            24px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .account-type {
+        grid-template-columns:
+            1fr;
+    }
+
+    .auth-benefit {
+        padding:
+            14px;
+    }
+
+    .benefit-icon {
+        flex-basis:
+            31px;
+
+        width:
+            31px;
+
+        height:
+            31px;
+    }
+
+    .auth-intro h1 {
+        font-size:
+            29px;
+    }
+
+    .auth-card {
+        padding:
+            25px 17px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+        padding:
+            13px 14px;
+    }
+}
+
+
+@media (max-width: 380px) {
+
+    .auth-page {
+        padding:
+            25px 10px;
+    }
+
+    .auth-intro {
+        padding:
+            22px 17px;
+    }
+
+    .auth-card {
+        padding:
+            22px 14px;
+    }
+
+    .auth-intro h1 {
+        font-size:
+            27px;
+    }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            <span class="logo-main">Haven</span><span class="logo-accent">GH</span>
+        </a>
+
+        <nav class="navbar">
+
+            <a href="index.html" class="nav-link">
+                Home
+            </a>
+
+            <a href="properties.html" class="nav-link">
+                Find a Home
+            </a>
+
+            <a href="index.html#how-it-works" class="nav-link">
+                How It Works
+            </a>
+
+            <a href="index.html#about" class="nav-link">
+                About
+            </a>
+
+        </nav>
+
+        <div class="nav-actions">
+
+            <a href="" class="login-link">
+                
+            </a>
+
+            <a href="tenant-register.html" class="btn btn-dark">
+                Create Tenant Account
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     REGISTRATION
+========================== -->
+
+<main>
+
+    <section class="auth-page">
+
+        <div class="container auth-container">
+
+            <!-- LEFT SIDE -->
+
+            <div class="auth-intro">
+
+                <span class="section-label">
+                    JOIN HAVENGH
+                </span>
+
+                <h1>
+                    Put your property in front of people looking for a home.
+                </h1>
+
+                <p>
+                    Create your account and start listing available
+                    rooms, apartments and houses on HavenGH.
+                </p>
+
+
+                <div class="auth-benefits">
+
+                    <div class="auth-benefit">
+
+                        <span class="benefit-icon">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Reach more people
+                            </h3>
+
+                            <p>
+                                Make your properties visible to people
+                                actively searching for homes.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-benefit">
+
+                        <span class="benefit-icon">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Manage your listings
+                            </h3>
+
+                            <p>
+                                Add photos, prices, locations and
+                                property details from one dashboard.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-benefit">
+
+                        <span class="benefit-icon">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Receive enquiries
+                            </h3>
+
+                            <p>
+                                Let potential tenants contact you
+                                through WhatsApp, phone or requests.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE / FORM -->
+
+            <div class="auth-card">
+
+                <div class="auth-card-heading">
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        It only takes a few minutes.
+                    </p>
+
+                </div>
+
+
+                <form
+                    id="registerForm"
+                    method="POST"
+                    class="auth-form"
+                >
+
+                    <!-- ACCOUNT TYPE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            I am a
+                        </label>
+
+                        <div class="account-type">
+
+                            <label class="account-option">
+
+                                <input
+                                    type="radio"
+                                    name="account-type"
+                                    value="landlord"
+                                    checked
+                                >
+
+                                <span>
+                                    🏠 Landlord
+                                </span>
+
+                            </label>
+
+
+                            <label class="account-option">
+
+                                <input
+                                    type="radio"
+                                    name="account-type"
+                                    value="agent"
+                                >
+
+                                <span>
+                                    🏢 Property Agent
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group">
+
+                        <label for="full-name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="full-name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="150"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="e.g. 024 000 0000"
+                            autocomplete="tel"
+                            maxlength="30"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            maxlength="150"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                            minlength="8"
+                            maxlength="128"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="confirm-password">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            name="confirm-password"
+                            placeholder="Enter your password again"
+                            autocomplete="new-password"
+                            minlength="8"
+                            maxlength="128"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- API MESSAGE -->
+
+                    <div
+                        id="registerMessage"
+                        role="alert"
+                        aria-live="polite"
+                        style="display: none;"
+                    ></div>
+
+
+                    <!-- TERMS -->
+
+                    <div class="terms">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                                required
+                            >
+
+                            <span>
+                                I agree to HavenGH's
+                                <a href="terms.html">
+                                    Terms of Service
+                                </a>
+                                and
+                                <a href="privacy-policy.html">
+                                    Privacy Policy
+                                </a>.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="auth-submit"
+                        id="registerButton"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                <div class="auth-footer">
+
+                    <p>
+                        Already have an account?
+                        <a href="login.html">
+                            Log in
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 HavenGH. All rights reserved.
+        </p>
+
+        <p>
+            Built for Ghana 🇬🇭
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="script.js"></script>
+
+<script>
+
+    /*
+     * HavenGH API
+     *
+     * Your ASP.NET Core API is currently running locally.
+     *
+     * IMPORTANT:
+     * Change only this URL if your API uses a different
+     * port or HTTPS address.
+     */
+    
+
+
+    const registerForm = document.getElementById("registerForm");
+    const registerButton = document.getElementById("registerButton");
+    const registerMessage = document.getElementById("registerMessage");
+
+
+    function showRegisterMessage(message, success = false) {
+
+        registerMessage.textContent = message;
+
+        registerMessage.style.display = "block";
+
+        registerMessage.style.padding = "12px";
+        registerMessage.style.marginBottom = "15px";
+        registerMessage.style.borderRadius = "8px";
+
+        if (success) {
+
+            registerMessage.style.backgroundColor = "#e8f7ee";
+            registerMessage.style.color = "#166534";
+
+        } else {
+
+            registerMessage.style.backgroundColor = "#fdecec";
+            registerMessage.style.color = "#991b1b";
+
+        }
+    }
+
+
+    registerForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+
+        const fullName =
+            document.getElementById("full-name").value.trim();
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+        const accountType =
+            document.querySelector(
+                'input[name="account-type"]:checked'
+            ).value;
+
+
+        /*
+         * Client-side password confirmation.
+         */
+
+        if (password !== confirmPassword) {
+
+            showRegisterMessage(
+                "Passwords do not match."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Basic validation.
+         */
+
+        if (password.length < 8) {
+
+            showRegisterMessage(
+                "Password must be at least 8 characters."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Disable button while request is being processed.
+         */
+
+        registerButton.disabled = true;
+        registerButton.textContent = "Creating Account...";
+
+        registerMessage.style.display = "none";
+
+
+        /*
+         * Convert frontend account type to the role
+         * expected by HavenGH.
+         */
+
+        const role =
+            accountType === "agent"
+                ? "Agent"
+                : "Landlord";
+
+
+        try {
+
+            const response = await fetch(
+                `${API_BASE_URL}/api/auth/register`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        fullName: fullName,
+                        phoneNumber: phone,
+                        email: email,
+                        password: password,
+                        role: role
+
+                    })
+                }
+            );
+
+
+            /*
+             * Try to read the API response as JSON.
+             */
+
+            let data = null;
+
+            try {
+
+                data = await response.json();
+
+            } catch {
+
+                data = null;
+
+            }
+
+
+            /*
+             * Handle unsuccessful API responses.
+             */
+
+            if (!response.ok) {
+
+                let errorMessage =
+                    "Registration failed. Please try again.";
+
+                if (data) {
+
+                    errorMessage =
+                        data.message ||
+                        data.error ||
+                        data.title ||
+                        errorMessage;
+
+                }
+
+                showRegisterMessage(errorMessage);
+
+                return;
+            }
+
+
+            /*
+             * Registration successful.
+             */
+
+            showRegisterMessage(
+                "Account created successfully. Redirecting to login...",
+                true
+            );
+
+
+            /*
+             * Give the user a moment to see the
+             * success message before redirecting.
+             */
+
+            setTimeout(function () {
+
+                window.location.href = "login.html";
+
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(
+                "HavenGH registration error:",
+                error
+            );
+
+
+            showRegisterMessage(
+                "Unable to connect to HavenGH. Make sure the API is running."
+            );
+
+        } finally {
+
+            /*
+             * Re-enable button if we are still on
+             * the registration page.
+             */
+
+            registerButton.disabled = false;
+            registerButton.textContent = "Create Account";
+
+        }
+
+    });
+
+</script>
+
+
+</body>
+</html>

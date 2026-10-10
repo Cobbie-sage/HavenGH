@@ -1,0 +1,2519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="HavenGH host messaging. Communicate securely with your guests.">
+
+    <title>Messages | HavenGH</title>
+
+    <style>
+        :root {
+            --green-950: #061f16;
+            --green-900: #08281c;
+            --green-850: #0b3223;
+            --green-800: #0d3a28;
+            --green-700: #125238;
+
+            --gold: #d8b45a;
+            --gold-light: #f0d98a;
+
+            --white: #ffffff;
+            --text: #f5f8f6;
+            --muted: #a9bdb4;
+            --border: rgba(216, 180, 90, 0.18);
+
+            --danger: #ef6b6b;
+            --success: #62d49b;
+
+            --shadow:
+                0 20px 55px rgba(0, 0, 0, 0.28);
+
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(216, 180, 90, 0.08),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    var(--green-950),
+                    var(--green-900)
+                );
+            color: var(--text);
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .topbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            background: rgba(6, 31, 22, 0.94);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    #a9812f
+                );
+            color: var(--green-950);
+            font-weight: 900;
+            box-shadow: 0 8px 25px rgba(216, 180, 90, 0.2);
+        }
+
+        .brand-name {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-name span {
+            color: var(--gold);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--gold-light);
+        }
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .page {
+            width: min(1500px, calc(100% - 32px));
+            margin: 24px auto;
+        }
+
+        .page-heading {
+            margin-bottom: 20px;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(25px, 3vw, 34px);
+            letter-spacing: -0.8px;
+        }
+
+        .page-heading p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================================================
+           MESSAGES SHELL
+        ========================================================= */
+
+        .messages-shell {
+            height: calc(100vh - 160px);
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 330px minmax(0, 1fr) 280px;
+            background: rgba(8, 40, 28, 0.96);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        /* =========================================================
+           LEFT
+        ========================================================= */
+
+        .conversations-panel {
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .panel-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .panel-header h2 {
+            font-size: 16px;
+        }
+
+        .refresh-btn {
+            border: 1px solid var(--border);
+            background: rgba(216, 180, 90, 0.06);
+            color: var(--gold-light);
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            transition: 0.2s ease;
+        }
+
+        .refresh-btn:hover {
+            background: rgba(216, 180, 90, 0.14);
+            border-color: rgba(216, 180, 90, 0.4);
+        }
+
+        .search-box {
+            margin-top: 14px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 42px;
+            border-radius: 11px;
+            border: 1px solid var(--border);
+            outline: none;
+            background: rgba(255,255,255,0.04);
+            color: var(--white);
+            padding: 0 13px;
+        }
+
+        .search-box input::placeholder {
+            color: #78938a;
+        }
+
+        .search-box input:focus {
+            border-color: rgba(216,180,90,0.5);
+            box-shadow: 0 0 0 3px rgba(216,180,90,0.07);
+        }
+
+        .conversation-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .conversation-item {
+            padding: 15px 17px;
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid rgba(216,180,90,0.08);
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .conversation-item:hover {
+            background: rgba(216,180,90,0.06);
+        }
+
+        .conversation-item.active {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(216,180,90,0.13),
+                    rgba(216,180,90,0.035)
+                );
+            border-left: 3px solid var(--gold);
+            padding-left: 14px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
+            border-radius: 50%;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green-700),
+                    var(--green-950)
+                );
+            border: 1px solid rgba(216,180,90,0.25);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            color: var(--gold-light);
+            font-weight: 800;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .conversation-content {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .conversation-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .conversation-name {
+            font-size: 14px;
+            font-weight: 700;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-time {
+            color: #78938a;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+        .conversation-preview {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-property {
+            margin-top: 5px;
+            color: #839e94;
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .unread-badge {
+            margin-top: 6px;
+            display: inline-flex;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: var(--gold);
+            color: var(--green-950);
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        /* =========================================================
+           CHAT
+        ========================================================= */
+
+        .chat-panel {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .chat-empty {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .chat-empty-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 15px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: rgba(216,180,90,0.08);
+            border: 1px solid var(--border);
+            color: var(--gold);
+            font-size: 28px;
+        }
+
+        .chat-empty h3 {
+            font-size: 18px;
+        }
+
+        .chat-empty p {
+            color: var(--muted);
+            margin-top: 7px;
+            font-size: 13px;
+        }
+
+        .chat-header {
+            min-height: 75px;
+            padding: 13px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-header-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .chat-header-name {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .chat-header-property {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--success);
+            font-size: 10px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .date-divider {
+            align-self: center;
+            color: #78938a;
+            font-size: 10px;
+            padding: 6px 11px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.035);
+            margin: 7px 0;
+        }
+
+        .message-row {
+            display: flex;
+        }
+
+        .message-row.mine {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: min(70%, 600px);
+            padding: 11px 14px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.055);
+            border: 1px solid rgba(216,180,90,0.08);
+        }
+
+        .message-row.mine .message-bubble {
+            background:
+                linear-gradient(
+                    135deg,
+                    #16563a,
+                    #0e432d
+                );
+            border-color: rgba(216,180,90,0.2);
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-row:not(.mine) .message-bubble {
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-text {
+            color: var(--text);
+            font-size: 13px;
+            line-height: 1.55;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .message-meta {
+            margin-top: 5px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+            color: #79948a;
+            font-size: 9px;
+        }
+
+        .composer {
+            padding: 14px 17px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 9px;
+            align-items: flex-end;
+        }
+
+        .composer textarea {
+            flex: 1;
+            min-height: 44px;
+            max-height: 130px;
+            resize: none;
+            padding: 12px 13px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.04);
+            color: var(--white);
+            outline: none;
+        }
+
+        .composer textarea::placeholder {
+            color: #78938a;
+        }
+
+        .composer textarea:focus {
+            border-color: rgba(216,180,90,0.45);
+        }
+
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            border: 0;
+            border-radius: 12px;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold-light),
+                    var(--gold)
+                );
+            color: var(--green-950);
+            font-size: 18px;
+            font-weight: 900;
+            transition: 0.2s ease;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(216,180,90,0.2);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* =========================================================
+           RIGHT SIDEBAR
+        ========================================================= */
+
+        .guest-panel {
+            border-left: 1px solid var(--border);
+            padding: 22px;
+            overflow-y: auto;
+        }
+
+        .guest-panel-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+        }
+
+        .guest-profile {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .guest-profile .avatar {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 11px;
+        }
+
+        .guest-name {
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .guest-role {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .guest-detail {
+            margin-top: 17px;
+        }
+
+        .detail-label {
+            color: #78938a;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .detail-value {
+            margin-top: 5px;
+            color: var(--text);
+            font-size: 12px;
+            word-break: break-word;
+        }
+
+        .guest-actions {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .action-btn {
+            min-height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.035);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            transition: 0.2s ease;
+        }
+
+        .action-btn:hover {
+            border-color: rgba(216,180,90,0.4);
+            background: rgba(216,180,90,0.07);
+            color: var(--gold-light);
+        }
+
+        .action-btn.gold {
+            background: rgba(216,180,90,0.1);
+            color: var(--gold-light);
+        }
+
+        .action-btn.danger {
+            color: var(--danger);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .property-card {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .property-card-title {
+            color: #78938a;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .property-name {
+            margin-top: 7px;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .property-location {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        /* =========================================================
+           LOADING / ERROR
+        ========================================================= */
+
+        .center-message {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .loader {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(216,180,90,0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-text {
+            color: var(--danger);
+            font-size: 13px;
+        }
+
+        .empty-list {
+            padding: 35px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        .mobile-back {
+            display: none;
+        }
+
+        @media (max-width: 1100px) {
+            .messages-shell {
+                grid-template-columns: 290px minmax(0, 1fr);
+            }
+
+            .guest-panel {
+                display: none;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .topbar {
+                height: 64px;
+                padding: 0 16px;
+            }
+
+            .page {
+                width: 100%;
+                margin: 0;
+            }
+
+            .page-heading {
+                padding: 17px 16px;
+                margin: 0;
+            }
+
+            .messages-shell {
+                height: calc(100vh - 125px);
+                min-height: 0;
+                border-radius: 0;
+                border-left: 0;
+                border-right: 0;
+                display: block;
+                position: relative;
+            }
+
+            .conversations-panel {
+                height: 100%;
+                border-right: 0;
+            }
+
+            .chat-panel {
+                display: none;
+                height: 100%;
+            }
+
+            .messages-shell.chat-open .conversations-panel {
+                display: none;
+            }
+
+            .messages-shell.chat-open .chat-panel {
+                display: flex;
+            }
+
+            .mobile-back {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 35px;
+                height: 35px;
+                border: 1px solid var(--border);
+                border-radius: 9px;
+                background: rgba(216,180,90,0.05);
+                color: var(--gold-light);
+            }
+
+            .chat-header {
+                padding: 12px 13px;
+            }
+
+            .messages-container {
+                padding: 18px 13px;
+            }
+
+            .message-bubble {
+                max-width: 82%;
+            }
+
+            .composer {
+                padding: 10px;
+            }
+
+            .brand-name {
+                font-size: 17px;
+            }
+
+            .back-link span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <a href="stay-host-dashboard.html" class="brand">
+        <div class="brand-mark">H</div>
+        <div class="brand-name">
+            Haven<span>GH</span>
+        </div>
+    </a>
+
+    <a href="stay-host-dashboard.html" class="back-link">
+        ← <span>Host Dashboard</span>
+    </a>
+</header>
+
+<main class="page">
+
+    <div class="page-heading">
+        <h1>Messages</h1>
+        <p>Communicate securely with your guests.</p>
+    </div>
+
+    <section class="messages-shell" id="messagesShell">
+
+        <!-- =====================================================
+             CONVERSATIONS
+        ====================================================== -->
+
+        <aside class="conversations-panel">
+
+            <div class="panel-header">
+
+                <div class="panel-header-row">
+                    <h2>Conversations</h2>
+
+                    <button
+                        type="button"
+                        class="refresh-btn"
+                        id="refreshBtn"
+                        title="Refresh conversations">
+                        ↻
+                    </button>
+                </div>
+
+                <div class="search-box">
+                    <input
+                        type="search"
+                        id="conversationSearch"
+                        placeholder="Search conversations...">
+                </div>
+
+            </div>
+
+            <div
+                class="conversation-list"
+                id="conversationList">
+
+                <div class="center-message">
+                    <div>
+                        <div class="loader"></div>
+                        <div style="color:var(--muted);font-size:12px;">
+                            Loading conversations...
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- =====================================================
+             CHAT
+        ====================================================== -->
+
+        <section class="chat-panel">
+
+            <div
+                class="chat-empty"
+                id="chatEmpty">
+
+                <div>
+                    <div class="chat-empty-icon">✉</div>
+                    <h3>Select a conversation</h3>
+                    <p>
+                        Choose a guest conversation to view your messages.
+                    </p>
+                </div>
+
+            </div>
+
+            <div
+                id="chatContent"
+                style="display:none;height:100%;flex-direction:column;">
+
+                <div class="chat-header">
+
+                    <button
+                        type="button"
+                        class="mobile-back"
+                        id="mobileBack">
+                        ←
+                    </button>
+
+                    <div class="avatar" id="chatAvatar">
+                        G
+                    </div>
+
+                    <div class="chat-header-info">
+                        <div
+                            class="chat-header-name"
+                            id="chatName">
+                            Guest
+                        </div>
+
+                        <div
+                            class="chat-header-property"
+                            id="chatProperty">
+                            HavenGH Stay
+                        </div>
+                    </div>
+
+                    <div class="chat-status">
+                        <span class="status-dot"></span>
+                        Secure
+                    </div>
+
+                </div>
+
+                <div
+                    class="messages-container"
+                    id="messagesContainer">
+                </div>
+
+                <form
+                    class="composer"
+                    id="messageForm">
+
+                    <textarea
+                        id="messageInput"
+                        maxlength="2000"
+                        placeholder="Write a message..."
+                        rows="1"></textarea>
+
+                    <button
+                        type="submit"
+                        class="send-btn"
+                        id="sendBtn"
+                        title="Send message">
+                        ↑
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             GUEST DETAILS
+        ====================================================== -->
+
+        <aside class="guest-panel">
+
+            <div class="guest-panel-title">
+                Guest Information
+            </div>
+
+            <div id="guestInfo">
+
+                <div class="empty-list">
+                    Select a conversation to view
+                    authorized guest information.
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+<script>
+"use strict";
+
+/* ============================================================
+   HAVENGH API
+============================================================ */
+
+const API_BASE_URL = "http://localhost:5073";
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let conversations = [];
+let filteredConversations = [];
+let currentConversationId = null;
+let currentConversation = null;
+let refreshTimer = null;
+let isSending = false;
+
+
+/* ============================================================
+   AUTHENTICATION
+============================================================ */
+
+function getToken() {
+
+    return (
+        sessionStorage.getItem("havenGH_token") ||
+        localStorage.getItem("havenGH_token") ||
+        localStorage.getItem("token") ||
+        localStorage.getItem("accessToken") ||
+        ""
+    );
+}
+
+
+function requireAuthentication() {
+
+    const token = getToken();
+
+    if (!token) {
+
+        window.location.href =
+            "login.html?returnUrl=" +
+            encodeURIComponent(window.location.href);
+
+        return false;
+    }
+
+    return true;
+}
+
+
+/* ============================================================
+   API
+============================================================ */
+
+async function apiRequest(endpoint, options = {}) {
+
+    const token = getToken();
+
+    if (!token) {
+
+        window.location.href =
+            "login.html?returnUrl=" +
+            encodeURIComponent(window.location.href);
+
+        throw new Error("Authentication required.");
+    }
+
+    const headers = {
+        ...(options.headers || {}),
+        "Authorization": `Bearer ${token}`
+    };
+
+    if (options.body && !headers["Content-Type"]) {
+        headers["Content-Type"] = "application/json";
+    }
+
+    const response = await fetch(
+        `${API_BASE_URL}${endpoint}`,
+        {
+            ...options,
+            headers
+        }
+    );
+
+    if (response.status === 401) {
+
+        sessionStorage.removeItem("havenGH_token");
+        localStorage.removeItem("havenGH_token");
+        localStorage.removeItem("token");
+        localStorage.removeItem("accessToken");
+
+        window.location.href =
+            "login.html?returnUrl=" +
+            encodeURIComponent(window.location.href);
+
+        throw new Error("Your session has expired.");
+    }
+
+    if (response.status === 403) {
+        throw new Error(
+            "You are not authorized to access this conversation."
+        );
+    }
+
+    let data = null;
+
+    const contentType =
+        response.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+        data = await response.json();
+    } else {
+        data = await response.text();
+    }
+
+    if (!response.ok) {
+
+        const message =
+            data?.message ||
+            data?.error ||
+            "Unable to complete the request.";
+
+        throw new Error(message);
+    }
+
+    return data;
+}
+
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
+function escapeHtml(value) {
+
+    const div = document.createElement("div");
+
+    div.textContent =
+        value == null
+            ? ""
+            : String(value);
+
+    return div.innerHTML;
+}
+
+
+function getInitials(name) {
+
+    if (!name) {
+        return "G";
+    }
+
+    const parts =
+        String(name)
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+    if (!parts.length) {
+        return "G";
+    }
+
+    if (parts.length === 1) {
+        return parts[0].charAt(0).toUpperCase();
+    }
+
+    return (
+        parts[0].charAt(0) +
+        parts[parts.length - 1].charAt(0)
+    ).toUpperCase();
+}
+
+
+function formatTime(dateValue) {
+
+    if (!dateValue) {
+        return "";
+    }
+
+    const date = new Date(dateValue);
+
+    if (Number.isNaN(date.getTime())) {
+        return "";
+    }
+
+    return date.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit"
+    });
+}
+
+
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+        return "";
+    }
+
+    const date = new Date(dateValue);
+
+    if (Number.isNaN(date.getTime())) {
+        return "";
+    }
+
+    return date.toLocaleDateString([], {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+}
+
+
+function getParticipantName(conversation) {
+
+    const participant =
+        conversation?.otherParticipant;
+
+    const profile =
+        participant?.profile;
+
+    return (
+        profile?.fullName ||
+        profile?.businessName ||
+        participant?.email ||
+        "Guest"
+    );
+}
+
+
+function getAvatarUrl(conversation) {
+
+    return (
+        conversation
+            ?.otherParticipant
+            ?.profile
+            ?.avatarUrl ||
+        ""
+    );
+}
+
+
+function getPropertyName(conversation) {
+
+    return (
+        conversation?.property?.title ||
+        "HavenGH Property"
+    );
+}
+
+
+function getPropertyLocation(conversation) {
+
+    const location =
+        conversation?.property?.location;
+
+    if (!location) {
+        return "";
+    }
+
+    return [
+        location.area,
+        location.city,
+        location.region
+    ]
+        .filter(Boolean)
+        .join(", ");
+}
+
+
+/* ============================================================
+   LOAD CONVERSATIONS
+============================================================ */
+
+async function loadConversations(
+    preserveSelection = true
+) {
+
+    try {
+
+        const data =
+            await apiRequest(
+                "/api/Messages/conversations"
+            );
+
+        conversations =
+            Array.isArray(data)
+                ? data
+                : data?.data || [];
+
+        applyConversationSearch();
+
+        if (
+            preserveSelection &&
+            currentConversationId
+        ) {
+
+            const existing =
+                conversations.find(
+                    conversation =>
+                        Number(conversation.conversationId) ===
+                        Number(currentConversationId)
+                );
+
+            if (existing) {
+
+                currentConversation =
+                    existing;
+
+                updateCurrentConversationHeader(
+                    existing
+                );
+
+                return;
+            }
+        }
+
+        /*
+         * If the URL contains userId, try to select
+         * the conversation with that participant.
+         */
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const requestedUserId =
+            Number(params.get("userId"));
+
+        if (
+            requestedUserId &&
+            !currentConversationId
+        ) {
+
+            const matching =
+                conversations.find(
+                    conversation =>
+                        Number(
+                            conversation
+                                ?.otherParticipant
+                                ?.userId
+                        ) === requestedUserId
+                );
+
+            if (matching) {
+
+                await selectConversation(
+                    matching.conversationId
+                );
+
+                return;
+            }
+        }
+
+        if (!currentConversationId) {
+            renderEmptyChat();
+        }
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH conversations error:",
+            error
+        );
+
+        renderConversationError(
+            error.message
+        );
+    }
+}
+
+
+/* ============================================================
+   SEARCH
+============================================================ */
+
+function applyConversationSearch() {
+
+    const search =
+        document
+            .getElementById("conversationSearch")
+            .value
+            .trim()
+            .toLowerCase();
+
+    if (!search) {
+
+        filteredConversations =
+            [...conversations];
+
+    } else {
+
+        filteredConversations =
+            conversations.filter(
+                conversation => {
+
+                    const name =
+                        getParticipantName(
+                            conversation
+                        ).toLowerCase();
+
+                    const property =
+                        getPropertyName(
+                            conversation
+                        ).toLowerCase();
+
+                    const preview =
+                        (
+                            conversation
+                                ?.lastMessage
+                                ?.messageBody ||
+                            ""
+                        ).toLowerCase();
+
+                    return (
+                        name.includes(search) ||
+                        property.includes(search) ||
+                        preview.includes(search)
+                    );
+                }
+            );
+    }
+
+    renderConversationList();
+}
+
+
+/* ============================================================
+   RENDER CONVERSATION LIST
+============================================================ */
+
+function renderConversationList() {
+
+    const list =
+        document.getElementById(
+            "conversationList"
+        );
+
+    if (!filteredConversations.length) {
+
+        list.innerHTML = `
+            <div class="empty-list">
+                No conversations found.
+            </div>
+        `;
+
+        return;
+    }
+
+    list.innerHTML =
+        filteredConversations
+            .map(conversation => {
+
+                const participant =
+                    conversation.otherParticipant;
+
+                const name =
+                    getParticipantName(
+                        conversation
+                    );
+
+                const avatar =
+                    getAvatarUrl(
+                        conversation
+                    );
+
+                const property =
+                    getPropertyName(
+                        conversation
+                    );
+
+                const location =
+                    getPropertyLocation(
+                        conversation
+                    );
+
+                const lastMessage =
+                    conversation
+                        ?.lastMessage
+                        ?.messageBody ||
+                    "No messages yet.";
+
+                const unread =
+                    Number(
+                        conversation?.unreadCount || 0
+                    );
+
+                const active =
+                    Number(
+                        conversation.conversationId
+                    ) ===
+                    Number(currentConversationId);
+
+                const avatarHtml =
+                    avatar
+                        ? `
+                            <img
+                                src="${escapeHtml(avatar)}"
+                                alt="${escapeHtml(name)}">
+                          `
+                        : escapeHtml(
+                            getInitials(name)
+                          );
+
+                return `
+                    <article
+                        class="conversation-item ${active ? "active" : ""}"
+                        data-conversation-id="${escapeHtml(conversation.conversationId)}">
+
+                        <div class="avatar">
+                            ${avatarHtml}
+                        </div>
+
+                        <div class="conversation-content">
+
+                            <div class="conversation-top">
+
+                                <div class="conversation-name">
+                                    ${escapeHtml(name)}
+                                </div>
+
+                                <div class="conversation-time">
+                                    ${formatTime(
+                                        conversation.updatedAt
+                                    )}
+                                </div>
+
+                            </div>
+
+                            <div class="conversation-preview">
+                                ${escapeHtml(lastMessage)}
+                            </div>
+
+                            <div class="conversation-property">
+                                ${escapeHtml(property)}
+                                ${location ? " · " + escapeHtml(location) : ""}
+                            </div>
+
+                            ${
+                                unread > 0
+                                    ? `
+                                        <span class="unread-badge">
+                                            ${unread > 99 ? "99+" : unread}
+                                        </span>
+                                      `
+                                    : ""
+                            }
+
+                        </div>
+
+                    </article>
+                `;
+
+            })
+            .join("");
+
+    list
+        .querySelectorAll(
+            ".conversation-item"
+        )
+        .forEach(item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    const id =
+                        Number(
+                            item.dataset
+                                .conversationId
+                        );
+
+                    selectConversation(id);
+                }
+            );
+
+        });
+}
+
+
+/* ============================================================
+   SELECT CONVERSATION
+============================================================ */
+
+async function selectConversation(
+    conversationId
+) {
+
+    if (!conversationId) {
+        return;
+    }
+
+    currentConversationId =
+        Number(conversationId);
+
+    currentConversation =
+        conversations.find(
+            conversation =>
+                Number(conversation.conversationId) ===
+                Number(conversationId)
+        ) || null;
+
+    renderConversationList();
+
+    document
+        .getElementById("chatEmpty")
+        .style.display = "none";
+
+    const chatContent =
+        document.getElementById(
+            "chatContent"
+        );
+
+    chatContent.style.display =
+        "flex";
+
+    document
+        .getElementById("messagesShell")
+        .classList.add("chat-open");
+
+    updateCurrentConversationHeader(
+        currentConversation
+    );
+
+    renderGuestInfo(
+        currentConversation
+    );
+
+    const messagesContainer =
+        document.getElementById(
+            "messagesContainer"
+        );
+
+    messagesContainer.innerHTML = `
+        <div class="center-message">
+            <div>
+                <div class="loader"></div>
+                <div style="color:var(--muted);font-size:12px;">
+                    Loading messages...
+                </div>
+            </div>
+        </div>
+    `;
+
+    try {
+
+        const data =
+            await apiRequest(
+                `/api/Messages/conversations/${conversationId}`
+            );
+
+        renderMessages(data);
+
+        /*
+         * The backend marks incoming messages as read
+         * when this endpoint is loaded.
+         */
+        await loadConversations(true);
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH messages error:",
+            error
+        );
+
+        messagesContainer.innerHTML = `
+            <div class="center-message">
+                <div class="error-text">
+                    ${escapeHtml(error.message)}
+                </div>
+            </div>
+        `;
+    }
+}
+
+
+/* ============================================================
+   CHAT HEADER
+============================================================ */
+
+function updateCurrentConversationHeader(
+    conversation
+) {
+
+    if (!conversation) {
+        return;
+    }
+
+    const name =
+        getParticipantName(
+            conversation
+        );
+
+    const avatar =
+        getAvatarUrl(
+            conversation
+        );
+
+    const property =
+        getPropertyName(
+            conversation
+        );
+
+    const location =
+        getPropertyLocation(
+            conversation
+        );
+
+    const avatarElement =
+        document.getElementById(
+            "chatAvatar"
+        );
+
+    if (avatar) {
+
+        avatarElement.innerHTML = `
+            <img
+                src="${escapeHtml(avatar)}"
+                alt="${escapeHtml(name)}">
+        `;
+
+    } else {
+
+        avatarElement.textContent =
+            getInitials(name);
+    }
+
+    document.getElementById(
+        "chatName"
+    ).textContent = name;
+
+    document.getElementById(
+        "chatProperty"
+    ).textContent =
+        location
+            ? `${property} · ${location}`
+            : property;
+}
+
+
+/* ============================================================
+   RENDER MESSAGES
+============================================================ */
+
+function renderMessages(data) {
+
+    const container =
+        document.getElementById(
+            "messagesContainer"
+        );
+
+    const messages =
+        Array.isArray(data?.messages)
+            ? data.messages
+            : [];
+
+    if (!messages.length) {
+
+        container.innerHTML = `
+            <div class="center-message">
+                <div>
+                    <div class="chat-empty-icon">
+                        ✉
+                    </div>
+
+                    <div style="font-size:14px;font-weight:700;">
+                        No messages yet
+                    </div>
+
+                    <div style="color:var(--muted);font-size:11px;margin-top:6px;">
+                        Start the conversation below.
+                    </div>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
+
+    let previousDate = "";
+
+    const html =
+        messages.map(message => {
+
+            const date =
+                formatDate(
+                    message.createdAt
+                );
+
+            let divider = "";
+
+            if (date !== previousDate) {
+
+                divider = `
+                    <div class="date-divider">
+                        ${escapeHtml(date)}
+                    </div>
+                `;
+
+                previousDate = date;
+            }
+
+            return `
+                ${divider}
+
+                <div class="message-row ${
+                    message.isMine
+                        ? "mine"
+                        : ""
+                }">
+
+                    <div class="message-bubble">
+
+                        <div class="message-text">
+                            ${escapeHtml(
+                                message.messageBody
+                            )}
+                        </div>
+
+                        <div class="message-meta">
+
+                            <span>
+                                ${formatTime(
+                                    message.createdAt
+                                )}
+                            </span>
+
+                            ${
+                                message.isMine
+                                    ? `
+                                        <span>
+                                            ${
+                                                message.isRead
+                                                    ? "✓✓"
+                                                    : "✓"
+                                            }
+                                        </span>
+                                      `
+                                    : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+    container.innerHTML = html;
+
+    requestAnimationFrame(() => {
+
+        container.scrollTop =
+            container.scrollHeight;
+
+    });
+}
+
+
+/* ============================================================
+   GUEST INFORMATION
+============================================================ */
+
+function renderGuestInfo(
+    conversation
+) {
+
+    const container =
+        document.getElementById(
+            "guestInfo"
+        );
+
+    if (!conversation) {
+
+        container.innerHTML = `
+            <div class="empty-list">
+                Select a conversation to view
+                authorized guest information.
+            </div>
+        `;
+
+        return;
+    }
+
+    const participant =
+        conversation.otherParticipant;
+
+    const profile =
+        participant?.profile;
+
+    const name =
+        getParticipantName(
+            conversation
+        );
+
+    const email =
+        participant?.email || "";
+
+    const phone =
+        participant?.phone || "";
+
+    const whatsapp =
+        profile?.whatsAppNumber || "";
+
+    const instagram =
+        profile?.instagramUsername || "";
+
+    const avatar =
+        getAvatarUrl(
+            conversation
+        );
+
+    const avatarHtml =
+        avatar
+            ? `
+                <img
+                    src="${escapeHtml(avatar)}"
+                    alt="${escapeHtml(name)}">
+              `
+            : escapeHtml(
+                getInitials(name)
+              );
+
+    container.innerHTML = `
+
+        <div class="guest-profile">
+
+            <div class="avatar">
+                ${avatarHtml}
+            </div>
+
+            <div class="guest-name">
+                ${escapeHtml(name)}
+            </div>
+
+            <div class="guest-role">
+                HavenGH Guest
+            </div>
+
+        </div>
+
+        ${
+            email
+                ? `
+                    <div class="guest-detail">
+
+                        <div class="detail-label">
+                            Email
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(email)}
+                        </div>
+
+                    </div>
+                  `
+                : ""
+        }
+
+        ${
+            phone
+                ? `
+                    <div class="guest-detail">
+
+                        <div class="detail-label">
+                            Phone
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(phone)}
+                        </div>
+
+                    </div>
+                  `
+                : ""
+        }
+
+        ${
+            whatsapp
+                ? `
+                    <div class="guest-detail">
+
+                        <div class="detail-label">
+                            WhatsApp
+                        </div>
+
+                        <div class="detail-value">
+                            ${escapeHtml(whatsapp)}
+                        </div>
+
+                    </div>
+                  `
+                : ""
+        }
+
+        ${
+            instagram
+                ? `
+                    <div class="guest-detail">
+
+                        <div class="detail-label">
+                            Instagram
+                        </div>
+
+                        <div class="detail-value">
+                            @${escapeHtml(
+                                instagram.replace(/^@/, "")
+                            )}
+
+                        </div>
+
+                    </div>
+                  `
+                : ""
+        }
+
+        <div class="guest-actions">
+
+            ${
+                phone
+                    ? `
+                        <a
+                            class="action-btn gold"
+                            href="tel:${escapeHtml(phone)}">
+                            ☎ Call Guest
+                        </a>
+                      `
+                    : `
+                        <button
+                            class="action-btn"
+                            disabled>
+                            ☎ No phone available
+                        </button>
+                      `
+            }
+
+            ${
+                email
+                    ? `
+                        <a
+                            class="action-btn"
+                            href="mailto:${escapeHtml(email)}">
+                            ✉ Email Guest
+                        </a>
+                      `
+                    : `
+                        <button
+                            class="action-btn"
+                            disabled>
+                            ✉ No email available
+                        </button>
+                      `
+            }
+
+            ${
+                whatsapp
+                    ? `
+                        <a
+                            class="action-btn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="${buildWhatsAppUrl(whatsapp)}">
+                            WhatsApp
+                        </a>
+                      `
+                    : ""
+            }
+
+        </div>
+
+        <div class="property-card">
+
+            <div class="property-card-title">
+                Property
+            </div>
+
+            <div class="property-name">
+                ${escapeHtml(
+                    getPropertyName(
+                        conversation
+                    )
+                )}
+            </div>
+
+            <div class="property-location">
+                ${escapeHtml(
+                    getPropertyLocation(
+                        conversation
+                    ) ||
+                    "Location unavailable"
+                )}
+            </div>
+
+        </div>
+    `;
+}
+
+
+/* ============================================================
+   WHATSAPP
+============================================================ */
+
+function buildWhatsAppUrl(
+    phone
+) {
+
+    let cleaned =
+        String(phone)
+            .replace(/[^\d+]/g, "");
+
+    /*
+     * If the stored Ghana number is local,
+     * convert 0XXXXXXXXX to 233XXXXXXXXX.
+     */
+    if (
+        cleaned.startsWith("0") &&
+        cleaned.length >= 10
+    ) {
+
+        cleaned =
+            "233" +
+            cleaned.substring(1);
+
+    } else {
+
+        cleaned =
+            cleaned.replace("+", "");
+    }
+
+    return (
+        "https://wa.me/" +
+        cleaned
+    );
+}
+
+
+/* ============================================================
+   SEND MESSAGE
+============================================================ */
+
+async function sendMessage() {
+
+    if (
+        isSending ||
+        !currentConversationId
+    ) {
+        return;
+    }
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+    const sendButton =
+        document.getElementById(
+            "sendBtn"
+        );
+
+    const messageBody =
+        input.value.trim();
+
+    if (!messageBody) {
+        return;
+    }
+
+    if (messageBody.length > 2000) {
+
+        alert(
+            "Message cannot exceed 2000 characters."
+        );
+
+        return;
+    }
+
+    isSending = true;
+
+    sendButton.disabled = true;
+
+    try {
+
+        const result =
+            await apiRequest(
+                `/api/Messages/conversations/${currentConversationId}/messages`,
+                {
+                    method: "POST",
+                    body: JSON.stringify({
+                        messageBody
+                    })
+                }
+            );
+
+        input.value = "";
+
+        appendSentMessage(
+            result
+        );
+
+        await loadConversations(true);
+
+    } catch (error) {
+
+        console.error(
+            "HavenGH send message error:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Unable to send message."
+        );
+
+    } finally {
+
+        isSending = false;
+        sendButton.disabled = false;
+
+        input.focus();
+    }
+}
+
+
+/* ============================================================
+   APPEND SENT MESSAGE
+============================================================ */
+
+function appendSentMessage(
+    message
+) {
+
+    const container =
+        document.getElementById(
+            "messagesContainer"
+        );
+
+    /*
+     * Remove empty-state message if present.
+     */
+    const center =
+        container.querySelector(
+            ".center-message"
+        );
+
+    if (center) {
+        center.remove();
+    }
+
+    const row =
+        document.createElement(
+            "div"
+        );
+
+    row.className =
+        "message-row mine";
+
+    row.innerHTML = `
+        <div class="message-bubble">
+
+            <div class="message-text"></div>
+
+            <div class="message-meta">
+                <span>
+                    ${formatTime(
+                        message.createdAt
+                    )}
+                </span>
+
+                <span>
+                    ✓
+                </span>
+            </div>
+
+        </div>
+    `;
+
+    row.querySelector(
+        ".message-text"
+    ).textContent =
+        message.messageBody || "";
+
+    container.appendChild(row);
+
+    container.scrollTop =
+        container.scrollHeight;
+}
+
+
+/* ============================================================
+   EMPTY CHAT
+============================================================ */
+
+function renderEmptyChat() {
+
+    currentConversationId = null;
+    currentConversation = null;
+
+    document
+        .getElementById("chatEmpty")
+        .style.display = "grid";
+
+    document
+        .getElementById("chatContent")
+        .style.display = "none";
+
+    document
+        .getElementById("messagesShell")
+        .classList.remove("chat-open");
+
+    renderGuestInfo(null);
+
+    renderConversationList();
+}
+
+
+/* ============================================================
+   CONVERSATION ERROR
+============================================================ */
+
+function renderConversationError(
+    message
+) {
+
+    document.getElementById(
+        "conversationList"
+    ).innerHTML = `
+        <div class="empty-list">
+
+            <div
+                class="error-text"
+                style="margin-bottom:10px;">
+                ${escapeHtml(message)}
+            </div>
+
+            <button
+                type="button"
+                class="action-btn"
+                id="retryConversations">
+                Try Again
+            </button>
+
+        </div>
+    `;
+
+    document
+        .getElementById(
+            "retryConversations"
+        )
+        ?.addEventListener(
+            "click",
+            () => loadConversations(false)
+        );
+}
+
+
+/* ============================================================
+   MOBILE BACK
+============================================================ */
+
+function goBackToConversations() {
+
+    document
+        .getElementById(
+            "messagesShell"
+        )
+        .classList.remove(
+            "chat-open"
+        );
+}
+
+
+/* ============================================================
+   EVENT LISTENERS
+============================================================ */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        if (!requireAuthentication()) {
+            return;
+        }
+
+        const search =
+            document.getElementById(
+                "conversationSearch"
+            );
+
+        search.addEventListener(
+            "input",
+            applyConversationSearch
+        );
+
+        document
+            .getElementById("refreshBtn")
+            .addEventListener(
+                "click",
+                () => loadConversations(true)
+            );
+
+        document
+            .getElementById("mobileBack")
+            .addEventListener(
+                "click",
+                goBackToConversations
+            );
+
+        document
+            .getElementById("messageForm")
+            .addEventListener(
+                "submit",
+                event => {
+
+                    event.preventDefault();
+
+                    sendMessage();
+                }
+            );
+
+        const input =
+            document.getElementById(
+                "messageInput"
+            );
+
+        input.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendMessage();
+                }
+            }
+        );
+
+        /*
+         * Automatically grow the message box.
+         */
+        input.addEventListener(
+            "input",
+            () => {
+
+                input.style.height = "auto";
+
+                input.style.height =
+                    Math.min(
+                        input.scrollHeight,
+                        130
+                    ) + "px";
+            }
+        );
+
+        await loadConversations(false);
+
+        /*
+         * Refresh conversation summaries every 15 seconds.
+         * This does not constantly reload the open chat.
+         */
+        refreshTimer =
+            setInterval(
+                () => loadConversations(true),
+                15000
+            );
+    }
+);
+
+
+/* ============================================================
+   CLEANUP
+============================================================ */
+
+window.addEventListener(
+    "beforeunload",
+    () => {
+
+        if (refreshTimer) {
+            clearInterval(refreshTimer);
+        }
+    }
+);
+</script>
+
+</body>
+</html>

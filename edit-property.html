@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Edit your HavenGH property listing.">
+
+<title>Edit Property | HavenGH</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard-layout">
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================== -->
+
+<aside class="dashboard-sidebar">
+
+    <div class="dashboard-logo">
+
+        <a href="index.html" class="logo">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="HavenGH Logo">
+
+            <span class="logo-main">
+                Haven
+            </span>
+
+            <span class="logo-accent">
+                GH
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <!-- USER -->
+
+    <div class="dashboard-user">
+
+        <img
+            src="images/agent-1.jpg"
+            alt="Profile picture">
+
+        <div>
+
+            <strong>
+                Kwame Properties
+            </strong>
+
+            <span>
+                Verified Agent
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="dashboard-nav">
+
+        <a href="dashboard.html"
+           class="dashboard-link">
+
+            <span>⌂</span>
+            Dashboard
+
+        </a>
+
+
+        <a href="my-properties.html"
+           class="dashboard-link active">
+
+            <span>▣</span>
+            My Properties
+
+        </a>
+
+
+        <a href="add-property.html"
+           class="dashboard-link">
+
+            <span>＋</span>
+            Add Property
+
+        </a>
+
+
+        <a href="request.html"
+           class="dashboard-link">
+
+            <span>◉</span>
+            Rental Requests
+
+            <b>3</b>
+
+        </a>
+
+
+        <a href="message.html"
+           class="dashboard-link">
+
+            <span>✉</span>
+            Messages
+
+            <b>2</b>
+
+        </a>
+
+
+        <a href="profile.html"
+           class="dashboard-link">
+
+            <span>♙</span>
+            My Profile
+
+        </a>
+
+
+        <a href="my-plan.html"
+           class="dashboard-link">
+
+            <span>◆</span>
+            My Plan
+
+        </a>
+
+
+        <a href="settings.html"
+           class="dashboard-link">
+
+            <span>⚙</span>
+            Settings
+
+        </a>
+
+    </nav>
+
+
+    <!-- SIDEBAR BOTTOM -->
+
+    <div class="dashboard-sidebar-bottom">
+
+        <a href="index.html"
+           class="dashboard-link">
+
+            <span>←</span>
+            Back to Website
+
+        </a>
+
+
+        <a href="login.html"
+           class="dashboard-link logout">
+
+            <span>↪</span>
+            Log Out
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+========================================================== -->
+
+<main class="dashboard-main">
+
+    <!-- TOP BAR -->
+
+    <header class="dashboard-topbar">
+
+        <button
+            class="dashboard-menu-button"
+            type="button"
+            aria-label="Open dashboard menu"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+        <div>
+
+            <p class="dashboard-date">
+                Manage your listing
+            </p>
+
+            <h1>
+                Edit Property
+            </h1>
+
+        </div>
+
+
+        <div class="dashboard-top-actions">
+
+            <a
+                href="my-properties.html"
+                class="dashboard-add-button">
+
+                ← My Properties
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+    <div class="dashboard-content">
+
+
+        <!-- PAGE INTRO -->
+
+        <section class="dashboard-welcome">
+
+            <span class="section-label">
+                PROPERTY MANAGEMENT
+            </span>
+
+            <h2>
+                Edit your property
+            </h2>
+
+            <p>
+                Update your property information,
+                location and listing status.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             API MESSAGE
+        ================================================== -->
+
+        <div
+            id="edit-property-message"
+            class="api-message"
+            role="status"
+            aria-live="polite"
+            hidden>
+
+        </div>
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <section class="dashboard-form-card">
+
+            <form
+                id="edit-property-form"
+                novalidate>
+
+
+                <!-- =========================================
+                     BASIC INFORMATION
+                ========================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span class="section-label">
+                            BASIC INFORMATION
+                        </span>
+
+                        <h3>
+                            Property details
+                        </h3>
+
+                        <p>
+                            Update the main information
+                            about your property.
+                        </p>
+
+                    </div>
+
+
+                    <!-- TITLE -->
+
+                    <div class="form-group">
+
+                        <label for="property-title">
+                            Property Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="property-title"
+                            name="title"
+                            maxlength="200"
+                            placeholder="e.g. Modern 2 Bedroom Apartment"
+                            required>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group">
+
+                        <label for="property-description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="property-description"
+                            name="description"
+                            rows="6"
+                            placeholder="Describe your property..."></textarea>
+
+                    </div>
+
+
+                    <!-- TYPE -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="property-type">
+                                Property Type
+                            </label>
+
+                            <select
+                                id="property-type"
+                                name="propertyType"
+                                required>
+
+                                <option value="">
+                                    Select property type
+                                </option>
+
+                                <option value="single-room">
+                                    Single Room
+                                </option>
+
+                                <option value="single-room-porch">
+                                    Single Room with Porch
+                                </option>
+
+                                <option value="chamber-hall">
+                                    Chamber &amp; Hall
+                                </option>
+
+                                <option value="apartment">
+                                    Apartment
+                                </option>
+
+                                <option value="house">
+                                    Full House
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- STATUS -->
+
+                        <div class="form-group">
+
+                            <label for="property-status">
+                                Listing Status
+                            </label>
+
+                            <select
+                                id="property-status"
+                                name="status"
+                                required>
+
+                                <option value="draft">
+                                    Draft
+                                </option>
+
+                                <option value="pending">
+                                    Pending
+                                </option>
+
+                                <option value="published">
+                                    Published
+                                </option>
+
+                                <option value="rented">
+                                    Rented
+                                </option>
+
+                                <option value="archived">
+                                    Archived
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     PRICE
+                ========================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span class="section-label">
+                            PRICING
+                        </span>
+
+                        <h3>
+                            Rental price
+                        </h3>
+
+                        <p>
+                            Set the amount and payment period
+                            for this property.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <!-- PRICE -->
+
+                        <div class="form-group">
+
+                            <label for="property-price">
+                                Price
+                            </label>
+
+                            <div class="input-with-prefix">
+
+                                <span>
+                                    GH₵
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="property-price"
+                                    name="price"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="0.00"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PERIOD -->
+
+                        <div class="form-group">
+
+                            <label for="property-price-period">
+                                Price Period
+                            </label>
+
+                            <select
+                                id="property-price-period"
+                                name="pricePeriod"
+                                required>
+
+                                <option value="monthly">
+                                    Monthly
+                                </option>
+
+                                <option value="yearly">
+                                    Yearly
+                                </option>
+
+                                <option value="daily">
+                                    Daily
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     PROPERTY FEATURES
+                ========================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span class="section-label">
+                            FEATURES
+                        </span>
+
+                        <h3>
+                            Property features
+                        </h3>
+
+                        <p>
+                            Tell prospective tenants about
+                            the size of the property.
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <!-- BEDROOMS -->
+
+                        <div class="form-group">
+
+                            <label for="property-bedrooms">
+                                Bedrooms
+                            </label>
+
+                            <input
+                                type="number"
+                                id="property-bedrooms"
+                                name="bedrooms"
+                                min="0"
+                                max="100"
+                                placeholder="e.g. 2">
+
+                        </div>
+
+
+                        <!-- BATHROOMS -->
+
+                        <div class="form-group">
+
+                            <label for="property-bathrooms">
+                                Bathrooms
+                            </label>
+
+                            <input
+                                type="number"
+                                id="property-bathrooms"
+                                name="bathrooms"
+                                min="0"
+                                max="100"
+                                placeholder="e.g. 2">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     LOCATION
+                ========================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span class="section-label">
+                            LOCATION
+                        </span>
+
+                        <h3>
+                            Property location
+                        </h3>
+
+                        <p>
+                            Update where the property is located.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="form-group">
+
+                        <label for="property-address">
+                            Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="property-address"
+                            name="addressLine"
+                            maxlength="250"
+                            placeholder="Street address or landmark">
+
+                    </div>
+
+
+                    <div class="form-row">
+
+
+                        <!-- AREA -->
+
+                        <div class="form-group">
+
+                            <label for="property-area">
+                                Area
+                            </label>
+
+                            <input
+                                type="text"
+                                id="property-area"
+                                name="area"
+                                maxlength="100"
+                                placeholder="e.g. East Legon"
+                                required>
+
+                        </div>
+
+
+                        <!-- CITY -->
+
+                        <div class="form-group">
+
+                            <label for="property-city">
+                                City
+                            </label>
+
+                            <input
+                                type="text"
+                                id="property-city"
+                                name="city"
+                                maxlength="100"
+                                placeholder="e.g. Accra"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+
+                        <!-- REGION -->
+
+                        <div class="form-group">
+
+                            <label for="property-region">
+                                Region
+                            </label>
+
+                            <input
+                                type="text"
+                                id="property-region"
+                                name="region"
+                                maxlength="100"
+                                placeholder="e.g. Greater Accra">
+
+                        </div>
+
+
+                        <!-- COUNTRY -->
+
+                        <div class="form-group">
+
+                            <label for="property-country">
+                                Country
+                            </label>
+
+                            <input
+                                type="text"
+                                id="property-country"
+                                name="country"
+                                maxlength="100"
+                                placeholder="e.g. Ghana"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COORDINATES -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="property-latitude">
+                                Latitude
+                            </label>
+
+                            <input
+                                type="number"
+                                id="property-latitude"
+                                name="latitude"
+                                step="any"
+                                placeholder="Optional">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="property-longitude">
+                                Longitude
+                            </label>
+
+                            <input
+                                type="number"
+                                id="property-longitude"
+                                name="longitude"
+                                step="any"
+                                placeholder="Optional">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                 <!-- =========================================
+     PROPERTY IMAGES
+========================================== -->
+
+<div class="form-section">
+
+    <div class="form-section-heading">
+
+        <span class="section-label">
+            PROPERTY IMAGES
+        </span>
+
+        <h3>
+            Manage property photos
+        </h3>
+
+        <p>
+            Upload up to 5 clear photos of your property.
+            The first photo will be used as the primary image.
+        </p>
+
+    </div>
+
+
+    <!-- IMAGE UPLOAD -->
+
+    <div class="property-image-upload">
+
+        <label for="property-images" class="image-upload-box">
+
+            <span class="image-upload-icon">
+                ＋
+            </span>
+
+            <strong>
+                Add property photos
+            </strong>
+
+            <span>
+                JPG, JPEG, PNG or WEBP · Maximum 5 images
+            </span>
+
+        </label>
+
+        <input
+            type="file"
+            id="property-images"
+            name="images"
+            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+            multiple
+            hidden>
+
+    </div>
+
+
+    <!-- IMAGE COUNT -->
+
+    <div
+        id="property-image-count"
+        class="property-image-count">
+
+        0 / 5 images
+
+    </div>
+
+
+    <!-- IMAGE MESSAGE -->
+
+    <div
+        id="property-image-message"
+        class="api-message"
+        role="status"
+        aria-live="polite"
+        hidden>
+    </div>
+
+
+    <!-- EXISTING / SELECTED IMAGES -->
+
+    <div
+        id="property-image-gallery"
+        class="property-image-gallery">
+
+    </div>
+
+</div>
+                <!-- =========================================
+                     FEATURED
+                ========================================== -->
+
+                <div class="form-section">
+
+                    <div class="form-section-heading">
+
+                        <span class="section-label">
+                            VISIBILITY
+                        </span>
+
+                        <h3>
+                            Featured property
+                        </h3>
+
+                        <p>
+                            Featured status is controlled by
+                            HavenGH administrators.
+                        </p>
+
+                    </div>
+
+
+                    <label class="form-checkbox">
+
+                        <input
+                            type="checkbox"
+                            id="property-featured"
+                            name="isFeatured">
+
+                        <span>
+                            Mark this property as featured
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- =========================================
+                     ACTIONS
+                ========================================== -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="my-properties.html"
+                        class="btn btn-light">
+
+                        Cancel
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="dashboard-add-button"
+                        id="save-property-button">
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+```
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script src="edit-property.js"></script>
+
+</body>
+
+</html>

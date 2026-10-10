@@ -1,0 +1,1535 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Audit Logs | HavenGH</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+       <style>
+           /* ============================================================
+   HavenGH - PREMIUM ADMIN AUDIT LOGS
+   Deep Green + Gold + White
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   AUDIT PAGE BACKGROUND
+   ------------------------------------------------------------ */
+
+.admin-audit-page,
+.audit-logs-page,
+main:has(#audit-log-list) {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(190, 151, 48, 0.08),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            #062b22 0%,
+            #07372b 45%,
+            #041f19 100%
+        );
+    color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   MAIN AUDIT CONTENT
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) {
+    min-height: 100vh;
+}
+
+/* ------------------------------------------------------------
+   HEADINGS
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) h1,
+main:has(#audit-log-list) h2,
+main:has(#audit-log-list) h3,
+main:has(#audit-log-list) h4 {
+    color: #ffffff;
+}
+
+main:has(#audit-log-list) p,
+main:has(#audit-log-list) span,
+main:has(#audit-log-list) label {
+    color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   SECTION LABEL
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .section-label {
+    color: #d4af37;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+/* ------------------------------------------------------------
+   WELCOME / HERO SECTION
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .welcome-section {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(7, 55, 43, 0.96),
+            rgba(4, 31, 25, 0.98)
+        );
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 22px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+/* ------------------------------------------------------------
+   STAT CARDS
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .stat-card,
+main:has(#audit-log-list) .dashboard-stat,
+main:has(#audit-log-list) .summary-card {
+    background:
+        linear-gradient(
+            145deg,
+            #0a4032,
+            #06291f
+        );
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    border-radius: 18px;
+    color: #ffffff;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.24);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+main:has(#audit-log-list) .stat-card:hover,
+main:has(#audit-log-list) .dashboard-stat:hover,
+main:has(#audit-log-list) .summary-card:hover {
+    transform: translateY(-4px);
+    border-color: #d4af37;
+    box-shadow:
+        0 16px 38px rgba(212, 175, 55, 0.14);
+}
+
+main:has(#audit-log-list) .stat-card strong,
+main:has(#audit-log-list) .stat-card h3,
+main:has(#audit-log-list) .dashboard-stat strong,
+main:has(#audit-log-list) .summary-card strong {
+    color: #ffffff;
+}
+
+main:has(#audit-log-list) .stat-card .stat-value,
+main:has(#audit-log-list) .dashboard-stat .stat-value {
+    color: #d4af37;
+    font-weight: 800;
+}
+
+/* ------------------------------------------------------------
+   FILTER PANEL
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .filters-panel,
+main:has(#audit-log-list) .filter-panel,
+main:has(#audit-log-list) .dashboard-filters {
+    background:
+        linear-gradient(
+            145deg,
+            #0a4032,
+            #06271f
+        );
+    border: 1px solid rgba(212, 175, 55, 0.30);
+    border-radius: 20px;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.24);
+}
+
+/* ------------------------------------------------------------
+   FILTER LABELS
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .filters-panel label,
+main:has(#audit-log-list) .filter-panel label,
+main:has(#audit-log-list) .dashboard-filters label {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   SEARCH + SELECT
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) #audit-search,
+main:has(#audit-log-list) #audit-action,
+main:has(#audit-log-list) #audit-role {
+    background: #041f19;
+    color: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    border-radius: 12px;
+    min-height: 46px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+main:has(#audit-log-list) #audit-search::placeholder {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+main:has(#audit-log-list) #audit-search:focus,
+main:has(#audit-log-list) #audit-action:focus,
+main:has(#audit-log-list) #audit-role:focus {
+    border-color: #d4af37;
+    background: #06291f;
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.12);
+}
+
+/* ------------------------------------------------------------
+   SELECT OPTIONS
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) #audit-action option,
+main:has(#audit-log-list) #audit-role option {
+    background: #06291f;
+    color: #ffffff;
+}
+
+/* ------------------------------------------------------------
+   AUDIT LIST
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) #audit-log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ------------------------------------------------------------
+   AUDIT CARD
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-item {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0a4032 0%,
+            #073327 55%,
+            #05261e 100%
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 18px;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+/* Gold edge */
+
+main:has(#audit-log-list) .audit-log-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(212, 175, 55, 0.55);
+    transition:
+        width 0.25s ease,
+        background 0.25s ease;
+}
+
+main:has(#audit-log-list) .audit-log-item:hover {
+    transform: translateY(-3px);
+
+    border-color: #d4af37;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d4939,
+            #073a2d
+        );
+
+    box-shadow:
+        0 18px 42px rgba(212, 175, 55, 0.12);
+}
+
+main:has(#audit-log-list) .audit-log-item:hover::before {
+    width: 5px;
+    background: #d4af37;
+}
+
+/* ------------------------------------------------------------
+   AUDIT MAIN
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-main {
+    display: flex;
+    gap: 18px;
+    padding: 20px;
+}
+
+/* ------------------------------------------------------------
+   AUDIT ICON
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-icon {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 20px;
+    font-weight: 900;
+
+    color: #ffffff;
+
+    background: rgba(212, 175, 55, 0.13);
+    border: 1px solid rgba(212, 175, 55, 0.38);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+main:has(#audit-log-list) .audit-log-item:hover .audit-log-icon {
+    background: rgba(212, 175, 55, 0.22);
+    border-color: #d4af37;
+    transform: scale(1.04);
+}
+
+/* ------------------------------------------------------------
+   AUDIT CONTENT
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-content {
+    flex: 1;
+    min-width: 0;
+}
+
+main:has(#audit-log-list) .audit-log-content h3 {
+    margin: 0 0 6px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+main:has(#audit-log-list) .audit-log-description {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------------
+   TOP ROW
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* ------------------------------------------------------------
+   ACTION BADGE
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-action {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.38);
+}
+
+/* ------------------------------------------------------------
+   ACTION STATES
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-create,
+main:has(#audit-log-list) .audit-success {
+    color: #ffffff;
+    border-color: rgba(212, 175, 55, 0.48);
+}
+
+main:has(#audit-log-list) .audit-update {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+main:has(#audit-log-list) .audit-danger {
+    color: #ffffff;
+    border-color: rgba(212, 175, 55, 0.62);
+    background: rgba(110, 35, 25, 0.28);
+}
+
+main:has(#audit-log-list) .audit-security {
+    color: #ffffff;
+    border-color: rgba(212, 175, 55, 0.55);
+    background: rgba(212, 175, 55, 0.10);
+}
+
+main:has(#audit-log-list) .audit-neutral {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ------------------------------------------------------------
+   META INFORMATION
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 18px;
+
+    margin-top: 16px;
+    padding-top: 14px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+main:has(#audit-log-list) .audit-log-meta span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 12px;
+}
+
+main:has(#audit-log-list) .audit-log-meta strong {
+    color: #d4af37;
+    font-weight: 800;
+}
+
+/* ------------------------------------------------------------
+   USER AGENT
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-log-user-agent {
+    margin-top: 12px;
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    background: rgba(0, 0, 0, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: rgba(255, 255, 255, 0.66);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+main:has(#audit-log-list) .audit-log-user-agent strong {
+    color: #d4af37;
+}
+
+/* ------------------------------------------------------------
+   EMPTY STATE
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .admin-audit-empty {
+    padding: 55px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0a4032,
+            #06271f
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 18px;
+}
+
+main:has(#audit-log-list) .admin-audit-empty-icon {
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+    background: rgba(212, 175, 55, 0.14);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+
+    font-weight: 900;
+    font-size: 22px;
+}
+
+main:has(#audit-log-list) .admin-audit-empty h3 {
+    color: #ffffff;
+}
+
+main:has(#audit-log-list) .admin-audit-empty p {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+/* ------------------------------------------------------------
+   LOADING
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .admin-audit-loading {
+    padding: 50px;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0a4032,
+            #06271f
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 18px;
+}
+
+main:has(#audit-log-list) .audit-loading-spinner {
+    width: 34px;
+    height: 34px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    border: 3px solid rgba(255, 255, 255, 0.14);
+    border-top-color: #d4af37;
+
+    animation:
+        auditSpin 0.8s linear infinite;
+}
+
+@keyframes auditSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ------------------------------------------------------------
+   ERROR
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .admin-audit-error {
+    padding: 45px 25px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3b211d,
+            #251613
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 18px;
+}
+
+main:has(#audit-log-list) .admin-audit-error h3,
+main:has(#audit-log-list) .admin-audit-error p {
+    color: #ffffff;
+}
+
+main:has(#audit-log-list) .admin-audit-error-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #ffffff;
+    border: 1px solid #d4af37;
+}
+
+/* ------------------------------------------------------------
+   RETRY BUTTON
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-retry-button {
+    margin-top: 15px;
+
+    padding: 11px 20px;
+
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+
+    background: #d4af37;
+    color: #062b22;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+main:has(#audit-log-list) .audit-retry-button:hover {
+    background: #f0cf5a;
+    color: #041f19;
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   PAGINATION
+   ------------------------------------------------------------ */
+
+main:has(#audit-log-list) .audit-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    margin-top: 24px;
+}
+
+main:has(#audit-log-list) .audit-page-button {
+    padding: 10px 17px;
+
+    border: 1px solid rgba(212, 175, 55, 0.42);
+    border-radius: 10px;
+
+    background: #07372b;
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+main:has(#audit-log-list) .audit-page-button:hover:not(:disabled) {
+    background: #0b4a39;
+    border-color: #d4af37;
+    transform: translateY(-2px);
+}
+
+main:has(#audit-log-list) .audit-page-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+main:has(#audit-log-list) .audit-page-info {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   ADMIN AUDIT TOAST
+   ------------------------------------------------------------ */
+
+.havenGH-admin-toast {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    z-index: 9999;
+
+    max-width: 360px;
+
+    padding: 13px 17px;
+
+    border-radius: 12px;
+
+    background: #062b22;
+    border: 1px solid #d4af37;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.35);
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.havenGH-admin-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.havenGH-admin-toast.error {
+    border-color: #d4af37;
+    background: #3b211d;
+}
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    main:has(#audit-log-list) .audit-log-main {
+        gap: 12px;
+        padding: 15px;
+    }
+
+    main:has(#audit-log-list) .audit-log-icon {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 17px;
+        border-radius: 11px;
+    }
+
+    main:has(#audit-log-list) .audit-log-top {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main:has(#audit-log-list) .audit-log-action {
+        align-self: flex-start;
+    }
+
+    main:has(#audit-log-list) .audit-log-meta {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    main:has(#audit-log-list) .audit-pagination {
+        gap: 8px;
+    }
+
+    main:has(#audit-log-list) .audit-page-button {
+        padding: 9px 12px;
+    }
+
+    .havenGH-admin-toast {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        max-width: none;
+    }
+}
+
+/* ------------------------------------------------------------
+   SMALL MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 480px) {
+
+    main:has(#audit-log-list) .audit-log-main {
+        padding: 13px;
+    }
+
+    main:has(#audit-log-list) .audit-log-content h3 {
+        font-size: 15px;
+    }
+
+    main:has(#audit-log-list) .audit-log-description {
+        font-size: 13px;
+    }
+
+    main:has(#audit-log-list) .audit-log-meta span {
+        font-size: 11px;
+    }
+}
+
+
+       </style> 
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================================
+         ADMIN SIDEBAR
+    ========================================== -->
+
+    <aside class="dashboard-sidebar">
+
+
+        <div class="dashboard-logo">
+
+            <a
+                href="havengh logo.jpeg"
+                class="logo">
+
+                <span class="logo-main">
+                    Haven
+                </span><span class="logo-accent">
+                    GH
+                </span>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="dashboard-user">
+
+            <img
+                src="havengh logo.jpeg"
+                alt="Administrator profile picture">
+
+            <div>
+
+                <strong>
+                    HavenGH Admin
+                </strong>
+
+                <span>
+                    Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ADMIN NAVIGATION -->
+
+        <nav class="dashboard-nav">
+
+
+            <a
+                href="admin-dashboard.html"
+                class="dashboard-link">
+
+                <span>⌂</span>
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="admin-users.html"
+                class="dashboard-link">
+
+                <span>♙</span>
+                Users
+
+            </a>
+
+
+            <a
+                href="admin-properties.html"
+                class="dashboard-link">
+
+                <span>▣</span>
+                Properties
+
+            </a>
+
+
+            <a
+                href="admin-stays.html"
+                class="dashboard-link">
+
+                <span>🏠</span>
+                Stay in Ghana
+
+            </a>
+
+
+            <a
+                href="admin-rental-requests.html"
+                class="dashboard-link">
+
+                <span>◉</span>
+                Rental Requests
+
+            </a>
+
+
+            <a
+                href="admin-messages.html"
+                class="dashboard-link">
+
+                <span>✉</span>
+                Messages
+
+            </a>
+
+
+            <a
+                href="admin-payments.html"
+                class="dashboard-link">
+
+                <span>GH₵</span>
+                Payments
+
+            </a>
+
+
+            <a
+                href="admin-subscriptions.html"
+                class="dashboard-link">
+
+                <span>◆</span>
+                Subscriptions
+
+            </a>
+
+
+            <a
+                href="admin-audit-logs.html"
+                class="dashboard-link active">
+
+                <span>▤</span>
+                Audit Logs
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="dashboard-link">
+
+                <span>⚙</span>
+                Settings
+
+            </a>
+
+
+        </nav>
+
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="dashboard-sidebar-bottom">
+
+
+            <a
+                href="index.html"
+                class="dashboard-link">
+
+                <span>←</span>
+                Back to Website
+
+            </a>
+
+
+            <a
+                href="login.html"
+                class="dashboard-link logout">
+
+                <span>↪</span>
+                Log Out
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="dashboard-topbar">
+
+
+            <button
+                class="dashboard-menu-button"
+                type="button"
+                aria-label="Open dashboard menu">
+
+                ☰
+
+            </button>
+
+
+            <div>
+
+                <p class="dashboard-date">
+                    HavenGH Administration
+                </p>
+
+                <h1>
+                    Audit Logs
+                </h1>
+
+            </div>
+
+
+            <div class="dashboard-top-actions">
+
+
+                <button
+                    type="button"
+                    class="notification-button"
+                    id="notification-button"
+                    aria-expanded="false">
+
+                    ♧
+
+                    <span id="adminNotificationCount">
+                        0
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =========================================
+             CONTENT
+        ========================================== -->
+
+        <div class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <section class="dashboard-welcome">
+
+                <div>
+
+                    <span class="section-label">
+                        SECURITY
+                    </span>
+
+                    <h2>
+                        Platform Audit Logs
+                    </h2>
+
+                    <p>
+                        Monitor important administrative
+                        and platform activity across HavenGH.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 AUDIT SUMMARY
+            ====================================== -->
+
+            <section class="dashboard-stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▤
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Events
+                        </span>
+
+                        <strong id="auditTotal">
+                            —
+                        </strong>
+
+                        <small>
+                            Recorded activity
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ♙
+                    </div>
+
+                    <div>
+
+                        <span>
+                            User Activity
+                        </span>
+
+                        <strong id="auditUserActivity">
+                            —
+                        </strong>
+
+                        <small>
+                            User-related events
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⚙
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Admin Activity
+                        </span>
+
+                        <strong id="auditAdminActivity">
+                            —
+                        </strong>
+
+                        <small>
+                            Administrative events
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Security Events
+                        </span>
+
+                        <strong id="auditSecurityEvents">
+                            —
+                        </strong>
+
+                        <small>
+                            Security-related activity
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 FILTERS
+            ====================================== -->
+
+            <section
+                class="dashboard-panel"
+                style="margin-top: 24px;">
+
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACTIVITY
+                        </span>
+
+                        <h2>
+                            Search Audit Logs
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    style="
+                        display: grid;
+                        grid-template-columns:
+                            repeat(auto-fit, minmax(220px, 1fr));
+                        gap: 16px;
+                        padding: 20px 0;
+                    ">
+
+
+                    <div>
+
+                        <label for="audit-search">
+                            Search
+                        </label>
+
+                        <input
+                            type="search"
+                            id="audit-search"
+                            placeholder="Search activity...">
+
+                    </div>
+
+
+
+                    <div>
+
+                        <label for="audit-action">
+                            Action
+                        </label>
+
+                        <select id="audit-action">
+
+                            <option value="all">
+                                All Actions
+                            </option>
+
+                            <option value="login">
+                                Login
+                            </option>
+
+                            <option value="logout">
+                                Logout
+                            </option>
+
+                            <option value="create">
+                                Create
+                            </option>
+
+                            <option value="update">
+                                Update
+                            </option>
+
+                            <option value="delete">
+                                Delete
+                            </option>
+
+                            <option value="approve">
+                                Approve
+                            </option>
+
+                            <option value="reject">
+                                Reject
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <label for="audit-role">
+                            Role
+                        </label>
+
+                        <select id="audit-role">
+
+                            <option value="all">
+                                All Roles
+                            </option>
+
+                            <option value="admin">
+                                Administrator
+                            </option>
+
+                            <option value="agent">
+                                Agent
+                            </option>
+
+                            <option value="landlord">
+                                Landlord
+                            </option>
+
+                            <option value="tenant">
+                                Tenant
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 AUDIT LOG LIST
+            ====================================== -->
+
+            <section
+                class="dashboard-panel"
+                style="margin-top: 24px;">
+
+
+                <div class="panel-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            LOG HISTORY
+                        </span>
+
+                        <h2>
+                            Recent Activity
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    id="audit-log-list">
+
+
+                    <!-- LOG 1 -->
+
+                    <div
+                        class="request-item audit-log-item">
+
+                        <div>
+
+                            <h3>
+                                Administrator Login
+                            </h3>
+
+                            <p>
+                                Administrator authentication
+                                activity was recorded.
+                            </p>
+
+                            <small>
+                                Action: Login · Role:
+                                Administrator
+                            </small>
+
+                        </div>
+
+                        <strong>
+                            Recorded
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- LOG 2 -->
+
+                    <div
+                        class="request-item audit-log-item">
+
+                        <div>
+
+                            <h3>
+                                Platform Activity
+                            </h3>
+
+                            <p>
+                                HavenGH platform activity
+                                will appear here when connected
+                                to the AuditLogs API.
+                            </p>
+
+                            <small>
+                                Action: System · Status:
+                                Waiting for API data
+                            </small>
+
+                        </div>
+
+                        <strong>
+                            Monitoring
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 SECURITY NOTICE
+            ====================================== -->
+
+            <section
+                class="dashboard-plan"
+                style="margin-top: 24px;">
+
+
+                <div>
+
+                    <span class="section-label">
+                        SECURITY
+                    </span>
+
+                    <h2>
+                        Audit Trail Protection
+                    </h2>
+
+                    <p>
+                        Audit logs should provide a reliable
+                        record of important platform activity.
+                        They should not be editable by ordinary
+                        users.
+                    </p>
+
+                </div>
+
+
+                <div class="plan-progress">
+
+
+                    <div class="progress-text">
+
+                        <span>
+                            Audit Monitoring
+                        </span>
+
+                        <strong>
+                            Enabled
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <span style="width: 100%;">
+                        </span>
+
+                    </div>
+
+
+                    <small>
+                        Detailed audit events will be loaded
+                        from the HavenGH API.
+                    </small>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================
+     HAVENGH MAIN JAVASCRIPT
+========================================== -->
+
+<script src="script.js"></script>
+<script src="admin-audit-logs.js"></script>
+
+
+</body>
+
+</html>
+

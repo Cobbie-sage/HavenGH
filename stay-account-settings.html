@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Manage your HavenGH host account, business information, preferences and notifications.">
+
+    <title>Account Settings | HavenGH</title>
+    <style>
+        /* =========================================
+           HAVENGH PREMIUM ACCOUNT SETTINGS
+        ========================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #064e3b;
+            --green-dark: #04382b;
+            --green-light: #0f766e;
+            --gold: #d4af37;
+            --gold-light: #f4e7b2;
+            --white: #ffffff;
+            --cream: #f7f8f6;
+            --text: #17211d;
+            --muted: #718078;
+            --border: #e4e9e5;
+            --danger: #a33d37;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        /* =========================================
+           HEADER
+        ========================================== */
+
+        .top-header {
+            height: 72px;
+            background: var(--green);
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-inner {
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            color: white;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: .3px;
+        }
+
+        .brand-name span {
+            color: var(--gold);
+        }
+
+        .dashboard-link {
+            color: white;
+            border: 1px solid rgba(255,255,255,.25);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .dashboard-link:hover {
+            background: rgba(255,255,255,.1);
+        }
+
+        /* =========================================
+           PAGE CONTAINER
+        ========================================== */
+
+        .page {
+            max-width: 1200px;
+            margin: auto;
+            padding: 45px 25px 70px;
+        }
+
+        .page-intro {
+            margin-bottom: 32px;
+        }
+
+        .eyebrow {
+            display: block;
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            margin-bottom: 9px;
+        }
+
+        .page-intro h1 {
+            color: var(--green);
+            font-size: 34px;
+            margin-bottom: 9px;
+        }
+
+        .page-intro p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 650px;
+        }
+
+        /* =========================================
+           MAIN GRID
+        ========================================== */
+
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 235px 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* =========================================
+           SIDEBAR
+        ========================================== */
+
+        .sidebar {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 9px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.035);
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            width: 100%;
+            padding: 13px 12px;
+            margin-bottom: 3px;
+
+            border-radius: 9px;
+
+            color: #526059;
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: .2s;
+        }
+
+        .sidebar-link:hover {
+            background: #f1f6f3;
+            color: var(--green);
+        }
+
+        .sidebar-link.active {
+            background: var(--green);
+            color: white;
+        }
+
+        .sidebar-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 9px 5px;
+        }
+
+        .logout {
+            color: var(--danger);
+        }
+
+        /* =========================================
+           CONTENT
+        ========================================== */
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            overflow: hidden;
+            box-shadow: 0 8px 35px rgba(0,0,0,.035);
+        }
+
+        .card-heading {
+            padding: 24px 27px 19px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-heading h2 {
+            color: var(--green);
+            font-size: 19px;
+            margin-bottom: 6px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .card-body {
+            padding: 27px;
+        }
+
+        /* =========================================
+           PROFILE SUMMARY
+        ========================================== */
+
+        .profile-summary {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            background: #f5f9f7;
+            border: 1px solid #e2ebe6;
+            border-radius: 13px;
+
+            padding: 18px;
+            margin-bottom: 25px;
+        }
+
+        .avatar {
+            width: 65px;
+            height: 65px;
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--green);
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+
+            color: white;
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .profile-summary h3 {
+            color: var(--green);
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .profile-summary p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .verified {
+            color: #087443;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 7px;
+        }
+
+        /* =========================================
+           FORM
+        ========================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 19px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #34423b;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 12px 13px;
+
+            border: 1px solid #d9e0db;
+            border-radius: 8px;
+
+            background: white;
+            color: var(--text);
+
+            font-size: 13px;
+            outline: none;
+
+            transition: .2s;
+        }
+
+        .form-group textarea {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--green-light);
+            box-shadow: 0 0 0 3px rgba(15,118,110,.09);
+        }
+
+        .form-help {
+            color: #89938d;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .locked {
+            background: #f2f4f2 !important;
+            color: #7d8781 !important;
+            cursor: not-allowed;
+        }
+
+        /* =========================================
+           SAVE MESSAGE
+        ========================================== */
+
+        .save-message {
+            display: none;
+
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+
+            padding: 11px 13px;
+            border-radius: 8px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .save-message.visible {
+            display: block;
+        }
+
+        /* =========================================
+           CARD ACTIONS
+        ========================================== */
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+
+            padding: 18px 27px;
+
+            border-top: 1px solid var(--border);
+            background: #fcfdfc;
+        }
+
+        .btn {
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #526059;
+            border: 1px solid #d7ded9;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f7f5;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+            border: 1px solid var(--green);
+        }
+
+        .btn-primary:hover {
+            background: var(--green-dark);
+        }
+
+        /* =========================================
+           NOTIFICATIONS
+        ========================================== */
+
+        .preference {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            padding: 17px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .preference:first-child {
+            padding-top: 0;
+        }
+
+        .preference:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .preference h3 {
+            color: #293730;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .preference p {
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           TOGGLE
+        ========================================== */
+
+        .toggle {
+            position: relative;
+            width: 45px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+
+            background: #ccd4cf;
+            border-radius: 30px;
+
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .toggle-slider::before {
+            content: "";
+
+            position: absolute;
+
+            width: 18px;
+            height: 18px;
+
+            left: 3px;
+            top: 3px;
+
+            background: white;
+            border-radius: 50%;
+
+            box-shadow: 0 2px 5px rgba(0,0,0,.15);
+
+            transition: .2s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: var(--green);
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(21px);
+        }
+
+        /* =========================================
+           DANGER
+        ========================================== */
+
+        .danger {
+            border-color: #ecd7d5;
+        }
+
+        .danger .card-heading h2 {
+            color: var(--danger);
+        }
+
+        .danger-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .danger-content h3 {
+            color: #55322f;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .danger-content p {
+            color: #806966;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .danger-btn {
+            padding: 10px 15px;
+
+            background: white;
+            color: var(--danger);
+
+            border: 1px solid #d7aaa6;
+            border-radius: 8px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .danger-btn:hover {
+            background: #fff7f6;
+        }
+
+        /* =========================================
+           FOOTER
+        ========================================== */
+
+        .footer {
+            text-align: center;
+            color: #8a938e;
+            font-size: 11px;
+            margin-top: 35px;
+        }
+
+        .footer strong {
+            color: var(--gold);
+        }
+
+        /* =========================================
+           MOBILE
+        ========================================== */
+
+        @media (max-width: 850px) {
+
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+
+            .sidebar-divider {
+                display: none;
+            }
+
+            .logout {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .top-header {
+                height: 64px;
+            }
+
+            .header-inner {
+                padding: 0 15px;
+            }
+
+            .dashboard-link {
+                display: none;
+            }
+
+            .page {
+                padding: 30px 15px 50px;
+            }
+
+            .page-intro h1 {
+                font-size: 27px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .card-heading {
+                padding: 20px;
+            }
+
+            .actions {
+                padding: 17px 20px;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .logout {
+                grid-column: auto;
+            }
+
+            .danger-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="top-header">
+
+        <div class="header-inner">
+
+            <a href="index.html" class="brand">
+
+                <img
+                    src="havengh logo.jpeg"
+                    alt="HavenGH Logo">
+
+                <div class="brand-name">
+                    Haven<span>GH</span>
+                </div>
+
+            </a>
+
+            <a
+                href="host-dashboard.html"
+                class="dashboard-link">
+
+                ← Host Dashboard
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         PAGE
+    ========================================== -->
+
+    <main class="page">
+
+
+        <div class="page-intro">
+
+            <span class="eyebrow">
+                HOST ACCOUNT
+            </span>
+
+            <h1>
+                Account Settings
+            </h1>
+
+            <p>
+                Manage your HavenGH host information, hospitality
+                business details, preferences and notifications.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             LAYOUT
+        ====================================== -->
+
+        <div class="settings-layout">
+
+
+            <!-- =================================
+                 SIDEBAR
+            ================================== -->
+
+            <aside class="sidebar">
+
+                <a
+                    href="profile.html"
+                    class="sidebar-link">
+
+                    <span class="sidebar-icon">◉</span>
+
+                    Profile
+
+                </a>
+
+
+                <a
+                    href="account-settings.html"
+                    class="sidebar-link active">
+
+                    <span class="sidebar-icon">⚙</span>
+
+                    Account Settings
+
+                </a>
+
+
+                <a
+                    href="security-settings.html"
+                    class="sidebar-link">
+
+                    <span class="sidebar-icon">🔒</span>
+
+                    Security Settings
+
+                </a>
+
+
+                <a
+                    href="subscription.html"
+                    class="sidebar-link">
+
+                    <span class="sidebar-icon">◆</span>
+
+                    Subscription
+
+                </a>
+
+
+                <div class="sidebar-divider"></div>
+
+
+                <a
+                    href="host-dashboard.html"
+                    class="sidebar-link">
+
+                    <span class="sidebar-icon">⌂</span>
+
+                    Dashboard
+
+                </a>
+
+
+                <a
+                    href="stays.html"
+                    class="sidebar-link">
+
+                    <span class="sidebar-icon">▣</span>
+
+                    Stay in Ghana
+
+                </a>
+
+
+                <a
+                    href="login.html"
+                    class="sidebar-link logout">
+
+                    <span class="sidebar-icon">↪</span>
+
+                    Log Out
+
+                </a>
+
+            </aside>
+
+
+            <!-- =================================
+                 CONTENT
+            ================================== -->
+
+            <section class="content">
+
+
+                <!-- =================================
+                     PERSONAL INFORMATION
+                ================================== -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                        <p>
+                            Keep your account information accurate and up to date.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div
+                            id="personalMessage"
+                            class="save-message">
+
+                            ✓ Personal information saved successfully.
+
+                        </div>
+
+
+                        <div class="profile-summary">
+
+                            <div class="avatar">
+                                HG
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    HavenGH Host
+                                </h3>
+
+                                <p>
+                                    Host account
+                                </p>
+
+                                <div class="verified">
+                                    ✓ Account verified
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="firstName">
+                                    First Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    placeholder="Enter first name">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="lastName">
+                                    Last Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    placeholder="Enter last name">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    class="locked"
+                                    placeholder="Registered email"
+                                    disabled>
+
+                                <span class="form-help">
+                                    Email changes require security verification.
+                                </span>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="phone">
+                                    Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    placeholder="+233 XX XXX XXXX">
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            id="cancelPersonal">
+
+                            Cancel
+
+                        </button>
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="savePersonal">
+
+                            Save Changes
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     HOST INFORMATION
+                ================================== -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Host & Business Information
+                        </h2>
+
+                        <p>
+                            Tell guests about you or the hospitality business behind your stays.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div
+                            id="businessMessage"
+                            class="save-message">
+
+                            ✓ Host information saved successfully.
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="hostType">
+                                    Host Type
+                                </label>
+
+                                <select id="hostType">
+
+                                    <option value="">
+                                        Select host type
+                                    </option>
+
+                                    <option value="individual">
+                                        Individual Host
+                                    </option>
+
+                                    <option value="hotel">
+                                        Hotel
+                                    </option>
+
+                                    <option value="serviced-apartment">
+                                        Serviced Apartment
+                                    </option>
+
+                                    <option value="property-manager">
+                                        Property Manager
+                                    </option>
+
+                                    <option value="hospitality-business">
+                                        Hospitality Business
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="businessName">
+                                    Business / Host Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="businessName"
+                                    placeholder="e.g. Haven Suites">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="city">
+                                    Primary City
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="city"
+                                    placeholder="e.g. Accra">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="country">
+                                    Country
+                                </label>
+
+                                <select id="country">
+
+                                    <option value="ghana">
+                                        Ghana
+                                    </option>
+
+                                    <option value="nigeria">
+                                        Nigeria
+                                    </option>
+
+                                    <option value="united-kingdom">
+                                        United Kingdom
+                                    </option>
+
+                                    <option value="united-states">
+                                        United States
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group full">
+
+                                <label for="description">
+                                    About Your Hosting Business
+                                </label>
+
+                                <textarea
+                                    id="description"
+                                    placeholder="Tell guests about your accommodation, hospitality business or hosting experience..."></textarea>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="saveBusiness">
+
+                            Save Host Information
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     PREFERENCES
+                ================================== -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Preferences
+                        </h2>
+
+                        <p>
+                            Choose how you prefer to use HavenGH.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="language">
+                                    Language
+                                </label>
+
+                                <select id="language">
+
+                                    <option selected>
+                                        English
+                                    </option>
+
+                                    <option>
+                                        French
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="currency">
+                                    Preferred Currency
+                                </label>
+
+                                <select id="currency">
+
+                                    <option selected>
+                                        Ghana Cedi (GH₵)
+                                    </option>
+
+                                    <option>
+                                        US Dollar ($)
+                                    </option>
+
+                                    <option>
+                                        Euro (€)
+                                    </option>
+
+                                    <option>
+                                        British Pound (£)
+                                    </option>
+
+                                </select>
+
+                                <span class="form-help">
+                                    Used for displaying prices in your account.
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     NOTIFICATIONS
+                ================================== -->
+
+                <div class="card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Notifications
+                        </h2>
+
+                        <p>
+                            Control the notifications you receive from HavenGH.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+
+                        <div class="preference">
+
+                            <div>
+
+                                <h3>
+                                    Booking Requests
+                                </h3>
+
+                                <p>
+                                    Receive alerts when guests request a stay.
+                                </p>
+
+                            </div>
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="bookingNotifications"
+                                    checked>
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="preference">
+
+                            <div>
+
+                                <h3>
+                                    Guest Messages
+                                </h3>
+
+                                <p>
+                                    Receive notifications when guests contact you.
+                                </p>
+
+                            </div>
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="messageNotifications"
+                                    checked>
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="preference">
+
+                            <div>
+
+                                <h3>
+                                    Account Updates
+                                </h3>
+
+                                <p>
+                                    Receive important HavenGH account notifications.
+                                </p>
+
+                            </div>
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="accountNotifications"
+                                    checked>
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                        <div class="preference">
+
+                            <div>
+
+                                <h3>
+                                    Marketing & Offers
+                                </h3>
+
+                                <p>
+                                    Receive occasional HavenGH offers and host opportunities.
+                                </p>
+
+                            </div>
+
+                            <label class="toggle">
+
+                                <input
+                                    type="checkbox"
+                                    id="marketingNotifications">
+
+                                <span class="toggle-slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="savePreferences">
+
+                            Save Preferences
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================
+                     DANGER ZONE
+                ================================== -->
+
+                <div class="card danger">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Account Management
+                        </h2>
+
+                        <p>
+                            Manage the status of your HavenGH host account.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="danger-content">
+
+                            <div>
+
+                                <h3>
+                                    Deactivate Account
+                                </h3>
+
+                                <p>
+                                    Temporarily disable your account and hide
+                                    your active stays from guests.
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="danger-btn"
+                                id="deactivateAccount">
+
+                                Deactivate Account
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+
+        <div class="footer">
+
+            Haven<strong>GH</strong> · Host Account Settings · © 2026
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         PAGE JAVASCRIPT
+    ========================================== -->
+
+    <script>
+
+        /* =========================================
+           PERSONAL INFORMATION
+        ========================================== */
+
+        const savePersonal =
+            document.getElementById("savePersonal");
+
+        const cancelPersonal =
+            document.getElementById("cancelPersonal");
+
+        const personalMessage =
+            document.getElementById("personalMessage");
+
+
+        savePersonal.addEventListener("click", function () {
+
+            personalMessage.classList.add("visible");
+
+            setTimeout(function () {
+
+                personalMessage.classList.remove("visible");
+
+            }, 3000);
+
+        });
+
+
+        cancelPersonal.addEventListener("click", function () {
+
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+            document.getElementById("phone").value = "";
+
+        });
+
+
+        /* =========================================
+           BUSINESS INFORMATION
+        ========================================== */
+
+        const saveBusiness =
+            document.getElementById("saveBusiness");
+
+        const businessMessage =
+            document.getElementById("businessMessage");
+
+
+        saveBusiness.addEventListener("click", function () {
+
+            businessMessage.classList.add("visible");
+
+            setTimeout(function () {
+
+                businessMessage.classList.remove("visible");
+
+            }, 3000);
+
+        });
+
+
+        /* =========================================
+           PREFERENCES
+        ========================================== */
+
+        document
+            .getElementById("savePreferences")
+            .addEventListener("click", function () {
+
+                alert("Your preferences have been saved.");
+
+            });
+
+
+        /* =========================================
+           DEACTIVATE ACCOUNT
+        ========================================== */
+
+        document
+            .getElementById("deactivateAccount")
+            .addEventListener("click", function () {
+
+                const confirmation = confirm(
+                    "Are you sure you want to deactivate your HavenGH host account?"
+                );
+
+                if (confirmation) {
+
+                    alert(
+                        "Account deactivation will be securely processed through the HavenGH API."
+                    );
+
+                }
+
+            });
+
+    </script>
+
+
+    <!-- EXISTING HAVENGH SCRIPT -->
+
+    <script src="script.js"></script>
+    <script src="account-settings.js"></script>
+
+</body>
+</html>

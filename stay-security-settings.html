@@ -1,0 +1,3703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="HavenGH Security Settings">
+
+    <title>Security Settings | HavenGH</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================
+           HAVENGH SECURITY SETTINGS
+        ========================================== */
+
+        .security-page {
+            min-height: 100vh;
+            background: #f5f7f6;
+            padding: 50px 20px 80px;
+        }
+
+        .security-wrapper {
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .security-header {
+            margin-bottom: 30px;
+        }
+
+        .security-header .eyebrow {
+            color: #b08a28;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .security-header h1 {
+            color: #064e3b;
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .security-header p {
+            color: #6b7280;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* SECURITY SCORE */
+
+        .security-status {
+            background: linear-gradient(135deg, #064e3b, #0f766e);
+            color: white;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            box-shadow: 0 12px 30px rgba(6, 78, 59, 0.18);
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .security-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .status-left h2 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .status-left p {
+            margin: 0;
+            color: rgba(255,255,255,0.78);
+            font-size: 14px;
+        }
+
+        .status-badge {
+            background: #d4af37;
+            color: #064e3b;
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* CARDS */
+
+        .security-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            margin-bottom: 22px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.04);
+        }
+
+        .security-card-header {
+            padding: 23px 25px;
+            border-bottom: 1px solid #edf0ee;
+        }
+
+        .security-card-header h2 {
+            color: #064e3b;
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .security-card-header p {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* PASSWORD */
+
+        .password-section {
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding: 13px 45px 13px 14px;
+            border: 1px solid #d7ddd9;
+            border-radius: 9px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .password-wrapper input:focus {
+            border-color: #0f766e;
+            box-shadow: 0 0 0 3px rgba(15,118,110,0.10);
+        }
+
+        .show-password {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            color: #0f766e;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .password-help {
+            color: #777;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .password-rules {
+            background: #f7faf8;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 10px 0 20px;
+        }
+
+        .password-rules p {
+            font-size: 12px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .password-rules span {
+            color: #999;
+            margin-right: 6px;
+        }
+
+        .save-password {
+            background: #064e3b;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 13px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .save-password:hover {
+            background: #053c2e;
+        }
+
+        /* SECURITY OPTIONS */
+
+        .security-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px 25px;
+            border-bottom: 1px solid #edf0ee;
+        }
+
+        .security-option:last-child {
+            border-bottom: none;
+        }
+
+        .option-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 11px;
+            background: #eef7f3;
+            color: #064e3b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .option-content h3 {
+            color: #222;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .option-content p {
+            color: #777;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* TOGGLE */
+
+        .toggle {
+            position: relative;
+            width: 48px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            background: #d1d5db;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 3px;
+            top: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: .2s;
+            box-shadow: 0 1px 4px rgba(0,0,0,.2);
+        }
+
+        .toggle input:checked + .slider {
+            background: #0f766e;
+        }
+
+        .toggle input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        /* BUTTON */
+
+        .outline-btn {
+            background: white;
+            border: 1px solid #0f766e;
+            color: #0f766e;
+            padding: 9px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .outline-btn:hover {
+            background: #eef7f3;
+        }
+
+        /* SESSIONS */
+
+        .session {
+            padding: 20px 25px;
+            border-bottom: 1px solid #edf0ee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .session:last-child {
+            border-bottom: none;
+        }
+
+        .device {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .device-icon {
+            width: 42px;
+            height: 42px;
+            background: #f1f5f3;
+            color: #064e3b;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .device h3 {
+            font-size: 14px;
+            color: #222;
+            margin-bottom: 4px;
+        }
+
+        .device p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .current-session {
+            color: #0f766e;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        /* DANGER */
+
+        .danger-card {
+            border: 1px solid #fecaca;
+        }
+
+        .danger-card .security-card-header h2 {
+            color: #991b1b;
+        }
+
+        .danger-btn {
+            margin: 20px 25px;
+            background: white;
+            border: 1px solid #dc2626;
+            color: #dc2626;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .danger-btn:hover {
+            background: #fef2f2;
+        }
+
+        /* BACK */
+
+        .back-dashboard {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .back-dashboard a {
+            color: #064e3b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .back-dashboard a:hover {
+            color: #b08a28;
+        }
+
+        /* MESSAGE */
+
+        .security-message {
+            display: none;
+            margin: 0 25px 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .security-message.success {
+            display: block;
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .security-message.error {
+            display: block;
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .security-page {
+                padding: 30px 15px 60px;
+            }
+
+            .security-header h1 {
+                font-size: 28px;
+            }
+
+            .security-status {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .security-option,
+            .session {
+                align-items: flex-start;
+            }
+
+            .option-content {
+                align-items: flex-start;
+            }
+
+            .outline-btn {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .security-option,
+            .session {
+                flex-direction: column;
+            }
+
+            .toggle,
+            .outline-btn {
+                align-self: flex-end;
+            }
+
+            .password-section {
+                padding: 20px;
+            }
+        }
+
+        /* =========================================================
+   TWO-FACTOR MODAL
+========================================================= */
+
+.two-factor-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.two-factor-modal.active {
+    display: flex;
+}
+
+.two-factor-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+}
+
+.two-factor-dialog {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 470px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+}
+
+.two-factor-close {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    color: #777;
+    cursor: pointer;
+}
+
+.two-factor-close:hover {
+    color: #064e3b;
+}
+
+.two-factor-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.two-factor-icon {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #eef7f3;
+    color: #064e3b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.two-factor-header h2 {
+    color: #064e3b;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.two-factor-header p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.qr-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#twoFactorQrCode {
+    padding: 12px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+.secret-box {
+    background: #f7faf8;
+    border: 1px solid #e2ebe6;
+    border-radius: 10px;
+    padding: 13px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.secret-box span {
+    display: block;
+    color: #777;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.secret-box strong {
+    display: block;
+    color: #064e3b;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    word-break: break-all;
+}
+
+.two-factor-instruction {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.two-factor-code-group {
+    margin-bottom: 16px;
+}
+
+.two-factor-code-group label {
+    display: block;
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.two-factor-code-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    border: 1px solid #d7ddd9;
+    border-radius: 9px;
+    outline: none;
+    font-size: 16px;
+}
+
+.two-factor-code-group input:focus {
+    border-color: #0f766e;
+    box-shadow: 0 0 0 3px rgba(15,118,110,0.10);
+}
+
+#twoFactorSetupCode,
+#disableTwoFactorCode {
+    text-align: center;
+    letter-spacing: 6px;
+    font-weight: 700;
+}
+
+.two-factor-primary-btn,
+.two-factor-danger-btn {
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 13px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.two-factor-primary-btn {
+    background: #064e3b;
+    color: white;
+}
+
+.two-factor-primary-btn:hover {
+    background: #053c2e;
+}
+
+.two-factor-primary-btn:disabled,
+.two-factor-danger-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.two-factor-danger-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.two-factor-danger-btn:hover {
+    background: #b91c1c;
+}
+
+.two-factor-message {
+    display: none;
+    padding: 11px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.two-factor-message.success {
+    display: block;
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.two-factor-message.error {
+    display: block;
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.two-factor-warning {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    color: #9a3412;
+    padding: 13px;
+    border-radius: 9px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+
+    .two-factor-dialog {
+        padding: 24px 20px;
+    }
+
+}
+    </style>
+</head>
+
+<body>
+
+<div class="security-page">
+
+    <div class="security-wrapper">
+
+        <!-- HEADER -->
+
+        <div class="security-header">
+
+            <div class="eyebrow">
+                HAVENGH ACCOUNT
+            </div>
+
+            <h1>
+                Security Settings
+            </h1>
+
+            <p>
+                Protect your HavenGH account and manage your
+                security preferences.
+            </p>
+
+        </div>
+
+
+        <!-- SECURITY STATUS -->
+
+        <div class="security-status">
+
+            <div class="status-left">
+
+                <div class="security-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>
+                        Your account is protected
+                    </h2>
+
+                    <p>
+                        Keep your password strong and security
+                        options enabled.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="status-badge">
+                Good Security
+            </div>
+
+        </div>
+
+
+        <!-- CHANGE PASSWORD -->
+
+        <section class="security-card">
+
+            <div class="security-card-header">
+
+                <h2>
+                    Change Password
+                </h2>
+
+                <p>
+                    Update your password regularly to keep your
+                    account secure.
+                </p>
+
+            </div>
+
+
+            <div class="password-section">
+
+                <form id="changePasswordForm">
+
+                    <div class="form-group">
+
+                        <label for="currentPassword">
+                            Current Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="currentPassword"
+                                autocomplete="current-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                data-target="currentPassword">
+
+                                Show
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="newPassword">
+                            New Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="newPassword"
+                                autocomplete="new-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                data-target="newPassword">
+
+                                Show
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm New Password
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                autocomplete="new-password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                data-target="confirmPassword">
+
+                                Show
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="password-rules">
+
+                        <p>
+                            <span>•</span>
+                            At least 8 characters
+                        </p>
+
+                        <p>
+                            <span>•</span>
+                            Include uppercase and lowercase letters
+                        </p>
+
+                        <p>
+                            <span>•</span>
+                            Include at least one number
+                        </p>
+
+                        <p>
+                            <span>•</span>
+                            Include a special character
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="save-password">
+
+                        Update Password
+
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div
+                id="passwordMessage"
+                class="security-message">
+            </div>
+
+        </section>
+
+
+        <!-- TWO FACTOR -->
+
+        <section class="security-card">
+
+            <div class="security-card-header">
+
+                <h2>
+                    Two-Factor Authentication
+                </h2>
+
+                <p>
+                    Add an additional layer of protection when
+                    signing into your HavenGH account.
+                </p>
+
+            </div>
+
+
+            <div class="security-option">
+
+                <div class="option-content">
+
+                    <div class="option-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Two-factor authentication
+                        </h3>
+              <p>
+              Require a verification code from your authenticator
+               app when signing into your HavenGH account.
+           </p>
+
+
+                    </div>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="twoFactorToggle">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOGIN ALERTS -->
+
+        <section class="security-card">
+
+            <div class="security-card-header">
+
+                <h2>
+                    Security Notifications
+                </h2>
+
+                <p>
+                    Choose when HavenGH should notify you about
+                    important security activity.
+                </p>
+
+            </div>
+
+
+            <div class="security-option">
+
+                <div class="option-content">
+
+                    <div class="option-icon">
+                        ✉
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            New login alerts
+                        </h3>
+
+                        <p>
+                            Receive an alert when your account is
+                            accessed from a new device.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="loginAlerts"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="security-option">
+
+                <div class="option-content">
+
+                    <div class="option-icon">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Password change alerts
+                        </h3>
+
+                        <p>
+                            Notify me whenever my account password
+                            is changed.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input
+                        type="checkbox"
+                        id="passwordAlerts"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+<!-- ACTIVE SESSIONS -->
+
+<section class="security-card">
+
+    <div class="security-card-header">
+
+        <h2>
+            Active Sessions
+        </h2>
+
+        <p>
+            Review devices currently signed into your
+            HavenGH account.
+        </p>
+
+    </div>
+
+    <div id="sessionsContainer">
+
+        <div class="session">
+
+            <div class="device">
+
+                <div class="device-icon">
+                    💻
+                </div>
+
+                <div>
+
+                    <h3>
+                        Loading sessions...
+                    </h3>
+
+                    <p>
+                        Checking your active HavenGH sessions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        id="sessionsMessage"
+        class="security-message">
+    </div>
+
+    <div
+        style="
+            padding: 18px 25px;
+            border-top: 1px solid #edf0ee;
+            display:flex;
+            justify-content:flex-end;
+        ">
+
+        <button
+            type="button"
+            class="outline-btn"
+            id="signOutOthers">
+
+            Sign Out Others
+
+        </button>
+
+    </div>
+
+</section>
+          <!-- DANGER ZONE -->
+
+        <section class="security-card danger-card">
+
+            <div class="security-card-header">
+
+                <h2>
+                    Danger Zone
+                </h2>
+
+                <p>
+                    These actions can affect access to your
+                    HavenGH account.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="danger-btn"
+                id="logoutAll">
+
+                Sign Out Everywhere
+
+            </button>
+
+        </section>
+
+
+        <!-- BACK -->
+
+        <div class="back-dashboard">
+
+            <a href="stay-host-dashboard.html">
+                ← Back to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ============================================================
+     TWO-FACTOR AUTHENTICATION MODAL
+============================================================ -->
+
+<div id="twoFactorModal" class="two-factor-modal" aria-hidden="true">
+
+    <div class="two-factor-overlay"></div>
+
+    <div class="two-factor-dialog">
+
+        <button
+            type="button"
+            id="closeTwoFactorModal"
+            class="two-factor-close"
+            aria-label="Close">
+            ×
+        </button>
+
+        <div class="two-factor-header">
+
+            <div class="two-factor-icon">
+                🔐
+            </div>
+
+            <h2 id="twoFactorModalTitle">
+                Set Up Two-Factor Authentication
+            </h2>
+
+            <p id="twoFactorModalDescription">
+                Use an authenticator app such as Google Authenticator
+                or Microsoft Authenticator to scan the QR code.
+            </p>
+
+        </div>
+
+
+        <!-- SETUP CONTENT -->
+
+        <div id="twoFactorSetupContent">
+
+            <div class="qr-container">
+
+                <div id="twoFactorQrCode"></div>
+
+            </div>
+
+
+            <div class="secret-box">
+
+                <span>
+                    Can't scan the QR code?
+                </span>
+
+                <strong id="twoFactorSecret">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <p class="two-factor-instruction">
+
+                Open your authenticator app, scan the QR code,
+                then enter the 6-digit verification code below.
+
+            </p>
+
+
+            <div class="two-factor-code-group">
+
+                <label for="twoFactorSetupCode">
+                    Verification Code
+                </label>
+
+                <input
+                    type="text"
+                    id="twoFactorSetupCode"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    maxlength="6"
+                    placeholder="000000">
+
+            </div>
+
+
+            <div
+                id="twoFactorSetupMessage"
+                class="two-factor-message">
+            </div>
+
+
+            <button
+                type="button"
+                id="verifyTwoFactorSetup"
+                class="two-factor-primary-btn">
+
+                Verify & Enable 2FA
+
+            </button>
+
+        </div>
+
+
+        <!-- DISABLE CONTENT -->
+
+        <div
+            id="twoFactorDisableContent"
+            style="display:none;">
+
+            <p class="two-factor-warning">
+
+                Disabling two-factor authentication removes an
+                important layer of protection from your account.
+
+            </p>
+
+
+            <div class="two-factor-code-group">
+
+                <label for="disableTwoFactorPassword">
+                    Current Password
+                </label>
+
+                <input
+                    type="password"
+                    id="disableTwoFactorPassword"
+                    autocomplete="current-password"
+                    placeholder="Enter your current password">
+
+            </div>
+
+
+            <div class="two-factor-code-group">
+
+                <label for="disableTwoFactorCode">
+                    Authenticator Code
+                </label>
+
+                <input
+                    type="text"
+                    id="disableTwoFactorCode"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    maxlength="6"
+                    placeholder="000000">
+
+            </div>
+
+
+            <div
+                id="twoFactorDisableMessage"
+                class="two-factor-message">
+            </div>
+
+
+            <button
+                type="button"
+                id="disableTwoFactorButton"
+                class="two-factor-danger-btn">
+
+                Disable Two-Factor Authentication
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    "use strict";
+
+
+    /* =========================================================
+       API
+    ========================================================= */
+
+    const API_BASE_URL =
+        "http://localhost:5073";
+
+
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
+
+    const passwordForm =
+        document.getElementById("changePasswordForm");
+
+    const passwordMessage =
+        document.getElementById("passwordMessage");
+
+    const twoFactorToggle =
+        document.getElementById("twoFactorToggle");
+
+    const twoFactorModal =
+        document.getElementById("twoFactorModal");
+
+    const closeTwoFactorModal =
+        document.getElementById("closeTwoFactorModal");
+
+    const twoFactorQrCode =
+        document.getElementById("twoFactorQrCode");
+
+    const twoFactorSecret =
+        document.getElementById("twoFactorSecret");
+
+    const twoFactorSetupCode =
+        document.getElementById("twoFactorSetupCode");
+
+    const verifyTwoFactorSetup =
+        document.getElementById("verifyTwoFactorSetup");
+
+    const twoFactorSetupMessage =
+        document.getElementById("twoFactorSetupMessage");
+
+    const twoFactorSetupContent =
+        document.getElementById("twoFactorSetupContent");
+
+    const twoFactorDisableContent =
+        document.getElementById("twoFactorDisableContent");
+
+    const disableTwoFactorPassword =
+        document.getElementById("disableTwoFactorPassword");
+
+    const disableTwoFactorCode =
+        document.getElementById("disableTwoFactorCode");
+
+    const disableTwoFactorButton =
+        document.getElementById("disableTwoFactorButton");
+
+    const twoFactorDisableMessage =
+        document.getElementById("twoFactorDisableMessage");
+
+    const loginAlerts =
+        document.getElementById("loginAlerts");
+
+    const passwordAlerts =
+        document.getElementById("passwordAlerts");
+
+    const signOutOthers =
+        document.getElementById("signOutOthers");
+
+    const logoutAll =
+        document.getElementById("logoutAll");
+
+    const sessionsContainer =
+        document.getElementById("sessionsContainer");
+
+    const sessionsMessage =
+        document.getElementById("sessionsMessage");
+
+
+    /* =========================================================
+       AUTH TOKEN
+       
+       IMPORTANT:
+       Login page uses sessionStorage.
+       Older HavenGH pages may use localStorage.
+       
+       We support all existing keys.
+    ========================================================= */
+
+    function getAuthToken() {
+
+        return (
+            sessionStorage.getItem("havenGH_token") ||
+            sessionStorage.getItem("token") ||
+            sessionStorage.getItem("accessToken") ||
+
+            localStorage.getItem("havenGH_token") ||
+            localStorage.getItem("token") ||
+            localStorage.getItem("accessToken")
+        );
+
+    }
+
+
+    /* =========================================================
+       STORE TOKEN
+    ========================================================= */
+
+    function storeToken(token) {
+
+        if (!token) {
+            return;
+        }
+
+        sessionStorage.setItem(
+            "havenGH_token",
+            token
+        );
+
+        sessionStorage.setItem(
+            "token",
+            token
+        );
+
+    }
+
+
+    /* =========================================================
+       CLEAR SESSION
+    ========================================================= */
+
+    function clearSession() {
+
+        sessionStorage.removeItem(
+            "havenGH_token"
+        );
+
+        sessionStorage.removeItem(
+            "token"
+        );
+
+        sessionStorage.removeItem(
+            "accessToken"
+        );
+
+        localStorage.removeItem(
+            "havenGH_token"
+        );
+
+        localStorage.removeItem(
+            "token"
+        );
+
+        localStorage.removeItem(
+            "accessToken"
+        );
+
+    }
+
+
+    /* =========================================================
+       API REQUEST HELPER
+    ========================================================= */
+
+    async function apiRequest(
+        endpoint,
+        options = {}
+    ) {
+
+        const token =
+            getAuthToken();
+
+
+        const headers = {
+            ...(options.headers || {})
+        };
+
+
+        if (
+            options.body &&
+            !headers["Content-Type"]
+        ) {
+
+            headers["Content-Type"] =
+                "application/json";
+
+        }
+
+
+        if (token) {
+
+            headers["Authorization"] =
+                `Bearer ${token}`;
+
+        }
+
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}${endpoint}`,
+                {
+                    ...options,
+                    headers: headers
+                }
+            );
+
+
+        let data = null;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        }
+        catch {
+
+            data = null;
+
+        }
+
+
+        if (response.status === 401) {
+
+            clearSession();
+
+            throw new Error(
+                "SESSION_EXPIRED"
+            );
+
+        }
+
+
+        return {
+            response: response,
+            data: data
+        };
+
+    }
+
+
+    /* =========================================================
+       SESSION CHECK
+    ========================================================= */
+
+    function requireToken() {
+
+        const token =
+            getAuthToken();
+
+
+        if (!token) {
+
+            alert(
+                "Your session has expired. Please log in again."
+            );
+
+            window.location.href =
+                "login.html";
+
+            return null;
+
+        }
+
+
+        return token;
+
+    }
+
+
+    /* =========================================================
+       PASSWORD VISIBILITY
+    ========================================================= */
+
+    document
+        .querySelectorAll(".show-password")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const target =
+                        document.getElementById(
+                            this.dataset.target
+                        );
+
+
+                    if (!target) {
+                        return;
+                    }
+
+
+                    if (
+                        target.type === "password"
+                    ) {
+
+                        target.type =
+                            "text";
+
+                        this.textContent =
+                            "Hide";
+
+                    }
+                    else {
+
+                        target.type =
+                            "password";
+
+                        this.textContent =
+                            "Show";
+
+                    }
+
+                }
+            );
+
+        });
+
+
+    /* =========================================================
+       PASSWORD MESSAGE
+    ========================================================= */
+
+    function showPasswordMessage(
+        text,
+        type
+    ) {
+
+        passwordMessage.textContent =
+            text;
+
+        passwordMessage.className =
+            "security-message " + type;
+
+    }
+
+
+    /* =========================================================
+       CHANGE PASSWORD
+    ========================================================= */
+
+    passwordForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            const token =
+                requireToken();
+
+            if (!token) {
+                return;
+            }
+
+
+            const currentPassword =
+                document
+                    .getElementById(
+                        "currentPassword"
+                    )
+                    .value;
+
+
+            const newPassword =
+                document
+                    .getElementById(
+                        "newPassword"
+                    )
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById(
+                        "confirmPassword"
+                    )
+                    .value;
+
+
+            if (!currentPassword) {
+
+                showPasswordMessage(
+                    "Please enter your current password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (newPassword.length < 8) {
+
+                showPasswordMessage(
+                    "Password must contain at least 8 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!/[A-Z]/.test(newPassword)) {
+
+                showPasswordMessage(
+                    "Password must contain at least one uppercase letter.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!/[a-z]/.test(newPassword)) {
+
+                showPasswordMessage(
+                    "Password must contain at least one lowercase letter.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!/[0-9]/.test(newPassword)) {
+
+                showPasswordMessage(
+                    "Password must contain at least one number.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!/[^A-Za-z0-9]/.test(newPassword)) {
+
+                showPasswordMessage(
+                    "Password must contain at least one special character.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                newPassword !==
+                confirmPassword
+            ) {
+
+                showPasswordMessage(
+                    "New passwords do not match.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                currentPassword ===
+                newPassword
+            ) {
+
+                showPasswordMessage(
+                    "New password must be different from your current password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            const button =
+                passwordForm.querySelector(
+                    ".save-password"
+                );
+
+
+            button.disabled = true;
+
+            button.textContent =
+                "Updating Password...";
+
+
+            try {
+
+                const result =
+                    await apiRequest(
+                        "/api/Account/change-password",
+                        {
+                            method: "POST",
+
+                            body: JSON.stringify({
+
+                                currentPassword:
+                                    currentPassword,
+
+                                newPassword:
+                                    newPassword,
+
+                                confirmPassword:
+                                    confirmPassword
+
+                            })
+                        }
+                    );
+
+
+                if (!result.response.ok) {
+
+                    showPasswordMessage(
+
+                        result.data?.message ||
+                        "Unable to change your password.",
+
+                        "error"
+
+                    );
+
+                    return;
+
+                }
+
+
+                showPasswordMessage(
+
+                    result.data?.message ||
+                    "Password changed successfully.",
+
+                    "success"
+
+                );
+
+
+                document
+                    .getElementById(
+                        "currentPassword"
+                    )
+                    .value = "";
+
+
+                document
+                    .getElementById(
+                        "newPassword"
+                    )
+                    .value = "";
+
+
+                document
+                    .getElementById(
+                        "confirmPassword"
+                    )
+                    .value = "";
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Change password error:",
+                    error
+                );
+
+
+                if (
+                    error.message ===
+                    "SESSION_EXPIRED"
+                ) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                showPasswordMessage(
+                    "Unable to connect to the HavenGH API.",
+                    "error"
+                );
+
+            }
+            finally {
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "Update Password";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       2FA MESSAGE
+    ========================================================= */
+
+    function showTwoFactorMessage(
+        element,
+        text,
+        type
+    ) {
+
+        element.textContent =
+            text;
+
+        element.className =
+            "two-factor-message " +
+            (type || "");
+
+    }
+
+
+    /* =========================================================
+       OPEN 2FA MODAL
+    ========================================================= */
+
+    function openTwoFactorModal() {
+
+        twoFactorModal.classList.add(
+            "active"
+        );
+
+        twoFactorModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+    }
+
+
+    /* =========================================================
+       CLOSE 2FA MODAL
+    ========================================================= */
+
+    function closeTwoFactorSetupModal() {
+
+        twoFactorModal.classList.remove(
+            "active"
+        );
+
+        twoFactorModal.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+    }
+
+
+    /* =========================================================
+       LOAD 2FA STATUS
+    ========================================================= */
+
+    async function loadTwoFactorStatus() {
+
+        const token =
+            requireToken();
+
+        if (!token) {
+            return;
+        }
+
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/Account/2fa/status",
+                    {
+                        method: "GET"
+                    }
+                );
+
+
+            if (!result.response.ok) {
+
+                console.error(
+                    "Unable to load 2FA status.",
+                    result.data
+                );
+
+                return;
+
+            }
+
+
+            twoFactorToggle.checked =
+                result.data?.enabled === true;
+
+
+            updateSecurityStatus(
+                twoFactorToggle.checked
+            );
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "2FA status error:",
+                error
+            );
+
+
+            if (
+                error.message ===
+                "SESSION_EXPIRED"
+            ) {
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        }
+
+    }
+
+
+    /* =========================================================
+       SECURITY STATUS
+    ========================================================= */
+
+    function updateSecurityStatus(
+        twoFactorEnabled
+    ) {
+
+        const statusBadge =
+            document.querySelector(
+                ".status-badge"
+            );
+
+        const statusTitle =
+            document.querySelector(
+                ".status-left h2"
+            );
+
+        const statusDescription =
+            document.querySelector(
+                ".status-left p"
+            );
+
+
+        if (!statusBadge) {
+            return;
+        }
+
+
+        if (twoFactorEnabled) {
+
+            statusBadge.textContent =
+                "Strong Security";
+
+            if (statusTitle) {
+
+                statusTitle.textContent =
+                    "Your account is strongly protected";
+
+            }
+
+            if (statusDescription) {
+
+                statusDescription.textContent =
+                    "Two-factor authentication is enabled on your account.";
+
+            }
+
+        }
+        else {
+
+            statusBadge.textContent =
+                "Good Security";
+
+            if (statusTitle) {
+
+                statusTitle.textContent =
+                    "Your account is protected";
+
+            }
+
+            if (statusDescription) {
+
+                statusDescription.textContent =
+                    "Enable two-factor authentication for stronger protection.";
+
+            }
+
+        }
+
+    }
+
+
+    /* =========================================================
+       START 2FA SETUP
+    ========================================================= */
+
+    async function startTwoFactorSetup() {
+
+        const token =
+            requireToken();
+
+        if (!token) {
+
+            twoFactorToggle.checked =
+                false;
+
+            return;
+
+        }
+
+
+        verifyTwoFactorSetup.disabled =
+            true;
+
+        verifyTwoFactorSetup.textContent =
+            "Preparing setup...";
+
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/Account/2fa/setup",
+                    {
+                        method: "POST"
+                    }
+                );
+
+
+            if (!result.response.ok) {
+
+                twoFactorToggle.checked =
+                    false;
+
+                alert(
+                    result.data?.message ||
+                    "Unable to start two-factor authentication setup."
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                result.data;
+
+
+            twoFactorQrCode.innerHTML =
+                "";
+
+
+            twoFactorSecret.textContent =
+                data?.secretKey ||
+                "Unavailable";
+
+
+            if (
+                typeof QRCode !==
+                    "undefined" &&
+                data?.provisioningUri
+            ) {
+
+                new QRCode(
+                    twoFactorQrCode,
+                    {
+                        text:
+                            data.provisioningUri,
+
+                        width: 190,
+
+                        height: 190,
+
+                        correctLevel:
+                            QRCode.CorrectLevel.M
+                    }
+                );
+
+            }
+            else {
+
+                twoFactorQrCode.innerHTML = `
+                    <p style="
+                        font-size:12px;
+                        color:#777;
+                        padding:20px;
+                        text-align:center;
+                    ">
+                        QR code could not be generated.
+                        Use the secret key below.
+                    </p>
+                `;
+
+            }
+
+
+            twoFactorSetupCode.value =
+                "";
+
+
+            showTwoFactorMessage(
+                twoFactorSetupMessage,
+                "",
+                ""
+            );
+
+
+            twoFactorSetupContent.style.display =
+                "block";
+
+            twoFactorDisableContent.style.display =
+                "none";
+
+
+            openTwoFactorModal();
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "2FA setup error:",
+                error
+            );
+
+
+            twoFactorToggle.checked =
+                false;
+
+
+            if (
+                error.message ===
+                "SESSION_EXPIRED"
+            ) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            alert(
+                "Unable to connect to the HavenGH API."
+            );
+
+        }
+        finally {
+
+            verifyTwoFactorSetup.disabled =
+                false;
+
+            verifyTwoFactorSetup.textContent =
+                "Verify & Enable 2FA";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       VERIFY / ENABLE 2FA
+    ========================================================= */
+
+    verifyTwoFactorSetup.addEventListener(
+        "click",
+        async function () {
+
+            const token =
+                requireToken();
+
+            if (!token) {
+                return;
+            }
+
+
+            const code =
+                twoFactorSetupCode.value.trim();
+
+
+            if (!/^\d{6}$/.test(code)) {
+
+                showTwoFactorMessage(
+                    twoFactorSetupMessage,
+                    "Enter the 6-digit code shown in your authenticator app.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            verifyTwoFactorSetup.disabled =
+                true;
+
+            verifyTwoFactorSetup.textContent =
+                "Verifying...";
+
+
+            try {
+
+                const result =
+                    await apiRequest(
+                        "/api/Account/2fa/verify-setup",
+                        {
+                            method: "POST",
+
+                            body: JSON.stringify({
+                                code: code
+                            })
+                        }
+                    );
+
+
+                if (!result.response.ok) {
+
+                    showTwoFactorMessage(
+                        twoFactorSetupMessage,
+                        result.data?.message ||
+                        "Invalid verification code.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                twoFactorToggle.checked =
+                    true;
+
+
+                updateSecurityStatus(
+                    true
+                );
+
+
+                showTwoFactorMessage(
+                    twoFactorSetupMessage,
+                    result.data?.message ||
+                    "Two-factor authentication has been enabled successfully.",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        closeTwoFactorSetupModal();
+
+                    },
+                    1200
+                );
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "2FA verification error:",
+                    error
+                );
+
+
+                if (
+                    error.message ===
+                    "SESSION_EXPIRED"
+                ) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                showTwoFactorMessage(
+                    twoFactorSetupMessage,
+                    "Unable to connect to the HavenGH API.",
+                    "error"
+                );
+
+            }
+            finally {
+
+                verifyTwoFactorSetup.disabled =
+                    false;
+
+                verifyTwoFactorSetup.textContent =
+                    "Verify & Enable 2FA";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       2FA TOGGLE
+    ========================================================= */
+
+    twoFactorToggle.addEventListener(
+        "change",
+        async function () {
+
+            if (this.checked) {
+
+                /*
+                 * Do not consider 2FA enabled yet.
+                 * The backend enables it only after
+                 * the authenticator code is verified.
+                 */
+
+                this.checked = false;
+
+                await startTwoFactorSetup();
+
+                return;
+
+            }
+
+
+            /*
+             * User wants to disable 2FA.
+             * Password + authenticator code required.
+             */
+
+            const token =
+                requireToken();
+
+            if (!token) {
+
+                this.checked = true;
+
+                return;
+
+            }
+
+
+            twoFactorSetupContent.style.display =
+                "none";
+
+            twoFactorDisableContent.style.display =
+                "block";
+
+
+            disableTwoFactorPassword.value =
+                "";
+
+            disableTwoFactorCode.value =
+                "";
+
+
+            showTwoFactorMessage(
+                twoFactorDisableMessage,
+                "",
+                ""
+            );
+
+
+            openTwoFactorModal();
+
+        }
+    );
+
+
+    /* =========================================================
+       DISABLE 2FA
+    ========================================================= */
+
+    disableTwoFactorButton.addEventListener(
+        "click",
+        async function () {
+
+            const token =
+                requireToken();
+
+            if (!token) {
+                return;
+            }
+
+
+            const password =
+                disableTwoFactorPassword.value;
+
+
+            const code =
+                disableTwoFactorCode.value.trim();
+
+
+            if (!password) {
+
+                showTwoFactorMessage(
+                    twoFactorDisableMessage,
+                    "Enter your current password.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (!/^\d{6}$/.test(code)) {
+
+                showTwoFactorMessage(
+                    twoFactorDisableMessage,
+                    "Enter your 6-digit authenticator code.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            disableTwoFactorButton.disabled =
+                true;
+
+            disableTwoFactorButton.textContent =
+                "Disabling...";
+
+
+            try {
+
+                const result =
+                    await apiRequest(
+                        "/api/Account/2fa/disable",
+                        {
+                            method: "POST",
+
+                            body: JSON.stringify({
+
+                                currentPassword:
+                                    password,
+
+                                code:
+                                    code
+
+                            })
+                        }
+                    );
+
+
+                if (!result.response.ok) {
+
+                    showTwoFactorMessage(
+                        twoFactorDisableMessage,
+                        result.data?.message ||
+                        "Unable to disable two-factor authentication.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                twoFactorToggle.checked =
+                    false;
+
+
+                updateSecurityStatus(
+                    false
+                );
+
+
+                showTwoFactorMessage(
+                    twoFactorDisableMessage,
+                    result.data?.message ||
+                    "Two-factor authentication has been disabled.",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        closeTwoFactorSetupModal();
+
+                    },
+                    1200
+                );
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "2FA disable error:",
+                    error
+                );
+
+
+                if (
+                    error.message ===
+                    "SESSION_EXPIRED"
+                ) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                showTwoFactorMessage(
+                    twoFactorDisableMessage,
+                    "Unable to connect to the HavenGH API.",
+                    "error"
+                );
+
+            }
+            finally {
+
+                disableTwoFactorButton.disabled =
+                    false;
+
+                disableTwoFactorButton.textContent =
+                    "Disable Two-Factor Authentication";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       CLOSE 2FA MODAL
+    ========================================================= */
+
+    function closeTwoFactorModalSafely() {
+
+        closeTwoFactorSetupModal();
+
+        /*
+         * Reload actual server state.
+         * This prevents the checkbox from showing
+         * a state that the API did not actually save.
+         */
+
+        loadTwoFactorStatus();
+
+    }
+
+
+    closeTwoFactorModal.addEventListener(
+        "click",
+        closeTwoFactorModalSafely
+    );
+
+
+    const overlay =
+        twoFactorModal.querySelector(
+            ".two-factor-overlay"
+        );
+
+
+    if (overlay) {
+
+        overlay.addEventListener(
+            "click",
+            closeTwoFactorModalSafely
+        );
+
+    }
+
+
+    /* =========================================================
+       2FA DIGIT INPUT
+    ========================================================= */
+
+    [
+        twoFactorSetupCode,
+        disableTwoFactorCode
+    ]
+    .forEach(input => {
+
+        input.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .slice(0, 6);
+
+            }
+        );
+
+    });
+
+
+    /* =========================================================
+       LOAD SECURITY SETTINGS
+    ========================================================= */
+
+    async function loadSecuritySettings() {
+
+        const token =
+            requireToken();
+
+        if (!token) {
+            return;
+        }
+
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/Account/security-settings",
+                    {
+                        method: "GET"
+                    }
+                );
+
+
+            if (!result.response.ok) {
+
+                console.error(
+                    "Unable to load security settings.",
+                    result.data
+                );
+
+                return;
+
+            }
+
+
+            const data =
+                result.data || {};
+
+
+            loginAlerts.checked =
+                data.loginAlerts !== false;
+
+
+            passwordAlerts.checked =
+                data.passwordChangeAlerts !== false;
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "Security settings error:",
+                error
+            );
+
+
+            if (
+                error.message ===
+                "SESSION_EXPIRED"
+            ) {
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+        }
+
+    }
+
+
+    /* =========================================================
+       SAVE SECURITY SETTINGS
+    ========================================================= */
+
+    async function saveSecuritySettings() {
+
+        const token =
+            requireToken();
+
+        if (!token) {
+            return;
+        }
+
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/Account/security-settings",
+                    {
+                        method: "PUT",
+
+                        body: JSON.stringify({
+
+                            loginAlerts:
+                                loginAlerts.checked,
+
+                            passwordChangeAlerts:
+                                passwordAlerts.checked
+
+                        })
+                    }
+                );
+
+
+            if (!result.response.ok) {
+
+                console.error(
+                    "Unable to save security settings.",
+                    result.data
+                );
+
+                alert(
+                    result.data?.message ||
+                    "Unable to save security settings."
+                );
+
+                /*
+                 * Reload server values in case
+                 * the update failed.
+                 */
+
+                await loadSecuritySettings();
+
+                return;
+
+            }
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "Save security settings error:",
+                error
+            );
+
+
+            if (
+                error.message ===
+                "SESSION_EXPIRED"
+            ) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            alert(
+                "Unable to connect to the HavenGH API."
+            );
+
+            await loadSecuritySettings();
+
+        }
+
+    }
+
+
+    /* =========================================================
+       SECURITY NOTIFICATION TOGGLES
+    ========================================================= */
+
+    loginAlerts.addEventListener(
+        "change",
+        saveSecuritySettings
+    );
+
+
+    passwordAlerts.addEventListener(
+        "change",
+        saveSecuritySettings
+    );
+
+
+    /* =========================================================
+       SESSION MESSAGE
+    ========================================================= */
+
+    function showSessionsMessage(
+        text,
+        type
+    ) {
+
+        sessionsMessage.textContent =
+            text;
+
+        sessionsMessage.className =
+            "security-message " + type;
+
+    }
+
+
+    /* =========================================================
+       FORMAT DATE
+    ========================================================= */
+
+    function formatSessionDate(
+        value
+    ) {
+
+        if (!value) {
+            return "Unknown";
+        }
+
+
+        const date =
+            new Date(value);
+
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "Unknown";
+
+        }
+
+
+        return date.toLocaleString(
+            undefined,
+            {
+                dateStyle: "medium",
+                timeStyle: "short"
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       SESSION ICON
+    ========================================================= */
+
+    function getDeviceIcon(
+        deviceName
+    ) {
+
+        const name =
+            String(
+                deviceName || ""
+            ).toLowerCase();
+
+
+        if (
+            name.includes("iphone") ||
+            name.includes("ipad") ||
+            name.includes("android")
+        ) {
+
+            return "📱";
+
+        }
+
+
+        if (
+            name.includes("mac")
+        ) {
+
+            return "💻";
+
+        }
+
+
+        if (
+            name.includes("windows") ||
+            name.includes("linux") ||
+            name.includes("pc")
+        ) {
+
+            return "💻";
+
+        }
+
+
+        return "🖥️";
+
+    }
+
+
+    /* =========================================================
+       RENDER SESSIONS
+    ========================================================= */
+
+    function renderSessions(
+        sessions
+    ) {
+
+        if (
+            !Array.isArray(sessions) ||
+            sessions.length === 0
+        ) {
+
+            sessionsContainer.innerHTML = `
+
+                <div class="session">
+
+                    <div class="device">
+
+                        <div class="device-icon">
+                            🔒
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                No active sessions
+                            </h3>
+
+                            <p>
+                                There are currently no active HavenGH sessions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        sessionsContainer.innerHTML =
+            sessions
+                .map(
+                    session => {
+
+                        const current =
+                            session.isCurrent === true;
+
+
+                        const icon =
+                            getDeviceIcon(
+                                session.deviceName
+                            );
+
+
+                        const deviceName =
+                            session.deviceName ||
+                            "Unknown Device";
+
+
+                        const ip =
+                            session.ipAddress ||
+                            "IP unavailable";
+
+
+                        return `
+
+                            <div class="session">
+
+                                <div class="device">
+
+                                    <div class="device-icon">
+                                        ${icon}
+                                    </div>
+
+                                    <div>
+
+                                        <h3>
+                                            ${escapeHtml(
+                                                deviceName
+                                            )}
+                                        </h3>
+
+                                        <p>
+                                            ${escapeHtml(
+                                                ip
+                                            )}
+                                        </p>
+
+                                        <p>
+                                            Last active:
+                                            ${escapeHtml(
+                                                formatSessionDate(
+                                                    session.lastUsedAt
+                                                )
+                                            )}
+                                        </p>
+
+                                        ${
+                                            current
+                                            ? `
+                                                <div class="current-session">
+                                                    CURRENT SESSION
+                                                </div>
+                                            `
+                                            : `
+                                                <div style="
+                                                    color:#777;
+                                                    font-size:11px;
+                                                    margin-top:4px;
+                                                ">
+                                                    Expires:
+                                                    ${escapeHtml(
+                                                        formatSessionDate(
+                                                            session.expiresAt
+                                                        )
+                                                    )}
+                                                </div>
+                                            `
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                )
+                .join("");
+
+    }
+
+
+    /* =========================================================
+       HTML ESCAPE
+    ========================================================= */
+
+    function escapeHtml(
+        value
+    ) {
+
+        return String(value ?? "")
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+    /* =========================================================
+       LOAD ACTIVE SESSIONS
+    ========================================================= */
+
+    async function loadSessions() {
+
+        const token =
+            requireToken();
+
+        if (!token) {
+            return;
+        }
+
+
+        sessionsContainer.innerHTML = `
+
+            <div class="session">
+
+                <div class="device">
+
+                    <div class="device-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Loading sessions...
+                        </h3>
+
+                        <p>
+                            Checking active devices.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        try {
+
+            const result =
+                await apiRequest(
+                    "/api/Account/sessions",
+                    {
+                        method: "GET"
+                    }
+                );
+
+
+            if (!result.response.ok) {
+
+                sessionsContainer.innerHTML = `
+
+                    <div class="session">
+
+                        <div class="device">
+
+                            <div class="device-icon">
+                                ⚠
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Unable to load sessions
+                                </h3>
+
+                                <p>
+                                    Please refresh the page and try again.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            renderSessions(
+                result.data
+            );
+
+
+        }
+        catch (error) {
+
+            console.error(
+                "Load sessions error:",
+                error
+            );
+
+
+            if (
+                error.message ===
+                "SESSION_EXPIRED"
+            ) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            sessionsContainer.innerHTML = `
+
+                <div class="session">
+
+                    <div class="device">
+
+                        <div class="device-icon">
+                            ⚠
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Unable to connect
+                            </h3>
+
+                            <p>
+                                Make sure the HavenGH API is running.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       SIGN OUT OTHER DEVICES
+    ========================================================= */
+
+    signOutOthers.addEventListener(
+        "click",
+        async function () {
+
+            const confirmed =
+                confirm(
+                    "Sign out of HavenGH on all other devices?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            const token =
+                requireToken();
+
+            if (!token) {
+                return;
+            }
+
+
+            signOutOthers.disabled =
+                true;
+
+            signOutOthers.textContent =
+                "Signing Out...";
+
+
+            showSessionsMessage(
+                "Signing out other devices...",
+                "success"
+            );
+
+
+            try {
+
+                const result =
+                    await apiRequest(
+                        "/api/Account/sessions/sign-out-others",
+                        {
+                            method: "POST"
+                        }
+                    );
+
+
+                if (!result.response.ok) {
+
+                    showSessionsMessage(
+                        result.data?.message ||
+                        "Unable to sign out other devices.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                showSessionsMessage(
+                    result.data?.message ||
+                    "All other sessions have been signed out.",
+                    "success"
+                );
+
+
+                await loadSessions();
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Sign out others error:",
+                    error
+                );
+
+
+                if (
+                    error.message ===
+                    "SESSION_EXPIRED"
+                ) {
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                showSessionsMessage(
+                    "Unable to connect to the HavenGH API.",
+                    "error"
+                );
+
+            }
+            finally {
+
+                signOutOthers.disabled =
+                    false;
+
+                signOutOthers.textContent =
+                    "Sign Out Others";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       SIGN OUT EVERYWHERE
+    ========================================================= */
+
+    logoutAll.addEventListener(
+        "click",
+        async function () {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to sign out of HavenGH on every device?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            const token =
+                requireToken();
+
+            if (!token) {
+                return;
+            }
+
+
+            logoutAll.disabled =
+                true;
+
+            logoutAll.textContent =
+                "Signing Out...";
+
+
+            try {
+
+                const result =
+                    await apiRequest(
+                        "/api/Account/sessions/sign-out-all",
+                        {
+                            method: "POST"
+                        }
+                    );
+
+
+                if (!result.response.ok) {
+
+                    alert(
+                        result.data?.message ||
+                        "Unable to sign out everywhere."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * The backend has now revoked the
+                 * current session as well.
+                 */
+
+                clearSession();
+
+
+                alert(
+                    result.data?.message ||
+                    "You have been signed out everywhere."
+                );
+
+
+                window.location.href =
+                    "login.html";
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Sign out everywhere error:",
+                    error
+                );
+
+
+                /*
+                 * If the backend already revoked the
+                 * session, a 401 is effectively success
+                 * from the user's perspective.
+                 */
+
+                if (
+                    error.message ===
+                    "SESSION_EXPIRED"
+                ) {
+
+                    clearSession();
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+
+                }
+
+
+                alert(
+                    "Unable to connect to the HavenGH API."
+                );
+
+            }
+            finally {
+
+                logoutAll.disabled =
+                    false;
+
+                logoutAll.textContent =
+                    "Sign Out Everywhere";
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       INITIALIZE PAGE
+    ========================================================= */
+
+    async function initializeSecurityPage() {
+
+        const token =
+            getAuthToken();
+
+
+        if (!token) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        /*
+         * Load all API-backed security information.
+         */
+
+        await Promise.all([
+
+            loadTwoFactorStatus(),
+
+            loadSecuritySettings(),
+
+            loadSessions()
+
+        ]);
+
+    }
+
+
+    initializeSecurityPage();
+
+});
+
+</script>
+
+
+</body>
+</html>
