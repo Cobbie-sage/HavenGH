@@ -1,0 +1,22 @@
+# VS Code
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Environment / secrets
+.env
+.env.*
+*.local
+
+# Temporary files
+*.log
+*.tmp
+
+# Editor backups
+*.bak
+*.backup
+
+# Local uploads
+uploads/
