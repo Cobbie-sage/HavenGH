@@ -16,7 +16,7 @@
    API
    ============================================================ */
 
-const HAVENGH_API = "http://localhost:5073/api";
+const HAVENGH_API = "https://havenghapi-production.up.railway.app/api";
 
 /* ============================================================
    STATE

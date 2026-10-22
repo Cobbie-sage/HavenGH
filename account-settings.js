@@ -9,7 +9,7 @@
    API
    ============================================================ */
 
-const ACCOUNT_API_BASE_URL = "http://localhost:5073/api/Account";
+const ACCOUNT_API_BASE_URL = "https://havenghapi-production.up.railway.app/api/Account";
 
 
 /* ============================================================

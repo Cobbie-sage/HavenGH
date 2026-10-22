@@ -11,7 +11,7 @@ API
 ============================================================ */
 
 const API_BASE_URL =
-"http://localhost:5073";
+"https://havenghapi-production.up.railway.app";
 
 const PROPERTIES_API =
 `${API_BASE_URL}/api/Properties`;

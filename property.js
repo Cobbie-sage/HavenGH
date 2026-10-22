@@ -3,7 +3,7 @@
    API CONNECTED
    ============================================================ */
 
-const API_BASE_URL = "http://localhost:5073/api";
+const API_BASE_URL = "https://havenghapi-production.up.railway.app/api";
 const PROPERTY_API = `${API_BASE_URL}/Properties`;
 
 /* ============================================================

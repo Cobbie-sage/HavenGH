@@ -6,7 +6,7 @@
    Admin-only Settings Page
    ============================================================ */
 
-const ADMIN_SETTINGS_API = "http://localhost:5073/api";
+const ADMIN_SETTINGS_API = "https://havenghapi-production.up.railway.app/api";
 const ADMIN_ME_ENDPOINT = `${ADMIN_SETTINGS_API}/Auth/me`;
 const ADMIN_PASSWORD_ENDPOINT =
     `${ADMIN_SETTINGS_API}/Auth/change-password`;

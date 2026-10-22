@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const API_BASE_URL = "http://localhost:5073/api";
+    const API_BASE_URL = "https://havenghapi-production.up.railway.app/api";
 
     // ============================================================
     // AUTHENTICATION

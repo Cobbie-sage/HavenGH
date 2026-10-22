@@ -28,7 +28,7 @@
    ============================================================ */
 
 const API_BASE_URL =
-    "http://localhost:5073";
+    "https://havenghapi-production.up.railway.app";
 
 const MY_PROPERTIES_API =
     `${API_BASE_URL}/api/Properties/my`;
@@ -1949,7 +1949,7 @@ function getPrimaryImage(
 
        becomes:
 
-       http://localhost:5073/uploads/properties/a.jpg
+       https://havenghapi-production.up.railway.app/uploads/properties/a.jpg
     */
 
     if (
@@ -1970,7 +1970,7 @@ function getPrimaryImage(
 
        becomes:
 
-       http://localhost:5073/uploads/properties/a.jpg
+       https://havenghapi-production.up.railway.app/uploads/properties/a.jpg
     */
 
     return (

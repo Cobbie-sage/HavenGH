@@ -6,7 +6,7 @@ API connection
 ============================================================ */
 
 const SAVED_PROPERTIES_API =
-"http://localhost:5073/api/SavedProperties";
+"https://havenghapi-production.up.railway.app/api/SavedProperties";
 
 /* ============================================================
 INITIALIZE

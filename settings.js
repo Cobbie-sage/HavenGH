@@ -5,7 +5,7 @@
    Settings Page API Integration
    ============================================================ */
 
-const SETTINGS_API_BASE = "http://localhost:5073/api/Auth";
+const SETTINGS_API_BASE = "https://havenghapi-production.up.railway.app/api/Auth";
 
 /* ============================================================
    TOKEN

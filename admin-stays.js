@@ -7,7 +7,7 @@
 
 (function () {
 
-    const API_BASE_URL = "http://localhost:5073";
+    const API_BASE_URL = "https://havenghapi-production.up.railway.app";
 
     let allStays = [];
     let filteredStays = [];

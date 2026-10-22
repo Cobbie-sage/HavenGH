@@ -5,7 +5,7 @@
    HAVENGH — MY PLAN
    ============================================================ */
 
-const API_BASE_URL = "http://localhost:5073/api";
+const API_BASE_URL = "https://havenghapi-production.up.railway.app/api";
 
 const PLANS_API = `${API_BASE_URL}/Plans`;
 const MY_PLAN_API = `${API_BASE_URL}/Plans/my`;

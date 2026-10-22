@@ -10,7 +10,7 @@
     ========================================================== */
 
     const ADMIN_API_BASE_URL =
-        "http://localhost:5073";
+        "https://havenghapi-production.up.railway.app";
 
 
     /* =========================================================

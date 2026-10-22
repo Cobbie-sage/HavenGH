@@ -6,7 +6,7 @@
    API-connected
    ============================================================ */
 
-const HAVENGH_API = "http://localhost:5073/api";
+const HAVENGH_API = "https://havenghapi-production.up.railway.app/api";
 
 let currentConversationId = null;
 
@@ -336,7 +336,7 @@ function renderConversations(conversations) {
          *
          * into:
          *
-         * http://localhost:5073/uploads/profiles/7.jpg
+         * https://havenghapi-production.up.railway.app/uploads/profiles/7.jpg
          */
 
         if (
@@ -350,7 +350,7 @@ function renderConversations(conversations) {
             }
 
             avatarUrl =
-                `http://localhost:5073${avatarUrl}`;
+                `https://havenghapi-production.up.railway.app${avatarUrl}`;
         }
 
 

@@ -5,10 +5,10 @@
    ============================================================ */
 
 const TENANT_PROFILE_API =
-    "http://localhost:5073/api/Auth/me";
+    "https://havenghapi-production.up.railway.app/api/Auth/me";
 
 const TENANT_PROFILE_UPDATE_API =
-    "http://localhost:5073/api/Auth/profile";
+    "https://havenghapi-production.up.railway.app/api/Auth/profile";
 
 
 /* ============================================================

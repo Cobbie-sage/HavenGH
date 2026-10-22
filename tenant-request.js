@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5073/api";
+const API_BASE_URL = "https://havenghapi-production.up.railway.app/api";
 const RENTAL_REQUESTS_API = `${API_BASE_URL}/RentalRequests`;
 
 let allRequests = [];
@@ -181,7 +181,7 @@ function getPropertyImage(request) {
     }
 
     if (image.startsWith("/")) {
-        return `http://localhost:5073${image}`;
+        return `https://havenghapi-production.up.railway.app${image}`;
     }
 
     return image;

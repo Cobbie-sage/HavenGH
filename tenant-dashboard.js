@@ -5,7 +5,7 @@ HavenGH - Tenant Dashboard
 Real API Connection
 ============================================================ */
 
-const API_BASE_URL = "http://localhost:5073";
+const API_BASE_URL = "https://havenghapi-production.up.railway.app";
 
 /* ============================================================
 API ENDPOINTS

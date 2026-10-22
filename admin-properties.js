@@ -6,7 +6,7 @@ Admin Property Management
 Direct ASP.NET Core API connection
 ============================================================ */
 
-const HAVENGH_API = "http://localhost:5073/api";
+const HAVENGH_API = "https://havenghapi-production.up.railway.app/api";
 
 let adminallProperties = [];
 let adminfilteredProperties = [];
@@ -1162,7 +1162,7 @@ if (
 }
 
 
-return `http://localhost:5073${rawUrl.startsWith("/") ? "" : "/"}${rawUrl}`;
+return `https://havenghapi-production.up.railway.app${rawUrl.startsWith("/") ? "" : "/"}${rawUrl}`;
 
 
 }

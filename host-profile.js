@@ -5,7 +5,7 @@
    Complete API Integration
    ============================================================ */
 
-const HOST_PROFILE_API = "http://localhost:5073/api/Auth";
+const HOST_PROFILE_API = "https://havenghapi-production.up.railway.app/api/Auth";
 
 
 /* ============================================================

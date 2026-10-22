@@ -5,7 +5,7 @@ HavenGH - Property Details
 Direct ASP.NET Core API connection
 ============================================================ */
 
-const API_BASE_URL = "http://localhost:5073";
+const API_BASE_URL = "https://havenghapi-production.up.railway.app";
 
 /* ============================================================
 DOM
