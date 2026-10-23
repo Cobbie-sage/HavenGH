@@ -328,16 +328,15 @@ function renderConversations(conversations) {
             profile?.AvatarUrl ||
             "";
 
-
-        /*
-         * Convert relative API paths such as:
-         *
-         * /uploads/profiles/7.jpg
-         *
-         * into:
-         *
-         * https://havenghapi-production.up.railway.app/uploads/profiles/7.jpg
-         */
+/*
+ * Convert relative API paths into production URLs.
+ *
+ * Example:
+ * /uploads/profiles/7.jpg
+ *
+ * becomes:
+ * https://havenghapi-production.up.railway.app/uploads/profiles/7.jpg
+ */
 
         if (
             avatarUrl &&
